@@ -1,0 +1,1098 @@
+<h1 id="项目1：重命名文件系统"><a href="#项目1：重命名文件系统" class="headerlink" title="项目1：重命名文件系统"></a>项目1：重命名文件系统</h1><p>地址：F:\c#_code\RenameFileApplacation</p>
+<p>Combox的下拉框选择后触发事件，使用comboBox2_SelectedValueChanged事件</p>
+<ol>
+<li><h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><p>Directory.CreateDirectory(newPath);</p>
+</li>
+<li><h2 id="重命名核心算法："><a href="#重命名核心算法：" class="headerlink" title="重命名核心算法："></a>重命名核心算法：</h2><p>将文件移动到一个新的文件夹下并重新改名，删除原来的文件夹，然后再移动回来，          </p>
+</li>
+</ol>
+<p>File.Move(oldPath + oldName[Form1.flag], newPath + newName);</p>
+<p>File.Move(newPath + newName, oldPath + newName);</p>
+<ol start="3">
+<li><h2 id="获取文件夹下所有文件"><a href="#获取文件夹下所有文件" class="headerlink" title="获取文件夹下所有文件"></a>获取文件夹下所有文件</h2><p>DirectoryInfo di = new DirectoryInfo(oldPath);</p>
+<p>​                                           FileInfo[] fi = di.GetFiles();</p>
+</li>
+</ol>
+<h2 id="选择文件夹"><a href="#选择文件夹" class="headerlink" title="选择文件夹"></a>选择文件夹</h2><p>folderbrowerdialog，openfiledialog,savefiledialog实际上都是winform中的默认控件，常规操作都是创建对象之后在点击ok之后之后执行相应的代码。</p>
+<pre><code>public void getPath() {
+
+​      FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+​      fbd.SelectedPath = &quot;e:\\&quot;;//默认选择的路径
+
+​      if (fbd.ShowDialog() == DialogResult.OK)
+
+​      {
+
+​        if (fbd.SelectedPath != &quot;&quot;)
+
+​        {
+
+​          filePath.Text = fbd.SelectedPath.Trim();//前端的路径输入框
+
+​          path = fbd.SelectedPath.Trim();//将文件夹路径保存到一个静态变量中
+
+​        }
+
+​        else
+
+​        {
+
+​          MessageBox.Show(&quot;文件路径错误&quot;);
+
+​        }
+
+​      }
+
+​    }
+</code></pre>
+<h2 id="文件加载功能"><a href="#文件加载功能" class="headerlink" title="文件加载功能"></a>文件加载功能</h2><pre><code>private void filePath_Click(object sender, EventArgs e)
+
+​    {
+
+​      getPath();
+
+​      //获取文件路径
+
+​      oldPath = Form1.path + &quot;\\&quot;;
+
+​      DirectoryInfo di = new DirectoryInfo(oldPath);
+
+​      FileInfo[] fi = di.GetFiles();//获取文件夹中的所有文件
+
+​      //将文件按照创建时间进行排序
+
+​      //string[] oldName = Directory.GetFiles(oldPath);
+
+​      Array.Sort(fi, delegate(FileInfo x, FileInfo y) { return x.CreationTime.CompareTo(y.CreationTime); });
+
+​      oldName = new string[fi.Length];
+
+​      for (int i = 0; i &lt; fi.Length; i++)
+
+​      {
+
+​        oldName[i] = fi[i].Name;
+
+​      }
+
+​    }
+</code></pre>
+<h2 id="实现按下enter键完成操作"><a href="#实现按下enter键完成操作" class="headerlink" title="实现按下enter键完成操作"></a>实现按下enter键完成操作</h2><p>判断键盘上按下的键是哪个键e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab</p>
+<pre><code>private void textBox1_KeyDown(object sender, KeyEventArgs e)
+
+​    {
+
+​        id = 1;
+
+​        inputEnter(((TextBox)sender).Text, e, id);//当前控件对象时textbox类型
+
+​        MessageBox.Show(&quot;文件路径不能为空&quot;);
+
+​    }
+
+public void inputEnter(string str, KeyEventArgs e,int id)
+
+​    {
+
+​      if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+
+​      {
+
+​        int i = int.Parse(str);
+
+​        for (int j = 0; j &lt; i; j++)
+
+​        {
+
+​          Form2 form2 = new Form2(this,j+1);
+
+​          form2.ShowDialog();
+
+​        }
+
+​      }
+
+​    }
+</code></pre>
+<h2 id="重命名代码"><a href="#重命名代码" class="headerlink" title="重命名代码"></a>重命名代码</h2><pre><code>public void renameFile(Form1 form1)
+
+​    {
+
+​      //获取文件路径
+
+​      //获取大类，和份数
+
+​      int count = int.Parse(textBox1.Text);//获取页数
+
+​      String newPath;
+
+​      newPath = oldPath + &quot;a\\&quot;;
+
+​      Directory.CreateDirectory(newPath);//创建文件夹
+
+​      //处理第四类
+
+​      if (id == 4) {
+
+​        string LittleClass = form1.comboBox1.Text;
+
+//不超过10页          
+
+ if (count &lt; 10) {
+
+​            for (int j = 0; j &lt; count; j++)
+
+​            {
+
+​              string newName = &quot;0&quot; + id + &quot;-&quot; + LittleClass + &quot;-&quot; + i + &quot;-&quot; + (j + 1) + &quot;.jpg&quot;;
+
+​              //3月9日处理不了
+
+​              File.Move(oldPath + oldName[Form1.flag], newPath + newName);
+
+​              File.Move(newPath + newName, oldPath + newName);
+
+​              Form1.flag++;
+
+​            }
+
+​            Directory.Delete(newPath);
+
+​          }
+
+​    }
+</code></pre>
+<h1 id="项目2-记事本"><a href="#项目2-记事本" class="headerlink" title="项目2:记事本"></a>项目2:记事本</h1><p>地址：F:\c#_code\notepad</p>
+<p>需要引用的命名空间</p>
+<p>using System.Drawing.Text;</p>
+<p>using System.Collections;</p>
+<p>using System.IO;</p>
+<h2 id="添加工具栏"><a href="#添加工具栏" class="headerlink" title="添加工具栏"></a>添加工具栏</h2><p>toolscrip，设置成以下显示方式：</p>
+<p>​    1.在属性中将displayStyle设置成文字和图片</p>
+<p>​    2.imagescaling设置为none</p>
+<p>​    3.texeimagerelation显示方式设置为imageabovetext即可。</p>
+<p><img src="%E9%A1%B9%E7%9B%AE/assets/wps30D8.tmp.jpg" alt="img"> </p>
+<h2 id="将字体加载到combobox中"><a href="#将字体加载到combobox中" class="headerlink" title="将字体加载到combobox中"></a>将字体加载到combobox中</h2><p>//调用字体库，一般是写到窗口加载的代码中</p>
+<p>​      InstalledFontCollection ifc = new InstalledFontCollection();</p>
+<p>​      FontFamily[] ff =  ifc.Families;//字体数组</p>
+<p>​      //往combox中添加字体名字</p>
+<p>​      for (int i = 0; i &lt; ff.Length; i++) {</p>
+<p>​        toolStripComboBox1.Items.Add(ff[i].Name);</p>
+<p>​      }</p>
+<h2 id="字体加粗-倾斜，倾斜将blod改为Italic即可"><a href="#字体加粗-倾斜，倾斜将blod改为Italic即可" class="headerlink" title="字体加粗/倾斜，倾斜将blod改为Italic即可"></a>字体加粗/倾斜，倾斜将blod改为Italic即可</h2><p>C#对字体进行设置时，使用label.Font = new Font(“字体类型”,字体大小,是否加粗/斜体/、下划线/删除线);因为在c#中，字体的属性是一个枚举类型，是只读的，不能对其直接进行设置，所以需要进行重新绘制。</p>
+<p>错误写法：textBox1.Font.Bold = true;</p>
+<p>正确写法：textBox1.Font = new Font(textBox1.Font,FontStyle.Bold);</p>
+<p>//加粗按钮</p>
+<pre><code>      if (textBox1.Font.Bold == false)
+
+​      {
+
+​        textBox1.Font = new Font(textBox1.Font, FontStyle.Bold);
+
+​      }
+
+​      else {
+
+​        //取消加粗
+
+​        //textBox1.Font.Bold = true;错误写法
+
+​        textBox1.Font = new Font(textBox1.Font,FontStyle.Regular);
+
+​      }
+
+## 选择
+</code></pre>
+<h2 id="字体同时进行字体更改"><a href="#字体同时进行字体更改" class="headerlink" title="字体同时进行字体更改"></a>字体同时进行字体更改</h2><p>//字体类型改变</p>
+<p>​    </p>
+<pre><code>  string fontName =  toolStripComboBox1.Text;//在combox中获取字体的名字
+
+​      float  fontSize = float.Parse(toolStripComboBox2.Text);//获取字体的大小
+
+​      textBox1.Font = new Font(fontName,fontSize);//字体更改
+
+字体大小改变combobox2中手动写入了10-22字号的大小，所以fontsize实际上就是字号大小
+</code></pre>
+<h2 id="Savefiledialog和openfiledialog-新建，关闭，全部关闭"><a href="#Savefiledialog和openfiledialog-新建，关闭，全部关闭" class="headerlink" title="Savefiledialog和openfiledialog,新建，关闭，全部关闭"></a>Savefiledialog和openfiledialog,新建，关闭，全部关闭</h2><p>的区别如下，savefiledialog打开的保存窗口，而openfiledialog打开的是打开窗口，两者里面的一些属性或者方法有些是不同的，前者的filename是文件名是路径名加上手动写入的文件名，而后者的filename是点击的文件的文件名。(注意filenames属性是包含前面的文件路径名，而safafilename不包含路径名，只是文件名)</p>
+<p>前者使用streamwriter，后者使用streamreader。</p>
+<p><img src="file:///C:\Users\hasee\AppData\Local\Temp\ksohtml\wps8B08.tmp.jpg" alt="img"> <img src="%E9%A1%B9%E7%9B%AE/assets/wps8B18.tmp.jpg" alt="img"></p>
+<p>​        保存                                                                                                    打开</p>
+<p>//进行保存文件</p>
+<pre><code>    if (textBox1.Text.Trim() != &quot;&quot;)
+
+​      {
+
+​        SaveFileDialog sfd = new SaveFileDialog();//查看savefiledialog与openfiledialog与folderbrowserdialog的关系   
+
+​        sfd.Filter = (&quot;文本文档(*.txt)|*.txt&quot;);//为保存的文件设置保存格式为txt类型
+
+​        if (sfd.ShowDialog() == DialogResult.OK)
+
+​        {
+
+​          string path = sfd.FileName;//获取需要保存的文件路径，以及手动输入的文件名
+
+​          StreamWriter sw = new StreamWriter(path, false);//false表示如果有和它一样的文件名不会进行追加，如果改为true则表示将文件追加到原来文件的后面
+
+​          sw.WriteLine(textBox1.Text.Trim());
+
+​          sw.Flush();
+
+​          sw.Close();
+
+​        }
+</code></pre>
+<p>打开文件代码</p>
+<pre><code>OpenFileDialog ofd = new OpenFileDialog();
+
+​      ofd.Filter = (&quot;文本文档(*.txt)|*.txt&quot;);//设置打开文档类型
+
+​      if (ofd.ShowDialog() == DialogResult.OK) {
+
+​        string path = ofd.FileName;
+
+​        StreamReader sr = new StreamReader(path,Encoding.UTF8);
+
+​        textBox1.Text = sr.ReadToEnd();
+
+​        sr.Close();
+
+​      }
+</code></pre>
+<p>新建</p>
+<pre><code>FrmChild fc = new FrmChild();
+
+​      fc.MdiParent = this;//应用到了多文档窗口
+
+​      fc.Show();
+</code></pre>
+<p>关闭</p>
+<pre><code>Form frm = this.ActiveMdiChild;//关闭当前激活状态的子窗体
+
+​      frm.Close();
+
+ 
+
+全部关闭
+
+​            //使用foreach循环关闭
+
+​      foreach (Form item in this.MdiChildren)
+
+​      {
+
+​        this.ActiveMdiChild.Close();
+
+​      }
+</code></pre>
+<h2 id="多文档界面"><a href="#多文档界面" class="headerlink" title="多文档界面"></a>多文档界面</h2><p>与单文档界面不同，当应用程序执行时，单文档界面只能操作一个文档，每个窗口都是一个单独的程序，多文档界面可同时操作多个窗口，但是就一个程序，且子窗体都是显示在父窗体里面的，而单文档界面调用一个窗体时，该窗体是任意位置的。比如学生管理系统可以同时操作添加学生和成绩管理两个窗口。在任务栏中，多文档(mdi)只显示一个任务，而单文档显示多个任务。</p>
+<p>操作方法：在父窗体中将ismdicontainer属性改为true，在创建子窗体的对象后，使用对象.mdiParent = 父窗体对象即可。</p>
+<h1 id="项目3：图书管理系统"><a href="#项目3：图书管理系统" class="headerlink" title="项目3：图书管理系统"></a>项目3：图书管理系统</h1><p>地址：F:\c#_code\BookManagerSystem</p>
+<h2 id="1-技巧："><a href="#1-技巧：" class="headerlink" title="1.技巧："></a>1.技巧：</h2><p>​    如果想要将从前端获取的数据临时进行存取，例如：用户名，id，可以添加一个静态类。</p>
+<p>这样当后台需要使用使用该数据的时候，就可以直接将其提取出来。（不需要重新建立一个数据表进行增删改的操作了）。但是如果需要永久保存数据的话并且作为中介，则还是需要数据表的，例如借出的图书，归还的图书。</p>
+<p>从数据库查询到结果后，使用c#从后台获取到的方法，在（3用户登陆）中。通过数组获取。第一种是使用索引，第二种是直接使用字段获取。第二种更好</p>
+<p>保证多个radiobutton只能选择一个，在（3用户登陆）中</p>
+<p>后端数据库中的数据显示在前端页面的方法（5）中</p>
+<p>可将修改和添加写在一个窗体中，然后如果是添加则自动显示添加按钮，如果是修改则显示修改按钮，两个按钮进行覆盖。</p>
+<p>了解DialogResult dr = MessageBox.Show(“是否要删除该图书”, “”,</p>
+<p>MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);中每个参数的含义，返回结果</p>
+<p>与dialogresult中的枚举值进行对比。</p>
+<p>​    如何获取表格中选中行的数据并且进行操作，在（7中）</p>
+<p>​    判断增删改执行成功，判断语句是影响的行数是否大于0即可，查询判断语句是bool型</p>
+<p>​    Form2如果想要使用form1中的方法，那么应该需要将Form1作为一个对象传递到Form2中，如果想要使用Form1中的一些属性，实际上Form1的属性可以将private改为public即可。</p>
+<p>​    修改图书:方法1：执行一次删除，在执行一次添加，方法2.执行update语句。（参考8）</p>
+<p>​    多行删除操作：11</p>
+<h2 id="2-连接数据库的源码"><a href="#2-连接数据库的源码" class="headerlink" title="2.连接数据库的源码"></a>2.连接数据库的源码</h2><pre><code>class Dao
+
+  {
+
+​    /*连接数据库的三个步骤
+
+​     \* 1.获取数据源
+
+​     \* 2.加载数据源和sql命令
+
+​     \* 3.开始执行
+
+​             *4.关闭数据库
+
+​     */
+
+​    SqlConnection sc;
+
+​    public SqlConnection connection() {
+
+​    string path = &quot;Data Source=(localdb)\\Projects;Initial Catalog=BookMS;Integrated Security=True&quot;;
+
+​      sc = new SqlConnection(path);
+
+​      sc.Open();
+
+​      return sc;
+
+​    }
+
+​    public SqlCommand command(string sql) {
+
+​      SqlCommand sc = new SqlCommand(sql,connection());
+
+​      return sc;
+
+​    }
+
+ 
+
+​    public int execute(string sql) {
+
+​      return command(sql).ExecuteNonQuery();
+
+​    }
+
+​    public SqlDataReader read(string sql) {
+
+​      return command(sql).ExecuteReader();
+
+​    }
+
+​    public void dbClose() {
+
+​      sc.Close();
+
+​    }
+
+  }
+</code></pre>
+<h2 id="3-用户登陆"><a href="#3-用户登陆" class="headerlink" title="3. 用户登陆"></a>3. 用户登陆</h2><p>​      </p>
+<pre><code>if (radioButton1.Checked == true) {//radio选择的是用户
+
+​       radioButton2.Checked = false;//将管理员设置为false，以保证唯一性
+
+​        string sql = &quot;select * from t_user where id = &#39;&quot;+textBox1.Text+&quot;&#39; and psw = &#39;&quot;+textBox2.Text+&quot;&#39;&quot;;
+
+​        Dao dao = new Dao();
+
+​        SqlDataReader sr = dao.read(sql);//查询语句用read方法。并且返回值为bool型。
+
+​        if (sr.Read())//因为只需要查询固定的某个人，所以只需要执行一次即可，否则需要使用while循环，sr.Read()方法会自动指向下一个指针。
+
+​        {
+
+​          //将用户的id和姓名保存在静态类里面，以便后面使用。
+
+​          User.Uid = sr[&quot;id&quot;].ToString();
+
+​          User.Uname = sr[&quot;name&quot;].ToString();
+
+​          UserMain um = new UserMain();
+
+​          this.Hide();
+
+​          um.ShowDialog();
+
+​          this.Show();
+
+​        }
+
+​        else {
+
+​          MessageBox.Show(&quot;用户名或者密码错误&quot;);
+
+​        }
+
+​        sr.Close();
+</code></pre>
+<h2 id="4-管理员登陆"><a href="#4-管理员登陆" class="headerlink" title="4. 管理员登陆"></a>4. 管理员登陆</h2><p>同用户登陆一样。</p>
+<h2 id="5-将数据库中的数据显示到前端表格中"><a href="#5-将数据库中的数据显示到前端表格中" class="headerlink" title="5. 将数据库中的数据显示到前端表格中"></a>5. 将数据库中的数据显示到前端表格中</h2><pre><code>public void showTable()
+
+​    {
+
+​      dataGridView1.Rows.Clear();//清除原有数据
+
+​      string sql = &quot;select * from t_book&quot;;
+
+​      Dao dao = new Dao();
+
+​      IDataReader ir = dao.read(sql);
+
+​      while (ir.Read())
+
+​      {
+
+​        //记住往表格中添加数据的方法
+
+​        dataGridView1.Rows.Add(ir[0].ToString(), ir[1].ToString(), ir[2].ToString(), ir[3].ToString(), ir[4].ToString());
+
+​      }
+
+​      ir.Close();
+
+​      dao.dbClose();
+
+​    }
+</code></pre>
+<h2 id="6-添加图书"><a href="#6-添加图书" class="headerlink" title="6. 添加图书"></a>6. 添加图书</h2><pre><code>private void button1_Click(object sender, EventArgs e)//点击提交时间的时候执行
+
+​    {
+
+​      if (textBox1.Text != &quot;&quot; &amp;&amp; textBox2.Text != &quot;&quot; &amp;&amp; textBox3.Text != &quot;&quot; &amp;&amp; textBox4.Text != &quot;&quot; &amp;&amp; textBox5.Text != &quot;&quot;)
+
+​      {
+
+​        Dao dao = new Dao();
+
+​        string sql = &quot;insert into t_book values (&#39;&quot; + textBox1.Text + &quot;&#39;,&#39;&quot; + textBox2.Text + &quot;&#39;,&#39;&quot; + textBox3.Text + &quot;&#39;,&#39;&quot; + textBox4.Text + &quot;&#39;,&#39;&quot; + textBox5.Text + &quot;&#39;);&quot;;
+
+​        if (dao.execute(sql) &gt; 0)
+
+​        {
+
+​          MessageBox.Show(&quot;添加成功&quot;);
+
+​        }
+
+​        else
+
+​        {
+
+​          MessageBox.Show(&quot;添加失败&quot;);
+
+​        }
+
+​        textBox1.Text = null;
+
+​        textBox2.Text = null;
+
+​        textBox3.Text = null;
+
+​        textBox4.Text = null;
+
+​        textBox5.Text = null;
+
+​        book.showTable();
+
+​      }
+
+​      else {
+
+​        MessageBox.Show(&quot;不能有空项&quot;);
+
+​      }
+
+​    }
+</code></pre>
+<h2 id="7-删除图书"><a href="#7-删除图书" class="headerlink" title="7. 删除图书"></a>7. 删除图书</h2><pre><code>private void button3_Click(object sender, EventArgs e)
+
+​    {
+
+​      //删除图书
+
+​      DialogResult dr = MessageBox.Show(&quot;是否要删除该图书&quot;, &quot;&quot;, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+​      if (dr == DialogResult.Yes)//判断返回结果
+
+​      {
+
+​        //注意获取选中行的字段技巧。注意，selectRows中的索引值默认代表的是多选情况下（multiselect），对应的所选的行的集合中的某一行。
+
+​        //如果multiselect属性改为false（即只能选择一行），那么index只能为0。cells同理
+
+​        string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+
+​        string sql = &quot;delete from t_book where id = &#39;&quot; + id + &quot;&#39;&quot;;
+
+​        Dao dao = new Dao();
+
+​        if (dao.execute(sql) &gt; 0)
+
+​        {
+
+​          MessageBox.Show(&quot;删除成功&quot;);
+
+​          showTable();
+
+​        }
+
+​        else {
+
+​          MessageBox.Show(&quot;删除失败&quot;);
+
+​        }
+
+​        dao.dbClose();
+
+​      }
+
+ 
+
+​    }
+</code></pre>
+<h2 id="8-修改图书"><a href="#8-修改图书" class="headerlink" title="8.修改图书"></a>8.修改图书</h2><pre><code>private void button3_Click(object sender, EventArgs e)
+
+​    {
+
+​      //修改图书
+
+​      string id, name, press, num, author;
+
+​      id = textBox1.Text;
+
+​      name = textBox2.Text;
+
+​      press = textBox3.Text;
+
+​      num = textBox4.Text;
+
+​      author = textBox5.Text;
+
+​      string sql = &quot;update t_book set id = &#39;&quot;+textBox1.Text+&quot;&#39;,name=&#39;&quot;+textBox2.Text+&quot;&#39;,press=&#39;&quot;+textBox3.Text+&quot;&#39;,num=&#39;&quot;+textBox4.Text+&quot;&#39;,author=&#39;&quot;+textBox5.Text+&quot;&#39; where id=&#39;&quot;+str[0]+&quot;&#39;&quot;;
+
+​      Dao dao = new Dao();
+
+​      if (dao.execute(sql) &gt; 0) {
+
+​        MessageBox.Show(&quot;修改成功&quot;);
+
+​      }
+
+​      book.showTable();
+
+​    }
+</code></pre>
+<h2 id="9-归还图书"><a href="#9-归还图书" class="headerlink" title="9. 归还图书"></a>9. 归还图书</h2><pre><code>public void showTable()
+
+​    {
+
+​      dataGridView1.Rows.Clear();
+
+​      string sql = &quot;select [no],[bid],[datetime] from t_lend where uid = &#39;&quot;+User.Uid+&quot;&#39;&quot;;
+
+​      Dao dao = new Dao();
+
+​      IDataReader ir = dao.read(sql);
+
+​      while (ir.Read())
+
+​      {
+
+​        //记住往表格中添加数据的方法
+
+​        dataGridView1.Rows.Add(ir[0].ToString(), ir[1].ToString(), ir[2].ToString());
+
+​      }
+
+​      ir.Close();
+
+​      dao.dbClose();
+
+​    }
+
+ 
+
+​    private void button1_Click(object sender, EventArgs e)
+
+​    {
+
+​      //归还图书
+
+​      int no = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+
+​      string id = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+​      string sql = &quot;delete from t_lend where no=&#39;&quot;+no+&quot;&#39;&quot;;
+
+​      string sql2 = &quot;update t_book set num = (num+1) where Id = &#39;&quot;+id+&quot;&#39;&quot;;
+
+​      Dao dao = new Dao();
+
+​      if (dao.execute(sql) &gt; 0 &amp;&amp; dao.execute(sql2) &gt; 0)
+
+​      {
+
+​        MessageBox.Show(&quot;归还成功&quot;);
+
+​      }
+
+​      else {
+
+​        MessageBox.Show(&quot;归还失败&quot;);
+
+​      }
+
+​      showTable();
+
+​      
+
+​    }
+</code></pre>
+<h2 id="10-借出图书"><a href="#10-借出图书" class="headerlink" title="10. 借出图书"></a>10. 借出图书</h2><pre><code>public void showTable()
+
+​    {
+
+​      dataGridView1.Rows.Clear();
+
+​      string sql = &quot;select * from t_book&quot;;
+
+​      Dao dao = new Dao();
+
+​      IDataReader ir = dao.read(sql);
+
+​      while (ir.Read())
+
+​      {
+
+​        //记住往表格中添加数据的方法
+
+​        dataGridView1.Rows.Add(ir[0].ToString(), ir[1].ToString(), ir[2].ToString(), ir[3].ToString(), ir[4].ToString());
+
+​      }
+
+​      ir.Close();
+
+​      dao.dbClose();
+
+​    }
+
+ 
+
+​    private void button1_Click(object sender, EventArgs e)
+
+​    {
+
+​      //执行借出图书操作
+
+​      string  id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+
+​      int num = int.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());//获取书的库存
+
+​      if(num &lt; 1){
+
+​        MessageBox.Show(&quot;库存不足，请联系管理员购入&quot;);
+
+​      }else {
+
+​        string sql = &quot;update  t_book set num=&#39;&quot; + (num - 1) + &quot;&#39;where id = &#39;&quot;+id+&quot;&#39;&quot;;
+
+​        string sql2 = &quot;insert into t_lend ([uid],[bid],[datetime]) values(&#39;&quot;+User.Uid+&quot;&#39;,&#39;&quot; + id + &quot;&#39;,GETDATE());&quot;;
+
+​        Dao dao = new Dao();
+
+​        if (dao.execute(sql) &gt; 0 &amp;&amp; dao.execute(sql2)&gt;0)
+
+​        {
+
+​          MessageBox.Show(&quot;借出成功&quot;);
+
+​        }
+
+​        else {
+
+​          MessageBox.Show(&quot;借出失败&quot;);
+
+​        }
+
+​        showTable();
+
+​      }
+</code></pre>
+<h2 id="11-选中多行进行删除"><a href="#11-选中多行进行删除" class="headerlink" title="11. 选中多行进行删除"></a>11. 选中多行进行删除</h2><pre><code>private void button7_Click(object sender, EventArgs e)
+
+​    {
+
+​      //多行删除功能的实现
+
+​      int n = dataGridView1.SelectedRows.Count;//选中行的数目
+
+​      //delete from t_book where id in(201906,20190108);
+
+​      string sql = &quot;delete from t_book where id in(&quot;;
+
+​      for(int i=0;i &lt; n ;i++){
+
+​        sql += &quot;&#39;&quot; + dataGridView1.Rows[i].Cells[0].Value.ToString()+&quot;&#39;,&quot;;
+
+​      }
+
+​      sql =sql.Remove(sql.Length-2);//删除最后一个逗号
+
+​      sql += &quot;&#39;)&quot;;
+
+​      Dao dao = new Dao();
+
+ 
+
+​      if (dao.execute(sql) &gt; (n - 1))
+
+​      {
+
+​        MessageBox.Show(&quot;删除成功&quot;);
+
+​      }
+
+​      else {
+
+​        MessageBox.Show(&quot;删除失败&quot;);
+
+​      }
+
+​      showTable();
+
+​    }
+</code></pre>
+<h1 id="项目四：音乐播放器"><a href="#项目四：音乐播放器" class="headerlink" title="项目四：音乐播放器"></a>项目四：音乐播放器</h1><p>地址：F:\c#_code\MusicPlayer</p>
+<p>每次设计winform窗体的时候，拉伸窗体的时候导致窗体与初始的窗体设置不一样。</p>
+<p>解决方法：1.划分区域，使用工具箱中的容器里面的划分区域的工具。Split，table，tab等</p>
+<pre><code>                 2．将winform的AutoSizeMode改为GrowAndShrink
+</code></pre>
+<p>去掉文件的后缀名，引用IO，使用Path.getFileNameWithoutExtention(文件名)</p>
+<p>去掉路径名，使用safefileNames，不是filenames</p>
+<p> 拖动游标使用的trackbar控件中mouseup和mousedown事件</p>
+<h2 id="音乐播放核心"><a href="#音乐播放核心" class="headerlink" title="音乐播放核心"></a>音乐播放核心</h2><ol>
+<li><p>引用window media player的库</p>
+</li>
+<li><p>Using  wmplib</p>
+</li>
+<li><p>需要手动添加一个三方的控件，在工具箱中右键添加一个选项卡命名为WMP，右键该选项卡选择项，在com中找到windows media player添加到工具箱中，然后将该控件拖到页面上，visable设为false（我们不是通过点击该控件进行播放，而是点击歌曲名字进行播放），在listBox1_SelectedIndexChanged事件中对axWindowsMediaPlayer1.url进行赋值即可进行播放。</p>
+</li>
+<li><p>4.listbox中的激活元素赋值方式必须得使用第三方变量进行赋值。（坑）</p>
+</li>
+</ol>
+<p>axWindowsMediaPlayer控件的属性</p>
+<p>​    从头开始播放：axWindowsMediaPlayer1.URL</p>
+<p>​    播放停止：axWindowsMediaPlayer1.Ctlcontrols.stop()；</p>
+<p>​    播放暂停：axWindowsMediaPlayer1.Ctlcontrols.pause();</p>
+<p>​    暂停的位置开始播放：axWindowsMediaPlayer1.Ctlcontrols.play();</p>
+<p>当前播放媒体的时间长度：double max = axWindowsMediaPlayer1.currentMedia.duration;</p>
+<p>当前播放媒体的位置：      double cuPostion = axWindowsMediaPlayer1.Ctlcontrols.currentPosition;</p>
+<h2 id="下一曲"><a href="#下一曲" class="headerlink" title="下一曲"></a>下一曲</h2><pre><code>private void button6_Click(object sender, EventArgs e)
+        {
+            //下一曲
+            int i = listBox1.SelectedIndex + 1;
+            if (i &lt; listBox1.Items.Count)
+            {
+                listBox1.SelectedIndex = i;//将高亮显示向下移动一行
+                axWindowsMediaPlayer1.URL = list[i];//播放下一曲
+            }
+            else
+            {
+                axWindowsMediaPlayer1.URL = list[i-1];
+            }
+            label1.Text = listBox1.SelectedItem.ToString();
+        }
+</code></pre>
+<h2 id="上一曲"><a href="#上一曲" class="headerlink" title="上一曲"></a>上一曲</h2><pre><code> private void button5_Click(object sender, EventArgs e)
+​    {
+​        //上一曲
+
+​        int i = listBox1.SelectedIndex - 1;
+​        if (i &gt;= 0)
+​        {
+​            listBox1.SelectedIndex = i;//将高亮显示向上移动一行
+​            axWindowsMediaPlayer1.URL = list[i];//播放上一曲
+​        }
+​        else
+​        {
+​            axWindowsMediaPlayer1.URL = list[0];
+​        }
+​        label1.Text = listBox1.SelectedItem.ToString();
+
+​        //if (listBox1.SelectedIndex &gt;= 0)
+​        //{
+​        //    /*注意下面这行代码本身就是个错误代码，索引值要求大于等于0,
+​        //     * -1表示当前没有元素被选中，那么后面就没有办法播放索引值为-1的歌曲
+​        //     * 如果将其写在if语句外面也是错误的，因为本身索引值就不能为-1
+​        //     */
+​        //    listBox1.SelectedIndex = listBox1.SelectedIndex - 1;//这句代码本身就是个错误
+​        //    axWindowsMediaPlayer1.URL = list[listBox1.SelectedIndex];
+​        //}
+​        //else
+​        //{
+​        //    MessageBox.Show(&quot;索引错误&quot;);
+​        //}
+​    }
+</code></pre>
+<h2 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h2><pre><code>    private void button4_Click(object sender, EventArgs e)
+​    {
+​        //停止
+​        axWindowsMediaPlayer1.Ctlcontrols.stop();
+​        timer1.Enabled = false;
+​    }
+</code></pre>
+<h2 id="暂停"><a href="#暂停" class="headerlink" title="暂停"></a>暂停</h2><pre><code>private void button3_Click(object sender, EventArgs e)
+​    {
+​        //暂停
+​        axWindowsMediaPlayer1.Ctlcontrols.pause();
+​    }
+</code></pre>
+<h2 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h2><pre><code> private void button2_Click(object sender, EventArgs e)
+​    {
+​        //播放
+​        //注意：如果没有元素被选中的情况下，listbox.selctIndex是等于-1的
+​        if (listBox1.SelectedIndex &gt;=0)
+​        {//有选中的情况下，从暂停的部分开始播放
+​            axWindowsMediaPlayer1.Ctlcontrols.play();
+​            label1.Text = listBox1.SelectedItem.ToString();
+​        }
+​        else { 
+​        //没有元素激活的情况下，从第一个开始播放
+​            axWindowsMediaPlayer1.URL = list[0];
+​            label1.Text = list[0].ToString();
+​        }
+​        //代码优化
+​        /*可以代替上面的代码
+​           int index = listBox1.SelectedIndex;
+​           index = index &lt; 0 ? 0 : index;
+​           axWindowsMediaPlayer1.URL = list[index];
+​           label1.Text = list[index];
+​         */
+​        timer1.Enabled = true;
+​    }
+</code></pre>
+<h2 id="添加歌曲"><a href="#添加歌曲" class="headerlink" title="添加歌曲"></a>添加歌曲</h2><pre><code>private void button1_Click(object sender, EventArgs e)
+​    {
+​        //添加歌曲
+​        OpenFileDialog ofd = new OpenFileDialog();
+​        ofd.Filter = (&quot;文件格式(*.mp3)|*.mp3&quot;);//前面表示文件格式提示，后面是文件格式的限制条件
+​        ofd.Multiselect = true;//设置成可以多选
+​        if (ofd.ShowDialog() == DialogResult.OK) { 
+​            //读取文件名
+​            string[] fileName = ofd.FileNames;//safefilenames与filenames的区别是前者不包含前面的路径名
+​            foreach (string item in fileName)
+​            {
+​                string name = Path.GetFileNameWithoutExtension(item);//去掉文件的后缀名
+​                listBox1.Items.Add(name);//往listbox中添加歌曲名称
+​                list.Add(item);//保存到集合里面方便后面的方法使用
+​            }
+​        }
+​    }
+</code></pre>
+<h2 id="点击歌名播放"><a href="#点击歌名播放" class="headerlink" title="点击歌名播放"></a>点击歌名播放</h2><pre><code>   private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+​    {
+​        //播放当前选中的歌曲
+​        axWindowsMediaPlayer1.URL = list[listBox1.SelectedIndex];
+​        label1.Text = listBox1.SelectedItem.ToString();
+​        timer1.Enabled = true;
+
+​    }
+</code></pre>
+<h2 id="时间控制器（控制trackbar的游标，歌曲播放完毕自动切换）"><a href="#时间控制器（控制trackbar的游标，歌曲播放完毕自动切换）" class="headerlink" title="时间控制器（控制trackbar的游标，歌曲播放完毕自动切换）"></a>时间控制器（控制trackbar的游标，歌曲播放完毕自动切换）</h2><pre><code> private void timer1_Tick(object sender, EventArgs e)
+​    {
+​        //获取歌曲的长度
+​        double max = axWindowsMediaPlayer1.currentMedia.duration;
+​        //获取当前歌曲的播放位置
+​        double cuPostion = axWindowsMediaPlayer1.Ctlcontrols.currentPosition;
+​        trackBar1.Maximum = (int)max;
+​        trackBar1.Value = (int)cuPostion;
+
+​        //当前歌曲播放完成后，自动切换到下一首
+​        if (axWindowsMediaPlayer1.playState == WMPPlayState.wmppsStopped) {//当前歌曲的播放位置结束的判断方式
+​            
+​            int i = listBox1.SelectedIndex;
+​            if (i == listBox1.Items.Count - 1)//列表中的最后一首歌播放完成后，从头开始播放
+​            {
+​                listBox1.SelectedIndex = 0;//将高亮显示向下移动一行
+​                axWindowsMediaPlayer1.URL = list[0];//播放第一首
+​                listBox1.SelectedIndex = 0;
+​                label1.Text = listBox1.SelectedItem.ToString();
+​                trackBar1.Value = 0;
+​                timer1.Enabled = true;
+​            }
+​            else {
+​                axWindowsMediaPlayer1.URL = list[i + 1];
+​                listBox1.SelectedIndex = (i + 1);
+​                label1.Text = listBox1.SelectedItem.ToString();
+​                trackBar1.Value = 0;
+​                timer1.Enabled = true;
+​            }
+​            
+​        }
+​    }
+</code></pre>
+<h2 id="游标拖动实现歌曲快进退"><a href="#游标拖动实现歌曲快进退" class="headerlink" title="游标拖动实现歌曲快进退"></a>游标拖动实现歌曲快进退</h2><pre><code>  //使用valuechanged事件还是mouseup和mousedown事件，注意值改变不仅包含手动拖动游标，还包含播放时自己移动，所以不使用valuechanged事件
+
+​    private void trackBar1_MouseDown(object sender, MouseEventArgs e)
+​    {
+​        //鼠标按下的时候开始进行拖动
+​        axWindowsMediaPlayer1.Ctlcontrols.pause();
+​        timer1.Enabled = false;
+​    }
+
+​    private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+​    {
+​        //鼠标松开的时候开始播放
+​        axWindowsMediaPlayer1.Ctlcontrols.currentPosition = trackBar1.Value;
+​        axWindowsMediaPlayer1.Ctlcontrols.play();
+​        timer1.Enabled = true;
+​    }
+}
+</code></pre>
+<h1 id="项目5：幸运抽奖系统"><a href="#项目5：幸运抽奖系统" class="headerlink" title="项目5：幸运抽奖系统"></a>项目5：幸运抽奖系统</h1><p>代码：F:\c#_code\LuckDraw</p>
+<h2 id="读取文件的操作流程"><a href="#读取文件的操作流程" class="headerlink" title="读取文件的操作流程"></a>读取文件的操作流程</h2><ol>
+<li><p>封装文件路径filestream</p>
+</li>
+<li><p>创建读取文件流对象。Streamreader/streamwriter</p>
+</li>
+<li><p>操作文件。</p>
+</li>
+</ol>
+<pre><code>public void fileRead(string path,ListBox listbox) {
+
+​      //封装文件路径
+
+​      FileStream fs = new FileStream(path, FileMode.OpenOrCreate);//第一个参数表示路径，第二个参数表示对文件的操作形式是打开类型
+
+​      //进行读取操作
+
+​      StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+
+​      while (true)
+
+​      {
+
+​        string name = sr.ReadLine();
+
+​        if (name != null)
+
+​        {
+
+​          listbox.Items.Add(name);
+
+​        }
+
+​        else
+
+​        {
+
+​          break;
+
+​        }
+
+​      }
+
+​      fs.Close();
+
+​      sr.Close();
+
+​    }
+</code></pre>
+<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><pre><code>public void fileWrite(string path, ListBox listbox)
+
+​    {
+
+​      //封装文件路径
+
+​      FileStream fs = new FileStream(path, FileMode.Create);//注意，这里面与读取的方法不同，是重新创建一个eat文件，如果是openorcreate就是在原有文件上追加
+
+​      //进行读取操作
+
+​      StreamWriter sr = new StreamWriter(fs, Encoding.UTF8);
+
+​      foreach (var item in listBox2.Items)
+
+​      {
+
+​        sr.WriteLine(item.ToString());
+
+​      }
+
+​      sr.Close();
+
+​      fs.Close();
+</code></pre>
+<p>​      </p>
+<p>​    }</p>
+<h2 id="语音播报指定的内容。"><a href="#语音播报指定的内容。" class="headerlink" title="语音播报指定的内容。"></a>语音播报指定的内容。</h2><p>在项目中添加引用-&gt;框架-》system.speech</p>
+<pre><code>using System.Speech.Synthesis;
+
+写一个方法专门用来播报
+
+public void broad(string content) {
+
+​      SpeechSynthesizer ss = new SpeechSynthesizer();
+
+​      PromptBuilder pb = new PromptBuilder();//下面的speak方法中需要使用
+
+​      pb.AppendText(content);//播报指定文本
+
+​      ss.Speak(pb);
+
+​    }
+</code></pre>
+<h1 id="项目6：影院管理系统（未完成）"><a href="#项目6：影院管理系统（未完成）" class="headerlink" title="项目6：影院管理系统（未完成）"></a>项目6：影院管理系统（未完成）</h1><p>有数据库访问的话就可以用三层架构。</p>
+<p>注意：sqlserver乱码，使用三个代码修改后重新创建表，新建的表才不会出现乱码，而之前创建的表仍然乱码</p>
+<p>三层架构：</p>
+<p>​    显示层（view）：实际上winform窗口就是一个view层显示作用和逻辑处理。而在同一个解决方案中创建其他的类项目（不是winform项目），就是实现三层架构</p>
+<p>​    业务逻辑层（BLL）：使用dal层的对象调用dal中的方法。没什么作用就是为了好看，在调用方法的时候不想dal层一样需要传参，方法的返回结果仍然是一个集合。 </p>
+<p>​    数据访问层（DAL）。就是将model层返回的所有结果集合通过dal层中的方法返回一个list集合，返回给BLL层。</p>
+<p>辅助层：</p>
+<p>​    模型层（model）：必需的，与数据库中的数据进行匹配。即将数据库中的各个字段作为模型类中的属性</p>
+<p>​    公共层（common）：必需的，用来存放不同项目之间可以通用的公共代码</p>
+<p>​    控件层：将控件组合形成自定义控件，以方便直接拿来用。</p>
+<p>各层关系：View-&gt;BLL-&gt;DAL</p>
+<p>实现各层之间可以相互调用操作：View添加引用BLL，Model，Common层</p>
+<p>BLL添加引用DAL，Model，Common层</p>
+<p>​    DAL添加引用Model，Common层</p>
+<p>整个流程是从底层开始写，即model/common-》dal-》bll-》view，但是调用过程是反过来的。</p>
+<p>1.将view层绘制完成之后</p>
+<p>2.使用c#代码生成器将model层的代码自动生成，并且按照各层关系相互引用。</p>
+<p>3.引用DBHelper，将其放进common（公共）层。需要修改地方：手动写入命名空间：即当前的文件夹名。修改constr变量改为自己的数据库</p>
+<p>4.当使用查询的使用，在数据访问层（dal层）创建一个查询的方法，返回类型是一个list类型，泛型类型是需要查询的表对应的model类型。每一个表对应dal层中的一个类。每一个表对应一个model层中的一个类。每一个dal层类对应一个BLL层类。</p>
+<h1 id="项目7：C-sharp-实现excel操作-b站糖君哒（npoi）"><a href="#项目7：C-sharp-实现excel操作-b站糖君哒（npoi）" class="headerlink" title="项目7：C sharp 实现excel操作(b站糖君哒（npoi）)"></a>项目7：C sharp 实现excel操作(b站糖君哒（npoi）)</h1><p>理论知识：工作簿（workbook）</p>
+<p>​                   工作表（sheet）即一个excel文件里面有多个工作表sheet1，sheet2……</p>
+<p>​                   行（row）</p>
+<p>​                   列/单元格（cell） </p>
+<h3 id="1-读取excel中的数据"><a href="#1-读取excel中的数据" class="headerlink" title="1.读取excel中的数据"></a>1.读取excel中的数据</h3><pre><code>public NPOI.SS.UserModel.ISheet st;//将表格作为公共对象
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //导入路径
+            var fs = new FileStream(@&quot;F:\c#_code\mytest.xlsx&quot;, FileMode.Open, FileAccess.Read);
+            //获取工作簿(即文件)
+            var wk = new np.XSSFWorkbook(fs);
+            //获取工作表(sheet1是从0索引开始，sheet2是索引1)
+            st = wk.GetSheetAt(0);
+            //MessageBox.Show(st.SheetName);
+            //获取行和列
+            MessageBox.Show(st.FirstRowNum.ToString());//有数据的第一行
+            MessageBox.Show(st.LastRowNum.ToString());//有数据的最后一行
+            MessageBox.Show(st.GetRow(3).FirstCellNum.ToString());//有数据的第一列
+            MessageBox.Show(st.GetRow(3).LastCellNum.ToString());//有数据的最后一列
+            for (int i = st.FirstRowNum+1; i &lt; st.LastRowNum; i++)
+            { //获取4-16行中第2列的数据，以数字的方式显示
+                listBox1.Items.Add(st.GetRow(i).GetCell(1).NumericCellValue);
+            }
+</code></pre>
+<pre><code>         private void button2_Click(object sender, EventArgs e)
+    {
+        //显示计算的公式即B4*2
+        textBox1.Text = st.GetRow(3).GetCell(2).CellFormula;
+        //读取字符串
+        textBox1.Text = st.GetRow(3).GetCell(3).StringCellValue;
+        //读取日期
+        textBox1.Text = st.GetRow(6).GetCell(5).DateCellValue.ToString(&quot;yyyy/MM/dd&quot;);
+    }
+</code></pre>
+<h3 id="2-将数据写到excel中（导包）"><a href="#2-将数据写到excel中（导包）" class="headerlink" title="2.将数据写到excel中（导包）"></a>2.将数据写到excel中（导包）</h3><pre><code>        //创建工作簿
+       XSSFWorkbook workBook =  new XSSFWorkbook();
+        //创建工作表
+       NPOI.SS.UserModel.ISheet sheet = workBook.CreateSheet();
+        //创建行
+       NPOI.SS.UserModel.IRow row=  sheet.CreateRow(0);
+        //创建列
+       NPOI.SS.UserModel.ICell cell =  row.CreateCell(0);
+        //为单元格赋值
+       cell.SetCellValue(&quot;c#操作excel&quot;);
+
+
+
+        //合并单元格
+       //NPOI.SS.Util.CellRangeAddress cra = new NPOI.SS.Util.CellRangeAddress(0,4,0,3);//合并A1:D5,即第一行到第五行，第一列到第四列合并
+       //sheet.AddMergedRegion(cra);
+
+        //设置字体颜色
+        //将excel文件输出
+       FileStream fs = new FileStream(@&quot;C:\Users\hasee\Desktop\ABCDE.xlsx&quot;,FileMode.Create,FileAccess.Write);
+       workBook.Write(fs);
+       fs.Close();
+       MessageBox.Show(&quot;操作已完成&quot;);
+</code></pre>
+<h1 id="项目8：获取文件目录"><a href="#项目8：获取文件目录" class="headerlink" title="项目8：获取文件目录"></a>项目8：获取文件目录</h1><p>使用记事本创建一个bat文件，里面写入代码 “dir /b&gt;文件目录.csv”执行后会自动生成excel文件</p>
