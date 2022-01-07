@@ -15,12 +15,12 @@
 
 
 
-<meta name="description" content="1title: winform控件    技巧：有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。 winform中，this指的是当前窗体的对象，而sender指的是控件 this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口 当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。">
+<meta name="description" content="技巧：有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。 winform中，this指的是当前窗体的对象，而sender指的是控件 this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口 当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。 ​    this.Hide(); ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="winform控件">
 <meta property="og:url" content="http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1title: winform控件    技巧：有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。 winform中，this指的是当前窗体的对象，而sender指的是控件 this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口 当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。">
+<meta property="og:description" content="技巧：有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。 winform中，this指的是当前窗体的对象，而sender指的是控件 this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口 当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。 ​    this.Hide(); ​">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/winform%E5%AD%A6%E4%B9%A0/assets/wpsD638.tmp.jpg">
 <meta property="og:image" content="http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/winform%E5%AD%A6%E4%B9%A0/assets/image-20210228133139651.png">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/winform%E5%AD%A6%E4%B9%A0/assets/wps3239.tmp.jpg">
 <meta property="og:image" content="http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/winform%E5%AD%A6%E4%B9%A0/assets/wps323A.tmp.jpg">
 <meta property="article:published_time" content="2022-01-07T03:04:17.896Z">
-<meta property="article:modified_time" content="2022-01-07T03:24:14.286Z">
+<meta property="article:modified_time" content="2022-01-07T04:14:11.628Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/winform%E5%AD%A6%E4%B9%A0/assets/wpsD638.tmp.jpg">
@@ -68,7 +68,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hexo</title>
+<title>winform控件 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -283,14 +283,28 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      winform控件
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: winform控件</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
+        <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
 <p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
 <p>this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口</p>
 <p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
@@ -452,12 +466,12 @@
   
     
     <div class="copyright">
-        <p><span>Title:</span><a href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/"></a></p>
+        <p><span>Title:</span><a href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-01-07, 11:04:17</p>
-        <p><span>Updated:</span>2022-01-07, 11:24:14</p>
+        <p><span>Updated:</span>2022-01-07, 12:14:11</p>
         <p>
-            <span>Full URL:</span><a class="post-url" href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/" title="">http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/</a>
+            <span>Full URL:</span><a class="post-url" href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/" title="winform控件">http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/</a>
             <span class="copy-path" data-clipboard-text="From http://example.com/2022/01/07/winform%E5%AD%A6%E4%B9%A0/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -472,14 +486,14 @@
         
             <div id="article-nav-newer" class="article-nav-title">
                 <a href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
-                    
+                    网络安全基础
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
                 <a href="/2022/01/07/MVC/">
-                    
+                    MVC
                 </a>
             </div>
         
@@ -527,7 +541,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"winform控件　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -547,7 +561,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="Pre: ">
+            <a href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="Pre: 网络安全基础">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -555,13 +569,13 @@
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2022/01/07/MVC/" title="Next: ">
+            <a href="/2022/01/07/MVC/" title="Next: MVC">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/">网络安全学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">安全基础学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/">winform学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/csharp%E5%AD%A6%E4%B9%A0/">csharp语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/06/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/">网络安全学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/csharp%E5%AD%A6%E4%B9%A0/">csharp语法</a></li></ul>
 
 
 
