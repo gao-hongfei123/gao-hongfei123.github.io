@@ -1,45 +1,841 @@
-extends base
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-block title
-    title= config.title
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
 
-block content
-    include _partial/common.pug
-    .l-postlist
-        each post in page.posts.toArray()
-            .l-post
-                .p-desc.box
-                    .p-pic
-                    //- title
-                    h1.p-title
-                        a(href=url_for(post.path))
-                            +title(post)
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="技术爱好者" />
 
-                    //- description
-                    if post.description
-                        .p-content
-                            != post.description
-                    else if post.excerpt
-                        .p-content
-                            != post.excerpt
-                    else if post.content
-                        - var br = 0
-                        - for (var i = 0; i < 5; ++i) {
-                            - br = post.content.indexOf('\n',br+1)
-                            if br < 0
-                                - break
-                            if br > 150
-                                - break
-                        - }
-                        if br < 0
-                            .p-content
-                                != post.content
-                        else
-                            .p-content
-                                != post.content.substring(0, br)
-                    //- readmore
-                    p(class='p-readmore')
-                        a(href=url_for(post.path))= __('阅读更多 >>')
 
-                +post-meta(post)
-    include _partial/paginator.pug
+    
+    
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="技术爱好者">
+<meta name="twitter:card" content="summary">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+    <style> .article { opacity: 0;} </style>
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Hexo</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/aaa.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/303515096@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">技术爱好者</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/aaa.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/303515096@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-项目" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/07/%E9%A1%B9%E7%9B%AE/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.921Z" itemprop="datePublished">2022-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/%E9%A1%B9%E7%9B%AE/">项目</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="项目1：重命名文件系统"><a href="#项目1：重命名文件系统" class="headerlink" title="项目1：重命名文件系统"></a>项目1：重命名文件系统</h1><p>地址：F:\c#_code\RenameFileApplacation</p>
+<p>Combox的下拉框选择后触发事件，使用comboBox2_SelectedValueChanged事件</p>
+<ol>
+<li><h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><p>Directory.CreateDirectory(newPath);</p>
+</li>
+<li><h2 id="重命名核心算法："><a href="#重命名核心算法：" class="headerlink" title="重命名核心算法："></a>重命名核心算法：</h2><p>将文件移动到一个新的文件夹下并重新改名，删除原来的文件夹，然后再移动回来，          </p>
+</li>
+</ol>
+<p>File.Move(oldPath + oldName[Form1.flag], newPath + newName);</p>
+<p>File.Move(newPath + newName, oldPath + newName);
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/%E9%A1%B9%E7%9B%AE/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-网络安全学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/07/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.916Z" itemprop="datePublished">2022-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/">网络安全学习</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="MSF学习"><a href="#MSF学习" class="headerlink" title="MSF学习"></a>MSF学习</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p><strong>bwapp漏洞环境</strong>，首先开启phpstudy依赖于bwapp 保存位置D:\phpStudy\PHPTutorial\WWW\bwapp\bWAPP 访问网址<a href="http://ip:端口/bwapp/bwapp/login.php登录账号bee，登录密码bug">http://ip:端口/bwapp/bwapp/login.php登录账号bee，登录密码bug</a><br><strong>pikachu漏洞环境</strong>：启动phpstudy，网址http：//ip+端口/pikachu<br><strong>访问struts2安装环境：</strong>启动jspstudy，在浏览器中输入<a target="_blank" rel="noopener" href="http://ip:8081/struts2-showcase">http://ip:8081/struts2-showcase</a><br><strong>Jboss</strong>  找到bin目录下，双击run.bat进行运行，然后在浏览器中输入<a href="http://127.0.0.1:8080或者localhost：8080，（注意不能使用ip地址进行访问)。">http://127.0.0.1:8080或者localhost：8080，（注意不能使用ip地址进行访问)。</a>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/07/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.910Z" itemprop="datePublished">2022-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p>1.打开链接：等价于在命令行中输入mysqli -u username -p password进行连接数据库。注意，不是一个数据库对应一个密码，而是一个用户一个密码对应一个连接名，这个连接名可以随便起，只是方便客户进行用户名分类，要不然使用用户名密码的形式查看不方便，一个连接名里面可以创建多个数据库，使用某个数据库不需要密码因为之前已经进行了连接。在同一个连接名下的数据库都是用同一个用户名和密码。一个用户对应一个连接名。</p>
+<p> 2.在vs中无法为表添加数据的原因是：选错了项目，应该选择sqlServer，而不是项目</p>
+<p>3.右键表：查看数据，为表添加数据
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/%E6%95%B0%E6%8D%AE%E5%BA%93/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-安全基础学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.906Z" itemprop="datePublished">2022-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="虚拟机设置"><a href="#虚拟机设置" class="headerlink" title="虚拟机设置"></a>虚拟机设置</h2><p>vmnet实际上表示虚拟交换机，一共vmnet1-vmnet19，将系统连接到某个交换机上，相当于机房中的真实机有一根网线连接到真实交换机上。每个vmnet对应一个虚拟网卡。其中vmnet0表示的是真实机所连接的交换机，如果连接到vmnet0，则相当于该系统从虚拟机跳出来直接连接到真实交换机，可以使用该虚拟机完全当作真实机使用。<br>1.使用桥接模式：使用的真实机的网卡，可以连接互联网也可以实现虚拟机<strong>和同网段其他真实机互联</strong>，可以将其看作一个真实机，但网段必须与真实机一样。
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-winform学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.896Z" itemprop="datePublished">2022-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/">winform控件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
+<p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
+<p>this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口</p>
+<p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
+<p>​    this.Hide();</p>
+<p>​    新窗口.ShowDialog();</p>
+<p>​    this.Show();    </p>
+<p>当在解决方案管理器中创建第二个项目的时候，运行后发现执行的仍然是上一个项目，在新创建的项目上右键=》设为启动项目即可。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-MVC" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/07/MVC/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.861Z" itemprop="datePublished">2022-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/MVC/">MVC</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p>MVC5：新建项目的时候选择web项目-》mvc</p>
+<p>更换访问端口：右击项目-》属性-》web</p>
+<p>MVC是一种web开发框架。</p>
+<p>​    Models：实体模型，就是用来操作数据库的</p>
+<p>​    View：视图，用户可以看到的前端界面</p>
+<p>​    Controllor：决定用户调用哪个视图，调用哪个逻辑计算</p>
+<p>vs2013在iis上发布一个网站：</p>
+<p>​    1.首先点击项目于右键-》发布-》自定义-》输入一个发布名-》发布方法选择文件系统-》目标位置选择当前项目所在的路径名-》点击发布完成。发布就是将网站源码打包成一个文件夹，将源码封装起来。不让用户看见源码，例如写完的exe文件就是已经打包好的。</p>
+<p>​    2.在iis上添加一个网站-》设置网站名称-》网站路径选择 发布的项目。部署完成。部署就是将文件夹发布到iis上。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/MVC/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-csharp学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2021-01-07T10:42:00.901Z" itemprop="datePublished">2021-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/">csharp语法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p><img src="csharp%E5%AD%A6%E4%B9%A0/assets/image-20220107210955440.png" alt="image-20220107210955440"></p>
+<h2 id="vs设置"><a href="#vs设置" class="headerlink" title="vs设置"></a>vs设置</h2><p>vs中F6键：生成语法错误，可以定位到错误位置。</p>
+<p>设置当前启动项目，点击解决资源管理器，右击，属性，启动项目设置为当前选定内容。</p>
+<p>多行注释：ctrl + k+c,取消多行注释：ctrl +k +u</p>
+<p>输出快捷键：cw+两次tab键 ，foreach快捷键，foreach +两次tab键</p>
+<p>构造器快捷键：ctor+两次tab键</p>
+<p>激活key：BWG7X-J98B3-W34RT-33B3R-JVYW9</p>
+<p>对于一些控件的属性设置在，视图选项卡的属性可以调出</p>
+<p>鼠标放在某个类上直接按住F1键，会自动定位到对该类的解释文档。</p>
+<p>直接删除某行ctrl+L</p>
+<p>assembly ：类库</p>
+<p>Ctrl+.快捷键或者ctrl+j，是智能识别快捷键，相当于eclipse中的alt+/,java中完全使用接口interface代替了委托</p>
+<p>自动实现接口中的所有方法：alt+insert</p>
+<p>替换快捷键：ctrl+r</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2022 技术爱好者
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+    
+
+     
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+            
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+             menu: ".header-menu a", 
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
