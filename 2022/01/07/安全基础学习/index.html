@@ -387,7 +387,7 @@ exit
 <h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>windows服务器版本win2000，win2003，win2008，win2012<br>Linux服务器：redhat centos<br>每个账户有自己的SID（安全标识符）<br>用户SID：S-…..-500  其中前面表示系统SID，后面500表示管理员的UID为500，普通用户后面接的从1000开始。<br>查看sid值：whoami /user<br>账户密码存储位置：C:\windows\system32\config\SAM,windows系统上，默认密码最长有效期为42天  </p>
 <h4 id="账户"><a href="#账户" class="headerlink" title="账户"></a>账户</h4><ol>
 <li>给人使用的账户<br>administrator #管理员账户<br>guest #来宾账户  </li>
-<li>计算机系统账户<br>system  :系统账户，<font color = red>权限最大</font><br>local services :本地账户=普通用户<br>net services:本地账户= 普通账户  </li>
+<li>计算机系统账户<br>system  :系统账户，<font color="red">权限最大</font><br>local services :本地账户=普通用户<br>net services:本地账户= 普通账户  </li>
 </ol>
 <p>账户保存路径（家）<br>win7/win2008 C:\用户\<br>xp/win2003 C:\documents and settings\</p>
 <h4 id="用户命令"><a href="#用户命令" class="headerlink" title="用户命令"></a>用户命令</h4><p>net user ：查看所有用户<br>net user 用户名  密码 ：为用户更改密码<br>net user 用户名 密码 /add ：创建一个新用户<br>net user 用户名 /active:yes/no: 激活或者禁用用户  </p>
@@ -454,7 +454,7 @@ exit
 </li>
 <li><p>ACL主要分为2大类：<br> 1）标准ACL<br> 2）扩展ACL  </p>
 </li>
-<li><p>标准ACL：<br> 表号：1-99<br> 特点：<font color=red>只能基于源IP对包进行过滤</font><br> 命令：<br> conf  t<br> access-list  表号  permit/deny   源IP或源网段  反子网掩码，为什么使用反子网掩码，因为通过反子网掩码实现对ip网段的过滤，而子网掩码是实现网络号和主机的区分。<br> 注释：反子网掩码：将正子网掩码0和1倒置    </p>
+<li><p>标准ACL：<br> 表号：1-99<br> 特点：<font color="red">只能基于源IP对包进行过滤</font><br> 命令：<br> conf  t<br> access-list  表号  permit/deny   源IP或源网段  反子网掩码，为什么使用反子网掩码，因为通过反子网掩码实现对ip网段的过滤，而子网掩码是实现网络号和主机的区分。<br> 注释：反子网掩码：将正子网掩码0和1倒置    </p>
 <pre><code>       255.0.0.0  --  0.255.255.255    
        255.255.0.0  --  0.0.255.255    
        255.255.255.0  --  0.0.0.255    
@@ -477,7 +477,7 @@ exit
 <p>查看ACL表：<br>show  ip  access-list  [表ID]  </p>
 <p>将ACL应用到接口：<br>int  f0/x<br>   ip  access-group  表号  in/out<br>   exit  </p>
 <p>sh run  </p>
-<p>7.扩展ACL：<br>    表号：100-199<br>    特点：<font color=red>可以基于源IP、目标IP、端口号、协议等对包进行过滤（区别于标准ACL）</font><br>    命令：<br>acc 100 permit/deny  协议  源IP或源网段  反子网掩码  目标IP或源网段  反子网掩码  [eq 端口号]<br>注释：协议：tcp/udp/icmp/ip  </p>
+<p>7.扩展ACL：<br>    表号：100-199<br>    特点：<font color="red">可以基于源IP、目标IP、端口号、协议等对包进行过滤（区别于标准ACL）</font><br>    命令：<br>acc 100 permit/deny  协议  源IP或源网段  反子网掩码  目标IP或源网段  反子网掩码  [eq 端口号]<br>注释：协议：tcp/udp/icmp/ip  </p>
 <p>案例：<br>acc 100 permit tcp host 10.1.1.1 host 20.1.1.3 eq 80<br>acc 100 permit icmp host 10.1.1.1 20.1.1.0 0.0.0.255<br>acc 100 deny ip host 10.1.1.1 20.1.1.0 0.0.0.255<br>acc 100 permit ip any any  </p>
 <p>8.ACL原理<br>1）ACL表必须应用到接口的进或出方向才生效！<br>2）一个接口的一个方向只能应用一张表！<br>3）进还是出方向应用？取决于流量控制总方向<br>4）ACL表是严格自上而下检查每一条，所以要主要书写顺序<br>5）每一条是由条件和动作组成，当流量完全满足条件当某流量没有满足某条件，则继续检查下一条<br>6）标准ACL尽量写在靠近目标的地方<br>7）wencoll小原理：<br>     1）做流量控制，首先要先判断ACL写的位置（那个路由器？那个接口的哪个方向？）<br>     2）再考虑怎么写ACL。<br>     3）如何写？<br>          首先要判断最终要允许所有还是拒绝所有<br>          然后写的时候要注意：将严格的控制写在前面<br>8）一般情况下，标准或扩展acl一旦编写号，无法修改某一条，也无法删除某一条，也无法修改顺序，也无法往中间插入新的条目，只能一直在最后添加新的条目<br>     如想修改或插入或删除，只能删除整张表，重新写！<br>     conf t<br>     no  access-list  表号  </p>
 <p>9.命名ACL：<br>  作用：可以对标准或扩展ACL进行自定义命名<br>  优点：自定义命名更容易辨认，也便于记忆！<br>            可以任意修改某一条，或删除某一条，也可以往中间插入某一条  </p>
@@ -490,7 +490,7 @@ exit
 <h3 id="IPsecVPN"><a href="#IPsecVPN" class="headerlink" title="IPsecVPN"></a>IPsecVPN</h3><p>属于点到点VPN，可以在两家企业之间建立隧道。<br>优点：1.安全 2.合并两家企业内网。<br>原理：公司之间进行数据传输，首先公司1将数据发送到公网的第一个路由器上，该路由器将数据包的源ip和目标Ip替换为公网上的第一个ip和公网上的最后一个ip，在这中间是进行加密传输的。数据包到达最后一个路由器之后，又将源ip和目标ip替换为刚发送时的ip，这样数据到达公司内网之后，公司内网查看数据包，发现源ip和目标ip都属于该公司的网段，最后进行数据包的解密完成数据传输。</p>
 <h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>定义：一款具备安全防护功能的网络设备。<br>与路由器的区别是，路由器默认是全部可以通过的，写安全协议是为了保证哪些网络不可以实现通讯，而防火墙默认是全部都是屏蔽的，写安全协议是为了保证哪些网络可以通过。<br>防火墙可以完全替代路由器，包括路由器和交换机的所有功能。</p>
 <h2 id="ARP攻击-1"><a href="#ARP攻击-1" class="headerlink" title="ARP攻击"></a>ARP攻击</h2><p>攻击者被攻击者与服务器需要在同一个网段中，因为交换机属于二层设备，所以它是通过转发mac地址进行信息转发的，而路由器是根据ip地址进行转发，因为在同一网段中，所以应用交换机中mac地址表，这个表是电脑连接到交换机的时候自动生成的。<br><strong>ARP作用</strong>：根据ip地址解析mac地址。发送者发送广播请求，接收者发送单播应答。<br><strong>攻击原理</strong>：A需要发送信息给C，发出广播之后，攻击者B使用ARP伪造工具告诉A自己是接收者，但此时C也告诉A自己是接收者，此时A选择回复较慢的那个作为接收者，同时攻击者B一直告诉A自己是接收者，所以它一定是回复最慢的那个，所以最终B替换了C作为接收者，但是B需要回复，所以它作为一个过渡部分，告诉C自己是A，将数据包发送C，C接收到后回复信息以同样的原理将信息回复给了B，B又作为过度者，以C的身份将数据包回复给A。更厉害的是在同一网段中，B会发送广播告诉自己是ip1，ip2….等所有地址，所以同一网段中的其他主机无论发送给哪台电脑最终都会经过B，B也会获取所有电脑发送的信息。<br><strong>操作过程</strong><br>将系统连接到同一网段<br>配置ip地址，kali配置ip地址，ifconfig eth0 192.168.0.66/24 其中/24表示3个255，8表示一个255，16表示2个255.<br>配置web和FTP服务器。<br>打开kali找到ettercap工具，在应用程序中搜索ett，使用该工具进行攻击。    </p>
-<p><font color=red>下载网站源码，进入网站之后，右键另存为，选择全部文件，设置保存路径即可进行源码下载。</font>  </p>
+<p><font color="red">下载网站源码，进入网站之后，右键另存为，选择全部文件，设置保存路径即可进行源码下载。</font>  </p>
 <h2 id="木马"><a href="#木马" class="headerlink" title="木马"></a>木马</h2><p>结果控制电脑<br>工具，灰鸽子   </p>
 <h2 id="扫描技术"><a href="#扫描技术" class="headerlink" title="扫描技术"></a>扫描技术</h2><p>工具nmap，参考网络安全学习。kali自带<br>暴力破解<br>漏洞扫描，参考文档openvas</p>
 <h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><p>用户名root密码123.com<br>打开终端后提示：【root@localhost 桌面】# 解释：【当前用户名称@主机名称 当前所在路径】#当前权限为用户管理员，如果是$表示当前权限为普通用户<br><strong>了解硬件信息</strong><br>查看硬盘：fdisk -l 执行命令后看到 disk /dev/sda   在linux系统中 sd(硬盘类型)，a(第一块)，sdb(第二块硬盘)<br>查看内存大小:cat /proc/meminfo<br>查看cpu型号：cat /proc/cpuinfo<br>关机命令：poweroff<br>重启：reboot<br><strong>linux目录</strong><br>进入终端之后执行cd ..发现由桌面变成了 <del>，执行pwd（查看当前路径名称）这代表进入了/root目录，linux中在自己的家中都是使用</del>代替，再执行cd ..发现进入了/，其中/是整个系统的根目录<br>列出当前目录中的内容：ls (list)<br>pwd:查看当前目录路径（print working directory）<br>cd：change dir<br>目录<br>/bin:（binary）存储普通用户和管理员都可以执行的命令<br>/sbin：存储只有管理员才能执行的命令<br>/boot：主引导目录，独立的分区，启动菜单，内核<br>/dev:device设备存放目录<br>/etc：（etcetera）配置文件存放目录<br>/home：普通用户的家目录<br>/root:管理员的家目录<br>/media:光驱的挂在目录<br>/mnt：（mount）临时设备关在目录（例如u盘）<br>/proc：（process）内存中的数据文件，进程的所在目录<br>/tmp：（temp）临时目录<br>/usr：（unix system resourse）第三方软件的安装目录<br>/var：（variable）常变文件的存放目录<br><strong>快捷键</strong><br>如果文件自当前目录下，如果想要进入该文件夹，那么直接输入cd + tab键即可自动补全。<br>执行某个文件：在该目录路径下，输入./文件名 就会自动执行该文件<br>清屏：ctrl+L<br>终止快捷键：ctrl+c<br><strong>文件类型</strong><br>其中浅蓝色代表符号链接，<br>红色代表压缩文件，<br>绿色代表可执行文件，<br>黑底黄字代表普通文件，<br>深蓝色代表文件夹。<br>黑色:普通文件<br>紫色：图片，模块文件</p>
@@ -513,7 +513,7 @@ exit
 <h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><p>通过配置文永久更改网络地址<br>eh0：192.168.0.154/24<br>eh1：1721.68.0.45/24<br>vim /etc/sysconfig/network-scripts/ifcfg-eh0将hwaddr，uuid，nm-controlled这几行都删掉，添加IPADDR=192.168.0.154,和NETMASK 255.255.255.0 ,然后将onboot改为yes，将bootporto改为static<br>eth1同样这样更改。  </p>
 <h3 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h3><p>/var/log<br>分类：系统日志messages，登录日志secue，程序日志  </p>
 <h3 id="web服务"><a href="#web服务" class="headerlink" title="web服务"></a>web服务</h3><p><strong>lamp平台</strong>，linux，apache（httpd），mysql，php<br>条件：ip 端口（80或者443）<br>1.启动httpd服务<br> service httpd start<br>2.验证是否开启<br> ss -antpl | grep 80<br>3.主页建立<br>cd /var/www/html  ,vim index.html书写html源码<br>4.关闭防火墙<br>setenforce 0<br>5.主配置文件分析<br>vim /etc/httpd/conf/httpd.conf<br>6.访问控制设定<br>过<br>7.安装MySQL数据库<br>yun install mysql -server -y,启动，server mysql start，设置账号密码，mysqladmin -u root -p password “123465”，登录 mysql -u root -p<br>8.安装php<br>yum install php<br>9.安装php链接数据库插件<br>yum install php-mysql<br><strong>lnmp平台</strong><br>n代表nginx，它的特点是承载压力强  </p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id><a href="#" class="headerlink" title></a></h2>
       
     </div>
     

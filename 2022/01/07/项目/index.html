@@ -22,14 +22,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="项目1：重命名文件系统地址：F:\c#_code\RenameFileApplacation Combox的下拉框选择后触发事件，使用comboBox2_SelectedValueChanged事件  创建文件夹Directory.CreateDirectory(newPath);  重命名核心算法：将文件移动到一个新的文件夹下并重新改名，删除原来的文件夹，然后再移动回来，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/01/07/%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/assets/wps30D8.tmp.jpg">
+<meta property="og:image" content="http://example.com/.com//assets/wps30D8.tmp.jpg">
 <meta property="og:image" content="file:///C:/Users/hasee/AppData/Local/Temp/ksohtml/wps8B08.tmp.jpg">
-<meta property="og:image" content="http://example.com/2022/01/07/%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/assets/wps8B18.tmp.jpg">
+<meta property="og:image" content="http://example.com/.com//assets/wps8B18.tmp.jpg">
 <meta property="article:published_time" content="2022-01-07T03:04:17.921Z">
 <meta property="article:modified_time" content="2022-01-07T12:16:06.869Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/01/07/%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE/assets/wps30D8.tmp.jpg">
+<meta name="twitter:image" content="http://example.com/.com//assets/wps30D8.tmp.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -342,7 +342,7 @@
 <p>​    1.在属性中将displayStyle设置成文字和图片</p>
 <p>​    2.imagescaling设置为none</p>
 <p>​    3.texeimagerelation显示方式设置为imageabovetext即可。</p>
-<p><img src="%E9%A1%B9%E7%9B%AE/assets/wps30D8.tmp.jpg" alt="img"> </p>
+<p><img src="/.com//assets/wps30D8.tmp.jpg" alt="img"> </p>
 <h2 id="将字体加载到combobox中"><a href="#将字体加载到combobox中" class="headerlink" title="将字体加载到combobox中"></a>将字体加载到combobox中</h2><p>//调用字体库，一般是写到窗口加载的代码中</p>
 <p>​      InstalledFontCollection ifc = new InstalledFontCollection();</p>
 <p>​      FontFamily[] ff =  ifc.Families;//字体数组</p>
@@ -364,7 +364,7 @@
 
 <h2 id="Savefiledialog和openfiledialog-新建，关闭，全部关闭"><a href="#Savefiledialog和openfiledialog-新建，关闭，全部关闭" class="headerlink" title="Savefiledialog和openfiledialog,新建，关闭，全部关闭"></a>Savefiledialog和openfiledialog,新建，关闭，全部关闭</h2><p>的区别如下，savefiledialog打开的保存窗口，而openfiledialog打开的是打开窗口，两者里面的一些属性或者方法有些是不同的，前者的filename是文件名是路径名加上手动写入的文件名，而后者的filename是点击的文件的文件名。(注意filenames属性是包含前面的文件路径名，而safafilename不包含路径名，只是文件名)</p>
 <p>前者使用streamwriter，后者使用streamreader。</p>
-<p><img src="file:///C:\Users\hasee\AppData\Local\Temp\ksohtml\wps8B08.tmp.jpg" alt="img"> <img src="%E9%A1%B9%E7%9B%AE/assets/wps8B18.tmp.jpg" alt="img"></p>
+<p><img src="file:///C:\Users\hasee\AppData\Local\Temp\ksohtml\wps8B08.tmp.jpg" alt="img"> <img src="/.com//assets/wps8B18.tmp.jpg" alt="img"></p>
 <p>​        保存                                                                                                    打开</p>
 <p>//进行保存文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    if (textBox1.Text.Trim() != &quot;&quot;)</span><br><span class="line"></span><br><span class="line">​      &#123;</span><br><span class="line"></span><br><span class="line">​        SaveFileDialog sfd = new SaveFileDialog();//查看savefiledialog与openfiledialog与folderbrowserdialog的关系   </span><br><span class="line"></span><br><span class="line">​        sfd.Filter = (&quot;文本文档(*.txt)|*.txt&quot;);//为保存的文件设置保存格式为txt类型</span><br><span class="line"></span><br><span class="line">​        if (sfd.ShowDialog() == DialogResult.OK)</span><br><span class="line"></span><br><span class="line">​        &#123;</span><br><span class="line"></span><br><span class="line">​          string path = sfd.FileName;//获取需要保存的文件路径，以及手动输入的文件名</span><br><span class="line"></span><br><span class="line">​          StreamWriter sw = new StreamWriter(path, false);//false表示如果有和它一样的文件名不会进行追加，如果改为true则表示将文件追加到原来文件的后面</span><br><span class="line"></span><br><span class="line">​          sw.WriteLine(textBox1.Text.Trim());</span><br><span class="line"></span><br><span class="line">​          sw.Flush();</span><br><span class="line"></span><br><span class="line">​          sw.Close();</span><br><span class="line"></span><br><span class="line">​        &#125;</span><br></pre></td></tr></table></figure>
