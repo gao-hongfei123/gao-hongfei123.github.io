@@ -269,6 +269,53 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-ef学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/11/ef%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2022-01-11T08:11:29.061Z" itemprop="datePublished">2022-01-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Enitity-framework-ef-学习"><a href="#Enitity-framework-ef-学习" class="headerlink" title="Enitity framework (ef)学习"></a>Enitity framework (ef)学习</h1><p>建立数据库，数据表：设置主键：选中id，在右侧的属性的标识中，将false改为true即可</p>
+<p>在解决方案中建立一个控制台项目，选中项目创建新建项选择ADO .net实体模型，选择来自数据库实体模型，连接已经创建好的数据表即可创建出可视化模型</p>
+<p>如果修改数据库，则不能从该可视化模型中操作（就是自动创建的edmx文件，也称ef设计器），需要从数据库中操作，修改完成之后，在界面右键，从数据库中更新模型可以选择添加 修改，删除对应表中的数据，此时可视化界面中修改，但是model.edmx中代码没有改变，需要点击保存，后才会自动更改。（即要想保证数据库操作与可视化界面中的操作同步，先更改数据库，然后操作右键操作界面中增删改，在保存）</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-项目" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
