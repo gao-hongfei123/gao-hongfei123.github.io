@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="技术爱好者" />
+
+
+
+<meta name="description" content="目录结构 准备工作1.创建项目创建项目时 .net framwork:只能应用在微软平台， ​                    .net core：跨平台， ​                    .net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="net5">
+<meta property="og:url" content="https://woshiliangmin123.github.io/2022/01/15/net5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目录结构 准备工作1.创建项目创建项目时 .net framwork:只能应用在微软平台， ​                    .net core：跨平台， ​                    .net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/image-20220118152015612.png">
+<meta property="og:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/image-20220118154815553.png">
+<meta property="og:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/image-20220118164630892.png">
+<meta property="og:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/%E6%8D%95%E8%8E%B701-1642214160615.PNG">
+<meta property="og:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/image-20220126125432709.png">
+<meta property="og:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/image-20220126230050166.png">
+<meta property="article:published_time" content="2022-01-15T02:17:16.043Z">
+<meta property="article:modified_time" content="2022-01-27T03:19:14.162Z">
+<meta property="article:author" content="技术爱好者">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://woshiliangmin123.github.io/2022/01/15/net5/assets/image-20220118152015612.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>net5 | Hexo</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/aaa.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/303515096@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">技术爱好者</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/aaa.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/303515096@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-net5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/01/15/net5/" class="article-date">
+      <time datetime="2022-01-15T02:17:16.043Z" itemprop="datePublished">2022-01-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      net5
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>目录结构</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>创建项目时 .net framwork:只能应用在微软平台，</p>
+<p>​                    .net core：跨平台，</p>
+<p>​                    .net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和类，但是没有具体的实现，而framework和core都实现了具体的方法。</p>
+<span id="more"></span>
+
+<h3 id="2-项目的发布"><a href="#2-项目的发布" class="headerlink" title="2.项目的发布"></a>2.项目的发布</h3><p>视频参考杨中科1-6：点击项目右键，发布，文件夹，文件夹，点击所有设置观察信息其中依赖框架指的是要求目标计算机上已有.net运行环境，而独立指的是在打包过程中将.net环境包含进去，保存，发布。</p>
+<p><img src="/2022/01/15/net5/assets/image-20220118152015612.png" alt="image-20220118152015612"></p>
+<p>若选择生成单个文件，启用readytorun则表示将所有的文件打包到.exe文件中（pdb文件无用），则产生的文件只有一个.exe文件（仅适用于.nect core3）。</p>
+<p><img src="/2022/01/15/net5/assets/image-20220118154815553.png" alt="image-20220118154815553"></p>
+<h3 id="net5中的program-cs文件分析："><a href="#net5中的program-cs文件分析：" class="headerlink" title=".net5中的program.cs文件分析："></a>.net5中的program.cs文件分析：</h3><p><img src="/2022/01/15/net5/assets/image-20220118164630892.png" alt="image-20220118164630892"></p>
+<p>main方法中如果什么也没有则是控制台应用，添加了上面的代码之后则变成了.net core应用程序，其中里面的startup是一个启动类，对应右侧的startup文件</p>
+<h3 id="Pages文件夹"><a href="#Pages文件夹" class="headerlink" title="Pages文件夹"></a>Pages文件夹</h3><p>里面的index.cshtml为默认访问页面与.net framework的index差不多，在代码界面右键转到pageModel则跳转到index.html.cs文件中，当前端有get请求时这个文件的onGet()方法就会被调用</p>
+<p>_layout页面：母版页</p>
+<p>_ViewImports.cshtml文件：专门用来引入命名空间的文件 ，相当于mvc中的@model  命名空间，只不过这里单独创建了一个文件进行引入</p>
+<p>_viewstart.cshtml：用来存放默认启动页的页面</p>
+<h3 id="properties文件夹"><a href="#properties文件夹" class="headerlink" title="properties文件夹"></a>properties文件夹</h3><p>里面的launchSetting.json的就是一种配置文件，可视化配置是右键项目，属性，调试，这两种配置方式完全一样</p>
+<h3 id="wwwroot文件夹"><a href="#wwwroot文件夹" class="headerlink" title="wwwroot文件夹"></a>wwwroot文件夹</h3><p>就是存放图片，js文件，视频等等的文件夹</p>
+<h3 id="startup文件"><a href="#startup文件" class="headerlink" title="startup文件"></a>startup文件</h3><p><img src="/2022/01/15/net5/assets/%E6%8D%95%E8%8E%B701-1642214160615.PNG" alt="捕获01"></p>
+<p>代码分析如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">public class Startup</span><br><span class="line">  &#123;</span><br><span class="line">      public Startup(IConfiguration configuration)</span><br><span class="line">      &#123;</span><br><span class="line">          Configuration = configuration;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">      public IConfiguration Configuration &#123; get; &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">      //这里表示一种配置服务，各种服务通过这里进行添加</span><br><span class="line">      public void ConfigureServices(IServiceCollection services)</span><br><span class="line">      &#123;</span><br><span class="line">          services.AddRazorPages();//这也是注册。参考依赖注入</span><br><span class="line">          servies.AddTransient&lt;ItansientService,TansientService&gt;();//这就是注册</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      //通过这里进行http配置，里面全都是调用的中间件</span><br><span class="line">      public void Configure(IApplicationBuilder app, IWebHostEnvironment env)</span><br><span class="line">      &#123;</span><br><span class="line">          if (env.IsDevelopment())//判断开发环境是否正常</span><br><span class="line">          &#123;</span><br><span class="line">              app.UseDeveloperExceptionPage();</span><br><span class="line">          &#125;</span><br><span class="line">          else</span><br><span class="line">          &#123;</span><br><span class="line">              app.UseExceptionHandler(&quot;/Error&quot;);</span><br><span class="line">              // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/asp</span><br><span class="line">              netcore-hsts.</span><br><span class="line">              app.UseHsts();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          app.UseHttpsRedirection();//使用https进行访问</span><br><span class="line">          app.UseStaticFiles();//处理静态文件系统，例如图片</span><br><span class="line"></span><br><span class="line">          app.UseRouting();//分配路由</span><br><span class="line"></span><br><span class="line">          app.UseAuthorization();//授权</span><br><span class="line"></span><br><span class="line">          app.UseEndpoints(endpoints =&gt;</span><br><span class="line">          &#123;</span><br><span class="line">              endpoints.MapRazorPages();</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码分析：在        public void ConfigureServices(IServiceCollection services)<br>        {<br>            services.AddRazorPages();//这也是注册。参考依赖注入</p>
+<p>​            services.AddControllers();          </p>
+<pre><code>          servies.AddTransient&lt;ItansientService,TansientService&gt;();//这就是注册
+    &#125;这段代码中，ConfigureServices就是.net core的一个内部容器，里面通过servers.AddTransient()方法实现注入，注入的类型是tansientService类型，我们可以看到里面添加了addrazorpages（），adcontrollers（）方法，与注册的三种情况不符合，这是因为进行了封装，底层仍然使用的是transient，scoped，singleton这三种方式
+</code></pre>
+<h1 id="异步方法（杨中科）"><a href="#异步方法（杨中科）" class="headerlink" title="异步方法（杨中科）"></a>异步方法（杨中科）</h1><p>1.异步方法是用async关键字修饰的方法，返回值一般为Task&lt;类型&gt;，习惯是创建异步方法时结尾是以Async结尾</p>
+<p>2.若没有返回值（相当于同步中的void），在异步中返回值类型声明为非泛型的Task</p>
+<p>3.调用泛型方法时，一般在方法前加上await关键字，这样拿到的返回值就是泛型指定的T类型，若不加await，则返回值类型必须为Task&lt;类型&gt;（比较麻烦），同时若不加await，当数据量过大时，若上个操作没有执行就执行下一步操作，容易出现异常，await就是等待上一步操作完成之后在执行当前方法。</p>
+<p>4.一个方法中若使用了await调用了其他方法，则该方法必须修饰为async</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public async Task Main()&#123;</span><br><span class="line"></span><br><span class="line">​	string str1= await File.WriteAllTextasync(&quot;c:/&quot;,&quot;aaa&quot;);//方法1</span><br><span class="line"></span><br><span class="line">​    Task&lt;返回类型string&gt; str2= await File.WriteAllTextasync(&quot;c:/&quot;,&quot;aaa&quot;);//方法1</span><br><span class="line"></span><br><span class="line">​	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.对于某些无法在方法前面加async关键字进行异步，若还是想要调用其他的异步方法，则在被调用的异步方法后面加上.wait();或者加上.Rusult;，但是尽量不要这么做，有死锁的风险。比如说</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void read()&#123;</span><br><span class="line">	string str1 = File.WriteAllTextasync(&quot;c:/&quot;,&quot;aaa&quot;).Result;//方法1</span><br><span class="line">	string str2 =File.WriteAllTextasync(&quot;c:/&quot;,&quot;aaa&quot;).wait();//方法2</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.为什么有的异步方法返回值前面不加async，因为该方法的返回值就是Task类型，而没有使用await。</p>
+<p>7.如果想要在异步方法中暂停一段时间不要使用Thread.sleep()，因为他会阻塞当前线程，而是使用</p>
+<p>await Task.Delay(),他阻塞的不是主线程</p>
+<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>首先使用nuget安装 两个Ioc包：install-package microsoft.extensions.dependencyinjection   </p>
+<p>​                                                        install-package microsoft.extensions.dependencyinjection.Abstractions   </p>
+<p>然后导入using Microsoft.Extensions.DependencyInjection;</p>
+<p>依赖注入(DI)是实现控制反转(IOC)的一种方式</p>
+<p>依赖注入：depend injection,DI:几个概念</p>
+<p>1.服务（Service）：就是对象</p>
+<p>2.注册服务，就是指定往容器中装入的类的类型，在tansient，scoped，singleton三个对象生命周期的泛型中填入类的类型，例如：singleton(接口，实现类),使用这样的方式进行注册的原因是，接口可以对应多个实现类，这样如果想要业务扩展的话，只需要将新类实现该接口即可</p>
+<p>3.服务容器：负责管理注册的服务，内置容器是ConfigureService，如果想要使用第三方容器，已经有内置容器为什么还要使用第三方容器，以为可以进行模块化注册实现批量注册服务，例如，Autofac容器代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public IServiceProvider ConfigureServices(IServiceColletion services)&#123;//将返回值改为IServiceProvider是告诉程序我不是使用内置容器，使用第三方容器</span><br><span class="line">	services.AddMvc().serCompatibilityVersion()。。。;//会自己修改</span><br><span class="line">	var bulder = new ContainerBuilder();//容器构建器，构建容器的工具</span><br><span class="line">	builer.RegisterType&lt;UserRepostory&gt;().As&lt;IUserRepository&gt;();//将实现类注册到接口上面去</span><br><span class="line">	builder.populate(serives);//将内置容器里面的已有的所有服务放到第三方容器中</span><br><span class="line">	var container = builder.build();//构建容器</span><br><span class="line">	return new autofaserviceprovider(container);//返回服务程序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.查询服务：创建对象及关联对象</p>
+<p>5.对象生命周期：transient（瞬态）（每次使用对象时，重新创建的新的对象，消耗系统资源），scoped（范围，在一次request），singleton（单例）（当创建第二个对象时，实际上引用的是第一个对象）（常用）</p>
+<h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><p>依赖注入类似线程池的原理：当将某个类注册到服务集合中后，当项目启动之后，会自动创建该类对象保存下来，当我们需要引用该类对象时，直接调用即可，不必手动去new 对象，，而且该类是全局引用的，整个项目都可以直接使用。引用的方式一般是使用构造注入步骤如下，使用依赖注入创建的原因是可以实现扩展，若需要扩展，直接让某个实现类继承某个接口即可，同时降低耦合性，若某个类需要其他的类对象，直接从池子里面取，而不用通过传递类对象的方式进行创建对象，降低了类与类之间的关系。依赖性指的是某一个类需要使用另一个类对象，那么在注册的时候只需要注册底层使用的接口就行，而不用两个全部注册，这就是依赖性。</p>
+<p>1.例如将Logger类注册到Startup文件的ConfigureServices集合中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">servies.AddTransient&lt;Ilogger,logger&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>2.如果同一个项目中其他文件中的Reg类想要使用logger对象，不需要new，不需要引进命名空间，只需要通过Reg类的构造方法引用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Reg&#123;</span><br><span class="line">	public readonly Ilogger log;//用来接受log对象</span><br><span class="line">	public Reg(Ilogger log);</span><br><span class="line">	this.log = log;//可以看到这里不是new出来的，而是直接引用构造方法中的log，构造中log是引用池子里的类对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务：就是接口</p>
+<p>实现：就是接口的实现类。一个服务对应一个实现</p>
+<p>//传统创建对象的代码，TestServiceImpl t = new TestServiceImpl();</p>
+<p>//使用依赖服务创建对象的代码：将需要创建的对象放在ServiceCollection集合中，使用ServiceProvider服务定位器去创建TestServiceImpl类型的对象，如果使用构造注入获得对象就不需要serviceprovider</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">示例一：通过服务定位器获取类对象</span><br><span class="line"> 调用类： class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            ServiceCollection service = new ServiceCollection();//容器</span><br><span class="line">            service.AddTransient&lt;ITestService,TestServcieImpl&gt;();//注册</span><br><span class="line">            using (ServiceProvider sp = service.BuildServiceProvider()) &#123;//获取服务定位器</span><br><span class="line">                ITestServcieImpl ts = sp.GetService&lt;ITestServcieImpl&gt;();//通过服务定位器获取(接口)对象,若是同一个接口对应多个实现类，则是sp.GetServices&lt;ITestServcieImpl&gt;//返回枚举类型，遍历</span><br><span class="line">                ts.name = &quot;张三&quot;;</span><br><span class="line">                ts.sayHi();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> 接口：public interface ITestService</span><br><span class="line">    &#123;</span><br><span class="line">        public string name &#123; get; set; &#125;</span><br><span class="line">        public void sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  接口对应的实现类： public class TestServcieImpl :ITestService &#123;</span><br><span class="line">        public string name &#123; get; set; &#125;</span><br><span class="line">        public void sayHi() &#123;</span><br><span class="line">            Console.WriteLine(name+&quot;你好&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    运行结果为：张三你好</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">示例二：构造获取类对象</span><br><span class="line">using System;</span><br><span class="line">using Microsoft.Extensions.DependencyInjection;</span><br><span class="line"></span><br><span class="line">namespace ConsoleApp3</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            ServiceCollection service = new ServiceCollection();//容器</span><br><span class="line">            service.AddTransient&lt;ITestService,TestServcieImpl&gt;();//注册：注意：因为登录接口使用了服务接口中的对象，所以这里只需要注册登录接口也是可以的</span><br><span class="line">            service.AddTransient&lt;ITestLogin, TestLoginImpl&gt;();//注册</span><br><span class="line">            using (ServiceProvider sp = service.BuildServiceProvider())//同示例一</span><br><span class="line">            &#123;</span><br><span class="line">                ITestLogin ts = sp.GetService&lt;ITestLogin&gt;();</span><br><span class="line">                ts.impl(); ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //ITestLogin类想要使用TestServiceImpl中的内容</span><br><span class="line">    登录接口：public interface ITestLogin &#123;</span><br><span class="line">        public void impl();   </span><br><span class="line">    &#125;</span><br><span class="line">    登录接口对应的实现类：public class TestLoginImpl :ITestLogin</span><br><span class="line">    &#123;</span><br><span class="line">        public  readonly ITestService ts;//用来接受对象的接口</span><br><span class="line">        //构造注入,构造方法中直接引用其他接口（面向接口编程），而不是实现类，不需要手动传递对象</span><br><span class="line">        public TestLoginImpl(ITestService ts)</span><br><span class="line">        &#123;</span><br><span class="line">            this.ts = ts;</span><br><span class="line">        &#125;</span><br><span class="line">        public void impl() &#123;</span><br><span class="line">            ts.name = &quot;李四&quot;;</span><br><span class="line">            ts.sayHi();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   服务接口： public interface ITestService</span><br><span class="line">    &#123;</span><br><span class="line">        public string name &#123; get; set; &#125;</span><br><span class="line">        public void sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">   服务接口对应的实现类 public class TestServcieImpl :ITestService &#123;</span><br><span class="line">        public string name &#123; get; set; &#125;</span><br><span class="line">        public void sayHi() &#123;</span><br><span class="line">            Console.WriteLine(name+&quot;你好&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果是李四你好</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置系统（杨中科）"><a href="#配置系统（杨中科）" class="headerlink" title="配置系统（杨中科）"></a>配置系统（杨中科）</h1><p>项目研发时，会遇到一些经常改变的参数，比如要连接的数据库的连接地址，数据库名称，数据库用户名，数据库密码，第三方url（比如友情连接）等考虑的程序的通用性，这些参数往往不能写死在程序里，而是借助配置文件来修改要变换的信息，我们只要读取配置文件就可以，而不是每次都去修改程序。</p>
+<p>传统使用web.config文件或者ConfigurationManager类去配置系统，但是已经过时了，最新是使用.json文件去配置系统。有很多种配置方式，这里只使用了最简单的一种（注入的方式）</p>
+<p>1.在项目的第一层目录下手动添加一个json文件，将json文件右键属性，复制到输出目录改为“如果较新则复制”</p>
+<p>2.nuget安装install-package Microsoft.Extensions.Configuration 和install-package Microsoft.Extensions.Configuration.Options 和intall-package  Microsoft.Extensions.Configuration.binder及install-package Microsoft.Extensions.Configuration.json四个安装包</p>
+<p>3.读取配置时，DI要声明IOptions&lt;泛型&gt;（不动态更新），IOptionsMonitor&lt;泛型&gt;（立即更新），IOptionsSnapshot&lt;泛型&gt;（一定区域范围内，推荐用），</p>
+<p>4.注意虽然创建文件是在项目跟目录下，但是程序运行之后，会将文件自动拷贝到bin\Debug\net5.0下，所以如果修改配置文件是修改该目录下的配置文件，与跟目录下无关。</p>
+<p>配置文件如下，json格式是作为对象保存的，该对象有name属性值为张三，age属性，值25，proxy为另一个类，该类属性address值为aa，prot属性值为80</p>
+<p><img src="/2022/01/15/net5/assets/image-20220126125432709.png" alt="image-20220126125432709"></p>
+<p>代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line">   &#123;</span><br><span class="line">       static void Main(string[] args)</span><br><span class="line">       &#123;</span><br><span class="line">           ServiceCollection services = new ServiceCollection();//服务集合</span><br><span class="line">           services.AddScoped&lt;TestController&gt;();//注册服务,因为TestController类里面引用了Config类，而config类里面引用了Proxy类所以只需要注册TestController即可，这是依赖性</span><br><span class="line"></span><br><span class="line">           ConfigurationBuilder configBuilder = new ConfigurationBuilder();//创建构建器</span><br><span class="line">           ////加载目录下的json文件，以对象形式保存在configbuilder中，第二个参数表示文件是可选的，建议为true，第三个参数表示配置文件修改之后是否立即更新，建议为true</span><br><span class="line">           configBuilder.AddJsonFile(&quot;config.json&quot;, optional: true, reloadOnChange: true);</span><br><span class="line">           //创建跟节点</span><br><span class="line">           IConfigurationRoot configRoot = configBuilder.Build();</span><br><span class="line">           //注册只有周期那三种方式，其余的注册都是属于扩展方法例如addOptions</span><br><span class="line">           //将Config对象绑定到configroot根节点上（因为Config类里面还有个Proxy类属于子节点）；</span><br><span class="line">           services.AddOptions().Configure&lt;Config&gt;(e =&gt; configRoot .Bind(e));</span><br><span class="line">           </span><br><span class="line"></span><br><span class="line">           using (var sp = services.BuildServiceProvider()) &#123;//服务定位器</span><br><span class="line">               using (var scope = sp.CreateScope())//因为IOptionsSnapshot是在一定范围内使用，所以这里创建一个scope</span><br><span class="line">               &#123;</span><br><span class="line">                   var c = scope.ServiceProvider.GetRequiredService&lt;TestController&gt;();</span><br><span class="line">                   c.Test();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   //这里创建类用来接受返回的对象，或者作为泛型使用</span><br><span class="line">   class Config&#123;</span><br><span class="line">       public string name &#123; get; set; &#125;</span><br><span class="line">       public int age &#123; get; set; &#125;</span><br><span class="line">       public Proxy Proxy &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   class Proxy &#123; </span><br><span class="line">       public string address &#123; get; set; &#125;</span><br><span class="line">       public int port &#123; get; set; &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class TestController</span><br><span class="line">    &#123;</span><br><span class="line">        public IOptionsSnapshot&lt;Config&gt; optConfig;</span><br><span class="line">        //若想要获取Config中的信息，直接用Config是不可取的，因为配置文件中的信息是随时变化的，如果直接注入Config则相当于直接将值写死了，无法随着动态变化而变化，而Ioptionsnapshot&lt;Config&gt;是将Config封装成Ioptoinsnapshot的内容，这个接口就是为了解决动态变化的问题</span><br><span class="line">        public TestController(IOptionsSnapshot&lt;Config&gt; optConfig) &#123;</span><br><span class="line"></span><br><span class="line">            this.optConfig = optConfig;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Test() &#123;</span><br><span class="line">            Config config = optConfig.Value;//或者Config对象</span><br><span class="line">            Console.WriteLine(config.age);</span><br><span class="line">            //Console.WriteLine(optConfig.Value.age) ;//与上面写法等价</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="机密信息"><a href="#机密信息" class="headerlink" title="机密信息"></a>机密信息</h3><p>对于一些机密信息比如用户名密码等放在配置文件里面容易泄露，可以对项目右键，管理机密信息，会自动安装一个包，创建机密的json文件，这个文件保密性比较高，具体使用参考杨中科配置系统6</p>
+<h1 id="日志系统"><a href="#日志系统" class="headerlink" title="日志系统"></a>日志系统</h1><p>日志提供者LoggingProvider</p>
+<p>日志等级：trace&lt;debug&lt;information&lt;warning&lt;error&lt;critical</p>
+<p>1.安装两个nuget包：Microsoft.Extensions.Logging      和Microsoft.Extensions.Logging.Console</p>
+<p>2.DI注入：services.addLogging(logbuilder=&gt;{logbuilder.addConsole()});</p>
+<p>3.将需要注入的代码注入ILogging&lt;泛型&gt;即可，可以将出现问题的类输出到日志方便定位错误，然后调用LogInformation(),LogError()输出日志等级</p>
+<p>4.日志可以输出到控制台，event log（只能windows系统），但更好的放在文本文件里面并且按照日期区分，限制日期总个数或总大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line">   &#123;</span><br><span class="line">       static void Main(string[] args)</span><br><span class="line">       &#123;</span><br><span class="line">           ServiceCollection services = new ServiceCollection();</span><br><span class="line">           //同理，services.addLoggin();是一个扩展方法</span><br><span class="line">           services.AddLogging(logBuilder =&gt; &#123; </span><br><span class="line">           	logBuilder.AddConsole();//将日志输出到控制台</span><br><span class="line">               logBuilder.AddNLog();//将日志输出到文件</span><br><span class="line">           &#125;);</span><br><span class="line">           services.AddScoped&lt;Test&gt;();//注册</span><br><span class="line">           using (var sp = services.BuildServiceProvider()) &#123; //构造服务定位器</span><br><span class="line">               var test1 =sp.GetRequiredService&lt;Test&gt;();</span><br><span class="line">               test1.print();</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">被注入的类</span><br><span class="line">    class Test</span><br><span class="line">    &#123;</span><br><span class="line">        private readonly ILogger&lt;Test&gt; logger;</span><br><span class="line">        //构造方法注入</span><br><span class="line">        public Test(ILogger&lt;Test&gt; logger) &#123;</span><br><span class="line">            this.logger = logger;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //调用方法输出日志</span><br><span class="line">        public void print() &#123;</span><br><span class="line">            logger.LogDebug(&quot;开始数据库调试&quot;);</span><br><span class="line">            logger.LogDebug(&quot;连接数据库成功&quot;);</span><br><span class="line">            logger.LogWarning(&quot;查住数据失败&quot;);</span><br><span class="line">            logger.LogError(&quot;查找数据最终失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/15/net5/assets/image-20220126230050166.png" alt="image-20220126230050166"></p>
+<h3 id="将日志写入文件"><a href="#将日志写入文件" class="headerlink" title="将日志写入文件"></a>将日志写入文件</h3><p>1.nuget安装 NLog.Extensions.Logging </p>
+<p>2.项目根目录下建nlog.config，右键属性改为：”如果较新的复制“</p>
+<p>3.增加logbuilder.addNlog();</p>
+<p>4.进入nuget网站搜索nlog，找到右侧的source reposity 进入github，找到下侧的.net core，直接复制里面的代码粘贴到自己创建的nlog.config文件中，只需要将里面的路径改为输入文件的路径即可其他不用动</p>
+<p>代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span><br><span class="line">&lt;nlog xmlns=&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;</span><br><span class="line">      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">      autoReload=&quot;true&quot;</span><br><span class="line">      internalLogLevel=&quot;Info&quot;</span><br><span class="line">      internalLogFile=&quot;c:\temp\internal-nlog-AspNetCore.txt&quot;&gt;//这里需要修改</span><br><span class="line"></span><br><span class="line">  &lt;!-- enable asp.net core layout renderers --&gt;</span><br><span class="line">  &lt;extensions&gt;</span><br><span class="line">    &lt;add assembly=&quot;NLog.Web.AspNetCore&quot;/&gt;</span><br><span class="line">  &lt;/extensions&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- the targets to write to --&gt;</span><br><span class="line">  &lt;targets&gt;</span><br><span class="line">    &lt;!-- File Target for all log messages with basic details --&gt;</span><br><span class="line">    &lt;target xsi:type=&quot;File&quot; name=&quot;allfile&quot; fileName=&quot;c:\temp\nlog-AspNetCore-all-$&#123;shortdate&#125;.log&quot;  //这里需要修改</span><br><span class="line">            layout=&quot;$&#123;longdate&#125;|$&#123;event-properties:item=EventId_Id:whenEmpty=0&#125;|$&#123;uppercase:$&#123;level&#125;&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- File Target for own log messages with extra web details using some ASP.NET core renderers --&gt;</span><br><span class="line">    &lt;target xsi:type=&quot;File&quot; name=&quot;ownFile-web&quot; fileName=&quot;c:\temp\nlog-AspNetCore-own-$&#123;shortdate&#125;.log&quot;   //这里需要修改</span><br><span class="line">            layout=&quot;$&#123;longdate&#125;|$&#123;event-properties:item=EventId_Id:whenEmpty=0&#125;|$&#123;uppercase:$&#123;level&#125;&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;|url: $&#123;aspnet-request-url&#125;|action: $&#123;aspnet-mvc-action&#125;|$&#123;callsite&#125;| body: $&#123;aspnet-request-posted-body&#125;&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--Console Target for hosting lifetime messages to improve Docker / Visual Studio startup detection --&gt;</span><br><span class="line">    &lt;target xsi:type=&quot;Console&quot; name=&quot;lifetimeConsole&quot; layout=&quot;$&#123;MicrosoftConsoleLayout&#125;&quot; /&gt;</span><br><span class="line">  &lt;/targets&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- rules to map from logger name to target --&gt;</span><br><span class="line">  &lt;rules&gt;</span><br><span class="line">    &lt;!--All logs, including from Microsoft--&gt;</span><br><span class="line">    &lt;logger name=&quot;*&quot; minlevel=&quot;Trace&quot; writeTo=&quot;allfile&quot; /&gt;</span><br><span class="line">    &lt;!--Output hosting lifetime messages to console target for faster startup detection --&gt;</span><br><span class="line">    &lt;logger name=&quot;Microsoft.Hosting.Lifetime&quot; minlevel=&quot;Info&quot; writeTo=&quot;lifetimeConsole, ownFile-web&quot; final=&quot;true&quot; /&gt;</span><br><span class="line">    &lt;!--Skip non-critical Microsoft logs and so log only own logs (BlackHole) --&gt;</span><br><span class="line">    &lt;logger name=&quot;Microsoft.*&quot; maxlevel=&quot;Info&quot; final=&quot;true&quot; /&gt;</span><br><span class="line">    &lt;logger name=&quot;System.Net.Http.*&quot; maxlevel=&quot;Info&quot; final=&quot;true&quot; /&gt;    </span><br><span class="line">    &lt;logger name=&quot;*&quot; minlevel=&quot;Trace&quot; writeTo=&quot;ownFile-web&quot; /&gt;</span><br><span class="line">  &lt;/rules&gt;</span><br><span class="line">&lt;/nlog&gt;</span><br></pre></td></tr></table></figure>
+
+<p>5.using NLog.Extensions.Logging;,在服务注册的时候将代码改为（在上面的注册代码中）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">services.AddLogging(logBuilder =&gt; &#123; logBuilder.AddConsole();</span><br><span class="line">                logBuilder.AddNLog();//这里就是将日志输出到文件</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>6.上面的config文件解读：日志分类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- rules to map from logger name to target --&gt;</span><br><span class="line"> &lt;rules&gt;</span><br><span class="line">   &lt;!--All logs, including from Microsoft--&gt;</span><br><span class="line">   &lt;logger name=&quot;*&quot; minlevel=&quot;Trace&quot; writeTo=&quot;allfile&quot; /&gt;//表示等级最低为tarce以上的输出到alfile文件里面</span><br><span class="line">   &lt;!--Output hosting lifetime messages to console target for faster startup detection --&gt;</span><br><span class="line">   &lt;logger name=&quot;Microsoft.Hosting.Lifetime&quot; minlevel=&quot;Info&quot; writeTo=&quot;lifetimeConsole, ownFile-web&quot; final=&quot;true&quot; /&gt;//类名为Microsoft.Hosting.Lifetime且最低等级为info的输出到控制台</span><br><span class="line">   &lt;!--Skip non-critical Microsoft logs and so log only own logs (BlackHole) --&gt;</span><br><span class="line">   &lt;logger name=&quot;Microsoft.*&quot; maxlevel=&quot;Info&quot; final=&quot;true&quot; /&gt;//类名为Microsoft.*，最大等级为info</span><br><span class="line">   &lt;logger name=&quot;System.Net.Http.*&quot; maxlevel=&quot;Info&quot; final=&quot;true&quot; /&gt;    类名为System.Net.Http.*，最大等级为info的</span><br><span class="line">   &lt;logger name=&quot;*&quot; minlevel=&quot;Trace&quot; writeTo=&quot;ownFile-web&quot; /&gt;其他所有的输出到wonfile-web里面</span><br><span class="line"> &lt;/rules&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2022/01/15/net5/">net5</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2022-01-15, 10:17:16</p>
+        <p><span>Updated:</span>2022-01-27, 11:19:14</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2022/01/15/net5/" title="net5">https://woshiliangmin123.github.io/2022/01/15/net5/</a>
+            <span class="copy-path" data-clipboard-text="From https://woshiliangmin123.github.io/2022/01/15/net5/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2022/01/11/ef%E5%AD%A6%E4%B9%A0/">
+                    
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8F%91%E5%B8%83"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.项目的发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#net5%E4%B8%AD%E7%9A%84program-cs%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.0.3.</span> <span class="toc-text">.net5中的program.cs文件分析：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pages%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.0.4.</span> <span class="toc-text">Pages文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#properties%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.0.5.</span> <span class="toc-text">properties文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wwwroot%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.0.6.</span> <span class="toc-text">wwwroot文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#startup%E6%96%87%E4%BB%B6"><span class="toc-number">1.0.7.</span> <span class="toc-text">startup文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95%EF%BC%88%E6%9D%A8%E4%B8%AD%E7%A7%91%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">异步方法（杨中科）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-number">3.</span> <span class="toc-text">依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">3.0.1.</span> <span class="toc-text">原理：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%9D%A8%E4%B8%AD%E7%A7%91%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">配置系统（杨中科）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E5%AF%86%E4%BF%A1%E6%81%AF"><span class="toc-number">4.0.1.</span> <span class="toc-text">机密信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-number">5.</span> <span class="toc-text">日志系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="toc-number">5.0.1.</span> <span class="toc-text">将日志写入文件</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"net5　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2022/01/11/ef%E5%AD%A6%E4%B9%A0/" title="Next: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/01/15/net5/">net5</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/11/ef%E5%AD%A6%E4%B9%A0/">ef学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/">网络安全学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/01/07/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/">csharp语法</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2022 技术爱好者
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+            
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+             menu: ".header-menu a", 
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
