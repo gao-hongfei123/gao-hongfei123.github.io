@@ -14,10 +14,13 @@
 <meta name="author" content="技术爱好者" />
 
 
+    
+    
+
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://woshiliangmin123.github.io/archives/2021/index.html">
+<meta property="og:url" content="https://woshiliangmin123.github.io/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="技术爱好者">
@@ -51,11 +54,13 @@
 
 
 
+    <style> .article { opacity: 0;} </style>
+
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2021 | Hexo</title>
+<title>Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -64,9 +69,9 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: false,
+        isHome: true,
         isPost: false,
-        isArchive: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -264,44 +269,142 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-MVC" class="article article-type-post" itemscope itemprop="blogPost">
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-      <time datetime="2021-01-07T10:42:00.901Z" itemprop="datePublished">01-07</time>
+    <div class="article-meta">
+      <a href="/2022/01/07/MVC/" class="article-date">
+      <time datetime="2022-01-07T03:04:17.861Z" itemprop="datePublished">2022-01-07</time>
 </a>
 
 
-        </div>
-         
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    </div>
   
-  
-    </div></section>
-  
-
+  <div class="article-inner">
     
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/MVC/">MVC</a>
+    </h1>
+  
 
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p>MVC5：新建项目的时候选择web项目-》mvc</p>
+<p>更换访问端口：右击项目-》属性-》web</p>
+<p>MVC是一种web开发框架。</p>
+<p>​    Models：实体模型，就是用来操作数据库的</p>
+<p>​    View：视图，用户可以看到的前端界面</p>
+<p>​    Controllor：决定用户调用哪个视图，调用哪个逻辑计算</p>
+<p>vs2013在iis上发布一个网站：</p>
+<p>​    1.首先点击项目于右键-》发布-》自定义-》输入一个发布名-》发布方法选择文件系统-》目标位置选择当前项目所在的路径名-》点击发布完成。发布就是将网站源码打包成一个文件夹，将源码封装起来。不让用户看见源码，例如写完的exe文件就是已经打包好的。</p>
+<p>​    2.在iis上添加一个网站-》设置网站名称-》网站路径选择 发布的项目。部署完成。部署就是将文件夹发布到iis上。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/01/07/MVC/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-csharp学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2021-01-07T10:42:00.901Z" itemprop="datePublished">2021-01-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="vs设置"><a href="#vs设置" class="headerlink" title="vs设置"></a>vs设置</h2><p>vs中F6键：生成语法错误，可以定位到错误位置。</p>
+<p>设置当前启动项目，点击解决资源管理器，右击，属性，启动项目设置为当前选定内容。</p>
+<p>多行注释：ctrl + k+c,取消多行注释：ctrl +k +u</p>
+<p>输出快捷键：cw+两次tab键 ，foreach快捷键，foreach +两次tab键</p>
+<p>构造器快捷键：ctor+两次tab键</p>
+<p>快速创建属性的快捷键：porp+两次tab键</p>
+<p>激活key：BWG7X-J98B3-W34RT-33B3R-JVYW9</p>
+<p>对于一些控件的属性设置在，视图选项卡的属性可以调出</p>
+<p>鼠标放在某个类上直接按住F1键，会自动定位到对该类的解释文档。</p>
+<p>直接删除某行ctrl+L</p>
+<p>assembly ：类库</p>
+<p>Ctrl+.快捷键或者ctrl+j，是智能识别快捷键，相当于eclipse中的alt+/,java中完全使用接口interface代替了委托</p>
+<p>自动实现接口中的所有方法：alt+insert</p>
+<p>替换快捷键：ctrl+r</p>
+<p>获取某一方法的所有重载：光标在括号内，然后ctrl+shift+空格</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2021/01/07/csharp%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </div>
       <footer id="footer">
     <div class="outer">
@@ -355,6 +458,10 @@
         })
     </script>
 
+
+    
+
+     
 
 
 
