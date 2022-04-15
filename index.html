@@ -594,38 +594,28 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/15/SqlSugar/">SqlSugar</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<h2 id="title-SqlSugar"><a href="#title-SqlSugar" class="headerlink" title="title:SqlSugar"></a>title:SqlSugar</h2><p>nuget:sqlsugarcore</p>
+              <p>nuget:sqlsugarcore</p>
 <p>注：所有不能完成增删改查并且报错的原因是因为使用了sqlsugar的包而不是sqlsugarcore的包</p>
 <p>注意：使用第一种方式进行IOC注入的时候，不用通过构造函数再进行注入了，而是直接使用Dbscope.sugarScope这个全局对象即可。但是不推荐第一种方法，而是直接使用第二种方法（net注入），因为第一种方法无法使用SimpleClient中的特有方法。</p>
 <p>首先根据表生成实体类</p>
 <p>sqlClient：不能跨上下文，若出现错误则换成sqlscope</p>
 <p>SqlScope：线程安全，必须使用异步方式</p>
 <p>0.里面的所有的db都是为sqlclient对象。</p>
-<p>1.在main方法中通过创建对象的方式引入SqlClient。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1181">https://www.donet5.com/Home/Doc?typeId=1181</a></p>
-<p>2.通过特性设置主键，自增。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1182">https://www.donet5.com/Home/Doc?typeId=1182</a></p>
-<p>3.连接一个数据库，和同时连接多个数据库（租户事务）：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1183">https://www.donet5.com/Home/Doc?typeId=1183</a></p>
-<p>4.查询：当从Querable变成非Querable的时候会自动执行操作数据库，而不需要再使用executecommand，所以执行查询时，querable后面必有一个tolist（），或者First（）等改变Querable类型的方法。</p>
-<p>​        1）查所有，按条件查询，多条件查询，动态查询，模糊查询，主键查询，查询第一条，查询前几条，获取查询结果的行数。。。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1187">https://www.donet5.com/Home/Doc?typeId=1187</a></p>
-<p>​        2）分页查询，<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2242">https://www.donet5.com/Home/Doc?typeId=2242</a></p>
-<p>​        3）分组查询，去重查询，<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2243">https://www.donet5.com/Home/Doc?typeId=2243</a></p>
-<p>​        4）排序，<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2312">https://www.donet5.com/Home/Doc?typeId=2312</a></p>
-<p>​        5）异步查询：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1189">https://www.donet5.com/Home/Doc?typeId=1189</a></p>
-<p>5.插入：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1193">https://www.donet5.com/Home/Doc?typeId=1193</a></p>
-<p>6.删除：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1195">https://www.donet5.com/Home/Doc?typeId=1195</a></p>
-<p>7.修改：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1191">https://www.donet5.com/Home/Doc?typeId=1191</a></p>
-<p>8.建库建表：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1206">https://www.donet5.com/Home/Doc?typeId=1206</a></p>
-<p>9.注意前面都是通过自动创建sqlclient对象的方式获取的，如果使用IOC容器，需要注册的。</p>
-<p><strong>10</strong>，当仓储层继承了SimpleClient时，里面自带了与前面不同的方法，直接调用即可（不用执行后面的执行语句ExecuteCommad,这是优点），当然也可以使用前面中的方法而且前面中的方法更加全面。其中base指的是父类及simpleClient中的方法。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1228">https://www.donet5.com/Home/Doc?typeId=1228</a></p>
-<p>在创建仓库时分析代码里面的含义：原本应该是应该在Reposiroy里面定义一个变量来接受IsqlSugarClient对象，这样就可以使用里面的方法，但是换一种思路，我们可以将该对象传入给SimpleClient构造函数，使用base的方式使用SqlSugar对象里面的方法也是一样的，同时可以使用SimpleClient里面特有的方法。这样有一个弊端，那就是如果实现Reposity的子类如果想要使用sqlsugar对象中的方法，其构造方法也必须写成Repository中构造方法的样子，因为父类的有参构造，子类必须继承。</p>
-<p><img src="/2022/04/15/SqlSugar/assets/image-20220205121645864.png" alt="image-20220205121645864"></p>
-<p>观察SimpleClient类发现，这才是标准的构造注入，获取了IsqlSugarCilent对象，使用里面的方法。</p>
-<p><img src="/2022/04/15/SqlSugar/assets/image-20220205120923215.png" alt="image-20220205120923215"></p>
-<p>11.使用sqlsugar第一种方式注入时，应使用services.addsqlsugar,而不是sugarservices.addsugar();</p>
-
+          
       
     </div>
     
@@ -634,6 +624,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2022/04/15/SqlSugar/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
