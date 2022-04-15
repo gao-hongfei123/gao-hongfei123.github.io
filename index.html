@@ -475,11 +475,21 @@
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/15/%E5%89%8D%E7%AB%AF/">前端学习</a>
+    </h1>
+  
+
+      </header>
+      
+    
     <div class="article-entry" itemprop="articleBody">
       
           
-              <hr>
-<h2 id="title-前端学习"><a href="#title-前端学习" class="headerlink" title="title:前端学习"></a>title:前端学习</h2><h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML是用来构建网页的结构的（骨架），而css是用来构建样式的（外貌）。</p>
+              <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML是用来构建网页的结构的（骨架），而css是用来构建样式的（外貌）。</p>
 <p>标签之间只有两种关系，1.嵌套关系2.并列关系</p>
 <p>head和body之间是并列关系，head标签和title之间是嵌套关系</p>
           
@@ -663,44 +673,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<h2 id="titil-net项目总结"><a href="#titil-net项目总结" class="headerlink" title="titil:net项目总结"></a>titil:net项目总结</h2><h1 id="项目1："><a href="#项目1：" class="headerlink" title="项目1："></a>项目1：</h1><h2 id="1-在返回的Json中修改时间格式"><a href="#1-在返回的Json中修改时间格式" class="headerlink" title="1.在返回的Json中修改时间格式"></a>1.在返回的Json中修改时间格式</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/11/">https://bxshare.top/index.php/archives/11/</a></p>
+              <h1 id="项目1："><a href="#项目1：" class="headerlink" title="项目1："></a>项目1：</h1><h2 id="1-在返回的Json中修改时间格式"><a href="#1-在返回的Json中修改时间格式" class="headerlink" title="1.在返回的Json中修改时间格式"></a>1.在返回的Json中修改时间格式</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/11/">https://bxshare.top/index.php/archives/11/</a></p>
 <h2 id="2-修改swagger中的界面"><a href="#2-修改swagger中的界面" class="headerlink" title="2.修改swagger中的界面"></a>2.修改swagger中的界面</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/12/">https://bxshare.top/index.php/archives/12/</a></p>
 <h2 id="3-Sqlsugar注入"><a href="#3-Sqlsugar注入" class="headerlink" title="3.Sqlsugar注入"></a>3.Sqlsugar注入</h2><p><a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2247%E6%B3%A8%E6%84%8F%E6%98%AFsqlsugarcore%E7%9A%84%E5%8C%85%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AFsqlsugar%E7%9A%84%E5%8C%85">https://www.donet5.com/Home/Doc?typeId=2247注意是sqlsugarcore的包，而不是sqlsugar的包</a></p>
 <p>注意：使用sqlsugar的第二种方式进行注入时，在SqlsugarSetup类中应将                ConnectionString = configuration.GetConnectionString(dbName),换为ConnectionString =Configuration[dbname],因为前者无法获取数据库连接字符串。</p>
 <p>配置连接字符串</p>
 <p>创建控制器利用codefirst生成数据库,建表</p>
-<h2 id="4-三层架构"><a href="#4-三层架构" class="headerlink" title="4.三层架构"></a>4.三层架构</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/19/">https://bxshare.top/index.php/archives/19/</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.doczj.com/doc/b64ce21c59eef8c75fbfb335.html">http://www.doczj.com/doc/b64ce21c59eef8c75fbfb335.html</a></p>
-<p>三层架构中的BLL，DAL，UI在加上model层对应</p>
-<ul>
-<li><strong>表示层</strong>(User Interface layer)=web=UI=Controller=控制器：主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。</li>
-<li><strong>业务逻辑层</strong>(Business Logic Layer)=BLL=service：业务逻辑层 BLL 的功能是对具体问题进行逻辑判断与执行操作，接收到表现层 UI 的用户指令后，会连接数据访问层 DAL。业务逻辑层用于做一些有效性验证的工作，以更好的保证程序运行的健壮性。如完成数据添加、修改和查询业务等；不允许指定的文本框中输入空字符串，数据格式是否正确以及数据类型验证；用户权限的合法性判断等；通过以上的诸多判断以决定是否将操作继续向后传递，尽量保证程序的正常运行。之前所有的判断都是放在了Controller中，实际上这都是错误的，而是应该放在BLL层，Controller只是起到UI的作用。</li>
-<li><strong>数据访问层</strong>(Data access layer)=dao=Mapper=Repository：数据访问层 DAL 是对数据库主要操控，实现数据的增加、删除、修改、查询等操作，并将操作结果反馈到业务逻辑层 BLL。</li>
-<li><strong>实体类库</strong>（model/entity）：就是数据表中对应的实体类</li>
-</ul>
-<p>.netcore中的Services(BLL),Repository（Dal）,webAPI(UI)如下图可以看到，包含controller的那层就是UI层，repository和service层与该项目是同级别的，</p>
-<p><img src="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202212718264.png" alt="image-20220202212718264"></p>
-<p>MVC与三层架构的关系，MVC中的V和C就是三层架构中的UI层，而三层架构中的BLL和DAL和Model层就是MVC中的Model层,在webapi中没有了V所以C就是UI层</p>
-<p>而调用流程是Repository引用Models层，Service层引用Repository层，Net（UI）引用Service层</p>
-<p><img src="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202215116862.png" alt="image-20220202215116862"></p>
-<h3 id="Model层"><a href="#Model层" class="headerlink" title="Model层"></a>Model层</h3><p><img src="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202220005580.png" alt="image-20220202220005580"></p>
-<h3 id="repository"><a href="#repository" class="headerlink" title="repository"></a>repository</h3><p>repository的作用：实际上他是等价于Dao层的，只不过dao层中进行增删改查，因为数据库中有很多表，所以dao层中，每个表的增删改查都需要重写一边，那么就重复性工作，所以单独创建一个Repository层，该层创建一个Repository的实体类和泛型接口，该接口封装了对所有的表的操作的常用方法，这样，我们在调用的时候只需要传入对应的实体类即可完成增删改查操作。对于一些更细致的方法，让Dao层自己去实现。</p>
-<p><img src="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202220242360.png" alt="image-20220202220242360"></p>
-<h3 id="Service：因为需要用到Repository，所以在startup类中注册Repository"><a href="#Service：因为需要用到Repository，所以在startup类中注册Repository" class="headerlink" title="Service：因为需要用到Repository，所以在startup类中注册Repository"></a>Service：因为需要用到Repository，所以在startup类中注册Repository</h3><p>注意；无法注册的原因是因为类没有public</p>
-<p><img src="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202224502504.png" alt="image-20220202224502504"></p>
-<h3 id="UI：同理，UI需要使用Service层，所以在startup类中注册UserService"><a href="#UI：同理，UI需要使用Service层，所以在startup类中注册UserService" class="headerlink" title="UI：同理，UI需要使用Service层，所以在startup类中注册UserService"></a>UI：同理，UI需要使用Service层，所以在startup类中注册UserService</h3><p><img src="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202225131382.png" alt="image-20220202225131382"></p>
-<h2 id="5-添加泛型仓储，重新注入"><a href="#5-添加泛型仓储，重新注入" class="headerlink" title="5.添加泛型仓储，重新注入"></a>5.添加泛型仓储，重新注入</h2><p><a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1228">https://www.donet5.com/Home/Doc?typeId=1228</a></p>
-<h2 id="6-设置路由"><a href="#6-设置路由" class="headerlink" title="6.设置路由"></a>6.设置路由</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/22/">https://bxshare.top/index.php/archives/22/</a></p>
-<h2 id="7-fluentvalidation"><a href="#7-fluentvalidation" class="headerlink" title="7.fluentvalidation"></a>7.fluentvalidation</h2><h2 id="8-跨域"><a href="#8-跨域" class="headerlink" title="8.跨域"></a>8.跨域</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/24/">https://bxshare.top/index.php/archives/24/</a></p>
-<h2 id="9-JWT"><a href="#9-JWT" class="headerlink" title="9.JWT"></a>9.JWT</h2><h1 id="项目二：MyBlog"><a href="#项目二：MyBlog" class="headerlink" title="项目二：MyBlog"></a>项目二：MyBlog</h1><p>1.解决泛型接口注册的问题：使用typeof</p>
-<p>2.使用sqlsugar中注意的问题，使用第二种方式注入，且注入过程中获取配置文件的方式改为configuration</p>
-<p>3.重写了三层架构，且使用了仓储模式。</p>
-<p>4.这里只写了BlogNews的增删改查，对于TypeInfo和WriterInfo都没写</p>
-<p>5.表达式树的问题。</p>
-<p>6.密码使用MD5的内容没看</p>
-<h1 id="项目三：Routine"><a href="#项目三：Routine" class="headerlink" title="项目三：Routine"></a>项目三：Routine</h1><p>怎样Company中的IColletion属性中添加数据</p>
-
+          
       
     </div>
     
@@ -709,6 +688,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
