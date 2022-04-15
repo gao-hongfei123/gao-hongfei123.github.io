@@ -14,17 +14,25 @@
 <meta name="author" content="技术爱好者" />
 
 
-    
-    
 
-
-<meta property="og:type" content="website">
+<meta name="description" content="titil:net项目总结项目1：1.在返回的Json中修改时间格式https:&#x2F;&#x2F;bxshare.top&#x2F;index.php&#x2F;archives&#x2F;11&#x2F; 2.修改swagger中的界面https:&#x2F;&#x2F;bxshare.top&#x2F;index.php&#x2F;archives&#x2F;12&#x2F; 3.Sqlsugar注入https:&#x2F;&#x2F;www.donet5.com&#x2F;Home&#x2F;Doc?typeId&#x3D;2247注意是sqlsug">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://gao-hongfei123.github.io/index.html">
+<meta property="og:url" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="titil:net项目总结项目1：1.在返回的Json中修改时间格式https:&#x2F;&#x2F;bxshare.top&#x2F;index.php&#x2F;archives&#x2F;11&#x2F; 2.修改swagger中的界面https:&#x2F;&#x2F;bxshare.top&#x2F;index.php&#x2F;archives&#x2F;12&#x2F; 3.Sqlsugar注入https:&#x2F;&#x2F;www.donet5.com&#x2F;Home&#x2F;Doc?typeId&#x3D;2247注意是sqlsug">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202212718264.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202215116862.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202220005580.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202220242360.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202224502504.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202225131382.png">
+<meta property="article:published_time" content="2022-04-15T14:23:19.646Z">
+<meta property="article:modified_time" content="2022-02-13T05:14:29.536Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202212718264.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,8 +62,6 @@
 
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
@@ -69,8 +75,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -267,391 +273,7 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-项目" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/%E9%A1%B9%E7%9B%AE/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.746Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/%E9%A1%B9%E7%9B%AE/">项目</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="项目1：重命名文件系统"><a href="#项目1：重命名文件系统" class="headerlink" title="项目1：重命名文件系统"></a>项目1：重命名文件系统</h1><p>地址：F:\c#_code\RenameFileApplacation</p>
-<p>Combox的下拉框选择后触发事件，使用comboBox2_SelectedValueChanged事件</p>
-<ol>
-<li><h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><p>Directory.CreateDirectory(newPath);</p>
-</li>
-<li><h2 id="重命名核心算法："><a href="#重命名核心算法：" class="headerlink" title="重命名核心算法："></a>重命名核心算法：</h2><p>将文件移动到一个新的文件夹下并重新改名，删除原来的文件夹，然后再移动回来，          </p>
-</li>
-</ol>
-<p>File.Move(oldPath + oldName[Form1.flag], newPath + newName);</p>
-<p>File.Move(newPath + newName, oldPath + newName);</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/%E9%A1%B9%E7%9B%AE/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.730Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p><img src="/2022/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93/assets/image-20220119124805589.png" alt="image-20220119124805589"></p>
-<p>连接到服务器：指的是存放数据库的那个电脑，数据库服务器名称就是右键我的电脑 名称，一般数据库服务器只有一个计算机名称，所以通常不做更改（同一网段中可以连接其他服务器）</p>
-<p>连接到数据库：指的是与某个指定的数据库进行连接的过程，建立成功后在服务器资源管理器中可以看到连接，默认连接的是master数据库</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-安全基础学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.722Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="虚拟机设置"><a href="#虚拟机设置" class="headerlink" title="虚拟机设置"></a>虚拟机设置</h2><p>vmnet实际上表示虚拟交换机，一共vmnet1-vmnet19，将系统连接到某个交换机上，相当于机房中的真实机有一根网线连接到真实交换机上。每个vmnet对应一个虚拟网卡。其中vmnet0表示的是真实机所连接的交换机，如果连接到vmnet0，则相当于该系统从虚拟机跳出来直接连接到真实交换机，可以使用该虚拟机完全当作真实机使用。<br>1.使用桥接模式：使用的真实机的网卡，可以连接互联网也可以实现虚拟机<strong>和同网段其他真实机互联</strong>，可以将其看作一个真实机，但网段必须与真实机一样。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/%E5%89%8D%E7%AB%AF/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.690Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <hr>
-<h2 id="title-前端学习"><a href="#title-前端学习" class="headerlink" title="title:前端学习"></a>title:前端学习</h2><h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML是用来构建网页的结构的（骨架），而css是用来构建样式的（外貌）。</p>
-<p>标签之间只有两种关系，1.嵌套关系2.并列关系</p>
-<p>head和body之间是并列关系，head标签和title之间是嵌套关系</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/%E5%89%8D%E7%AB%AF/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-winform学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/winform%E5%AD%A6%E4%B9%A0/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.666Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/winform%E5%AD%A6%E4%B9%A0/">winform控件</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
-<p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
-<p>this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口</p>
-<p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
-<p>​    this.Hide();</p>
-<p>​    新窗口.ShowDialog();</p>
-<p>​    this.Show();    </p>
-<p>当在解决方案管理器中创建第二个项目的时候，运行后发现执行的仍然是上一个项目，在新创建的项目上右键=》设为启动项目即可。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/winform%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-SqlSugar" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/SqlSugar/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.654Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <hr>
-<h2 id="title-SqlSugar"><a href="#title-SqlSugar" class="headerlink" title="title:SqlSugar"></a>title:SqlSugar</h2><p>nuget:sqlsugarcore</p>
-<p>注：所有不能完成增删改查并且报错的原因是因为使用了sqlsugar的包而不是sqlsugarcore的包</p>
-<p>注意：使用第一种方式进行IOC注入的时候，不用通过构造函数再进行注入了，而是直接使用Dbscope.sugarScope这个全局对象即可。但是不推荐第一种方法，而是直接使用第二种方法（net注入），因为第一种方法无法使用SimpleClient中的特有方法。</p>
-<p>首先根据表生成实体类</p>
-<p>sqlClient：不能跨上下文，若出现错误则换成sqlscope</p>
-<p>SqlScope：线程安全，必须使用异步方式</p>
-<p>0.里面的所有的db都是为sqlclient对象。</p>
-<p>1.在main方法中通过创建对象的方式引入SqlClient。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1181">https://www.donet5.com/Home/Doc?typeId=1181</a></p>
-<p>2.通过特性设置主键，自增。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1182">https://www.donet5.com/Home/Doc?typeId=1182</a></p>
-<p>3.连接一个数据库，和同时连接多个数据库（租户事务）：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1183">https://www.donet5.com/Home/Doc?typeId=1183</a></p>
-<p>4.查询：当从Querable变成非Querable的时候会自动执行操作数据库，而不需要再使用executecommand，所以执行查询时，querable后面必有一个tolist（），或者First（）等改变Querable类型的方法。</p>
-<p>​        1）查所有，按条件查询，多条件查询，动态查询，模糊查询，主键查询，查询第一条，查询前几条，获取查询结果的行数。。。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1187">https://www.donet5.com/Home/Doc?typeId=1187</a></p>
-<p>​        2）分页查询，<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2242">https://www.donet5.com/Home/Doc?typeId=2242</a></p>
-<p>​        3）分组查询，去重查询，<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2243">https://www.donet5.com/Home/Doc?typeId=2243</a></p>
-<p>​        4）排序，<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2312">https://www.donet5.com/Home/Doc?typeId=2312</a></p>
-<p>​        5）异步查询：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1189">https://www.donet5.com/Home/Doc?typeId=1189</a></p>
-<p>5.插入：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1193">https://www.donet5.com/Home/Doc?typeId=1193</a></p>
-<p>6.删除：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1195">https://www.donet5.com/Home/Doc?typeId=1195</a></p>
-<p>7.修改：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1191">https://www.donet5.com/Home/Doc?typeId=1191</a></p>
-<p>8.建库建表：<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1206">https://www.donet5.com/Home/Doc?typeId=1206</a></p>
-<p>9.注意前面都是通过自动创建sqlclient对象的方式获取的，如果使用IOC容器，需要注册的。</p>
-<p><strong>10</strong>，当仓储层继承了SimpleClient时，里面自带了与前面不同的方法，直接调用即可（不用执行后面的执行语句ExecuteCommad,这是优点），当然也可以使用前面中的方法而且前面中的方法更加全面。其中base指的是父类及simpleClient中的方法。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1228">https://www.donet5.com/Home/Doc?typeId=1228</a></p>
-<p>在创建仓库时分析代码里面的含义：原本应该是应该在Reposiroy里面定义一个变量来接受IsqlSugarClient对象，这样就可以使用里面的方法，但是换一种思路，我们可以将该对象传入给SimpleClient构造函数，使用base的方式使用SqlSugar对象里面的方法也是一样的，同时可以使用SimpleClient里面特有的方法。这样有一个弊端，那就是如果实现Reposity的子类如果想要使用sqlsugar对象中的方法，其构造方法也必须写成Repository中构造方法的样子，因为父类的有参构造，子类必须继承。</p>
-<p><img src="/2022/04/15/SqlSugar/assets/image-20220205121645864.png" alt="image-20220205121645864"></p>
-<p>观察SimpleClient类发现，这才是标准的构造注入，获取了IsqlSugarCilent对象，使用里面的方法。</p>
-<p><img src="/2022/04/15/SqlSugar/assets/image-20220205120923215.png" alt="image-20220205120923215"></p>
-<p>11.使用sqlsugar第一种方式注入时，应使用services.addsqlsugar,而不是sugarservices.addsugar();</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-net5项目" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-net5项目" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/" class="article-date">
@@ -710,220 +332,127 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-net5" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/net5/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.639Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/"></a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2022-04-15, 22:23:19</p>
+        <p><span>Updated:</span>2022-02-13, 13:14:29</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/" title="">https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/</a>
+            <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/04/15/net5%E9%A1%B9%E7%9B%AE/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
     </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+
+
+
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/net5/">net5</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>目录结构</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>创建项目时 .net framwork:只能应用在微软平台，</p>
-<p>​                    .net core：跨平台，</p>
-<p>​                    .net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和类，但是没有具体的实现，而framework和core都实现了具体的方法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/net5/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-MVC" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/MVC/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.621Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2022/04/15/SqlSugar/">
+                    
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/MVC/">MVC</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p>MVC5：新建项目的时候选择web项目-》mvc</p>
-<p>更换访问端口：右击项目-》属性-》web</p>
-<p>MVC是一种web开发框架。</p>
-<p>​    Models：实体模型，就是用来操作数据库的</p>
-<p>​    View：视图，用户可以看到的前端界面</p>
-<p>​    Controllor：决定用户调用哪个视图，调用哪个逻辑计算</p>
-<p>vs2013在iis上发布一个网站：</p>
-<p>​    1.首先点击项目于右键-》发布-》自定义-》输入一个发布名-》发布方法选择文件系统-》目标位置选择当前项目所在的路径名-》点击发布完成。发布就是将网站源码打包成一个文件夹，将源码封装起来。不让用户看见源码，例如写完的exe文件就是已经打包好的。</p>
-<p>​    2.在iis上添加一个网站-》设置网站名称-》网站路径选择 发布的项目。部署完成。部署就是将文件夹发布到iis上。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/MVC/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-ef学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/04/15/ef%E5%AD%A6%E4%B9%A0/" class="article-date">
-      <time datetime="2022-04-15T14:23:19.614Z" itemprop="datePublished">2022-04-15</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="Enitity-framework-ef-学习"><a href="#Enitity-framework-ef-学习" class="headerlink" title="Enitity framework (ef)学习"></a>Enitity framework (ef)学习</h1><p>ef就是一个设计器</p>
-<p>属于ORM；O：DOmainObject领域模型</p>
-<p>​                    R；Ralation Database 关系型数据库</p>
-<p>​                    M：Maping映射关系</p>
-<p>ORM就是将相应的实体映射到相应的数据库表，然后使用orm框架封装好的api进行数据库访问，减少了自己写数据库访问类的步骤**。</p>
-<p>三种开发方式： 1.dbfirst：先创建数据库再开发（不推荐）</p>
-<p>​                            2.modelfirst：先创建模型再创建数据库（不推荐）</p>
-<p>​                            3.codefirst:代码优先（推荐）</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/04/15/ef%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2022/04/15/net5/">
+                    net5
+                </a>
+            </div>
+        
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#titil-net%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">titil:net项目总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE1%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">项目1：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9C%A8%E8%BF%94%E5%9B%9E%E7%9A%84Json%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">1.在返回的Json中修改时间格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9swagger%E4%B8%AD%E7%9A%84%E7%95%8C%E9%9D%A2"><span class="toc-number">2.</span> <span class="toc-text">2.修改swagger中的界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Sqlsugar%E6%B3%A8%E5%85%A5"><span class="toc-number">3.</span> <span class="toc-text">3.Sqlsugar注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">4.三层架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model%E5%B1%82"><span class="toc-number">4.1.</span> <span class="toc-text">Model层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repository"><span class="toc-number">4.2.</span> <span class="toc-text">repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Service%EF%BC%9A%E5%9B%A0%E4%B8%BA%E9%9C%80%E8%A6%81%E7%94%A8%E5%88%B0Repository%EF%BC%8C%E6%89%80%E4%BB%A5%E5%9C%A8startup%E7%B1%BB%E4%B8%AD%E6%B3%A8%E5%86%8CRepository"><span class="toc-number">4.3.</span> <span class="toc-text">Service：因为需要用到Repository，所以在startup类中注册Repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UI%EF%BC%9A%E5%90%8C%E7%90%86%EF%BC%8CUI%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8Service%E5%B1%82%EF%BC%8C%E6%89%80%E4%BB%A5%E5%9C%A8startup%E7%B1%BB%E4%B8%AD%E6%B3%A8%E5%86%8CUserService"><span class="toc-number">4.4.</span> <span class="toc-text">UI：同理，UI需要使用Service层，所以在startup类中注册UserService</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%B7%BB%E5%8A%A0%E6%B3%9B%E5%9E%8B%E4%BB%93%E5%82%A8%EF%BC%8C%E9%87%8D%E6%96%B0%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">5.添加泛型仓储，重新注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1"><span class="toc-number">6.</span> <span class="toc-text">6.设置路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-fluentvalidation"><span class="toc-number">7.</span> <span class="toc-text">7.fluentvalidation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E8%B7%A8%E5%9F%9F"><span class="toc-number">8.</span> <span class="toc-text">8.跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-JWT"><span class="toc-number">9.</span> <span class="toc-text">9.JWT</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BA%8C%EF%BC%9AMyBlog"><span class="toc-number"></span> <span class="toc-text">项目二：MyBlog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%89%EF%BC%9ARoutine"><span class="toc-number"></span> <span class="toc-text">项目三：Routine</span></a>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/04/15/SqlSugar/" title="Pre: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2022/04/15/net5/" title="Next: net5">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/SqlSugar/">SqlSugar</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/net5/">net5</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/ef%E5%AD%A6%E4%B9%A0/">ef学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/04/15/csharp%E5%AD%A6%E4%B9%A0/">csharp学习</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -977,10 +506,6 @@
         })
     </script>
 
-
-    
-
-     
 
 
 
