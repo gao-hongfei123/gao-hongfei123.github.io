@@ -674,7 +674,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/">net项目总结</a>
+      <a class="article-title" href="/2022/04/15/net5%E9%A1%B9%E7%9B%AE/">net项目</a>
     </h1>
   
 
@@ -684,7 +684,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h1 id="项目1："><a href="#项目1：" class="headerlink" title="项目1："></a>项目1：</h1><h2 id="1-在返回的Json中修改时间格式"><a href="#1-在返回的Json中修改时间格式" class="headerlink" title="1.在返回的Json中修改时间格式"></a>1.在返回的Json中修改时间格式</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/11/">https://bxshare.top/index.php/archives/11/</a></p>
+              <p>git推送</p>
+<p>1.git init</p>
+<p>2.git add “文件夹名称”</p>
+<p>3.git commit -m “注释”</p>
+<p>4.git remote add origin <a target="_blank" rel="noopener" href="https://github.com/gao-hongfei123/Project.git">https://github.com/gao-hongfei123/Project.git</a></p>
+<p>5.git pull –rebase origin master</p>
+<p>6.git push -u origin master</p>
+<h1 id="项目1："><a href="#项目1：" class="headerlink" title="项目1："></a>项目1：</h1><h2 id="1-在返回的Json中修改时间格式"><a href="#1-在返回的Json中修改时间格式" class="headerlink" title="1.在返回的Json中修改时间格式"></a>1.在返回的Json中修改时间格式</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/11/">https://bxshare.top/index.php/archives/11/</a></p>
 <h2 id="2-修改swagger中的界面"><a href="#2-修改swagger中的界面" class="headerlink" title="2.修改swagger中的界面"></a>2.修改swagger中的界面</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/12/">https://bxshare.top/index.php/archives/12/</a></p>
 <h2 id="3-Sqlsugar注入"><a href="#3-Sqlsugar注入" class="headerlink" title="3.Sqlsugar注入"></a>3.Sqlsugar注入</h2><p><a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2247%E6%B3%A8%E6%84%8F%E6%98%AFsqlsugarcore%E7%9A%84%E5%8C%85%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AFsqlsugar%E7%9A%84%E5%8C%85">https://www.donet5.com/Home/Doc?typeId=2247注意是sqlsugarcore的包，而不是sqlsugar的包</a></p>
 <p>注意：使用sqlsugar的第二种方式进行注入时，在SqlsugarSetup类中应将                ConnectionString = configuration.GetConnectionString(dbName),换为ConnectionString =Configuration[dbname],因为前者无法获取数据库连接字符串。</p>
@@ -749,8 +756,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>目录结构</p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>创建项目时 .net framwork:只能应用在微软平台，</p>
+              <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>创建项目时 .net framwork:只能应用在微软平台，</p>
 <p>​                    .net core：跨平台，</p>
 <p>​                    .net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和类，但是没有具体的实现，而framework和core都实现了具体的方法。</p>
           
@@ -818,6 +824,7 @@
 <p>​    Models：实体模型，就是用来操作数据库的</p>
 <p>​    View：视图，用户可以看到的前端界面</p>
 <p>​    Controllor：决定用户调用哪个视图，调用哪个逻辑计算</p>
+<p>浏览原理：视图-》浏览器端提交请求-》模型-》控制器-》处理-》模型-》视图</p>
 <p>vs2013在iis上发布一个网站：</p>
 <p>​    1.首先点击项目于右键-》发布-》自定义-》输入一个发布名-》发布方法选择文件系统-》目标位置选择当前项目所在的路径名-》点击发布完成。发布就是将网站源码打包成一个文件夹，将源码封装起来。不让用户看见源码，例如写完的exe文件就是已经打包好的。</p>
 <p>​    2.在iis上添加一个网站-》设置网站名称-》网站路径选择 发布的项目。部署完成。部署就是将文件夹发布到iis上。</p>
