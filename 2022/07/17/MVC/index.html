@@ -347,7 +347,7 @@
 <p>​	View：视图：注意controller里面的文件（例如homeController.cs）在view中有对应的文件名的文件夹（对应为Home）。<strong>（2.控制器创建完成之后，点击index方法，右键创建视图，会在view生成对应文件夹中自动创建一个index.cshtml。</strong>同时controller的类文件里面的方法（比如说index方法）,在view下的对应文件夹下有对应的html文件(对应为index.cshtml)；手动创建view视图页，在文件夹右键添加，新建项，web，razor ，内容页</p>
 <p>​		Shared：里面的layout文件是个完整的前端页面（相当于一个母版）叫做布局，约定以下划线开头，所有的index页面会默认使用该layout页面，即这个页面的内容会自动插入到创建的index页面中。在其里面有个@renderbody()这句代码，这句代码相当于一个占位符，当用户指定Home文件下的index.cshtml时就会将index里面的代码替换掉renderbody。如果home文件下的某个html页面不想用layout中的模板，那么就在inedex.cshtml页面中ViewBag.Title &#x3D; “页面名”;的下一行添加layout &#x3D; null;这句代码。如下图</p>
 <p><img src="/MVC/assets/%E6%8D%95%E8%8E%B74.PNG" alt="捕获4"></p>
-<p>​		Viewstart文件：里面的一句代码Layout &#x3D; “~&#x2F;Views&#x2F;Shared&#x2F;_Layout.cshtml”;指定了mvc默认指定的模板页就是layout.cshtml页面。所以<font color='red'>viewstart是起指定访问页面的文件。</font></p>
+<p>​		Viewstart文件：里面的一句代码Layout &#x3D; “~&#x2F;Views&#x2F;Shared&#x2F;_Layout.cshtml”;指定了mvc默认指定的模板页就是layout.cshtml页面。所以<font color="red">viewstart是起指定访问页面的文件。</font></p>
 <h1 id="Mvc中的传递方式，将数据从view传递给控制器"><a href="#Mvc中的传递方式，将数据从view传递给控制器" class="headerlink" title="Mvc中的传递方式，将数据从view传递给控制器"></a>Mvc中的传递方式，将数据从view传递给控制器</h1><h3 id="方式一（推荐）："><a href="#方式一（推荐）：" class="headerlink" title="方式一（推荐）："></a>方式一（推荐）：</h3><p>直接使用控制器index方法中的参数例如 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public ActionResult Index(string name,string pwd)</span><br><span class="line">        &#123;</span><br><span class="line">            return Content(name);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 

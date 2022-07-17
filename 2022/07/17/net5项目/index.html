@@ -323,7 +323,7 @@
 <p>创建控制器利用codefirst生成数据库,建表</p>
 <h2 id="4-三层架构"><a href="#4-三层架构" class="headerlink" title="4.三层架构"></a>4.三层架构</h2><ul>
 <li><strong>表示层</strong>(User Interface layer)&#x3D;web&#x3D;UI&#x3D;Controller&#x3D;控制器：主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。</li>
-<li><strong>业务逻辑层</strong>(Business Logic Layer)&#x3D;BLL&#x3D;service：业务逻辑层 BLL 的功能是对具体问题进行逻辑判断与执行操作，接收到表现层 UI 的用户指令后，会连接数据访问层 DAL。业务逻辑层用于做一些有效性验证的工作。如完成数据添加、修改和查询业务用户登录，<font color='red'>凡是用到需要调用dal层中数据库增删改查的操作都是写在BLL层中，比如登录，注册等，而dal层只是基本的增删改查功能</font>&gt;；不允许指定的文本框中输入空字符串，数据格式是否正确以及数据类型验证；用户权限的合法性判断等；通过以上的诸多判断以决定是否将操作继续向后传递，尽量保证程序的正常运行。之前所有的判断都是放在了Controller中，实际上这都是错误的，而是应该放在BLL层，Controller只是起到UI的作用。它是DAL的上一层，他需要引用ef，dal层，dto层，model层，它对应dal层的Service，一个manager对应一个Service。在manager方法中调用Service方法即可。</li>
+<li><strong>业务逻辑层</strong>(Business Logic Layer)&#x3D;BLL&#x3D;service：业务逻辑层 BLL 的功能是对具体问题进行逻辑判断与执行操作，接收到表现层 UI 的用户指令后，会连接数据访问层 DAL。业务逻辑层用于做一些有效性验证的工作。如完成数据添加、修改和查询业务用户登录，<font color="red">凡是用到需要调用dal层中数据库增删改查的操作都是写在BLL层中，比如登录，注册等，而dal层只是基本的增删改查功能</font>&gt;；不允许指定的文本框中输入空字符串，数据格式是否正确以及数据类型验证；用户权限的合法性判断等；通过以上的诸多判断以决定是否将操作继续向后传递，尽量保证程序的正常运行。之前所有的判断都是放在了Controller中，实际上这都是错误的，而是应该放在BLL层，Controller只是起到UI的作用。它是DAL的上一层，他需要引用ef，dal层，dto层，model层，它对应dal层的Service，一个manager对应一个Service。在manager方法中调用Service方法即可。</li>
 <li><strong>数据访问层</strong>(Data access layer)&#x3D;dao&#x3D;Mapper&#x3D;Repository：数据访问层 DAL 是对数据库主要操控，实现数据的增加、删除、修改、查询等操作，并将操作结果反馈到业务逻辑层 BLL。</li>
 <li><strong>实体类库</strong>（model&#x2F;entity）：就是数据表中对应的实体类</li>
 <li><strong>通用层</strong>：（Common）：一些通用的辅助类和工具类</li>
