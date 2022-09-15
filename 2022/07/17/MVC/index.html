@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/MVC/assets/image-20220117155134447.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/MVC/assets/image-20220117160546827.png">
 <meta property="article:published_time" content="2022-07-17T01:44:21.867Z">
-<meta property="article:modified_time" content="2022-07-17T02:20:50.834Z">
+<meta property="article:modified_time" content="2022-07-20T14:44:58.160Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/07/17/MVC/assets/%E6%8D%95%E8%8E%B73.PNG">
@@ -387,7 +387,20 @@
 <h2 id="view访问controller中的数据"><a href="#view访问controller中的数据" class="headerlink" title="view访问controller中的数据"></a>view访问controller中的数据</h2><p>在一个控制器中手写一个方法，右键该方法-》视图-》添加视图即可看见在view中添加了对应的html。当控制器中的方法执行时，该方法的返回值return view();会自动定位到view中的cshtml。</p>
 <p>访问方式：客户端通过访问controller中某个cs文件下的某个方法进行访问默认是index，会自动返回view中的html界面。</p>
 <p>控制器中的方法称为action。</p>
-<p>返回类型actionResult子类有viewresult（返回相应的视图），contentresult（返回字符串），rederectresult（重定向），redirecttoaction（重定向某一个方法上）</p>
+<p>返回类型IactionResult子类有viewresult（返回相应的razor视图），contentresult（返回字符串），redirect（重定向到指定的url），redirecttoaction（重定向某一个方法和控制器上）,redirectToRoute(new{controller&#x3D;”Example”,action&#x3D;”Index”,Id&#x3D;MId});重定向到指定的路由.</p>
+<p>其他类型的返回结果:</p>
+<p>JsonResult&#x3D;&gt;Json();返回json数据</p>
+<p>ContentResult&#x3D;&gt;Content();返回指定对象</p>
+<p>ObjectResult&#x3D;&gt; …</p>
+<p>OkObjectResult&#x3D;&gt;Ok();返回内容</p>
+<p>NotFoundObjectResult&#x3D;&gt;NotFound();返回404</p>
+<p>FileContentResult&#x3D;&gt;File();将指定的MiME类型发送字节数组</p>
+<p>FileStreamResult&#x3D;&gt;File();发送流文件</p>
+<p>VirtualFileResult&#x3D;&gt;File();虚拟路径读取流</p>
+<p>VIew方法:1.View();调用默认视图,不传递数据</p>
+<p>2.View(“MyView”);返回对应的视图</p>
+<p>3.View(model);将模型数据返回给默认的视图</p>
+<p>4.View(“myview”,model);将模型数据返回给对应的视图</p>
 <p>控制器中的数据显示到cshtml的代码：</p>
 <p>​	方式一：控制器的index方法中使用viewBag.变量名 &#x3D; “显示内容”，然后在index.cshtml中写入@viewBag.变量名，当view执行到此处时，就会执行controller中的代码，就会最终将controller的内容显示到view界面。</p>
 <p>​	方式二：使用ViewData[“变量名”]&#x3D;”显示内容”，在cshtml中写入@viewData[“变量名”]即可。</p>
@@ -463,19 +476,30 @@
 <p>7.@**@为注释</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">  public ActionResult List() &#123;</span><br><span class="line"></span><br><span class="line">            return View(new List&lt;Student&gt;() &#123;</span><br><span class="line">                new Student()&#123;</span><br><span class="line">                    id = 1,</span><br><span class="line">                    name = &quot;张三  &quot;,</span><br><span class="line">                    age = 23</span><br><span class="line">                &#125;,</span><br><span class="line">                 new Student()&#123;</span><br><span class="line">                    id = 2,</span><br><span class="line">                    name = &quot;里斯&quot;,</span><br><span class="line">                    age = 23</span><br><span class="line">                &#125;,</span><br><span class="line">                  new Student()&#123;</span><br><span class="line">                    id = 3,</span><br><span class="line">                    name = &quot; 王五 &quot;,</span><br><span class="line">                    age = 23</span><br><span class="line">                &#125;,</span><br><span class="line">                  new Student()&#123;</span><br><span class="line">                    id = 4,</span><br><span class="line">                    name = &quot; 赵六 &quot;,</span><br><span class="line">                    age = 23</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;); ; ;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">cshtml文件中如下</span><br><span class="line">@model List&lt;MVCtest2.Models.Student&gt;</span><br><span class="line">@&#123;</span><br><span class="line">    ViewBag.Title = &quot;List&quot;;</span><br><span class="line">    int a = 12;</span><br><span class="line">    string name = &quot;list&quot;;</span><br><span class="line">    string html = @&quot;&lt;span style = &#x27;color:red&#x27;&gt;hello&lt;/span&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line"></span><br><span class="line">    @foreach (var stu in Model)</span><br><span class="line">    &#123;</span><br><span class="line">        &lt;li&gt;@stu.name&lt;/li&gt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @(a + 1)  @name</span><br><span class="line">    &lt;span&gt;email:2222222@qq.com&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;@@&lt;/span&gt;</span><br><span class="line">    @Html.Raw(html);</span><br><span class="line"></span><br><span class="line">    @&#123;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">            a + 11;</span><br><span class="line">            a + 12;</span><br><span class="line">            name;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">            &#125;</span><br><span class="line">    @*</span><br><span class="line">        这里是注释区域</span><br><span class="line">    </span><br><span class="line">        *@</span><br><span class="line"></span><br><span class="line">    &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p>区域的作用，</p>
-<p>特点：与创建的项目的MVC5的目录结构完全一样，相当于项目中的子mvc5,保存在Areas文件夹下</p>
+<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p>区域的作用，每个区域代表不同的功能，例如管理，计费，等，因为所有的控制器不可能在一组文件夹里面，区域通过路由进行支持</p>
+<p>特点：与创建的项目的MVC5的目录结构完全一样，相当于项目中的子mvc5,保存在Areas文件夹下，每个区域有自己的controllers，views，models文件夹</p>
 <p>点击项目，右键，添加，新搭建机架的项目，MVC5区域即可创建</p>
 <p><img src="/2022/07/17/MVC/assets/image-20220117155134447.png" alt="image-20220117155134447"></p>
 <p>若是项目中的mvc与区域中的mvc里面的控制器相同，那么当访问默认页面时，会发现路由无法区分访问哪个控制器而报错，此时需要在路由配置中加入namespace字段配置访问的包名即可</p>
 <p><img src="/2022/07/17/MVC/assets/image-20220117160546827.png" alt="image-20220117160546827"></p>
+<p>在使用Areas中的控制器的时候，要指定使用哪个域</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Area(&quot;Admin&quot;)]</span><br><span class="line">public class HomeController:Controller&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">若使用特性路由则为</span><br><span class="line">[Route(&quot;[area]/app/[controller]/action&quot;)]</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="TagHelper"><a href="#TagHelper" class="headerlink" title="TagHelper"></a>TagHelper</h3><p>标签助手的一个功能是使用asp-for将属性与模型中的属性关联起来</p>
 <p>为什么使用taghelper，因为它可以动态生成连接，即如果更改更改路由模板，会自动修改url</p>
 <p>@addTagHelper *,……….导入taghelper</p>
-<p>1.表单路由</p>
-<p>asp-controller ,指定控制器</p>
-<p>asp-action，指定action</p>
+<p>1.表单路由&#x2F;超链接元素</p>
+<p>asp-controller ,指定该链接访问某个控制器</p>
+<p>asp-action，指定该链接访问某个action</p>
 <p>asp-route-{value}指定下一层路由参数	</p>
+<p>asp-route;直接指定url地址，类似于href</p>
+<p>asp-protocol&#x3D;”https”:指定协议</p>
+<p>asp-host&#x3D;”mudomain.com”;指定服务器名称</p>
+<p>asp-fragment;指定url片段 </p>
+<p>asp-route-area;指定域为那个</p>
+<p>没有method属性，需手动添加，如果忽略，则默认为get方式</p>
 <p>例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a asp-controller=&quot;home&quot; asp-action=&quot;details&quot; asp-route-id=&quot;info&quot;&gt;link&lt;/a&gt;</span><br><span class="line">&lt;form asp-controller=&quot;home&quot; asp-action=&quot;details&quot; asp-route-id=&quot;info&quot;&gt;link2&lt;/form&gt;</span><br><span class="line">最终生成的连接就是&lt;a href=&quot;/home/details/info&quot;&gt;link&lt;/a&gt;</span><br></pre></td></tr></table></figure>
 
@@ -491,8 +515,10 @@
 <p>5.select</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;&lt;/select&gt;</span><br></pre></td></tr></table></figure>
 
-<p>6.如果控制器中没有使用ModelState.IsValid验证想要在前端对后端属性进行验证,modelstate.isvalid验证是否成功，是后端逻辑处理，将其与asp-validation-summary进行搭配使用用来将错误显示在前端</p>
-<p>asp-validation-for&#x3D;“Name”:验证Name属性</p>
+<p>6.如果控制器中没有使用ModelState.IsValid验证，它是对模型类的所有属性都进行一遍验证。想要在前端对后端属性进行验证,modelstate.isvalid验证是否成功，是后端逻辑处理，将其与asp-validation-summary进行搭配使用用来将错误显示在前端，ModelState的作用是来记录验证错误，为asp-validation-summary属性提供ModelOnly值，将属性上特性中的错误信息备注(例如【required】出现错误)如何显示在前端，就是通过ModelState进行汇总，然后传递给asp-validation-summary属性，然后才会显示在前端。</p>
+<p>《div asp-validation-summary&#x3D;“All”》《&#x2F;div》一般用来将错误信息汇总起来显示在最上面，同时在对应的属性级别出现错误时再显示一遍错误消息。（不好看）</p>
+<p>《div asp-validation-summary&#x3D;“ModelOnly”》《&#x2F;div》；仅将错误消息显示汇总在最上面，而每个出现错误对应的输入框上面不会显示错误消息（不好看）</p>
+<p>《div》《span asp-validation-for&#x3D;“Name”》《&#x2F;span》《&#x2F;div》:验证Name属性，仅在对应的输入框上面显示错误消息。(好看)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;span asp-validation-for=&quot;Email&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;div asp-validation-for=&quot;Email&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p>asp-validation-summary&#x3D;“All”：列举所有错误，modelonly：只列举模型错误</p>
@@ -507,7 +533,7 @@
         <p><span>Title:</span><a href="/2022/07/17/MVC/">MVC</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-07-17, 09:44:21</p>
-        <p><span>Updated:</span>2022-07-17, 10:20:50</p>
+        <p><span>Updated:</span>2022-07-20, 22:44:58</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2022/07/17/MVC/" title="MVC">https://gao-hongfei123.github.io/2022/07/17/MVC/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/07/17/MVC/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -524,7 +550,7 @@
         
             <div id="article-nav-newer" class="article-nav-title">
                 <a href="/2022/07/17/net5/">
-                    net5
+                    net core
                 </a>
             </div>
         
@@ -599,7 +625,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2022/07/17/net5/" title="Pre: net5">
+            <a href="/2022/07/17/net5/" title="Pre: net core">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -613,7 +639,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/SqlSugar/">SqlSugar</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5/">net5</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/ef%E5%AD%A6%E4%B9%A0/">ef学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/">csharp学习</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/08/04/matlab/">matlab</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/SqlSugar/">SqlSugar</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5/">net core</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/ef%E5%AD%A6%E4%B9%A0/">ef学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/">csharp学习</a></li></ul>
 
 
 

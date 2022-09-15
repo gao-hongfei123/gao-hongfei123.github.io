@@ -14,17 +14,38 @@
 <meta name="author" content="技术爱好者" />
 
 
-    
-    
 
-
-<meta property="og:type" content="website">
+<meta name="description" content="title:matlab命令：针对某个函数的使用方法，可以搜索，然后点击里面的example 关闭matlab：quit或者exit matlab大部分函数只要能传入一个变量，那么就可以传入一个向量。例如sin30，sin([30 60 90])会分别计算出sin30 sin60 sin90即批量处理数据 暂停20s：pause(20) 停止运行命令：ctrl+c 恢复窗口布局：主页&#x3D;">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://gao-hongfei123.github.io/index.html">
+<meta property="og:url" content="https://gao-hongfei123.github.io/2022/08/04/matlab/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title:matlab命令：针对某个函数的使用方法，可以搜索，然后点击里面的example 关闭matlab：quit或者exit matlab大部分函数只要能传入一个变量，那么就可以传入一个向量。例如sin30，sin([30 60 90])会分别计算出sin30 sin60 sin90即批量处理数据 暂停20s：pause(20) 停止运行命令：ctrl+c 恢复窗口布局：主页&#x3D;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813100349406.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813100504317.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813094357807.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813094248302.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813101000255.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813101428801.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813102133430.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828154451327.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828154538521.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828164036855.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828164135853.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828153520691.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813102653291.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220815182934342.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220815192003920.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828173632123.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828183405723.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828183543661.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828184042605.png">
+<meta property="article:published_time" content="2022-08-04T02:03:31.111Z">
+<meta property="article:modified_time" content="2022-08-28T11:23:18.050Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813100349406.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,8 +75,6 @@
 
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
@@ -69,8 +88,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -267,9 +286,7 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-matlab" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-matlab" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2022/08/04/matlab/" class="article-date">
@@ -504,608 +521,119 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-项目" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/%E9%A1%B9%E7%9B%AE/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.882Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/%E9%A1%B9%E7%9B%AE/">项目</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="项目1：重命名文件系统"><a href="#项目1：重命名文件系统" class="headerlink" title="项目1：重命名文件系统"></a>项目1：重命名文件系统</h1><p>地址：F:\c#_code\RenameFileApplacation</p>
-<p>Combox的下拉框选择后触发事件，使用comboBox2_SelectedValueChanged事件</p>
-<ol>
-<li><h2 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h2><p>Directory.CreateDirectory(newPath);</p>
-</li>
-<li><h2 id="重命名核心算法："><a href="#重命名核心算法：" class="headerlink" title="重命名核心算法："></a>重命名核心算法：</h2><p>将文件移动到一个新的文件夹下并重新改名，删除原来的文件夹，然后再移动回来，</p>
-</li>
-</ol>
-<p>File.Move(oldPath + oldName[Form1.flag], newPath + newName);</p>
-<p>File.Move(newPath + newName, oldPath + newName);</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/%E9%A1%B9%E7%9B%AE/#more">more >></a>
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2022/08/04/matlab/"></a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2022-08-04, 10:03:31</p>
+        <p><span>Updated:</span>2022-08-28, 19:23:18</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2022/08/04/matlab/" title="">https://gao-hongfei123.github.io/2022/08/04/matlab/</a>
+            <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/08/04/matlab/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.878Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p><img src="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/assets/image-20220119124805589.png" alt="image-20220119124805589"></p>
-<p>连接到服务器：指的是存放数据库的那个电脑，数据库服务器名称就是右键我的电脑 名称，一般数据库服务器只有一个计算机名称，所以通常不做更改（同一网段中可以连接其他服务器）</p>
-<p>连接到数据库：指的是与某个指定的数据库进行连接的过程，建立成功后在服务器资源管理器中可以看到连接，默认连接的是master数据库</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/#more">more >></a>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
         </p>
-      
-      <div class="clearfix"></div>
     </div>
-    
-  </div>
-  
-</article>
 
 
 
-
-
-
-
-
-
-  
-    <article id="post-安全基础学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.877Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+    <nav id="article-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="虚拟机设置"><a href="#虚拟机设置" class="headerlink" title="虚拟机设置"></a>虚拟机设置</h2><p>vmnet实际上表示虚拟交换机，一共vmnet1-vmnet19，将系统连接到某个交换机上，相当于机房中的真实机有一根网线连接到真实交换机上。每个vmnet对应一个虚拟网卡。其中vmnet0表示的是真实机所连接的交换机，如果连接到vmnet0，则相当于该系统从虚拟机跳出来直接连接到真实交换机，可以使用该虚拟机完全当作真实机使用。<br>1.使用桥接模式：使用的真实机的网卡，可以连接互联网也可以实现虚拟机<strong>和同网段其他真实机互联</strong>，可以将其看作一个真实机，但网段必须与真实机一样。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/%E5%89%8D%E7%AB%AF/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.876Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML是用来构建网页的结构的（骨架），而css是用来构建样式的（外貌）。</p>
-<p>标签之间只有两种关系，1.嵌套关系2.并列关系</p>
-<p>head和body之间是并列关系，head标签和title之间是嵌套关系</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/%E5%89%8D%E7%AB%AF/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-winform学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.873Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2022/07/17/%E9%A1%B9%E7%9B%AE/">
+                    项目
+                </a>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
-<p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
-<p>this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口</p>
-<p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-SqlSugar" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/SqlSugar/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.872Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/SqlSugar/">SqlSugar</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>nuget:sqlsugarcore</p>
-<p>注：所有不能完成增删改查并且报错的原因是因为使用了sqlsugar的包而不是sqlsugarcore的包</p>
-<p>注意：使用第一种方式进行IOC注入的时候，不用通过构造函数再进行注入了，而是直接使用Dbscope.sugarScope这个全局对象即可。但是不推荐第一种方法，而是直接使用第二种方法（net注入），因为第一种方法无法使用SimpleClient中的特有方法。</p>
-<p>首先根据表生成实体类</p>
-<p>sqlClient：不能跨上下文，若出现错误则换成sqlscope</p>
-<p>SqlScope：线程安全，必须使用异步方式</p>
-<p>0.里面的所有的db都是为sqlclient对象。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/SqlSugar/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-net5项目" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.871Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>git推送</p>
-<p>1.git init</p>
-<p>2.git add “文件夹名称”</p>
-<p>3.git commit -m “注释”</p>
-<p>4.git remote add origin <a target="_blank" rel="noopener" href="https://github.com/gao-hongfei123/Project.git">https://github.com/gao-hongfei123/Project.git</a></p>
-<p>5.git pull –rebase origin master</p>
-<p>6.git push -u origin master</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-net5" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/net5/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.870Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/net5/">net core</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>创建项目时 .net framwork:只能应用在微软平台，</p>
-<p>​					.net core：跨平台，</p>
-<p>​					.net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和类，但是没有具体的实现，而framework和core都实现了具体的方法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/net5/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-MVC" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/MVC/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.867Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/MVC/">MVC</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p>MVC5：新建项目的时候选择web项目-》mvc</p>
-<p>更换访问端口：右击项目-》属性-》web</p>
-<p>MVC是一种web开发框架。</p>
-<p>​	Models：实体模型，就是用来操作数据库的</p>
-<p>​	View：视图，用户可以看到的前端界面</p>
-<p>​	Controllor：决定用户调用哪个视图，调用哪个逻辑计算</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/MVC/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
+
   
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title-matlab"><span class="toc-number">1.</span> <span class="toc-text">title:matlab</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">命令：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">常用函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">向量操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%90%91%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">行向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%90%91%E9%87%8F"><span class="toc-number">2.2.</span> <span class="toc-text">列向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5"><span class="toc-number">2.3.</span> <span class="toc-text">矩阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%98%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%8B%E5%89%8D%E9%83%BD%E6%98%AF%E6%8A%98%E7%BA%BF%E5%9B%BE%EF%BC%8C%E7%8E%B0%E5%9C%A8%E7%94%BB%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="toc-number">3.1.</span> <span class="toc-text">之前都是折线图，现在画柱状图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bar%E7%BB%98%E5%9B%BE"><span class="toc-number">3.2.</span> <span class="toc-text">bar绘图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.</span> <span class="toc-text">结构体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">结构体数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number"></span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">可变参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%A5%E6%9F%84"><span class="toc-number">2.</span> <span class="toc-text">函数句柄</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-number">3.1.</span> <span class="toc-text">类的继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#handle%E7%B1%BB%E5%92%8Cvalue%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">handle类和value类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%EF%BC%8C%E4%B8%89%E7%BB%B4"><span class="toc-number">4.</span> <span class="toc-text">动画，三维</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2022/07/17/%E9%A1%B9%E7%9B%AE/" title="Next: 项目">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/08/04/matlab/">matlab</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/SqlSugar/">SqlSugar</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5/">net core</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/ef%E5%AD%A6%E4%B9%A0/">ef学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/">csharp学习</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -1159,10 +687,6 @@
         })
     </script>
 
-
-    
-
-     
 
 
 
