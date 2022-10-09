@@ -269,6 +269,109 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-blazor学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2022-10-02T12:22:11.346Z" itemprop="datePublished">2022-10-02</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<h2 id="title-blazor"><a href="#title-blazor" class="headerlink" title="title:blazor"></a>title:blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：</p>
+<ul>
+<li>下载项大小明显小于 <code>Blazor WebAssembly</code> 应用，且应用加载速度快得多。</li>
+<li>支持瘦客户端。 例如，<code>Blazor Server</code> 应用适用于不支持 <code>WebAssembly</code> 的浏览器以及资源受限的设备。</li>
+<li>应用的 .NET&#x2F;C# 代码库（其中包括应用的组件代码）不适用于客户端。</li>
+</ul>
+<p><code>Blazor Server</code> 托管模型具有以下局限性：</p>
+<ul>
+<li>通常延迟较高。 每次用户交互都涉及到网络跃点。</li>
+<li>不支持脱机工作。 如果客户端连接失败，应用会停止工作。</li>
+</ul>
+<p><code>Blazor WebAssembly</code> 托管模型具有以下优点：</p>
+<ul>
+<li>没有 .NET 服务器端依赖，应用下载到客户端后即可正常运行。</li>
+<li>工作可从服务器转移到客户端。</li>
+</ul>
+<p><code>Blazor WebAssembly</code> 托管模型具有以下局限性：</p>
+<ul>
+<li>应用仅可使用浏览器功能。</li>
+<li>需要可用的客户端硬件和软件（例如 <code>WebAssembly</code> 支持）。</li>
+<li>下载项大小较大，应用加载耗时较长。</li>
+</ul>
+<p>1.razor文件命名必须以大写字母开头</p>
+<p>2.页面中通过事件绑定到方法如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class=&quot;btn btn-primary&quot; @onclick=&quot;IncrementCount&quot;&gt;Click me&lt;/button&gt;通过@方法名的方式绑定到方法。</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private void IncrementCount()</span><br><span class="line">    &#123;</span><br><span class="line">        currentCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.页面中获取c#代码中的属性作为标签的属性值，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 style=&quot;font-style:@Style&quot;&gt;Counter&lt;/h1&gt;通过@属性名的方式绑定到属性。，这种方式只是单向绑定，即前端页面数值改变并不会改变后端数据的大小。</span><br><span class="line">@code &#123;</span><br><span class="line">    private int currentCount = 0;</span><br><span class="line">    private string Style = &quot;italic&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">双向绑定:前端数据改变，同时后端对应的属性值也会立即随之改变,默认是鼠标离开输入框的时候会自动更改后端数据的值，如果更改为在数据输入的同时更改值则添加一个属性为@bind:event=&quot;oninput&quot;</span><br><span class="line">&lt;input @bind:&quot;Name&quot;/&gt;即将input的value与Name进行双向绑定。</span><br></pre></td></tr></table></figure>
+
+<p>4.组件</p>
+<p>主页面时index.razor</p>
+<p>当主页面引用组件的时候，使用&lt;组件名&gt;&lt;&#x2F;组件名称&gt;的方法进行引用其他组件 </p>
+<p>组件参数：引用组件的时候，如果在调用者的文件里面传递参数给被调用的组件，则须在被调用者的对应的属性里面写上【parameter】参数，相当于将Title属性暴露出去</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">一个Component组件</span><br><span class="line">page &quot;/Counter&quot;</span><br><span class="line">&lt;h1&gt;@Title&lt;/h1&gt;</span><br><span class="line">@Code</span><br><span class="line">&#123;</span><br><span class="line">[Parameter]</span><br><span class="line">private string Title&#123;get;set;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">在index里面引用Component组件</span><br><span class="line">&lt;Component Title=&quot;c#&quot;/&gt;这样就会将Title的值传递给组件中的Title属性，然后在组件中显示出Title的值</span><br></pre></td></tr></table></figure>
+
+
+
+<p>5.当方法中需要主动获取标签里面的内容。则通过绑定事件对应的参数进行传入，参数类型如何确定？将鼠标放在事件上，会提示ChangeEventArgs或者其他类型的参数</p>
+<p><img src="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/assets/image-20221002212652264.png" alt="image-20221002212652264"></p>
+<p>6.路由配置，在App.razor里面</p>
+<p>执行方法的时候进行导航，分为调用者和被调用者，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1.通过控件进行导航</span><br><span class="line">首先在调用者里面引入路由对象，这是注入，而注册仍然是在program类里面</span><br><span class="line">@inject NavigationManager nm</span><br><span class="line">创建控件，绑定方法</span><br><span class="line">&lt;button @onclick=&quot;NavTo&quot;&gt;update&lt;/button&gt;</span><br><span class="line"> public void NavTo()</span><br><span class="line">    &#123;</span><br><span class="line">    调用方法导航到对应的页面</span><br><span class="line">        nm.NavigateTo(&quot;test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> 被调用者需要设置对应的路由url</span><br><span class="line"> @page &quot;/test&quot;</span><br><span class="line"> </span><br><span class="line"> 2.通过链接进行导航</span><br><span class="line"> 使用Navlink标签指定href进行导航</span><br><span class="line"> &lt;NavLink class=&quot;nav-link&quot; href=&quot;&quot; Match=&quot;NavLinkMatch.All&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;oi oi-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Home</span><br><span class="line">            &lt;/NavLink&gt;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+<p>7.数据验证</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">使用editform代替html默认的form</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&lt;EditForm Model=&quot;@student&quot; OnValidSubmit=&quot;HandleValidSubmit&quot;&gt;//model表示绑定到哪个对象，这样下面的标签才可以使用。onvalidsubmit表示提交之后触发对应的事件(可以不写事件)</span><br><span class="line">    &lt;DataAnnotationsValidator/&gt;//进行数据验证的条件</span><br><span class="line">    &lt;ValidationSummary/&gt;//错误消息汇总在一起，一般使用下面的message</span><br><span class="line">    &lt;InputText @bind-Value=&quot;@student.Code&quot;/&gt;</span><br><span class="line">    &lt;ValidationMessage For=&quot;()=&gt;student.Code&quot;/&gt;</span><br><span class="line">    &lt;InputText @bind-Value=&quot;@student.Name&quot;/&gt;</span><br><span class="line">    &lt;ValidationMessage For=&quot;()=&gt;student.Name&quot;/&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot;&gt;submit&lt;button/&gt;当提交之后，会依次从上往下执行数据验证</span><br><span class="line">&lt;/EditForm&gt;</span><br><span class="line">对应的类</span><br><span class="line">Stduent student = new Stduent();</span><br><span class="line">    public class Stduent</span><br><span class="line">    &#123; </span><br><span class="line">        [required]</span><br><span class="line">        public string Code &#123; get; set; &#125;</span><br><span class="line">        [required]</span><br><span class="line">        public string Name &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>8.input组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">inputtext单行</span><br><span class="line">inputtextarea多行</span><br><span class="line">inputnumber</span><br><span class="line">inputselect</span><br><span class="line">inputdate日期</span><br><span class="line">inputcheckbox选择框</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-matlab" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -810,7 +913,7 @@
           
               <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
 <p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
-<p>this.close事件和Applacation.exit()的区别：后者是关闭所有窗口，而前者是只关闭当前窗口</p>
+<p>this.close事件和Application.exit()的区别：后者是关闭所有进程，一般用在主窗口里面退出，而前者是只关闭当前窗口</p>
 <p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
           
       
@@ -1018,71 +1121,6 @@
       
         <p class="article-more-link">
           <a href="/2022/07/17/net5/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-MVC" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/MVC/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.867Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/MVC/">MVC</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p>MVC5：新建项目的时候选择web项目-》mvc</p>
-<p>更换访问端口：右击项目-》属性-》web</p>
-<p>MVC是一种web开发框架。</p>
-<p>​	Models：实体模型，就是用来操作数据库的</p>
-<p>​	View：视图，用户可以看到的前端界面</p>
-<p>​	Controllor：决定用户调用哪个视图，调用哪个逻辑计算</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/MVC/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
