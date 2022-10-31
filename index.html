@@ -269,6 +269,67 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Maui" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/10/29/Maui/" class="article-date">
+      <time datetime="2022-10-29T06:38:35.318Z" itemprop="datePublished">2022-10-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window x:Class=&quot;WpfHelloworld.MainWindow&quot;</span><br><span class="line">        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span><br><span class="line">        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span><br><span class="line">        xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;</span><br><span class="line">        xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span><br><span class="line">        xmlns:local=&quot;clr-namespace:WpfHelloworld&quot;</span><br><span class="line">        mc:Ignorable=&quot;d&quot;</span><br><span class="line">        Title=&quot;MainWindow&quot; Height=&quot;450&quot; Width=&quot;800&quot;&gt;</span><br><span class="line">    &lt;Grid&gt;</span><br><span class="line"></span><br><span class="line">​    &lt;/Grid&gt;</span><br><span class="line"></span><br><span class="line">&lt;/Window&gt;</span><br></pre></td></tr></table></figure>
+
+<p>解释上述代码</p>
+<p>1.window表示windows对象，来源于默认的命名空间，grid同理，xaml语言每看见一个标签就创建一个对象。</p>
+<p> 2.xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;%E8%A1%A8%E7%A4%BA%E5%BC%95%E5%85%A5%E4%B8%80%E4%B8%AA%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%B2%A1%E6%9C%89%E8%B5%B7%E5%90%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%AE%80%E5%8C%96%E5%86%99%E6%B3%95%EF%BC%8C%E5%9B%A0%E4%B8%BAwindow%EF%BC%8Cgrid%E7%AD%89%E8%BF%99%E4%BA%9B%E5%AF%B9%E8%B1%A1%E5%9D%87%E6%9D%A5%E6%BA%90%E4%BA%8E%E5%AE%83%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%B5%B7%E5%90%8D%E5%AD%97%EF%BC%8C%E5%88%99%E6%AF%8F%E4%B8%AA%E5%AF%B9%E8%B1%A1%E5%89%8D%E9%9D%A2%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E2%80%9Cy:%E2%80%9D%E7%9A%84%E5%BD%A2%E5%BC%8F%EF%BC%8C%E6%AF%94%E8%BE%83%E9%BA%BB%E7%83%A6%E3%80%82%E4%BD%86%E6%98%AF%E4%B8%80%E4%B8%AAxaml%E6%96%87%E4%BB%B6%E4%B8%AD%E4%BB%85%E8%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E9%BB%98%E8%AE%A4%E5%90%8D%E7%A7%B0%E7%9A%84%E5%86%99%E6%B3%95">http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;表示引入一个命名空间，没有起名的原因是可以简化写法，因为window，grid等这些对象均来源于它，如果起名字，则每个对象前面需要使用“y:”的形式，比较麻烦。但是一个xaml文件中仅能有一个默认名称的写法</a></p>
+<p>3.xmlns:x&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.microsoft.com/winfx/2006/xaml&quot;">http://schemas.microsoft.com/winfx/2006/xaml&quot;</a> 引入xaml命名控件，并命名为x</p>
+<p><strong>4.x:Class</strong>&#x3D;”WpfHelloworld.MainWindow表示xaml生成的代码要与后台的c#代码进行合并。</p>
+<p>xmal语言写的代码代码会生成一个类，后台c#代码也会有一个类，两者代码会进行合并，所以后台的c#使用partial修饰，表示两者生成之后会自动合并到一个类里边，就是mainwindow类，若前后台名称不一样，则会生成两个类，两者之间没有关系。</p>
+<p><strong>x:classModifier</strong>;访问级别，前台的访问级别必须与后台的访问级别相同。</p>
+<p><strong>x:name</strong>;为控件起一个名字。这样后台代码可以之间使用控件的名字进行控件操作。如果是wpf中的自有的控件，则使用x:name和使用name是完全一样的，如果是是后台的实体类被引入xaml中，则必须使用x:name的形式。</p>
+<p><strong>5.MVVM</strong>：就是将mvc中的C变成了VM，他与View是一一对应的关系。<font color="red">这个一般用于大型企业项目中。对于比较小的程序可以不使用MVVM。</font></p>
+<p><strong>不使用mvvm</strong>，则如下格式：事件直接写在控件里面。<font color="red">优点是简单，缺点就是如果前端改变，则后端代码需要改变，维护比较麻烦。</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前端</span><br><span class="line">&lt;Button x:Name=&quot;bt1&quot; Grid.Row=&quot;3&quot;  Content=&quot;addclick&quot; Width=&quot;200&quot; Height=&quot;100&quot; Click=&quot;bt1_Click&quot;&gt;&lt;/Button&gt;</span><br><span class="line">后台</span><br><span class="line"> private void bt1_Click(object sender, RoutedEventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            double d1 = Double.Parse(tb0.Text);//引用了前台的变量名，所以前台和后台的代码耦合性比较严重</span><br><span class="line">            double d2 = Double.Parse(tb1.Text);</span><br><span class="line">            double result = d1 + d2;</span><br><span class="line">            tb2.Text = result.ToString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用mvvm</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">每个xaml文件对应一个viewmodel，然后变化的地方写成属性，将执行的逻辑写成方法。</span><br><span class="line">1.（控制属性）在viewmodel文件夹中写一个基类NotificationObject继承INotifiaction，用来连接前端和后端的桥梁，一旦后端属性值改变，则绑定到前端的值也会发生改变。使用委托的好处是与前端进行交互的时候可以通过委托的参数传递任何方法。在属性的set方法中将该属性作为参数传递给NotificationObject中的委托。</span><br><span class="line">2.（控制方法）创建DelegateCommand接口并实现Icommand中对应的方法，也相当于一个基类，用来决定控件是否可执行，以及执行哪个方法。所有的方法的合集称为command，就相当于webapi中所有方法称为action。在viewmodel的构造函数中将该方法传递给DelegateCommand中的委托。</span><br><span class="line">3.在mainwindow里面将viewmodel与datacontext进行关联。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-blazor学习" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1059,68 +1120,6 @@
       
         <p class="article-more-link">
           <a href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-net5" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/net5/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.870Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/net5/">net core</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>创建项目时 .net framwork:只能应用在微软平台，</p>
-<p>​					.net core：跨平台，</p>
-<p>​					.net standard: 是.netframwork和core中必须遵守这个标准，即framwork和core中必须都有standard中的类库和方法。.standard代码中只有定义方法和类，但是没有具体的实现，而framework和core都实现了具体的方法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/net5/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
