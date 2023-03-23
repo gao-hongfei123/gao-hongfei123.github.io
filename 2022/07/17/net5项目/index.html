@@ -15,21 +15,24 @@
 
 
 
-<meta name="description" content="git推送 1.git init 2.git add “文件夹名称” 3.git commit -m “注释” 4.git remote add origin https:&#x2F;&#x2F;github.com&#x2F;gao-hongfei123&#x2F;Project.git 5.git pull –rebase origin master 6.git push -u origin master">
+<meta name="description" content="项目技巧：根据页面去写类的技巧：无论是写wpf还是web前端，划分类时，将局部页面的一些除了数据不一样其他都一样的部分写成类，（该种类型的数据占大部分，但是数据不是可变的而是固定的，若是可变的，则写在viewmodel中）然后使用前端语言去加载该类并进行绑定，而不是直接使用标签将显示的内容写死，因为会出现大量重复代码。同时，类只是最基础的，因为它是相似数据，所以必须使用创建集合去封装该类。 遵">
 <meta property="og:type" content="article">
 <meta property="og:title" content="net5项目">
 <meta property="og:url" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="git推送 1.git init 2.git add “文件夹名称” 3.git commit -m “注释” 4.git remote add origin https:&#x2F;&#x2F;github.com&#x2F;gao-hongfei123&#x2F;Project.git 5.git pull –rebase origin master 6.git push -u origin master">
+<meta property="og:description" content="项目技巧：根据页面去写类的技巧：无论是写wpf还是web前端，划分类时，将局部页面的一些除了数据不一样其他都一样的部分写成类，（该种类型的数据占大部分，但是数据不是可变的而是固定的，若是可变的，则写在viewmodel中）然后使用前端语言去加载该类并进行绑定，而不是直接使用标签将显示的内容写死，因为会出现大量重复代码。同时，类只是最基础的，因为它是相似数据，所以必须使用创建集合去封装该类。 遵">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230204210400351.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230204203216222.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230214195728686.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202215116862.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202220005580.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202220242360.png">
 <meta property="article:published_time" content="2022-07-17T01:44:21.871Z">
-<meta property="article:modified_time" content="2022-07-17T04:07:15.864Z">
+<meta property="article:modified_time" content="2023-02-19T06:02:50.196Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20220202215116862.png">
+<meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230204210400351.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -306,15 +309,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>git推送</p>
-<p>1.git init</p>
-<p>2.git add “文件夹名称”</p>
-<p>3.git commit -m “注释”</p>
-<p>4.git remote add origin <a target="_blank" rel="noopener" href="https://github.com/gao-hongfei123/Project.git">https://github.com/gao-hongfei123/Project.git</a></p>
-<p>5.git pull –rebase origin master</p>
-<p>6.git push -u origin master</p>
-<span id="more"></span>
+        <span id="more"></span>
 
+<p>项目技巧：根据页面去写类的技巧：无论是写wpf还是web前端，划分类时，将局部页面的一些除了数据不一样其他都一样的部分写成类，（该种类型的数据占大部分，但是数据不是可变的而是固定的，若是可变的，则写在viewmodel中）然后使用前端语言去加载该类并进行绑定，而不是直接使用标签将显示的内容写死，因为会出现大量重复代码。同时，类只是最基础的，因为它是相似数据，所以必须使用创建集合去封装该类。</p>
+<p>遵循技巧如下：</p>
+<p>1.分析每个页面中的所有部分，需分成可变部分和不变部分</p>
+<p>2.对于每个页面中的可变部分，需使用ViewModel，对于不可变部分并且重复，需使用基础类和集合通过已有的ViewModel进行绑定</p>
+<p>3.如果需要封装类和集合，那么考虑里面所有的元素封装成类之后都有哪些属性</p>
+<p><img src="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230204210400351.png" alt="image-20230204210400351"></p>
+<p><img src="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230204203216222.png" alt="image-20230204203216222"></p>
+<p>如上：上面图片的所有元素都是不可变元素，并且导航部分都是重复的，所以构建一个类进行封装，属性包含图片，标题，以及导航的路径。对于不可变部分最终都是被应用到ViewModel里面，不过不是自己的ViewModel而是整体页面的ViewModel</p>
+<p>如下：将页面划分为2行2列</p>
+<p><img src="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230214195728686.png" alt="image-20230214195728686"></p>
 <h1 id="项目1："><a href="#项目1：" class="headerlink" title="项目1："></a>项目1：</h1><h2 id="1-在返回的Json中修改时间格式"><a href="#1-在返回的Json中修改时间格式" class="headerlink" title="1.在返回的Json中修改时间格式"></a>1.在返回的Json中修改时间格式</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/11/">https://bxshare.top/index.php/archives/11/</a></p>
 <h2 id="2-修改swagger中的界面"><a href="#2-修改swagger中的界面" class="headerlink" title="2.修改swagger中的界面"></a>2.修改swagger中的界面</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/12/">https://bxshare.top/index.php/archives/12/</a></p>
 <h2 id="3-Sqlsugar注入"><a href="#3-Sqlsugar注入" class="headerlink" title="3.Sqlsugar注入"></a>3.Sqlsugar注入</h2><p><a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2247%E6%B3%A8%E6%84%8F%E6%98%AFsqlsugarcore%E7%9A%84%E5%8C%85%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AFsqlsugar%E7%9A%84%E5%8C%85">https://www.donet5.com/Home/Doc?typeId=2247注意是sqlsugarcore的包，而不是sqlsugar的包</a></p>
@@ -372,7 +378,7 @@
         <p><span>Title:</span><a href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-07-17, 09:44:21</p>
-        <p><span>Updated:</span>2022-07-17, 12:07:15</p>
+        <p><span>Updated:</span>2023-02-19, 14:02:50</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/" title="net5项目">https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
