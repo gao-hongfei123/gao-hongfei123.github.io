@@ -289,9 +289,13 @@
           
         <hr>
 <h2 id="title-PFC"><a href="#title-PFC" class="headerlink" title="title:PFC"></a>title:PFC</h2><p>博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44886253/article/details/119597508">https://blog.csdn.net/weixin_44886253/article/details/119597508</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44886253/article/details/119597508">https://blog.csdn.net/weixin_44886253/article/details/119597508</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">参数总结：</span><br><span class="line">kn:法向刚度</span><br><span class="line">ks：切向刚度</span><br><span class="line">density 1e8:球的质量密度为1000kg/m3</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44886253/article/details/119597508">https://blog.csdn.net/weixin_44886253/article/details/119597508</a> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">参数总结：</span><br><span class="line">kn:法向刚度</span><br><span class="line">ks：切向刚度</span><br><span class="line">density 1e8:球的质量密度为1000kg/m3</span><br><span class="line">fric:摩擦系数</span><br><span class="line">中断循环：shift+esc</span><br><span class="line">range：范围</span><br><span class="line">cmat default ;指定默认的力学行为</span><br><span class="line">porosity：孔隙率</span><br><span class="line">ball property:定义球的接触特性</span><br><span class="line">ball attribute：定义球的半径，密度等物理属性。</span><br><span class="line">clump：颗粒团;用不到</span><br><span class="line">domain condition destory;若球或者墙超出边界则破坏</span><br><span class="line">set random 10001;设置随机种子，以便每次生成的球的位置和颗粒相同</span><br><span class="line">emod：有效模量</span><br><span class="line">dp_nratio;法向临界阻尼</span><br><span class="line">krat/kratio;刚度比</span><br><span class="line">gap：间隙</span><br><span class="line">pb_deform emod:黏结有效模量</span><br><span class="line">pb_ten:黏结抗拉强度</span><br><span class="line">pb_coh:黏结内聚力</span><br><span class="line">pB_fa:摩擦角</span><br><span class="line">cycle 1000 calm 10  ;set tiemstep auto 这是常设的数值。</span><br></pre></td></tr></table></figure>
 
+
+
+<p>平行粘结参数：</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230414113604686.png" alt="image-20230414113604686"></p>
 <p>常见问题：</p>
 <p>显示过程过于快，导致只能看见结果？解决办法，在solve或者circle之前降低时步（默认为0.75*10^-2）： set timestep fix 1e-4</p>
 <p>fish语言中的向量实际上就是对象，如果参数是一个向量，则使用Vector去定义该向量即可，即定义位置对象vetcor(pos_x,pos_y)</p>
@@ -303,6 +307,11 @@
 <p>设置domain中的颗粒分布比较均匀而不是有些孔隙较大，在cycle之后使用solve aratio 1e-5命令即可</p>
 <p>自动生成的颗粒整体结构不平，通过ball delete range y 40 100  表示高度40以上的全部删除</p>
 <p>分组染色：ball group  ceng1 y 0 2 高度0-2分为一组ball group  ceng2 y 2 4 ball group ceng 3 y 4 8分成三层</p>
+<p>绘图框：<img src="/2022/10/31/PFC/assets/image-20230328201244737.png" alt="image-20230328201244737"></p>
+<p><img src="/2022/10/31/PFC/assets/image-20230328201214241.png" alt="image-20230328201214241"></p>
+<p><img src="/2022/10/31/PFC/assets/image-20230328202432936.png" alt="image-20230328202432936"></p>
+<p><img src="/2022/10/31/PFC/assets/image-20230328202008578.png" alt="image-20230328202008578"></p>
+<p><img src="/2022/10/31/PFC/assets/image-20230328202359417.png" alt="image-20230328202359417"></p>
 <p>若某个文件需要长时间执行，下一个文件也需要长时间执行，则使用console命令去一次调取该文件，他会自动执行完前面的文件后执行后面的文件，不需等待。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">new 												删除图像，清除所有状态</span><br><span class="line">domain extent -4 4 -8 8 							框定域，x范围为-4到4，y的范围为-8到8</span><br><span class="line">ball create id 1 position 0 0 radius 1.5 			画颗粒,名称为1，半径1.5</span><br><span class="line">ball create id 2 position 1 0 radius 1</span><br><span class="line">ball attribute vel -1 0 range id 1 					为颗粒1赋属性，range为选择哪个id号的颗粒，速度为1(负值为向左和向下，正值为向右和向上,0表示对													应的方向水平或竖直 vel默认为xvel 实际上还有yvel表示y方向速度)</span><br><span class="line">ball attribute appliedforce 5e3 0 range id 1 		为颗粒1施加向右的力</span><br><span class="line">ball attribute appliedforce -5e3 0 range id 2 		为颗粒2施加向左的力</span><br><span class="line">ball attribute density 3e3 damp 0.2   				阻尼为0.2（阻尼就是碰撞时消耗的能量）</span><br><span class="line">ball attribute density 3e3  						为颗粒赋密度属性（间接赋予质量）</span><br><span class="line">cmat default model linear property kn 1e6 			为球施加刚度约束，否则就是一个抽象的颗粒，线性接触模型</span><br><span class="line">;;cmat default type ball-ball model linear property kn 1e7 ks 1e5 fric 0.5		球与球之间刚度1e7，，摩擦系数0.5</span><br><span class="line">;;cmat default type ball-facet model linear property kn 1e8 ks 1e8 fric 0.8		球与墙面之间刚度1e8</span><br><span class="line">cmat apply											设置将上面的接触模型应用到整个domain范围内 可以自定义范围 cmat applay range&lt;...&gt;</span><br><span class="line">wall create vertices -8 -5 -8 5  					创建一个墙，颗粒撞在墙上反弹</span><br><span class="line">solve time 3 执行时间为3s</span><br><span class="line">save s1;											将当前状态保存为文件s1当调用的时候使用restore s1即可。,例如在其他的文件中用到该模型状态，后													面执行三轴压缩，不必每次重新生成颗粒和围压。</span><br></pre></td></tr></table></figure>
 
@@ -355,6 +364,32 @@
 <p>PB粘结模型</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">添加胶结</span><br><span class="line">restore sample</span><br><span class="line">[pb_kn=1e9/20.0]</span><br><span class="line">cmat default type ball-facet model linear property ...</span><br><span class="line">                    kn 1e8                    </span><br><span class="line">;ball-ball之间添加胶结</span><br><span class="line">cmat default type ball-ball model linearpbond property ...</span><br><span class="line">                    kn 1e9 pb_kn @pb_kn pb_ks @pb_kn ... </span><br><span class="line">                    pb_ten 1e6 pb_fa 45 pb_coh 1e6 </span><br><span class="line">cmat apply ;修改之前的参数则必须使用apply将胶结应用上去</span><br><span class="line">clean</span><br><span class="line">set timestep fix 1e-5</span><br><span class="line">contact method bond gap 1</span><br><span class="line">cycle 1</span><br><span class="line">solve</span><br><span class="line">save problem</span><br></pre></td></tr></table></figure>
 
+<h2 id="挖异形孔"><a href="#挖异形孔" class="headerlink" title="挖异形孔"></a>挖异形孔</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">;挖圆形孔</span><br><span class="line">;ball delete range circle radius 0.2 </span><br><span class="line">;ball delete range rectangle 0.2 0.4</span><br><span class="line">;挖矩形孔</span><br><span class="line">;range name name12 x 0 0.2 y 0 0.4</span><br><span class="line">;ball delete range nrange name12 </span><br><span class="line">;挖异形孔</span><br><span class="line">;geometry set aa polygon id 10  positions (0,0) (0.5,0) (0.2,0.3)</span><br><span class="line">;ball delete range name ss geometry aa count 1</span><br><span class="line"></span><br><span class="line">;使用导入图像的方式删除各种异形孔，但是对于圆，椭圆等无法导入，必须是多边形,需要使用cad将椭圆转为多段线https://blog.csdn.net/william9987/article/details/121790652</span><br><span class="line">;geometry import coating.dxf nomerge</span><br><span class="line">;geometry copy source coating target poly1 range group &#x27;0&#x27;</span><br><span class="line">;geometry copy source coating target poly2 range group &#x27;1&#x27;</span><br><span class="line">;ball delete range geometry poly1 count odd</span><br></pre></td></tr></table></figure>
+
+<h2 id="后处理"><a href="#后处理" class="headerlink" title="后处理"></a>后处理</h2><p>1.去掉颗粒描边</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230406144932402.png" alt="image-20230406144932402"></p>
+<p>2.位移场灰色系</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230406145315251.png" alt="image-20230406145315251"></p>
+<p>3.位移场用箭头表示</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230406145612697.png" alt="image-20230406145612697"></p>
+<p>4.力链场</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230406145953282.png" alt="image-20230406145953282"></p>
+<p>修改力链宽度：<img src="/2022/10/31/PFC/assets/image-20230412183121722.png" alt="image-20230412183121722"></p>
+<p>5.应力十字架：需要使用函数@outtensor，在measure文件里面</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230406152402556.png" alt="image-20230406152402556"></p>
+<p>6.查看是否胶结完好，在左侧查看pb_state的值，如果为3表示胶结完好，2为剪坏，1为拉坏，0为未添加胶结</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230406153902846.png" alt="image-20230406153902846"></p>
+<p>修改力链</p>
+<p>7.导出应力图：plot，table右键曲线，export csv，如下，其中A表示第i个测量圆，B列表示表示小球x坐标，C表示第i个小球，D表示小球y坐标，E表示第i个小球，F表示对应的应力值。</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230410212721091.png" alt="image-20230410212721091"></p>
+<p>8.测量圆分布：</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230411143206588.png" alt="image-20230411143206588"></p>
+<p><img src="/2022/10/31/PFC/assets/image-20230411143116486.png" alt="image-20230411143116486"></p>
+<h1 id="单轴压缩："><a href="#单轴压缩：" class="headerlink" title="单轴压缩："></a>单轴压缩：</h1><p><img src="/2022/10/31/PFC/assets/image-20230410211723125.png" alt="image-20230410211723125"></p>
+<p>单轴压缩之后会产生拉伸和剪切裂纹，polt&#x3D;》contact</p>
+<p><img src="/2022/10/31/PFC/assets/image-20230411142740058.png" alt="image-20230411142740058"></p>
+<h1 id="单轴拉伸实验"><a href="#单轴拉伸实验" class="headerlink" title="单轴拉伸实验"></a>单轴拉伸实验</h1><p><img src="/2022/10/31/PFC/assets/image-20230410212359742.png" alt="image-20230410212359742"></p>
+<h1 id="三点弯曲"><a href="#三点弯曲" class="headerlink" title="三点弯曲"></a>三点弯曲</h1><p><img src="/2022/10/31/PFC/assets/image-20230410212416579.png" alt="image-20230410212416579"></p>
 
       
     </div>
@@ -454,7 +489,7 @@
       
           
         <hr>
-<h2 id="title-blazor"><a href="#title-blazor" class="headerlink" title="title:blazor"></a>title:blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
+<h2 id="ftitle-blazor"><a href="#ftitle-blazor" class="headerlink" title="ftitle:blazor"></a>ftitle:blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
 <ul>
 <li>下载项大小明显小于 <code>Blazor WebAssembly</code> 应用，且应用加载速度快得多。</li>
 <li>支持瘦客户端。 例如，<code>Blazor Server</code> 应用适用于不支持 <code>WebAssembly</code> 的浏览器以及资源受限的设备。</li>
@@ -504,6 +539,7 @@
 <p><strong>前后端分离</strong>将c#代码与razor代码分开，例如在index.razor所在文件夹中，创建一个index.razor.cs的类，会出现Index类报错，在public后添加partial即可</p>
 <p>传统netcore转blazor：1.builder.AddServerSideBlazor	2.app.MapBlazorHup()	3.app.MapFallBackTopage(“&#x2F;.Host”)(BlazorServer)</p>
 <p>blazor中的依赖注入与传统的构造方法注入不同，使用的是在最上部使用@inject Http http进行注入,传统注入是构造注入</p>
+<p>第二种方式，创建一个组件+Base.cs的类，让其继承ComponentBase类也可前后分离，然后让前端的razor组件使用@inherit 组件Base即可。但是写法必须参照razor里面的@code的写法，例如注入使用【inject】的形式</p>
 <h2 id="级联参数"><a href="#级联参数" class="headerlink" title="级联参数"></a><strong>级联参数</strong></h2><p>如果要将值传递给组件的直接子组件，可以使用组件参数。 当具有包含子组件的子组件的较深层次结构时，事情便会变得难以应付。 组件参数不会从上级组件或沿着层次结构向下自动传递到下级组件。 为了完美处理此问题，Blazor 包含了级联参数。 在组件中设置级联参数的值时，其值将自动提供给所有子组件。</p>
 <p>(CascadingValue)：用来父组件与子组件之间传递参数的另一种方式</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">父组件中：</span><br><span class="line">@page &quot;/specialoffers&quot;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Special Offers&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;CascadingValue Name=&quot;DealName&quot; Value=&quot;Throwback Thursday&quot;&gt;</span><br><span class="line">    &lt;!-- Any descendant component rendered here will be able to access the cascading value. --&gt;</span><br><span class="line">&lt;/CascadingValue&gt;</span><br><span class="line">子组件中</span><br><span class="line">&lt;h2&gt;Deal: @DealName&lt;/h2&gt;</span><br><span class="line">@code &#123;</span><br><span class="line">    [CascadingParameter(Name=&quot;DealName&quot;)]</span><br><span class="line">    private string DealName &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -542,7 +578,7 @@
 
 <h2 id="模板组件"><a href="#模板组件" class="headerlink" title="模板组件"></a>模板组件</h2><p>主页面时index.razor</p>
 <p>当主页面引用组件的时候，使用&lt;组件名&gt;&lt;&#x2F;组件名称&gt;的方法进行引用其他组件 </p>
-<h2 id="组件参数"><a href="#组件参数" class="headerlink" title="组件参数"></a>组件参数</h2><p>（相当于标签属性）：引用组件的时候，如果在调用者的文件里面传递参数给被调用的组件，则须在被调用者的对应的属性里面写上【parameter】参数，相当于将Title属性暴露出去</p>
+<h2 id="组件参数"><a href="#组件参数" class="headerlink" title="组件参数"></a>组件参数</h2><p>（相当于标签属性）：引用组件的时候，如果在调用者的文件里面传递参数给被调用的组件，则须在被调用者的对应的属性里面写上【parameter】参数，相当于将Title属性暴露出去，类似于形参</p>
 <p>例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">一个Component组件</span><br><span class="line">page &quot;/Counter&quot;</span><br><span class="line">&lt;h1&gt;@Title&lt;/h1&gt;Component组件显示Title，调用c#中的title属性</span><br><span class="line">@Code</span><br><span class="line">&#123;</span><br><span class="line">[Parameter]</span><br><span class="line">private string Title&#123;get;set;&#125;</span><br><span class="line">[Paramter]</span><br><span class="line">private EventCallBack&lt;MouseEventArgs&gt; OnClick&#123;get;set;&#125;为该组件定义OnClick事件</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">在index里面引用Component组件</span><br><span class="line">&lt;Component Title=&quot;c#&quot; Onclick=&quot;@show&quot;/&gt;这样就会将Title的值传递给组件中的Title属性，然后在组件中显示出Title的值</span><br><span class="line">@code&#123;</span><br><span class="line">	public void show()</span><br><span class="line">	&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

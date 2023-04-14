@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5/assets/image-20220210214420598.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5/assets/image-20220212122741573.png">
 <meta property="article:published_time" content="2022-07-17T01:44:21.870Z">
-<meta property="article:modified_time" content="2022-10-11T12:35:50.163Z">
+<meta property="article:modified_time" content="2023-04-13T13:18:05.360Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/07/17/net5/assets/image-20220118152015612.png">
@@ -509,7 +509,7 @@
 <p><a target="_blank" rel="noopener" href="http://api/test?id=3&amp;name=&#39;%E5%BC%A0%E4%B8%89&#39;">http://api/test?id=3&amp;name=&#39;张三&#39;</a></p>
 <p>2.从路由中获取Route(“{id}”,【fromroute】<a target="_blank" rel="noopener" href="http://api/test/3/%E5%BC%A0%E4%B8%89,%E5%A6%82%E6%9E%9C%E5%89%8D%E5%90%8E%E7%AB%AF%E5%8F%82%E6%95%B0%E4%B8%80%E6%A0%B7%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%86%99fromroute%EF%BC%8C%E6%B3%A8%E6%84%8F%E8%B7%AF%E7%94%B1%E6%8C%87%E7%9A%84%E6%98%AF%E6%8C%87%E5%AE%9A%E7%9A%84%E8%B7%AF%E7%94%B1%E8%B7%AF%E5%BE%84%EF%BC%8C">http://api/test/3/张三,如果前后端参数一样可以不写fromroute，注意路由指的是指定的路由路径，</a></p>
 <p><strong>fromroute和fromquery的区别：</strong>例如route（{api&#x2F;api2&#x2F;…}“）这个才是路由，而querystring是”pageNum&#x3D;8&amp;pSize&#x3D;10“整个字符串，然后querystring方式是从里面提取对应的参数名，如果是querystring则必须在参数前面加上【fromquery】，而fromroute若前后端一致则可以省略。而且fromquery和fromroute都是通过设置url的方式显示获取数据。</p>
-<p>3.【frombody】：必须通过post方式提交，参数是一个对象,比如说如果传递多个参数，一部分需要从地址栏传送，就指定为querystring，如果另一部分需要从请求体中传递过来，就指定为frombody，不加的话就默认从querystring传递过来。或者说如果需要传递一个参数字符串过来，默认是请求体或者querystring都可以，但是想要就是从请求体中传递，那么就使用frombody</p>
+<p>3.【frombody】：必须通过post方式提交，参数是一个对象,比如说如果传递多个参数，一部分需要从地址栏传送，就指定为querystring，如果另一部分需要从请求体中传递过来，就指定为frombody，不加的话就默认从querystring传递过来,但是如果参数是一个实体类型，则不必写frombody，webapi会自动识别为frombody。<a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/obzbNRw1zE/">https://www.bbsmax.com/A/obzbNRw1zE/</a></p>
 <p>4.【fromForm】：上传文件</p>
 <p>5.【FromService】：作为aciton参数</p>
 <p>6.【FromHeader】:请求头</p>
@@ -547,8 +547,8 @@
 <h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>1.在控制器上[Route(“api&#x2F;companies”)]，然后在action上添加[httpGet(“{companyId}”)]最后url就会拼成api&#x2F;companies&#x2F;2，其中使用{paramter}大括号表示的是将要传递的参数，而使用[Controller]&#x2F;[action]表示对应的controller和action，</p>
 <p>2.直接在action上添加api&#x2F;companies&#x2F;companyId结果与1同样</p>
 <p>3.使用[Route(“api&#x2F;[controller]&#x2F;[action]”)]其中controller相当于一个占位符，会去掉控制器名称后面的controller只留取前面的名字（不推荐）。action使用方法与1一样。</p>
-<p>如果使用了路由特性，那么在中间件中配置的模板就没用了</p>
 <p>webapi方式只能使用Route特性设置路由，不能在startup类中通过模板设置路由</p>
+<p>解决一个webapi有多个httpget的请求导致报错的问题：在上面添加一个路由<a target="_blank" rel="noopener" href="https://www.cnblogs.com/huangkenicole/p/14456916.html">https://www.cnblogs.com/huangkenicole/p/14456916.html</a></p>
 <h1 id="中间件（MiddleWare）"><a href="#中间件（MiddleWare）" class="headerlink" title="中间件（MiddleWare）"></a>中间件（MiddleWare）</h1><p>就是在管道中运行中的请求和服务器之间的数据处理dd，中间件构成了管道，若一个管道里什么都没有，则是畅通无阻，但是如果想要过滤掉一些东西，就需要中间件，所以中间件的作用，就是过滤掉请求或者响应中的一些不符合要求的信息。例如starpup中的app.UseRouting();&#x2F;&#x2F;该中间件的作用就是路由中间件，是请求地址和控制器之间的映射。中间件的作用就是指定数据提交给服务器和服务器返回的顺序，否则一次所有内容全部提交会导致系统冲突，而且在这过程中进行报文的处理。</p>
 <p>筛选器是net core  mvc中的功能，而中间件是netcore中提供的功能中间件可以处理所有请求，而filter只能处理控制器的请求，优先使用中间件，如果这个组件只针对mvc或者需要使用mvc的功能的时候则使用filter</p>
 <p>每一个中间件都有权做出决定是否将请求传递给下一个中间件，中间件是有顺序的，就是请求就是按照使用的顺序，如下，请求执行1begin，next（）方法跳到2begin请求，next（）方法跳到hellorun，然后返回响应2end，接着响应1end</p>
@@ -691,7 +691,7 @@
 <p><img src="/2022/07/17/net5/assets/image-20220203232659420.png" alt="image-20220203232659420"></p>
 <p><img src="/2022/07/17/net5/assets/image-20220129101856167.png" alt="image-20220129101856167"></p>
 <h3 id="7-如上图，"><a href="#7-如上图，" class="headerlink" title="7.如上图，"></a>7.如上图，</h3><p>在需要登录的控制器上或者action上添加[authorize],当在一个新的控制器上使用Authorize时会报错，因为只有登录的用户才能访问，怎样才能访问呢？1.使用Postman，在报文头自定义Authorization的值为“Bearer +空格+JWTToken”，即假设获取到了JWT。2.设置swagger，添加服务如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">builder.Services.AddSwaggerGen(c =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    var scheme = new OpenApiSecurityScheme()</span><br><span class="line">    &#123;</span><br><span class="line">        Description = &quot;Authorization header. \r\nExample: &#x27;Bearer 12345abcdef&#x27;&quot;,</span><br><span class="line">        Reference = new OpenApiReference&#123;Type = ReferenceType.SecurityScheme,</span><br><span class="line">            Id = &quot;Authorization&quot;&#125;,</span><br><span class="line">        Scheme = &quot;oauth2&quot;,Name = &quot;Authorization&quot;,</span><br><span class="line">        In = ParameterLocation.Header,Type = SecuritySchemeType.ApiKey,</span><br><span class="line">    &#125;;</span><br><span class="line">    c.AddSecurityDefinition(&quot;Authorization&quot;, scheme);</span><br><span class="line">    var requirement = new OpenApiSecurityRequirement();</span><br><span class="line">    requirement[scheme] = new List&lt;string&gt;();</span><br><span class="line">    c.AddSecurityRequirement(requirement);&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">简单配置swagger：</span><br><span class="line">app.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(&quot;/swagger/v1/swagger.json&quot;, &quot;MyToDo.Api v1&quot;));</span><br><span class="line">复杂配置</span><br><span class="line">builder.Services.AddSwaggerGen(c =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    var scheme = new OpenApiSecurityScheme()</span><br><span class="line">    &#123;</span><br><span class="line">        Description = &quot;Authorization header. \r\nExample: &#x27;Bearer 12345abcdef&#x27;&quot;,</span><br><span class="line">        Reference = new OpenApiReference&#123;Type = ReferenceType.SecurityScheme,</span><br><span class="line">            Id = &quot;Authorization&quot;&#125;,</span><br><span class="line">        Scheme = &quot;oauth2&quot;,Name = &quot;Authorization&quot;,</span><br><span class="line">        In = ParameterLocation.Header,Type = SecuritySchemeType.ApiKey,</span><br><span class="line">    &#125;;</span><br><span class="line">    c.AddSecurityDefinition(&quot;Authorization&quot;, scheme);</span><br><span class="line">    var requirement = new OpenApiSecurityRequirement();</span><br><span class="line">    requirement[scheme] = new List&lt;string&gt;();</span><br><span class="line">    c.AddSecurityRequirement(requirement);&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="/2022/07/17/net5/assets/image-20220203233409231.png" alt="image-20220203233409231"></p>
 <p><img src="/2022/07/17/net5/assets/image-20220203233347808.png" alt="image-20220203233347808"></p>
@@ -835,7 +835,7 @@
         <p><span>Title:</span><a href="/2022/07/17/net5/">net core</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-07-17, 09:44:21</p>
-        <p><span>Updated:</span>2022-10-11, 20:35:50</p>
+        <p><span>Updated:</span>2023-04-13, 21:18:05</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2022/07/17/net5/" title="net core">https://gao-hongfei123.github.io/2022/07/17/net5/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/07/17/net5/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>

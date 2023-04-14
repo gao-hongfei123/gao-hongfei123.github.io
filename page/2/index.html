@@ -356,6 +356,12 @@
 <p>8.automapper进行映射，创建模型类DTO,将原模型类与DTO映射好，使用aotumapper</p>
 <p>9.分页查询</p>
 <h1 id="项目三：BlogWebApiApp"><a href="#项目三：BlogWebApiApp" class="headerlink" title="项目三：BlogWebApiApp"></a>项目三：BlogWebApiApp</h1><p>其他层都是创建一个类库实现的，不要创建文件夹</p>
+<h1 id="项目四：Blazor购物车"><a href="#项目四：Blazor购物车" class="headerlink" title="项目四：Blazor购物车"></a>项目四：Blazor购物车</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过blazor与webapi进行前后端分离：</span><br><span class="line">前端通过HttpClient对象访问后端的webapi，如下进行httpclient的注入baseurl</span><br><span class="line">builder.Services.AddScoped(sp =&gt; new HttpClient &#123; BaseAddress = new Uri(&quot;https://localhost:7125/&quot;) &#125;);</span><br><span class="line">如下在blazor的c#代码中访问webapi</span><br><span class="line"> var productDtos = await  httpClient.GetFromJsonAsync&lt;IEnumerable&lt;ProductDto&gt;&gt;(&quot;api/products&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>balzor实现前端端分离：</p>
+<p>方式1.创建一个c#类进行ComponentBase类，然后blazor页面@inherit 该类即可。</p>
+<p>方式2.直接创建一个c#类，该类名为blazor页面的名字+Base即可。</p>
+<p>手写实体类转dto的linq语句：</p>
 
       
     </div>
