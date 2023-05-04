@@ -362,6 +362,91 @@
 <p>方式1.创建一个c#类进行ComponentBase类，然后blazor页面@inherit 该类即可。</p>
 <p>方式2.直接创建一个c#类，该类名为blazor页面的名字+Base即可。</p>
 <p>手写实体类转dto的linq语句：</p>
+<h1 id="项目五：ToDOWPF"><a href="#项目五：ToDOWPF" class="headerlink" title="项目五：ToDOWPF"></a>项目五：ToDOWPF</h1><ol>
+<li>使用了materialdesign.themes（4.1.0）,Prism.dryIoc包(不是模板)（8.1.97）</li>
+<li>字段和属性：对外操作都是使用属性，字段在类中不起任何作用，它的所有操作已经在属性中操作完成，属性委托，方法委托都是绑定在构造方法里面的。</li>
+<li>BaseDTO中存在的必有字段为Id，CreateTime,UpdateTime</li>
+<li>分层：Dto层放在Commons里面，，Service层，ViewModels层，Views层其他类放在Extension</li>
+<li>要知道在wpf是没有program的，所以要想注入，则使用<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43542114/article/details/128104044%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E8%80%8Cprism%E6%8F%90%E4%BE%9B%E4%BA%86%E6%B3%A8%E5%85%A5%EF%BC%8C%E5%AF%BC%E8%88%AA%E7%AD%89%E5%A4%A7%E9%87%8F%E5%8A%9F%E8%83%BD%E3%80%82">https://blog.csdn.net/weixin_43542114/article/details/128104044中的方法，而prism提供了注入，导航等大量功能。</a></li>
+<li>在本项目中完美的实现了在一个Base里面写完增删改查方法具体实现，通过泛型传递实现类，而不必每个实现类去实现同样的方法。实现了类似efcore中构造AADbContext构造方法中只通过Base往DbContext里面传入DbContextOptions的形式。。</li>
+</ol>
+<p>7.wpf项目结构如下：</p>
+<p>1.前端wpf部分<img src="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230424200430692.png" alt="image-20230424200430692"><img src="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230424200615760.png" alt="image-20230424200615760">2.后台webapi部分</p>
+<p>8.窗体的属性部分都是复制mateiraldesign的demo源码</p>
+<p>9.裁剪图像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image.Clip&gt;</span><br><span class="line">                                    &lt;EllipseGeometry</span><br><span class="line">                                        Center=&quot;27,18&quot;</span><br><span class="line">                                        RadiusX=&quot;20&quot;</span><br><span class="line">                                        RadiusY=&quot;20&quot;&gt;&lt;/EllipseGeometry&gt;</span><br><span class="line">                                &lt;/Image.Clip&gt;</span><br></pre></td></tr></table></figure>
+
+<p>10.在Views创建新窗体，并将MainWindow里面的东西复制到新窗体里面，以后使用MainView新窗体作为主窗体。</p>
+<p>11.将图片拷贝到文件夹之后，右键属性，需要将‘生成操作’改为‘资源’，否则运行之前显示，运行之后不显示</p>
+<p>12.button等控件使用md的flatbutton格式，会生成点击感。</p>
+<p>13.修改app.xaml.cs中的resource中的light为dart会将主题变为dart模式</p>
+<p>14.listbox如何绑定事件。以及它是如何向后端传递一个对象的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;ListBox </span><br><span class="line">                       x:Name=&quot;menuBar&quot;</span><br><span class="line">                       ItemsSource=&quot;&#123;Binding MenuBars&#125;&quot;//绑定数据源</span><br><span class="line">                       SelectionChanged=&quot;ListBox_SelectionChanged&quot;</span><br><span class="line">                       &gt;</span><br><span class="line">                   &lt;i:Interaction.Triggers&gt;</span><br><span class="line">                       &lt;i:EventTrigger</span><br><span class="line">                           EventName=&quot;SelectionChanged&quot;&gt;</span><br><span class="line">                           &lt;i:InvokeCommandAction</span><br><span class="line">                               Command=&quot;&#123;Binding NavigateCommand&#125;&quot;</span><br><span class="line">			CommandParameter=&quot;&#123;Binding ElementName=menuBar, Path=SelectedItem&#125;&quot; /&gt;</span><br><span class="line">                           </span><br><span class="line">                       &lt;/i:EventTrigger&gt;</span><br><span class="line">                   &lt;/i:Interaction.Triggers&gt;</span><br><span class="line">                   &lt;ListBox.ItemTemplate&gt;</span><br><span class="line">                       &lt;DataTemplate&gt;</span><br><span class="line">                           &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;10&quot;&gt;</span><br><span class="line">                               &lt;materialDesign:PackIcon Kind=&quot;&#123;Binding Icon&#125;&quot;  /&gt;</span><br><span class="line">                               &lt;TextBlock Text=&quot;&#123;Binding Title&#125;&quot; Margin=&quot;20,0,0,0&quot;/&gt;</span><br><span class="line">                           &lt;/StackPanel&gt;</span><br><span class="line">                       &lt;/DataTemplate&gt;</span><br><span class="line">                   &lt;/ListBox.ItemTemplate&gt;</span><br><span class="line">               &lt;/ListBox&gt;</span><br></pre></td></tr></table></figure>
+
+<p>15.返回导航日志。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">提前创建一个日志属性public IRegionNavigationJournal journal &#123; get; set; &#125;</span><br><span class="line">第一个参数为url，第二个参数返回一个导航日志对象。所以它的对象创建方式上比较特殊</span><br><span class="line">_manager.Regions[RegionManagerName.RegionName].RequestNavigate(menuBar.NameSpace,back =&gt; &#123; </span><br><span class="line">                    journal = back.Context.NavigationService.Journal;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>16.如何注册一个区域</p>
+<p>17.string.isNullOrWhiteSpace();判断字符串是空或者全部是空格字符串。</p>
+<p>18.md中的提示控件pop，md中的textbox控件中的提示功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextBox Width=&quot;200&quot; HorizontalAlignment=&quot;Left&quot; Margin=&quot;10,5&quot; md:HintAssist.Hint=&quot;查找代办事项&quot;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>19.属性，方法绑定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public ObservableCollection&lt;ToDoDtos&gt; ToDoDtos</span><br><span class="line">        &#123;</span><br><span class="line">            get &#123; return toDoDtos; &#125;</span><br><span class="line">            set &#123; toDoDtos = value; RaisePropertyChanged(); &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> 方法绑定的是ViewModel中的委托名字，而不是方法名字</span><br></pre></td></tr></table></figure>
+
+<p>20.实现将两个元素分别放在某一行的两端，即两端对齐。1.使用grid，2.使用dockpanel（将lastfill改为false，同时将dockpanel.dock改为right）</p>
+<p>21.net5无法使用  Configuration.GetConnectionString(“connectionstring”);的方式去获取字符串，只能使用Configuration[“MyTodo2ConnectionString”]的方式去获取</p>
+<p>22.UnitOfWork的作用就是底层的手写Repository的逻辑已经被泛型的方式封装好了，我们只需要拿来使用即可。需要导入Microsoft.EntityFrameworkCore.AutoHistory的包</p>
+<p>然后往unitofwork里面导入上下文，和同时导入相关的数据库。这样工作单元就可以获取每个类的仓储以及数据库上下文。</p>
+<pre><code>services.AddDbContext&lt;MyTodoContext&gt;(option =&gt;
+            &#123;
+            option.UseSqlServer(Configuration[&quot;MyTodo2ConnectionString&quot;]);
+            &#125;).AddUnitOfWork&lt;MyTodoContext&gt;()
+              .AddCustomRepository&lt;ToDo,TodoRepository&gt;()
+          	  .AddCustomRepository&lt;User,UserRepository&gt;()
+          	  .AddCustomRepository&lt;Memo,MemoRepository&gt;();
+          	  
+以后可以通过在服务层注入unitofwork对象，再通过对象.GetRepository&lt;ToDo&gt;()去获取TodoRepository的仓储类，执行后续操作
+</code></pre>
+<p>23.封装返回结果，让其返回结果进行统一。</p>
+<p>24.使用到了需要对泛型进行约束的情况，尽量将泛型进行约束，否则需要传入对象类型结果传入的是string类型则会报异常。</p>
+<p>25.不能将增删改查的实现写在一个ServiceBase里面，然后具体某个Todoservice去继承ServiceBase，因为使用泛型的不知该泛型具体有哪些属性，在ServiceBase里面无法获取该属性，使用泛型约束也无法顾全所有情况，解决办法1.就是让每个实体Service都去实现一遍增删改查。2.不使用实体类中的属性去增删改查，而是直接使用实体类去实现。</p>
+<p>26：predicte：&#x2F;&#x2F;观察源码，predicte解决了unitofwork中的二义性问题，GetFirstOrDefaultAsync该方法行参数有多个委托类型，此时不知应向哪个形参传递实参，使用形参名+冒号的方式指定向哪个形参传递</p>
+<p>27.automapper：在service层实现转换</p>
+<p>​	1.导入automapper包&#x3D;》 2.创建一个类继承MapperConfigurationExpression如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class AutoMapperProfile:MapperConfigurationExpression</span><br><span class="line">    &#123;//构造方法里面注册</span><br><span class="line">        public AutoMapperProfile() &#123; </span><br><span class="line">            CreateMap&lt;ToDo,ToDoDto&gt;().ReverseMap();</span><br><span class="line">            CreateMap&lt;Memo,MemoDto&gt;().ReverseMap();</span><br><span class="line">            CreateMap&lt;User,UserDto&gt;().ReverseMap();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 3.注册：var automapperconfig &#x3D; new MapperConfiguration(config &#x3D;&gt; { config.AddProfile(new AutoMapperProfile()); }) ;<br>                services.AddSingleton(automapperconfig.CreateMapper());</p>
+<p> 4.在service层注入automapper对象，并在需要转换对应的方法里面完成转换，如下,service层及以上的传参部分全部转换为dto，repository与数据库交互不需要转换，别人的库中的泛型不能使用dto，因为别人的库肯定是针对具体某个类进行操作的。自定义的类视情况而定。</p>
+<pre><code>public TodoService(IMapper mapper)
+    &#123;
+        Mapper = mapper;
+    &#125;
+    //添加
+    public async Task&lt;ApiResponse&gt; AddAsync(ToDoDto model)
+    &#123;
+        try
+        &#123;
+            var todo = Mapper.Map&lt;ToDo&gt;(model);//转换
+            await Work.GetRepository&lt;ToDo&gt;().InsertAsync(todo);//使用
+</code></pre>
+<p>28.分页查询，直接从前端传递过来三个参数，封装为一个参数对象。参考p34</p>
+<p>29.登录控制器实现的功能就是登录和注册的功能，其中登录实际上就是查询，注册实际上就是添加</p>
+<p>30.controller层就用一行代码解决，剩下的代码都交给service层。</p>
+<p>31，封装restsharp，封装请求参数</p>
+<p>32.如果ServiceBase需要某个类型，则使用泛型的方式传入，如果需要某个具体的值（不针对依赖注入），则一种是使用构造方式赋值（交给子类去new），一种是当前使用new方式，前者实际上是在最顶层的父类里面已经new了，而后者是在需要的时候new的。</p>
+<p>32.shared项目包含dto层，apiresponse，因为wpf端viewmodel中需要dto，同时webapi也需要dto，同理，两者都需要返回值。</p>
+<p>33.wpf项目一定不要引用webapi项目，因为Service层类名一样，会导致各种错误，中间的共同类通过创建一个shared项目来引用</p>
+<p>34.针对具有相同类型参数的方法进行绑定时，如果每个方法都创建一个委托，则代码太多，此时体现了委托的好处，就是创建一个公共委托，该委托对应的方法使用swith方法去根据传回来的参数值决定调用哪个方法。</p>
+<p>35.listbox和itemsControl的dataContext问题</p>
+<p>36.TextBox默认为单向绑定，需改为TwoWay</p>
+<p>37.在前端写回车执行某方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextBox&gt;</span><br><span class="line">                   &lt;TextBox.InputBindings&gt;</span><br><span class="line">                       &lt;KeyBinding Key=&quot;Enter&quot; Command=&quot;&#123;Binding ExecutCommand&#125;&quot; CommandParameter=&quot;搜索&quot;&gt;&lt;/KeyBinding&gt;</span><br><span class="line">                   &lt;/TextBox.InputBindings&gt;</span><br><span class="line"> &lt;/TextBox&gt;</span><br></pre></td></tr></table></figure>
+
+<p>38，出错页面如何显示：略，使用了转换器</p>
+<p>39.在prism的mvvm中启动弹窗的功能是依赖注入IDialogService接口，然后进行showdialog(“窗口名”);窗口名是自己创建的xaml窗口，同时在app中注册registerdialog<AddDialog>（）;进行注册</AddDialog></p>
+<p>40.窗体间传值：1.通过设置弹框的返回值DialogResult</p>
+<p>41.前端数据是如何传递到后端的：就是通过绑定。</p>
 
       
     </div>

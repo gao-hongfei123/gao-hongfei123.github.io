@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/assets/image-20210219214620011.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/assets/image-20220129112920767.png">
 <meta property="article:published_time" content="2022-07-17T01:44:21.865Z">
-<meta property="article:modified_time" content="2023-04-11T13:34:28.010Z">
+<meta property="article:modified_time" content="2023-04-19T13:42:43.235Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/assets/image-20210202203407102.png">
@@ -388,25 +388,6 @@
 <p><strong>as关键字：</strong>as也是强制转换，只不过as转换不了的话返回null，而不是报异常。</p>
 <p>P &#x3D;Bill as Person</p>
 <p>If(p&#x3D;&#x3D;null){&#x2F;&#x2F;逻辑代码}</p>
-<p><strong>Where关键字：</strong>约束，用来约束自定义泛型中T的类型可以属于类或者其子类。一般只要出现泛型我们都需要对它进行约束</p>
-<p>例如class MyClass&lt;T1,T2,T3&gt; where T2:Customer where T3:IComparable</p>
-<p>约束总共有可以约束7种情况：</p>
-<ol>
-<li><p>约束是值类型：public void method<T>(T t) where T:struct</T></p>
-</li>
-<li><p>约束为引用类型public void method<T>(T t) where T:class</T></p>
-</li>
-<li><p>指定泛型具有无参的构造方法public void method<T>(T t) where T:new()</T></p>
-</li>
-<li><p>指定泛型类为某个类或者其子类 public void method<T>(T t) where T:Person</T></p>
-</li>
-<li><p>接口同4</p>
-</li>
-<li><p>指定T提供的参数必须为U提供的参数</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class sample&lt;U&gt;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	Public void method&lt;T&gt;(T t) where T:U</span><br><span class="line"></span><br><span class="line">&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ol start="7">
 <li><p>可以有多个约束</p>
 <p><strong>可空类型：</strong>例如string? name（string类型是引用类型，如果不加？的话，编译器会出现警告信息，如果其他地方使用该变量的时候发现没有赋值会报错空指针异常，加上?之后就会允许使用null类型，即允许别人调用该变量的时候是null，至于拿到null之后怎样操作是调用者的事，被调用变量只负责不报错） </p>
@@ -665,8 +646,10 @@ static void method2(String name, int age) &#123;
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">            //this.button3.Click += this.button_Click;//这是第一种写法</span><br><span class="line">            //第二种写法，使用了EventHandler进行了委托</span><br><span class="line">            this.button3.Click += new EventHandler(this.button_Click);</span><br><span class="line">            //第三种写法，lamdam表达式</span><br><span class="line">            this.button3.Click += (sender, e) =&gt; &#123; this.textBox1.Text = &quot;我是button3&quot;; &#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;//一个事件处理器可以挂接多个不同的事件</span><br><span class="line">            if (sender == button1) &#123;</span><br><span class="line">                this.textBox1.Text = &quot;我是button1&quot;;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            if (sender == button2) &#123;</span><br><span class="line">                this.textBox1.Text = &quot;我是button2&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>泛型：为什么用泛型？防止类膨胀和成员膨胀。</p>
+<p><font color="red">泛型只是起到一个占位符的作用，对于类名后面加泛型，不需要传入对象，而是在使用它的时候知道是什么类型即可，如果是自己设计的泛型类，一般设计将泛型应用在方法的形参上，但大部分是使用别人的泛型类，所以需要了解该类中的该泛型起到了什么作用（一般也是用在方法的形参上，或者方法的返回值上），泛型方法是在调用该方法的时候确定类型，</font><a target="_blank" rel="noopener" href="https://www.cnblogs.com/forever-Ys/p/10304276.html">https://www.cnblogs.com/forever-Ys/p/10304276.html</a></p>
 <p>使用泛型的情况，类太多和成员变量太多或者不确定变量类型属于什么类型。方法泛型：当形参接受不同的数据类型，但是方法中对形参处理的逻辑一样就考虑使用方法泛型。只要写变量类型的时候就考虑用泛型 。</p>
 <p>类膨胀如下，苹果对应一个盒子类和一个产品类，书对应一个盒子类一个产品类，那么1000中对应2000个类，这就是成员膨胀</p>
+<p>泛型用在返回值类型的位置表示返回值类型为某个泛型类型，用在类名后面表示在该类的方法里面，泛型将作为形参传入。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    static void Main(string[] args)</span><br><span class="line"></span><br><span class="line">​    &#123;</span><br><span class="line"></span><br><span class="line">​      Apple apple = new Apple() &#123; color = &quot;red&quot; &#125;;</span><br><span class="line"></span><br><span class="line">​      AppleBox box = new AppleBox() &#123; cargo = apple &#125;;</span><br><span class="line"></span><br><span class="line">​      Console.WriteLine(box.cargo.color);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">​      Book bk = new Book() &#123; bookName = &quot;new book&quot; &#125;;</span><br><span class="line"></span><br><span class="line">​      BookBox bb = new BookBox() &#123; book = bk &#125;;</span><br><span class="line"></span><br><span class="line">​      Console.WriteLine(bb.book.bookName);</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Apple &#123;</span><br><span class="line"></span><br><span class="line">​    public string  color &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class AppleBox &#123;</span><br><span class="line"></span><br><span class="line">​    public Apple cargo &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Book &#123;</span><br><span class="line"></span><br><span class="line">​    public String bookName &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class BookBox &#123;</span><br><span class="line"></span><br><span class="line">​    public Book book &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>成员膨胀：如下，在创建box1对象时，只用到了Apple这个属性，创建box2这个对象时只用到了Book这个属性，如果1000中商品，在Box类中就有1000个类属性，创建一个对象时，其他属性就多余，这就属于成员膨胀</p>
@@ -675,6 +658,26 @@ static void method2(String name, int age) &#123;
 <p>解决方法：使用泛型，如下，当Box后面使用<Tcargo>说明，当创建Box对象时&lt;&gt;里面是什么类型，那么该类型会自动替换Box类中的Tcargo作为一种类型，box1中的cargo类型就是Apple类型，box2中的cargo类型就是Book类型。</Tcargo></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">​    static void Main(string[] args)</span><br><span class="line"></span><br><span class="line">​    &#123;</span><br><span class="line"></span><br><span class="line">​      Apple apple = new Apple() &#123; color = &quot;red&quot; &#125;;</span><br><span class="line"></span><br><span class="line">​      Book book = new Book()&#123; bookName = &quot;new book&quot;&#125;;</span><br><span class="line"></span><br><span class="line">​      Box&lt;Apple&gt; box1 = new Box&lt;Apple&gt;() &#123; cargo = apple &#125;;</span><br><span class="line"></span><br><span class="line">​      Box&lt;Book&gt; box2 = new Box&lt;Book&gt;() &#123; cargo = book &#125;;</span><br><span class="line"></span><br><span class="line">​      Console.WriteLine(box1.cargo.color);</span><br><span class="line"></span><br><span class="line">​      Console.WriteLine(box2.cargo.bookName);</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Apple &#123;</span><br><span class="line"></span><br><span class="line">​    public string  color &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Box&lt;Tcargo&gt; &#123;</span><br><span class="line"></span><br><span class="line">​    public Tcargo cargo &#123; get; set; &#125;  </span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  class Book &#123;</span><br><span class="line"></span><br><span class="line">​    public String bookName &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
+<p>泛型约束：<strong>Where关键字：</strong>在定义泛型类时，可以对客户端代码能够在实例化类时用于类型参数的类型种类施加限制。 如果客户端代码尝试使用某个约束所不允许的类型来实例化类，则会产生编译时错误。 这些限制称为约束。 约束是使用 where 上下文关键字指定的。</p>
+<p>例如class MyClass&lt;T1,T2,T3&gt; where T2:Customer where T3:IComparable</p>
+<p>约束总共有可以约束7种情况：</p>
+<ol>
+<li><p>约束是值类型：public void method<T>(T t) where T:struct</T></p>
+</li>
+<li><p>约束为引用类型public void method<T>(T t) where T:class</T></p>
+</li>
+<li><p>指定泛型具有无参的构造方法public void method<T>(T t) where T:new()</T></p>
+</li>
+<li><p>指定泛型类为某个类或者其子类 public void method<T>(T t) where T:Person</T></p>
+</li>
+<li><p>接口同4</p>
+</li>
+<li><p>指定T提供的参数必须为U提供的参数</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class sample&lt;U&gt;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	Public void method&lt;T&gt;(T t) where T:U</span><br><span class="line"></span><br><span class="line">&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7. </p>
 <h3 id="Partial类"><a href="#Partial类" class="headerlink" title="Partial类"></a>Partial类</h3><p>当项目比较庞大时，使用分布类可以将一个类拆分至几个文件中，这样可以使不同的开发人员同时工作，提升了工作效率。</p>
 <p>使用别处的类的时候，无需创建新文件，只需要引用别处的文件中的类。</p>
 <p>一般不使用，涉及到多人开发时才会使用。按照规范，一个类中一般不超过500行，一旦超过500行，就要使用分布类。</p>
@@ -829,7 +832,7 @@ static void method2(String name, int age) &#123;
         <p><span>Title:</span><a href="/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/"></a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-07-17, 09:44:21</p>
-        <p><span>Updated:</span>2023-04-11, 21:34:28</p>
+        <p><span>Updated:</span>2023-04-19, 21:42:43</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/" title="">https://gao-hongfei123.github.io/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
