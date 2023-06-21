@@ -392,8 +392,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
-<h2 id="ftitle-blazor"><a href="#ftitle-blazor" class="headerlink" title="ftitle:blazor"></a>ftitle:blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
+              <hr>
+<h2 id="titile-blazor"><a href="#titile-blazor" class="headerlink" title="titile:blazor"></a>titile:blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
 <ul>
 <li>下载项大小明显小于 <code>Blazor WebAssembly</code> 应用，且应用加载速度快得多。</li>
 <li>支持瘦客户端。 例如，<code>Blazor Server</code> 应用适用于不支持 <code>WebAssembly</code> 的浏览器以及资源受限的设备。</li>
@@ -415,223 +415,8 @@
 </li>
 <li><p>需要可用的客户端硬件和软件（例如 <code>WebAssembly</code> 支持）。</p>
 </li>
-<li><p>下载项大小较大，应用加载耗时较长。</p>
-</li>
-</ul>
-<h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><h2 id="项目目录："><a href="#项目目录：" class="headerlink" title="项目目录："></a><strong>项目目录：</strong></h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/aspnet/core/blazor/project-structure?view=aspnetcore-7.0">https://learn.microsoft.com/zh-cn/aspnet/core/blazor/project-structure?view=aspnetcore-7.0</a></p>
-<p>shared：将自定义组件放在该文件夹（局部组件或者布局文件），该组件只对外提供属性和事件作为标签的属性的事件，使用parameter进行标注，而具体的事件绑定的方法是在page文件夹里面的文件进行逻辑书写,不需带路由</p>
-<p>page：对外展示的整个页面放在该文件夹，需带路由（&#x2F;page）</p>
-<p>_Import.Razor文件：引用razor使用的标签对应的类，例如input，editform等</p>
-<p><strong>根据目录分析网页加载原理：</strong></p>
-<p>首先网站加载后，首先加载的是wwwroot下的index.html文件，而不是index.razor组件，那么index.razor组件是如何嵌入到index.html里面去的呢？在index.html里面有这样一句话：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;定义了一个app的div</span><br></pre></td></tr></table></figure>
-
-<p>然后在program.cs中，有builder.RootComponents.Add<App>(“#app”);这样一句话，说明将App这个组件嵌入到id为app的div中，而App.razor中有《Router AppAssembly&#x3D;”@typeof(App).Assembly”&gt;将加载page文件夹下的所有路由，并建立对应的路由表，当url匹配到对应的路由之后，就会将对应的razor文件嵌入到index.html的id为app的div中，运行之后通过查看源码可以查看到index.razor嵌入到index.html中</App></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">builder.RootComponents.Add&lt;HeadOutlet&gt;(&quot;head::after&quot;);program.cs中的该行表示将HeadOutlet组件添加到index.html中的head标签的最后一行，该组件一般包含pagetitle组件等</span><br></pre></td></tr></table></figure>
-
-<p><strong>通过反编译：</strong>每个razor文件最后都会编译成cs类：例如index.razor&#x3D;&#x3D;index.cs文件&#x3D;&#x3D;index类，里面的@code{}等等，都是index类里面的内容。包括html标签，都会使用对象.方法的方式提交标签内容。例如_builder.addMarkupContent(1,”button”)将所有标签组合成一起后传送到前端。类似于javaservlet</p>
-<p>支持异步</p>
-<p>@+字段：调用c#中的属性</p>
-<p>@+事件&#x3D;“方法名”；绑定到事件</p>
-<p>@code{</p>
-<p>​	纯c#代码</p>
-<p>}</p>
-<p>事件绑定时如何使用lambda表达式：使用@()里面添加表达式</p>
-<p>例如&lt;input @onclick&#x3D;”@(</p>
-<p>​											()&#x3D;&gt;{cw.writeLine(“lambda”);}</p>
-<p>​											 )”&gt;</p>
-<p><strong>前后端分离</strong>将c#代码与razor代码分开，例如在index.razor所在文件夹中，创建一个index.razor.cs的类，会出现Index类报错，在public后添加partial即可</p>
-<p>传统netcore转blazor：1.builder.AddServerSideBlazor	2.app.MapBlazorHup()	3.app.MapFallBackTopage(“&#x2F;.Host”)(BlazorServer)</p>
-<p>blazor中的依赖注入与传统的构造方法注入不同，使用的是在最上部使用@inject Http http进行注入,传统注入是构造注入</p>
-<p>第二种方式，创建一个组件+Base.cs的类，让其继承ComponentBase类也可前后分离，然后让前端的razor组件使用@inherit 组件Base即可。但是写法必须参照razor里面的@code的写法，例如注入使用【inject】的形式</p>
-<h2 id="级联参数"><a href="#级联参数" class="headerlink" title="级联参数"></a><strong>级联参数</strong></h2><p>如果要将值传递给组件的直接子组件，可以使用组件参数。 当具有包含子组件的子组件的较深层次结构时，事情便会变得难以应付。 组件参数不会从上级组件或沿着层次结构向下自动传递到下级组件。 为了完美处理此问题，Blazor 包含了级联参数。 在组件中设置级联参数的值时，其值将自动提供给所有子组件。</p>
-<p>(CascadingValue)：用来父组件与子组件之间传递参数的另一种方式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">父组件中：</span><br><span class="line">@page &quot;/specialoffers&quot;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Special Offers&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;CascadingValue Name=&quot;DealName&quot; Value=&quot;Throwback Thursday&quot;&gt;</span><br><span class="line">    &lt;!-- Any descendant component rendered here will be able to access the cascading value. --&gt;</span><br><span class="line">&lt;/CascadingValue&gt;</span><br><span class="line">子组件中</span><br><span class="line">&lt;h2&gt;Deal: @DealName&lt;/h2&gt;</span><br><span class="line">@code &#123;</span><br><span class="line">    [CascadingParameter(Name=&quot;DealName&quot;)]</span><br><span class="line">    private string DealName &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="AppState传递参数"><a href="#AppState传递参数" class="headerlink" title="AppState传递参数"></a>AppState传递参数</h2><p>用于解决两个不相关的组件之间相互传递参数。</p>
-<p>使用注入注册的方式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class PizzaSalesState</span><br><span class="line">&#123;</span><br><span class="line">    public int PizzasSoldToday &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">// Add services to the container</span><br><span class="line">builder.Services.AddRazorPages();</span><br><span class="line">builder.Services.AddServerSideBlazor();</span><br><span class="line"></span><br><span class="line">// Add the AppState class</span><br><span class="line">builder.Services.AddScoped&lt;PizzaSalesState&gt;();</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">@page &quot;/&quot;</span><br><span class="line">@inject PizzaSalesState SalesState</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Welcome to Blazing Pizzas&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;Today, we&#x27;ve sold this many pizzas: @SalesState.PizzasSoldToday&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;button @onclick=&quot;IncrementSales&quot;&gt;Buy a Pizza&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private void IncrementSales()</span><br><span class="line">    &#123;</span><br><span class="line">        SalesState.PizzasSoldToday++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="组件引用"><a href="#组件引用" class="headerlink" title="组件引用"></a><strong>组件引用</strong></h2><p>例如《child @ref&#x3D;”@test”》 等价于在child test &#x3D; new child将组件看作对象，使用test.对象的形式访问子组件中的内容</p>
-<p><strong>布局：</strong>布局文件是一种特殊的组件，在布局文件中，在nav和footer中有个@body代码，该代码表示凡是使用@layout 应用该布局文件是会将代码填充到@body内容部分，若没使用@layout指定，则默认为@layout MainLayout.razor。布局文件两个特殊的要求。</p>
-<ul>
-<li>必须继承 <code>LayoutComponentBase</code> 类。@inherits LayoutComponentBase</li>
-<li>必须在要呈现发起引用的组件内容的位置包含 <code>@Body</code> 指令。</li>
-<li>若要使用组件则@layout BlazingPizzasMainLayout</li>
-</ul>
-<p>如果要将默认布局应用于 Web 应用的所有文件夹中的所有组件，可以在 App.razor 组件中执行此操作，可以像在第 2 单元中学到的那样，在该组件中配置 Router 组件。 在 <code>&lt;RouteView&gt;</code> 标记中，使用 <code>DefaultLayout</code> 属性。</p>
-<p><strong>修改title和head内容：</strong>因为默认是在index.html中，如果修改比较麻烦，对于单页面想要修改，则使用pagetitle组件修改title，使用headContent组件修改head部分，不必再再index.html中修改。</p>
-<h2 id="数据链接"><a href="#数据链接" class="headerlink" title="数据链接"></a><strong>数据链接</strong></h2><p>实现父组件属性改变情况下子组件属性也改变，反之也可实现，传统方式无法实现即@bind-{Property},@bind-{Property}:event ,@bind-{Property}:get,@bind-{Property}:set</p>
-<p>1.razor文件命名必须以大写字母开头</p>
-<p>razor语法：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/aspnet/core/mvc/views/razor?view=aspnetcore-7.0">https://learn.microsoft.com/zh-cn/aspnet/core/mvc/views/razor?view=aspnetcore-7.0</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">参考官方文档</span><br><span class="line">1.下面这两种呈现的结果是一样的，里面既可以写html代码，也可以写c#代码</span><br><span class="line">@code &#123;</span><br><span class="line">    //这种方式用在blazor中的</span><br><span class="line">&#125;</span><br><span class="line">@&#123;</span><br><span class="line">//这种方式是在cshmlt中使用的，mvc中的razor，不要使用在blazor中</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@&#123;</span><br><span class="line">    Student student = new Student &#123; Name = &quot;jerry&quot; ,age=20 &#125;;</span><br><span class="line">    public class Student</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125; = &quot;jerry&quot;;</span><br><span class="line">        public int age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;上面的代码等价于如下代码，及@&#123;&#125;中的代码放在一个类里面，该类名实际就是文件名</span><br><span class="line">public Test&#123;</span><br><span class="line">Student student = new Student &#123; Name = &quot;jerry&quot; ,age=20 &#125;;</span><br><span class="line">    public class Student</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125; = &quot;jerry&quot;;</span><br><span class="line">        public int age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如果想要输出@，就使用@@，若是电子邮件格式，则里面的@不会进行转义,其中name变量为jerry</span><br><span class="line">qq@Name.com会原样输出</span><br><span class="line">qq@@Name.com会输出为qq@Name.com</span><br><span class="line">qq@(Name).com会输出为qqjerry.com</span><br><span class="line">2.svg图像格式</span><br><span class="line">3.隐式razor表达式：就是使用@对象.变量名（面向对象）的方式代替@变量名的方式，但不能加上泛型，因为泛型中的&lt;&gt;会误判为html中的&lt;&gt;，若使用泛型，使用显式表达式</span><br><span class="line">4.显式razor表达式(建议全部使用显式的)：使用@();括号里面的内容是c#代码，括号外都是html代码</span><br><span class="line"> @(DateTime.Now - TimeSpan.FromDays(7))，显式表达式可以使用泛型</span><br><span class="line">5.表达式编码:htmlhelper不在学习范围内。</span><br><span class="line">6.在html里面写for循环</span><br><span class="line">@for (var i = 0; i &lt; people.Length; i++)</span><br><span class="line">&#123;</span><br><span class="line">    var person = people[i];</span><br><span class="line">    &lt;text&gt;Name: @person.Name&lt;/text&gt;</span><br><span class="line">&#125;</span><br><span class="line">7.显式行转换（看见认识即可，不会使用）： @:Name: @person.Name 使用@:进行换行，等价于</span><br><span class="line">&lt;p&gt;Name: @person.Name&lt;/p&gt;</span><br><span class="line">8.控制语句if,else，循环结构：while，for，foreach</span><br><span class="line">9.@using:用来释放非托管资源</span><br><span class="line">10@try，catch</span><br><span class="line">11注释：ctrl+k+c</span><br><span class="line">12添加特性：Test.razor最终编译成一个Test类，及</span><br><span class="line">public Test&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;如何在它上面添加授权特性，就是使用@attribute [Authorize]等价于</span><br><span class="line">[Authorize]</span><br><span class="line">public Test&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">13.@using 引入命名空间</span><br><span class="line">14.@implements Student让Test.razor最终生成的Test类实现某个Student接口</span><br><span class="line">15.@inherits用于继承某个其他的组件</span><br><span class="line">16.@inject依赖注入，不要使用传统的构造注入</span><br><span class="line">17.@layout 布局</span><br><span class="line">18.@namespace 设置命名空间</span><br><span class="line">19.@page 设置路由</span><br><span class="line">20.@attibute 为razor文件指定特性</span><br><span class="line">21.@attributes html中的标签属性放在c#代码中，这样比较规整</span><br><span class="line">22.@key:再数据不断增加的情况下，不会失去焦点（闪烁的光标）</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>页面中通过事件绑定到方法如下（单向绑定）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class=&quot;btn btn-primary&quot; @onclick=&quot;IncrementCount&quot;&gt;Click me&lt;/button&gt;通过@方法名的方式绑定到方法。</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private void IncrementCount()</span><br><span class="line">    &#123;</span><br><span class="line">        currentCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>双向绑定：使用@bind</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">绑定属性：@bind=&quot;inputvalue&quot;等价于@bing:value=&quot;inputvalue&quot;。</span><br><span class="line">绑定事件：@bind:event=&quot;onchange&quot;如果没有写绑定事件，则默认绑定到失去焦点事件(onchange事件)</span><br><span class="line">完成代码： &lt;input @bind-value=&quot;inputvalue&quot; @bind-value:event=&quot;onchange&quot; /&gt;</span><br><span class="line">如果执行完官方事件之后，还想要执行自定义函数，则使用@bind:after=&quot;方法名&quot;</span><br><span class="line">设置绑定日期的格式：&lt;input @bind=&quot;birthdate&quot; @bind:format=&quot;dd-MM-yyyy&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<p>函数如何获取事件传递过来的参数？</p>
-<p>private void IncrementCount(MouseEventArgs e)    {}不同的事件提供不同的事件参数，如何区分如下：一般是将事件前面的on去掉，然后后面加上EventArgs</p>
-<p>当方法中需要主动获取标签里面的内容。则通过绑定事件对应的参数进行传入，参数类型如何确定？将鼠标放在事件上，会提示ChangeEventArgs或者其他类型的参数</p>
-<p><img src="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/assets/image-20221002212652264.png" alt="image-20221002212652264"></p>
-<h2 id="页面中获取c-代码中的属性作为标签的属性值（通过c-代码控制css属性）"><a href="#页面中获取c-代码中的属性作为标签的属性值（通过c-代码控制css属性）" class="headerlink" title="页面中获取c#代码中的属性作为标签的属性值（通过c#代码控制css属性）"></a>页面中获取c#代码中的属性作为标签的属性值（通过c#代码控制css属性）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 style=&quot;font-style:@Style&quot;&gt;Counter&lt;/h1&gt;通过@属性名的方式绑定到属性。，这种方式只是单向绑定，即前端页面数值改变并不会改变后端数据的大小。</span><br><span class="line">@code &#123;</span><br><span class="line">    private int currentCount = 0;</span><br><span class="line">    private string Style = &quot;italic&quot;;斜体</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">双向绑定:前端数据改变，同时后端对应的属性值也会立即随之改变,默认是鼠标离开输入框的时候会自动更改后端数据的值，如果更改为在数据输入的同时更改值则添加一个属性为@bind:event=&quot;oninput&quot;</span><br><span class="line">&lt;input @bind:&quot;Name&quot;/&gt;即将input的value与Name进行双向绑定。</span><br><span class="line">&lt;input @bind-Title=&quot;Name&quot;&gt;&lt;/input&gt;</span><br><span class="line">@bind:等价于@bind：</span><br></pre></td></tr></table></figure>
-
-<h2 id="模板组件"><a href="#模板组件" class="headerlink" title="模板组件"></a>模板组件</h2><p>主页面时index.razor</p>
-<p>当主页面引用组件的时候，使用&lt;组件名&gt;&lt;&#x2F;组件名称&gt;的方法进行引用其他组件 </p>
-<h2 id="组件参数"><a href="#组件参数" class="headerlink" title="组件参数"></a>组件参数</h2><p>（相当于标签属性）：引用组件的时候，如果在调用者的文件里面传递参数给被调用的组件，则须在被调用者的对应的属性里面写上【parameter】参数，相当于将Title属性暴露出去，类似于形参</p>
-<p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">一个Component组件</span><br><span class="line">page &quot;/Counter&quot;</span><br><span class="line">&lt;h1&gt;@Title&lt;/h1&gt;Component组件显示Title，调用c#中的title属性</span><br><span class="line">@Code</span><br><span class="line">&#123;</span><br><span class="line">[Parameter]</span><br><span class="line">private string Title&#123;get;set;&#125;</span><br><span class="line">[Paramter]</span><br><span class="line">private EventCallBack&lt;MouseEventArgs&gt; OnClick&#123;get;set;&#125;为该组件定义OnClick事件</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">在index里面引用Component组件</span><br><span class="line">&lt;Component Title=&quot;c#&quot; Onclick=&quot;@show&quot;/&gt;这样就会将Title的值传递给组件中的Title属性，然后在组件中显示出Title的值</span><br><span class="line">@code&#123;</span><br><span class="line">	public void show()</span><br><span class="line">	&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="函数参数传递"><a href="#函数参数传递" class="headerlink" title="函数参数传递"></a>函数参数传递</h2><p>使用EventCallback</p>
-<p>将函数作为参数在组件中进行传递</p>
-<h2 id="路由配置，在App-razor里面"><a href="#路由配置，在App-razor里面" class="headerlink" title="路由配置，在App.razor里面"></a>路由配置，在App.razor里面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router组件用来遍历程序集里面的所有@page生成的路由表</span><br><span class="line">&lt;Router AppAssembly=&quot;@typeof(App).Assembly&quot;&gt;</span><br><span class="line">    &lt;Found Context=&quot;routeData&quot;&gt;</span><br><span class="line">    routeview组件用来接收所有的路由参数以及指定默认的布局</span><br><span class="line">        &lt;RouteView RouteData=&quot;@routeData&quot; DefaultLayout=&quot;@typeof(MainLayout)&quot; /&gt;</span><br><span class="line">        打开网页的时候，首先就会定位到h1标签所修饰的内容</span><br><span class="line">        &lt;FocusOnNavigate RouteData=&quot;@routeData&quot; Selector=&quot;h1&quot; /&gt;                           </span><br></pre></td></tr></table></figure>
-
-<p>使用@page“&#x2F;Counter”等价于使用@Attribute[Route(“&#x2F;Counter”)],相当于在该组件的类上面添加了该路由特性</p>
-<p>执行方法的时候进行导航，分为调用者和被调用者，如下 1.通过控件进行导航 </p>
-<p>首先在调用者里面引入路由对象，这是注入，而注册仍然是在program类里面</p>
-<p>@inject NavigationManager nm</p>
-<p>创建控件，绑定方法</p>
-<p>&lt;button @onclick&#x3D;”NavTo”&gt;update<br> public void NavTo()</p>
-<pre><code>&#123;
-
-调用方法导航到对应的页面
-
-    nm.NavigateTo(&quot;test&quot;);
-
-&#125;
-</code></pre>
-<p> 被调用者需要设置对应的路由url</p>
-<p> @page “&#x2F;test”</p>
-<p> 2.通过链接进行导航</p>
-<p> 使用Navlink标签指定href进行导航</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink class=&quot;nav-link&quot; href=&quot;&quot; Match=&quot;NavLinkMatch.All&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;oi oi-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Home</span><br><span class="line">&lt;/NavLink&gt;</span><br><span class="line">属性</span><br><span class="line">NavLinkMatch.All：使用此值时，只有在链接的 href 与当前 URL 完全匹配时，该链接才突出显示为活动链接。</span><br><span class="line">NavLinkMatch.Prefix：使用此值时，当链接的 href 与当前 URL 的第一部分匹配时即baseurl，该链接就突出显示为活动链接。 例如，假设你拥有链接 &lt;NavLink href=&quot;pizzas&quot; Match=&quot;NavLinkMatch.Prefix&quot;&gt;。 当前 URL 为 http://www.contoso.com/pizzas 及该 URL 中的任意位置（例如 http://www.contoso.com/pizzas/formaggio）时，此链接将突出显示为活动链接。 此行为可帮助用户了解自己当前正在查看网站的哪一部分。</span><br></pre></td></tr></table></figure>
-
-
-<p>路由参数：例如前端使用url传参，后端如何接收：使用路由参数，为类中的属性&#x2F;字段添加[parameter]特性,凡是使用parameter修饰的属性都表示该属性作为url的接收参数，通过OnInitialized方法对传递进来的参数进行处理，该方法表示该组件启动之后首先做的事情</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@page &quot;/test/&#123;parameter1:int&#125;&quot;参数传递给parameter1，并且约束为int类型</span><br><span class="line">//@page &quot;/FavoritePizza/&#123;*favorites&#125;&quot;使用*可以获取所有的路由参数,例如url为http://www.contoso.com/favoritepizza/margherita/hawaiian，则最后favorites捕获的是margherita/hawaiian，而不是单单的margherita</span><br><span class="line">&lt;p&gt;Your favorite pizza is: @Favorite&lt;/p&gt;</span><br><span class="line">@code&#123;</span><br><span class="line">	[parameter]</span><br><span class="line">	//在url中显示parameter2=。。。，而不是parameter1</span><br><span class="line">	[SupplyParameterFromQuery(Name = &quot;parameter2&quot;)];</span><br><span class="line">	public string parameter1&#123;get;set;&#125;</span><br><span class="line">	protected override void OnInitialized()</span><br><span class="line">    &#123;</span><br><span class="line">        parameter1 = parameter1 ?? &quot;fantastic&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">以上代码参数的传递顺序为@page中的parameter1首先获取，然后是传递给在@code中parameter1，在然后是在p标签中进行显示</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>路由约束可设置的情况：</p>
-<table>
-<thead>
-<tr>
-<th>bool</th>
-<th>{vegan:bool}</th>
-<th><code>http://www.contoso.com/pizzas/true</code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>datetime</td>
-<td>{birthdate:datetime}</td>
-<td><code>http://www.contoso.com/customers/1995-12-12</code></td>
-</tr>
-<tr>
-<td>decimal</td>
-<td>{maxprice:decimal}</td>
-<td><code>http://www.contoso.com/pizzas/15.00</code></td>
-</tr>
-<tr>
-<td>double</td>
-<td>{weight:double}</td>
-<td><code>http://www.contoso.com/pizzas/1.234</code></td>
-</tr>
-<tr>
-<td>float</td>
-<td>{weight:float}</td>
-<td><code>http://www.contoso.com/pizzas/1.564</code></td>
-</tr>
-<tr>
-<td>guid</td>
-<td>{pizza id:guid}</td>
-<td><code>http://www.contoso.com/pizzas/CD2C1638-1638-72D5-1638-DEADBEEF1638</code></td>
-</tr>
-<tr>
-<td>long</td>
-<td>{totals ales:long}</td>
-<td><code>http://www.contoso.com/pizzas/568192454</code></td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">当前完整 URI，例如 http://www.contoso.com/pizzas/margherita?extratopping=pineapple。使用NavManager.ToAbsoluteUri(NavManager.Uri)</span><br><span class="line">基本 URI，例如 http://www.contoso.com/。</span><br><span class="line">基本相对路径，例如 pizzas/margherita。</span><br><span class="line">查询字符串，例如 ?extratopping=pineapple。</span><br><span class="line">获取baseuri</span><br><span class="line">protected override void OnInitialized()</span><br><span class="line">	&#123;</span><br><span class="line">		HomePageURI = NavManager.BaseUri;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">获取查询参数：使用QueryHelpers</span><br><span class="line">@page &quot;/pizzas&quot;</span><br><span class="line">@using Microsoft.AspNetCore.WebUtilities</span><br><span class="line">@inject NavigationManager NavManager</span><br><span class="line">@code &#123;</span><br><span class="line">	protected override void OnInitialized()</span><br><span class="line">	&#123;</span><br><span class="line">		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);</span><br><span class="line">		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue(&quot;extratopping&quot;, out var extraTopping))</span><br><span class="line">		&#123;</span><br><span class="line">			ToppingName = System.Convert.ToString(extraTopping);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据验证"><a href="#数据验证" class="headerlink" title="数据验证"></a>数据验证</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">使用editform代替html默认的form</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&lt;EditForm Model=&quot;@student&quot; OnValidSubmit=&quot;HandleValidSubmit&quot;&gt;//model表示绑定到哪个对象，这样下面的标签才可以使用。onvalidsubmit表示提交之后触发对应的事件(可以不写事件)</span><br><span class="line">    &lt;DataAnnotationsValidator/&gt;//进行数据验证的条件</span><br><span class="line">    &lt;ValidationSummary/&gt;//错误消息汇总在一起，一般使用下面的message</span><br><span class="line">    &lt;InputText @bind-Value=&quot;@student.Code&quot;/&gt;</span><br><span class="line">    &lt;ValidationMessage For=&quot;()=&gt;student.Code&quot;/&gt;</span><br><span class="line">    &lt;InputText @bind-Value=&quot;@student.Name&quot;/&gt;</span><br><span class="line">    &lt;ValidationMessage For=&quot;()=&gt;student.Name&quot;/&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot;&gt;submit&lt;button/&gt;当提交之后，会依次从上往下执行数据验证</span><br><span class="line">&lt;/EditForm&gt;</span><br><span class="line">对应的类</span><br><span class="line">@code&#123;</span><br><span class="line">@using System.ComponentModel.DataAnnotations</span><br><span class="line">Stduent student = new Stduent();</span><br><span class="line">    public class Stduent</span><br><span class="line">    &#123; </span><br><span class="line">        [required]</span><br><span class="line">        public string Code &#123; get; set; &#125;</span><br><span class="line">        [required]</span><br><span class="line">        public string Name &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="input组件"><a href="#input组件" class="headerlink" title="input组件"></a>input组件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">inputtext单行</span><br><span class="line">inputtextarea多行</span><br><span class="line">inputnumber</span><br><span class="line">inputselect</span><br><span class="line">inputdate日期</span><br><span class="line">inputcheckbox选择框</span><br></pre></td></tr></table></figure>
-
-<h2 id="razor组件-页面-之间如何传递参数-组件参数"><a href="#razor组件-页面-之间如何传递参数-组件参数" class="headerlink" title="razor组件(页面)之间如何传递参数(组件参数)"></a>razor组件(页面)之间如何传递参数(组件参数)</h2><p>razor组件作为标签嵌入到父组件时，如何将父组件中的字段传递到子组件中的字段？</p>
-<p>1.子组件字段使用parameter修饰（参考路由部分</p>
-<p>2.子组件作为标签写入父组件，其字段作为标签的属性。不要在get，set中写逻辑</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">如下</span><br><span class="line">子组件Test.razor中</span><br><span class="line">@code&#123;</span><br><span class="line">	[parameter]</span><br><span class="line">	public string? childName&#123;get;set;&#125;</span><br><span class="line">&#125;</span><br><span class="line">父组件UserTest.razor中</span><br><span class="line">&lt;Test childName=&quot;@parentName&quot;&gt;&lt;/Test&gt;</span><br><span class="line">@code&#123;</span><br><span class="line">	public string? ParentName&#123;get;set;&#125;</span><br><span class="line">&#125;</span><br><span class="line">如何在&lt;Test&gt;&lt;/Test&gt;开始和结束标签之间添加内容？</span><br><span class="line">1.隐式方式：在子组件中定义添加下面的属性作为接收参数，该属性的名字是固定的ChildContent不能改变</span><br><span class="line">[Parameter]</span><br><span class="line">public RenderFragment ChildContent&#123;get;set;&#125; </span><br><span class="line">2.显示方式：改ChildContent为MyContent </span><br><span class="line">public RenderFragment MyContent&#123;get;set;&#125; </span><br><span class="line">使用时则如下</span><br><span class="line">&lt;Test&gt;</span><br><span class="line">	&lt;MyContent&gt;</span><br><span class="line">		&lt;p&gt;这是添加内容&lt;/p&gt;</span><br><span class="line">	&lt;/MyContent&gt;</span><br><span class="line">&lt;/Test&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230203091316922.png" alt="image-20230203091316922"></p>
-<p>0：将所有组件编译成类</p>
-<p>1：该方法将当前所有使用parameter修饰的属性或caclingparameter的属性注入到组件中</p>
-<p>2：用来执行界面渲染之前需执行的操作（自定义）</p>
-<p>3：每次被parameter修饰的属性值发生改变时，都会调用该方法(自定义)</p>
-<p>4：OnAfterRenderAsync：每次渲染后需执行的操作（自定义）</p>
-<p><img src="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230318212033418.png" alt="image-20230318212033418"></p>
-<h2 id="js与c-互操作"><a href="#js与c-互操作" class="headerlink" title="js与c#互操作"></a>js与c#互操作</h2><p>JavaScript 添加到 Blazor 应用的方法是使用 HTML <code>&lt;script&gt;</code> 元素。 若要将 JavaScript 代码添加到 Blazor 应用，请在 Pages&#x2F;_Host.cshtml 文件或 wwwroot&#x2F;index.html 文件中的现有 <code>&lt;script src=&quot;_framework/blazor.*.js&quot;&gt;&lt;/script&gt;</code> 标记后添加 <code>&lt;script&gt;</code> 标记，表示引用了某个现成的库，如果单纯使用js语法，不需要此步骤</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">		&lt;script src=&quot;_framework/blazor.server.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/sweetalert@latest/dist/sweetalert.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>使用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a> 从 .NET 代码调用 JavaScript 函数。 若要使 JS 互操作运行时可用，请将 <code>IJSRuntime</code> 抽象实例注入 Blazor 页面，在文件顶部附近的 <code>@page</code> 指令之后。</p>
-<p><code>IJSRuntime</code> 接口公开了几种方法来调用 JavaScript 代码：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.ijsruntime.invokeasync">InvokeAsync</a></li>
-<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.jsruntimeextensions.invokevoidasync">InvokeVoidAsync</a></li>
-</ul>
-<p>使用 <code>InvokeAsync&lt;TValue&gt;</code> 调用返回值的 JavaScript 函数，否则调用 <code>InvokeVoidAsync</code>。 顾名思义，这两种方法都是异步的，因此请使用 C# <code>await</code> 运算符来捕获任何结果。 <code>InvokeAsync</code> 和 <code>InvokeVoidAsync</code> 方法的参数是要调用的 JavaScript 函数的名称，后跟函数所需的任何参数。 JavaScript 函数必须属于 <code>window</code> 作用域或 <code>window</code> 子作用域。 参数必须可序列化为 JSON。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@inject OrderState OrderState</span><br><span class="line">@inject IJSRuntime JavaScript</span><br><span class="line"></span><br><span class="line">async Task RemovePizzaConfirmation(Pizza removePizza)</span><br><span class="line">&#123;</span><br><span class="line">    if (await JavaScript.InvokeAsync&lt;bool&gt;(</span><br><span class="line">        &quot;confirm&quot;,</span><br><span class="line">        $&quot;&quot;&quot;Do you want to remove the &quot;&#123;removePizza.Special!.Name&#125;&quot; from your order?&quot;&quot;&quot;))</span><br><span class="line">    &#123;</span><br><span class="line">        OrderState.RemoveConfiguredPizza(removePizza);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>js调用.net代码：  <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.dotnetobjectreference">DotNetObjectReference</a> 此类是 JS 互操作库的一部分。 <code>DotNet</code> 类公开了帮助程序函数 <code>invokeMethod</code> 和 <code>invokeMethodAsync</code>。 使用 <code>invokeMethod</code> 运行方法并等待结果，使用 <code>invokeMethodAsync</code> 异步调用方法。 <code>invokeMethodAsync</code> 方法返回 JavaScript <code>Promise</code>。</p>
-<h2 id="表单组件"><a href="#表单组件" class="headerlink" title="表单组件"></a>表单组件</h2><p>使用editform组件代替html中的form标签，editform与form的区别如下：</p>
-<p>​	1数据绑定。 可将对象与 EditForm 关联。 EditForm 的作用类似于用于数据输入和显示的对象视图。<br>​	2验证。 EditForm 提供了广泛且可扩展的验证功能。 可以向指定验证规则的 EditForm 中的元素添加属性。 EditForm 将自动应用这些规则。 将在本模块的后	续单元中介绍此功能。<br>​	3表单提交。 HTML 表单将在提交后向表单处理程序发送一个发布请求。 该表单处理程序应会执行提交过程，然后显示任何结果。 EditForm 遵循 Blazor 事件	模型；请指定捕获 OnSubmit 事件的 C# 事件处理程序。 事件处理程序执行提交逻辑。<br>​	4输入元素。 HTML 表单使用 <input> 控件收集用户输入，并使用 submit 按钮发布表单以供处理。 EditForm 可以使用这些相同的元素，但 Blazor 提供了具	有其他功能（例如内置验证和数据绑定）的输入组件库。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditForm Model=@currentForecast&gt;</span><br><span class="line">    &lt;InputDate @bind-Value=currentForecast.Date&gt;&lt;/InputDate&gt;</span><br><span class="line">    &lt;InputNumber @bind-Value=currentForecast.TemperatureC&gt;&lt;/InputNumber&gt;</span><br><span class="line">    &lt;InputText @bind-Value=currentForecast.Summary&gt;&lt;/InputText&gt;</span><br><span class="line">&lt;/EditForm&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">HTML &lt;form&gt; 元素支持 &lt;input&gt; 元素，以便用户能够输入数据。 &lt;input&gt; 有一个 type 属性，用于指定输入的类型及其显示方式（作为数字、文本框、单选按钮、复选框、按钮等）。</span><br><span class="line">Blazor 拥有自己的一组组件，旨在专用于 &lt;EditForm&gt; 元素并支持其他功能中的数据绑定。 下表列出了这些组件。 当 Blazor 呈现包含这些组件的页面时，它们将转换为表中列出的相应 HTML &lt;input&gt; 元素。 一些 Blazor 组件是通用的；类型参数由 Blazor 运行时根据绑定到元素的数据类型确定：</span><br><span class="line"></span><br><span class="line">输入组件	呈现为 (HTML)</span><br><span class="line">InputCheckbox	&lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">InputDate&lt;TValue&gt;	&lt;input type=&quot;date&quot;&gt;</span><br><span class="line">InputFile	&lt;input type=&quot;file&quot;&gt;</span><br><span class="line">InputNumber&lt;TValue&gt;	&lt;input type=&quot;number&quot;&gt;</span><br><span class="line">InputRadio&lt;TValue&gt;	&lt;input type=&quot;radio&quot;&gt;</span><br><span class="line">InputRadioGroup&lt;TValue&gt;	一组子单选按钮</span><br><span class="line">InputSelect&lt;TValue&gt;	&lt;select&gt;</span><br><span class="line">InputText	&lt;input&gt;</span><br><span class="line">InputTextArea	&lt;textarea&gt;</span><br><span class="line">这些元素中的每一个都具有由 Blazor 识别的属性，例如 DisplayName（用于将输入元素与标签关联）和 @ref（可用于保存对 C# 变量中的字段的引用）。 任何无法识别的非 Blazor 属性都将按原样传递给 HTML 呈现器。 这意味着可以利用 HTML 输入元素属性。 例如，可以将 min、max 和 step 属性添加到 InputNumber 组件，它们将作为所呈现的 &lt;input type=&quot;number&quot;&gt; 元素的一部分正常运行。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><p> Blazor 支持两种类型的验证：声明性和编程性。</p>
-<p>1.声明性：使用组件： DataAnnotationsValidator 组件（进行验证）和ValidationSummary （进行汇总错误信息）</p>
-<p><img src="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230319194531505.png" alt="image-20230319194531505"></p>
-<p><img src="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230319194514083.png" alt="image-20230319194514083"></p>
-<p>想要在每个控件旁边显示验证消息，请使用多个 ValidationMessage 组，使用 <code>For</code> 属性将每个 ValidationMessage 控件与模型的特定属性相关联</p>
-<p>&lt;InputText id&#x3D;”name” @bind-Value&#x3D;”pizza.Name” &#x2F;&gt;</p>
-<p> &lt;ValidationMessage For&#x3D;”@(() &#x3D;&gt; pizza.Name)” </p>
-<p>2.编程性：自己使用js或者c#以编程方式逐个字段地检查和验证数据。 但是，不建议使用这种方法。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class PizzaBase : ValidationAttribute</span><br><span class="line">&#123;</span><br><span class="line">    public string GetErrorMessage() =&gt; $&quot;Sorry, that&#x27;s not a valid pizza base.&quot;;</span><br><span class="line"></span><br><span class="line">    protected override ValidationResult IsValid(</span><br><span class="line">        object value, ValidationContext validationContext)</span><br><span class="line">    &#123;</span><br><span class="line">        if (value != &quot;Tomato&quot; || value != &quot;Pesto&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            return new ValidationResult(GetErrorMessage());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ValidationResult.Success;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">使用时如下：</span><br><span class="line"> [PizzaBase]</span><br><span class="line">    public string Base &#123; get; set; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>三种验证事件：</p>
-<ul>
-<li><p><code>OnValidSubmit</code>. 如果输入域成功通过其验证属性定义的验证规则，则会触发此事件。</p>
-</li>
-<li><p><code>OnInvalidSubmit</code>. 如果表单上的任何输入域都未能通过其验证属性定义的验证，则会触发此事件。</p>
-</li>
-<li><p><code>OnSubmit</code>. 无论所有输入域是否有效，提交 EditForm 时都会发生此事件。</p>
-<p>对于在单个输入域级别实现基本验证的 EditForm，<code>OnValidSubmit</code> 和 <code>OnInvalidSubmit</code> 事件很有用。 如果验证要求更复杂，例如将一个输入域与另一个输入域进行交叉检查以确保值的有效组合，请考虑使用 <code>OnSubmit</code> 事件。</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>​		required</p>
-<p>​		Range：检查是否在合理范围内</p>
-<p>​		[EmailAddress]</p>
-<ul>
-<li><code>[ValidationNever]</code>. 如果要确保该字段从不包含在验证中，请使用此注释。</li>
-<li><code>[CreditCard]</code>. 如果要记录用户的有效信用卡号，请使用此注释。</li>
-<li><code>[Compare]</code>. 如果要确保模型中的两个属性匹配，请使用此注释。</li>
-<li><code>[Phone]</code>. 如果要记录用户的有效电话号码，请使用此注释。</li>
-<li><code>[RegularExpression]</code>. 如果通过将值与正则表达式进行比较来检查值的格式，请使用此注释。</li>
-<li><code>[StringLength]</code>. 如果要检查字符串值的长度是否不超过最大长度，请使用此注释。</li>
-<li><code>[Url]</code>. 如果要记录用户的有效 URL，请使用此注释。</li>
-</ul>
-</li>
-</ul>
-<h2 id="导航菜单"><a href="#导航菜单" class="headerlink" title="导航菜单"></a>导航菜单</h2><p>使用NavMenu</p>
-<h2 id="WebApi"><a href="#WebApi" class="headerlink" title="WebApi"></a>WebApi</h2><p>blazor也可实现类似WebApi形式的前后端分离，使用Controller形式。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/training/modules/interact-with-data-blazor-web-apps/5-exercise-access-data-from-blazor-components">https://learn.microsoft.com/zh-cn/training/modules/interact-with-data-blazor-web-apps/5-exercise-access-data-from-blazor-components</a></p>
-<h1 id="三方ui库"><a href="#三方ui库" class="headerlink" title="三方ui库"></a>三方ui库</h1><p>matblazor，masablazor,bootstrapblazor</p>
-<h3 id="WpfBlazor"><a href="#WpfBlazor" class="headerlink" title="WpfBlazor"></a>WpfBlazor</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Dotnet9-com/p/16868009.html">https://www.cnblogs.com/Dotnet9-com/p/16868009.html</a></p>
-<h3 id="MauiBlazor"><a href="#MauiBlazor" class="headerlink" title="MauiBlazor"></a>MauiBlazor</h3><p>开启hyper-v和安装HAXM</p>
-<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/maui/get-started/installation?view=net-maui-7.0&amp;tabs=vswin">https://learn.microsoft.com/zh-cn/dotnet/maui/get-started/installation?view=net-maui-7.0&amp;tabs=vswin</a></p>
-
+<li><p>下载项大小较大，应用加载耗时较长。</p></li></ul>
+          
       
     </div>
     
@@ -640,6 +425,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -675,7 +464,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <hr>
+              <hr>
 <h2 id="title-matlab"><a href="#title-matlab" class="headerlink" title="title:matlab"></a>title:matlab</h2><h1 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h1><p>针对某个函数的使用方法，可以搜索，然后点击里面的example</p>
 <p>关闭matlab：quit或者exit</p>
 <p>matlab大部分函数只要能传入一个变量，那么就可以传入一个向量。例如sin30，sin([30 60 90])会分别计算出sin30 sin60 sin90即批量处理数据</p>
@@ -690,206 +479,7 @@
 <p>单精度(默认)：single()    双精度：format long      后接4位小数：format short</p>
 <p>在脚本中写代码，命令行中调用该脚本（直接输入脚本名,或者直接run（F5）），命令行窗口的作用是用来显示结果，加分号回车后会换行，不加分号回车后会显示结果</p>
 <p>根据几个字母弹出所有相关的函数名：使用tab键</p>
-<more>
-
-<p>3X10^8：3e8</p>
-<p>换行符： +…表示换行接着输入</p>
-<p>取绝对值：abs()</p>
-<p>三角函数sin(pi)，tan(pi),cos(pi),使用help elfun命令来提示所有的数学函数或者点击输入处左侧的fx。默认为弧度，若使用角度为sind(180)。sin（[1 2 3]）会分别计算处sin1,sin2,sin3</p>
-<p>读取脚本：load newfile.dat</p>
-<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>1.向0取整：fix(-3.5)  (-3)    fix(1.8) (1)</p>
-<p>2.向负无穷取整：floor(-3.5)  (-4)</p>
-<p>3.向负无穷取整：ceil(16.99)(17)</p>
-<p>4.四舍五入：round(1.5)(2)  round(pi,2)(3.14保存两位小数)</p>
-<p>5.求余：mod(13,3)(1)    或者rem(13,3)(1)</p>
-<p>6.符号函数sign()</p>
-<p>7.开根号sqrt()</p>
-<p>8.求根nthroot(2,3),2的立方根</p>
-<p>9.角度转弧度：deg2rad(180)     rad2deg(pi)弧度转角度</p>
-<p>10.对数：log(2.718)（以e为底）     log2(1024)（以2为底）</p>
-<p>正无穷：Inf或者1&#x2F;0 		  负无穷: -Inf或者-1&#x2F;0 是个常量</p>
-<p>NaN：not a number 常量</p>
-<p>rand():0-1之间的随机数，默认随机种子为1，根据种子生成随机数</p>
-<p>rand(2);返回一个2x2的矩阵，每个元素都是0-1</p>
-<p>rand(2,3);返回一个2行3列的矩阵</p>
-<p>randi([1 10])指定从1到10的整数</p>
-<p>randi([1 10],3,4);3行4列的矩阵，每个元素都是1-10</p>
-<p>rng(1);随机数种子设为1</p>
-<p>生成0-100的整数：randi([0.100])</p>
-<p>不等于：波浪号+等于号，即matlab中的非用~表示，不是用！</p>
-<p>字符是有维度的，即一行n列，可以转置，可以获取某个字符（例如apple_char&#x3D;’apple’,apple_char(2),apple_char’），而字符串不可以。字符和字符串的操作函数详细参考第八章的视频或者书籍（南方科技大学 ）</p>
-<h2 id="向量操作"><a href="#向量操作" class="headerlink" title="向量操作"></a>向量操作</h2><p>matlab若是计算矩阵，则总是计算列向量，以列向量为基准</p>
-<p>matlab中使用1代表true用logic标识</p>
-<h3 id="行向量"><a href="#行向量" class="headerlink" title="行向量"></a>行向量</h3><p>【3，5，7】或者【3 5 7】（推荐）</p>
-<p>等差数列起始为3，间隔为1，末尾为9： 写法为3:1:9  或者使用linspace(3,9,7)，7表示中间有7个元素</p>
-<p> prec &#x3D; 3:2:10  （3 5 7 9）</p>
-<p>等比数列:logspace(3,9,7)从10^3开始到10^9结束，中间有7个元素</p>
-<p>访问向量中的某个元素：v([3 4]);第三个和第四个元素  v(1)访问第一个元素</p>
-<p>修改元素：v(2)&#x3D;3    v(2:4)&#x3D;[1 2 3] (2-4元素修改值）</p>
-<h3 id="列向量"><a href="#列向量" class="headerlink" title="列向量"></a>列向量</h3><p>【3；5；7】   或者行向量转置（推荐）</p>
-<p>行向量转置成列向量：【3，5，7】’（共轭，虚数不可用） 【3，5，7】.’  (不共轭，虚数可用)</p>
-<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><p>rank&#x3D;[9 6 3;5 7 2]</p>
-<p>rank(2,[1 3]);	第二行的第一个和第三个元素</p>
-<p>rank(2,3);第二行第三列元素</p>
-<p>rank(2,:)	返回第二行所有元素</p>
-<p>排序是按照先列后行的方式排列，所以rank(2)表示的是5   rank(3)表示的6</p>
-<p>randi([1 10],3,4);3行4列的矩阵，每个元素都是1-10</p>
-<p>rand(2);返回一个2x2的矩阵，每个元素都是0-1</p>
-<p>rand(2,3);返回一个2行3列的矩阵</p>
-<p>zeros(3)；全是0的三层方阵</p>
-<p>zeros(2,3);2行3列的0矩阵</p>
-<p>ones(3);全是1的三层方针</p>
-<p>ones（3，5）；三行五列</p>
-<p>eye(4);四维单位方阵</p>
-<p>v&#x3D;[3     1     2     3     0     0    10],生成一个对角线元素是v的方针，其余元素都是0:diag(v)即对角阵</p>
-<p>下面第二层对角线上为-1至-6：diag(-1​：-1：-6,-1)</p>
-<p>上面第3层对角线为1-6：diag(1:1:6,2)</p>
-<p>主对角线和次对角线都有：diag(1:5)+diag(1:4,-1)</p>
-<p>length(rank)返回矩阵行数或者列数的最大值</p>
-<p>size(rank);返回行数和列数</p>
-<p>[n_row,n_col]&#x3D;size(rank)；将行数和列数分别付给两个变量</p>
-<p>numel(rank);返回矩阵中元素总数</p>
-<p>B&#x3D;randi([-5 5],1,4);一行四列，数字都是-5至5</p>
-<p>min(B);向量中的最小值</p>
-<p>max(B)向量中的最大值</p>
-<p>sum(B)所有元素之和</p>
-<p>prod(B);所有元素之积</p>
-<p>cumprod(B);后面元素是前面元素之积</p>
-<p>cumsum(B)后面元素是前面元素之和</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A=[5 6 3 4]		B=[3 4 -4 5]		  </span><br><span class="line"></span><br><span class="line">A*B无法相乘    </span><br><span class="line"></span><br><span class="line">A.*B会将A和B对应位置的元素相乘 15    24   -12    20</span><br><span class="line"></span><br><span class="line">  A./B同理1.6667    1.5000   -0.7500    0.8000</span><br><span class="line">  A.^C同理125 6^4 3^-4  4^5</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v=rand(1,5)     0.8173    0.8687    0.0844    0.3998    0.2599</span><br><span class="line">u=v&gt;0.5		  	0   0   1   0   1   (0的部分是v小于等于0.5的元素，1的部分是v&gt;0.5的元素)</span><br><span class="line">v(u)  			0.9106    0.2638	返回u中是1的那个位置的元素</span><br><span class="line">等价于v(v&gt;0.5)输出所有v中大于0.5的元素</span><br></pre></td></tr></table></figure>
-
-<p>筛选：类似linq</p>
-<p>all(v&gt;0.001);统计满足条件的位置，符合条件显示为1，不符合显示0</p>
-<p>find(all(v&gt;0.001))寻找满足条件的位置，返回对应的位置，而不是布尔，用来定位</p>
-<p>diff(v);将相邻两个元素做差</p>
-<p>输出语句：fprintf(‘%x.yf\n’,pi);x代表占用几个位置，y代表精确到小数点后几位，f代表占位符  （默认右对齐），如果想要左对齐则使用fprintf(‘%-x.yf\n’,pi);</p>
-<p>使用disp更好</p>
-<h2 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h2><p>matlab绘图的优点是x轴的自变量可以设置成自动变化的。例如x&#x3D;0:0.01:1;表示x的变化为从0-1，步长为0.01</p>
-<p>画点：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x=11;</span><br><span class="line">y=48;</span><br><span class="line">plot(x,y,&#x27;r*&#x27;)；xy表示坐标，r表示red，*表示该坐标点用*表示</span><br><span class="line">axis([9 12 35 55]);设置显示坐标系的范围是x为9-12，y为35-55</span><br><span class="line">xlabel(&quot;时间&quot;);注明横坐标</span><br><span class="line">ylabel(&quot;温度&quot;);注明纵坐标</span><br><span class="line">title(&quot;时间和温度&quot;)；注明标题</span><br><span class="line">axis([x-2 x+2 y-10 y+10]);x坐标从9-11，y坐标范围从38-58</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813100349406.png" alt="image-20220813100349406"></p>
-<p>画线</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x=1:6;</span><br><span class="line">y=[1 5 3 9 11 8];</span><br><span class="line">plot(x,y)等价于plot(x,y,&#x27;-&#x27;);没有特殊字符或者使用指定的画线字符就表示的是画线，且是实线</span><br><span class="line">plot(x,y,&#x27;r:&#x27;);画的虚线，且为红色</span><br><span class="line">plot(x,y,&#x27;r-.&#x27;);画的点画线，且为红色</span><br><span class="line">plot(x,y,&#x27;r*-.&#x27;);画的点画线，且为红色，并且拐点处为*表示，如下图</span><br><span class="line">plot(y);没有x坐标的情况下，x默认从1，2，3...</span><br><span class="line">xlabel(&quot;时间&quot;);</span><br><span class="line">ylabel(&quot;温度&quot;)</span><br><span class="line">title(&quot;时间和温度&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>想要在一个画布上同时画两条线</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x=1:6;</span><br><span class="line">y=[1 5 3 9 11 8];</span><br><span class="line">hold on;画布状态一直设为true</span><br><span class="line">plot(x,y);</span><br><span class="line">plot(x,x+1)</span><br><span class="line">hold off;关闭画布状态 </span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813100504317.png" alt="image-20220813100504317"></p>
-<p>同时开启两个对话框并且对应两个画布</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x=1:6;</span><br><span class="line">y=[1 5 3 9 11 8];</span><br><span class="line">plot(x,y);//默认画在figure1画布上面</span><br><span class="line">figure();//开启figure2</span><br><span class="line">plot(x,x+1)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813094357807.png" alt="image-20220813094357807"></p>
-<p>清空画布(不是关闭)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x=1:6;</span><br><span class="line">y=[1 5 3 9 11 8];</span><br><span class="line">plot(x,y);//默认画在figure1画布上面</span><br><span class="line">hold on;</span><br><span class="line">clf;</span><br><span class="line">plot(x,x+1)</span><br></pre></td></tr></table></figure>
-
-<p>一个画布上建立两个坐标系</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=1:6;</span><br><span class="line">y=[1 5 3 9 11 8];</span><br><span class="line">subplot(2,1,1);%第一个参数和第二个参数的乘积就是将画布分成2部分纵向（2行一列），第三个参数表示画出第几部分。例如subplot(2,2,1);表示将画布分成4个部分（2行2列），可以画4个坐标系，共有subplot(2,2,1)，subplot(2,2,2)，subplot(2,2,3)，subplot(2,2,4)四种情况.而subplot(1,2,1)表示分成1行2列</span><br><span class="line">plot(x,y);%默认画在figure1画布上面</span><br><span class="line">hold on;</span><br><span class="line">subplot(2,1,2)</span><br><span class="line">plot(x,x+1)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813094248302.png" alt="image-20220813094248302"></p>
-<p>开启网格,以准确显示坐标信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grid on;</span><br><span class="line">关闭网格</span><br><span class="line">grid off;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813101000255.png" alt="image-20220813101000255"></p>
-<p>为每条线作为说明</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x=1:6;</span><br><span class="line">y=[1 5 3 9 11 8];</span><br><span class="line">hold on;%画布状态一直设为true</span><br><span class="line">grid on;</span><br><span class="line">plot(x,y,&#x27;*-.&#x27;);</span><br><span class="line">plot(x,x+1,&#x27;o-.&#x27;)</span><br><span class="line">legend(&#x27;Line1&#x27;,&#x27;Line2&#x27;)</span><br><span class="line">hold off;%关闭画布状态 </span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813101428801.png" alt="image-20220813101428801"></p>
-<h3 id="之前都是折线图，现在画柱状图"><a href="#之前都是折线图，现在画柱状图" class="headerlink" title="之前都是折线图，现在画柱状图"></a>之前都是折线图，现在画柱状图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bar(1:10,randi([1,10],[1,10]))；x从1-10</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813102133430.png" alt="image-20220813102133430"></p>
-<h3 id="bar绘图"><a href="#bar绘图" class="headerlink" title="bar绘图"></a>bar绘图</h3><p>这是没有使用数据加和的情况，分成三组数据，每个横坐标对应三个数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x=[1980 1990 2000]</span><br><span class="line">y = [15 20 -5;18 21 17 ;-10 5 3]每组第一个数据对应蓝色的，第二个数据对应橙色的，第三个数据对应黄色的。</span><br><span class="line">bar(x,y)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828154451327.png" alt="image-20220828154451327"></p>
-<p>这是使用数据加和的情况，将每一组数据中加起来进行显示</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x=[1980 1990 2000]</span><br><span class="line">y = [15 20 -5;18 21 17 ;-10 5 3]</span><br><span class="line">bar(x,y,&#x27;stacked&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828154538521.png" alt="image-20220828154538521"></p>
-<p>圆饼图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pie([15 5 3 4 8],&#123;&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;d&#x27;,&#x27;e&#x27;&#125;)；15/(15+5+3+4+8)=65%所以所占比例是某个元素值占所有元素值的和的比例</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828164036855.png" alt="image-20220828164036855"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pie([15 5 3 4 8])</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828164135853.png" alt="image-20220828164135853"></p>
-<p>面积绘图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">area(1:10,randi([1,10],[1,10]))</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828153520691.png" alt="image-20220828153520691"></p>
-<p>正弦函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(1:0.1:10,sin(1:0.1:10))</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220813102653291.png" alt="image-20220813102653291"></p>
-<p>定义一个函数计算面积（注意，函数名与文件名必须一样，或者在函数上面声明一下函数）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">matlab这样定义函数的原因是一个这样的函数可以返回多个值，所以在定义函数的时候将返回值也标识出来</span><br><span class="line">function area = paint1(num)  area表示输出变量名字</span><br><span class="line">area =pi .* num .^2;//使用*和^如果前面不加.则使用该函数的时候只能输入一个数，如果使用.*和.^则可以传入一个向量。</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">调用的时候使用命令</span><br><span class="line">paint1([ 1 2 3 4])</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">    3.1416   12.5664   28.2743    50.2655</span><br></pre></td></tr></table></figure>
-
-<p>通过一个函数返回输出多个值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function [area,permeter] = areaperi(length,width)</span><br><span class="line">area = length*width;</span><br><span class="line">permeter = (length+width)*2</span><br><span class="line">end</span><br><span class="line">命令窗口调用函数[area,permiter] = areaperi(50,100)</span><br><span class="line">返回area,permiter的值。如果只想要返回area的值那么就将接受值改为[area,~]= areaperi(50,100);表示忽略第二个参数的显示</span><br></pre></td></tr></table></figure>
-
-<p>if语句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">不能带小括号或者中括号</span><br><span class="line">if 非0</span><br><span class="line">逻辑语句</span><br><span class="line">end</span><br><span class="line">例如if reply==&#x27;y&#x27;</span><br><span class="line">disp(&quot;dsljdf&quot;)</span><br><span class="line">elseif ...</span><br><span class="line">else...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>for循环</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i=1:10</span><br><span class="line">...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p>for循环画图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for i=1:2</span><br><span class="line">    x=linspace(0,2*pi,20*i);%第一张图选取20个点，第二张图选取40个点</span><br><span class="line">    y=sin(x);</span><br><span class="line">    subplot(1,2,i);//画布分成1行2列</span><br><span class="line">    plot(x,y,&#x27;ko-&#x27;);</span><br><span class="line">    xlabel(&#x27;x&#x27;);</span><br><span class="line">    ylabel(&#x27;y&#x27;);</span><br><span class="line">    title(&#x27;sin函数&#x27;);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220815182934342.png" alt="image-20220815182934342"></p>
-<p>指数函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">n=3</span><br><span class="line">for i=1:n</span><br><span class="line">    x=0:0.01:1</span><br><span class="line">    y=exp(2^i*x);</span><br><span class="line">    plot(x,y,&#x27;ko-&#x27;);</span><br><span class="line">    xlabel(&#x27;x&#x27;);</span><br><span class="line">    ylabel(&#x27;y&#x27;);</span><br><span class="line">    title(&#x27;指数函数&#x27;);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220815192003920.png" alt="image-20220815192003920"></p>
-<p>模块化编程例子</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">explain;声明函数，如果只有一个函数则文件名与函数名必须相同，否则必须使用声明函数的方法</span><br><span class="line">//功能一，解释e的作用（简写了）</span><br><span class="line">function explain()</span><br><span class="line">fprintf(&quot;第一行\n&quot;);</span><br><span class="line">fprintf(&#x27;第二行\n&#x27;);</span><br><span class="line">fprintf(&#x27;第三行\n&#x27;);</span><br><span class="line">fprintf(&#x27;第四行\n&#x27;);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">limite；</span><br><span class="line">//功能2，求e的近似值</span><br><span class="line">function limite()</span><br><span class="line">n = input(&#x27;please enter a num&#x27;);</span><br><span class="line">while n&lt;0</span><br><span class="line">    n = input(&#x27;please enter a positive num&#x27;);</span><br><span class="line">end</span><br><span class="line">fprintf(&#x27;e的极限值为n=%.2f is %.2f \n&#x27;,n,(1+1/n)^n)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">//功能3：计算e的近似值</span><br><span class="line">function expfn()</span><br><span class="line">x= input(&#x27;input the num&#x27;);</span><br><span class="line">fprintf(&#x27;the exact value exp(x)=%.4f\n&#x27;,exp(x));%求e的x次方</span><br><span class="line">fprintf(&#x27;the approximate value exp(x) = %.4f\n&#x27;,appExp(x,400));%计算后面的近似值</span><br><span class="line"></span><br><span class="line">    function y = appExp(x,n)</span><br><span class="line">        y= sum(x.^(0:(n-1))./factorial(0:(n-1)));</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>元胞类型</p>
-<p>就是将各种类型的值放在一起可以组成一个类型，叫做cell类型，也叫元胞类型</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> cellmat=&#123;23,&#x27;a&#x27;,1:2:9,&quot;helloword&quot;&#125;</span><br><span class="line">cellmat =</span><br><span class="line">  1×4 cell 数组</span><br><span class="line">    &#123;[23]&#125;    &#123;&#x27;a&#x27;&#125;    &#123;1×5 double&#125;    &#123;[&quot;helloword&quot;]&#125;</span><br><span class="line">    要想访问‘a’这个元素，通过cellmat&#123;2&#125;来访问，获取的是元素&#x27;a&#x27;,使用cellmat(2)获取的是&#123;&#x27;a&#x27;&#125;整个数组。对于是元胞矩阵，使用celltest&#123;2，1&#125;来访问，删除元胞元素cellmat(2);删除第二个位置的整个数组</span><br></pre></td></tr></table></figure>
-
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">定义结构体</span><br><span class="line">package = struct(&#x27;item_no&#x27;,123,&#x27;cost&#x27;,19.99,&#x27;price&#x27;,39.95,&#x27;code&#x27;,&#x27;g&#x27;)默认为键值对类型</span><br><span class="line"></span><br><span class="line">package = </span><br><span class="line"></span><br><span class="line">  包含以下字段的 struct:</span><br><span class="line"></span><br><span class="line">    item_no: 123</span><br><span class="line">       cost: 19.9900</span><br><span class="line">      price: 39.9500</span><br><span class="line">       code: &#x27;g&#x27;</span><br><span class="line"></span><br><span class="line">&gt;&gt; package.cost//访问结构体中的变量。</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">   19.9900</span><br></pre></td></tr></table></figure>
-
-<h2 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">package(1)=struct(&#x27;item_no&#x27;,123,&#x27;cost&#x27;,19.99,&#x27;price&#x27;,39.95,&#x27;code&#x27;,&#x27;g&#x27;)</span><br><span class="line">package(2)=struct(&#x27;item_no&#x27;,123,&#x27;cost&#x27;,19.99,&#x27;price&#x27;,39.95,&#x27;code&#x27;,&#x27;g&#x27;)</span><br><span class="line">package(3)=struct(&#x27;item_no&#x27;,123,&#x27;cost&#x27;,19.99,&#x27;price&#x27;,39.95,&#x27;code&#x27;,&#x27;g&#x27;)</span><br><span class="line">这样就定义了一个package数组，里面包含1，2，3三个数组</span><br><span class="line">输入package命令会将三个数组的内容均打印出来</span><br></pre></td></tr></table></figure>
-
-<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vec = [85 70 90 100 20]</span><br><span class="line">sort(vec)//或者sort(vec,&#x27;ascent&#x27;)//从小到大</span><br><span class="line">sort(vec,&#x27;descend&#x27;);//从大到小</span><br><span class="line">[w_sort,i_sort] = sort(vec);第一个参数表示排序后的数组，第二个参数表示每个数对应原来的位置坐标</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">定义形参的时候可以通过varargin关键字指定可变参数</span><br><span class="line">function [area,circum] = areacirc(rad,varargin)</span><br><span class="line"></span><br><span class="line">调用函数</span><br><span class="line">[area,circum] = areacirc(1,&#x27;a&#x27;,2,3,4,5,6);</span><br><span class="line">rad接收到的是1，varargin接收到的是&#x27;a&#x27;,2,3,4,5,6作为一个数组</span><br><span class="line">varargin&#123;1&#125;;//获取除rad参数之外的第一个参数,即&#x27;a&#x27;</span><br><span class="line">varargin&#123;2&#125;;//获取除rad参数之外的第二个参数,即2</span><br></pre></td></tr></table></figure>
-
-<h2 id="函数句柄"><a href="#函数句柄" class="headerlink" title="函数句柄"></a>函数句柄</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">相当于c#中的委托，即可以传递函数</span><br><span class="line">定义一个函数，画sinx的图像</span><br><span class="line">function practice(x,fnhandle);第二个函数为函数句柄</span><br><span class="line">y=fnhandle(x);</span><br><span class="line">plot(x,y);</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">调用函数时</span><br><span class="line">practice(0:0.01:1,@sin);第二个参数就是传递的函数</span><br><span class="line">practice(0:0.01:1,@(x) x.^4+exp(x));画x的四次方加上e的x次方</span><br></pre></td></tr></table></figure>
-
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">定义一个类，结构体与类的区别是结构体中的属性可以随便增加，而类定义的属性一旦定义完成后运行过程中不能动态更改属性</span><br><span class="line">classdef MyClassName</span><br><span class="line"> properties//定义两个属性</span><br><span class="line">    prop1;</span><br><span class="line">    prop2;</span><br><span class="line"> end</span><br><span class="line"> properties(setAccess=private，public,protect)//设置属性的访问权限</span><br><span class="line"> 	password;</span><br><span class="line"> end</span><br><span class="line"> method(Hidden,sealed,static)</span><br><span class="line"> //构造方法</span><br><span class="line"> 	function obj = MyClassName(val1,val2)</span><br><span class="line"> 		obj.prop1 = val1;</span><br><span class="line"> 		obj.prop2 = val2;</span><br><span class="line"> 	end</span><br><span class="line"> end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h3 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">父类</span><br><span class="line">classdef SuperClass</span><br><span class="line">	properties</span><br><span class="line">		prop1;</span><br><span class="line">		prop2;</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">子类</span><br><span class="line">classdef MySubClass &lt; Superclass</span><br><span class="line">properties</span><br><span class="line">prop3;</span><br><span class="line">end</span><br><span class="line">method</span><br><span class="line">	function obj = MySubClass(val1,val2,val3)</span><br><span class="line">	obj.prop1=val1;</span><br><span class="line">	obj.prop2 = val2;</span><br><span class="line">	obj.prop3 = val3</span><br><span class="line">	end</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h3 id="handle类和value类"><a href="#handle类和value类" class="headerlink" title="handle类和value类"></a>handle类和value类</h3><p>handle类相当于一个指针，继承该类的子类都默认为含有指针，进行的都是取地址操作，只要是为继承handle类的子类都是value类即值类型</p>
-<h2 id="动画，三维"><a href="#动画，三维" class="headerlink" title="动画，三维"></a>动画，三维</h2><p>动画使用movie函数</p>
-<p>三维使用plot3(x,y,z)进行绘图同时启动网格grid</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x=1:5</span><br><span class="line">y=[0 -2 4 11 3] </span><br><span class="line">z=2:2:10</span><br><span class="line">plot3(x,y,z,&#x27;k*&#x27;)</span><br><span class="line">grid on</span><br><span class="line">xlabel(&#x27;x&#x27;);</span><br><span class="line">ylabel(&#x27;y&#x27;)</span><br><span class="line">zlabel(&#x27;z&#x27;);</span><br><span class="line">axis equal;坐标比例进行正常设置，防止图形自动对坐标进行放缩</span><br><span class="line"></span><br><span class="line">//view(47,44)固定为某个视角进行观看，如果想要自动动画观看三维图形，可以写一个小脚本</span><br><span class="line">for i=0:1E10</span><br><span class="line">    view(i,20);</span><br><span class="line">    drawnow;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828173632123.png" alt="image-20220828173632123"></p>
-<p>3D的直方图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x=1:5</span><br><span class="line">y=[0 -2 4 11 3] </span><br><span class="line">z=2:2:10</span><br><span class="line">bar3(x,y,z)</span><br><span class="line">grid on</span><br><span class="line">xlabel(&#x27;x&#x27;);</span><br><span class="line">ylabel(&#x27;y&#x27;)</span><br><span class="line">zlabel(&#x27;z&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828183405723.png" alt="image-20220828183405723"></p>
-<p>3D的饼状图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pie3(x,y)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828183543661.png" alt="image-20220828183543661"></p>
-<p>画曲面，用surf</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[x,y]=meshgrid(-2*pi:0.1:2*pi);</span><br><span class="line">z=cos(x)+sin(y);</span><br><span class="line">surf(x,y,z)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="/2022/08/04/matlab/assets/image-20220828184042605.png" alt="image-20220828184042605"></p>
-<p>文本框</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text(2,2,&#x27;注释)技巧，画出图形之后点击菜单栏的箭头，再点击属性，可以通过拖拽的方式调整文本框的位置，调整好之后可以复制位置坐标，然后按照指定的坐标设置文本框位置即可。</span><br><span class="line">例如3.555152143979649,5.238288771176772,0.216459748216849)</span><br></pre></td></tr></table></figure>
-
-</more>
+          
       
     </div>
     
@@ -898,6 +488,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2022/08/04/matlab/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
