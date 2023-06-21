@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828183543661.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220828184042605.png">
 <meta property="article:published_time" content="2022-08-04T02:03:31.111Z">
-<meta property="article:modified_time" content="2022-08-28T11:23:18.050Z">
+<meta property="article:modified_time" content="2023-05-13T02:26:38.164Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/08/04/matlab/assets/image-20220813100349406.png">
@@ -394,6 +394,7 @@
 <p>find(all(v&gt;0.001))寻找满足条件的位置，返回对应的位置，而不是布尔，用来定位</p>
 <p>diff(v);将相邻两个元素做差</p>
 <p>输出语句：fprintf(‘%x.yf\n’,pi);x代表占用几个位置，y代表精确到小数点后几位，f代表占位符  （默认右对齐），如果想要左对齐则使用fprintf(‘%-x.yf\n’,pi);</p>
+<p>使用disp更好</p>
 <h2 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h2><p>matlab绘图的优点是x轴的自变量可以设置成自动变化的。例如x&#x3D;0:0.01:1;表示x的变化为从0-1，步长为0.01</p>
 <p>画点：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x=11;</span><br><span class="line">y=48;</span><br><span class="line">plot(x,y,&#x27;r*&#x27;)；xy表示坐标，r表示red，*表示该坐标点用*表示</span><br><span class="line">axis([9 12 35 55]);设置显示坐标系的范围是x为9-12，y为35-55</span><br><span class="line">xlabel(&quot;时间&quot;);注明横坐标</span><br><span class="line">ylabel(&quot;温度&quot;);注明纵坐标</span><br><span class="line">title(&quot;时间和温度&quot;)；注明标题</span><br><span class="line">axis([x-2 x+2 y-10 y+10]);x坐标从9-11，y坐标范围从38-58</span><br></pre></td></tr></table></figure>
@@ -458,7 +459,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function [area,permeter] = areaperi(length,width)</span><br><span class="line">area = length*width;</span><br><span class="line">permeter = (length+width)*2</span><br><span class="line">end</span><br><span class="line">命令窗口调用函数[area,permiter] = areaperi(50,100)</span><br><span class="line">返回area,permiter的值。如果只想要返回area的值那么就将接受值改为[area,~]= areaperi(50,100);表示忽略第二个参数的显示</span><br></pre></td></tr></table></figure>
 
 <p>if语句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if 非0</span><br><span class="line">逻辑语句</span><br><span class="line">end</span><br><span class="line">例如if reply==&#x27;y&#x27;</span><br><span class="line">disp(&quot;dsljdf&quot;)</span><br><span class="line">elseif ...</span><br><span class="line">else...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">不能带小括号或者中括号</span><br><span class="line">if 非0</span><br><span class="line">逻辑语句</span><br><span class="line">end</span><br><span class="line">例如if reply==&#x27;y&#x27;</span><br><span class="line">disp(&quot;dsljdf&quot;)</span><br><span class="line">elseif ...</span><br><span class="line">else...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
 <p>for循环</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i=1:10</span><br><span class="line">...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
@@ -528,7 +529,7 @@
         <p><span>Title:</span><a href="/2022/08/04/matlab/"></a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-08-04, 10:03:31</p>
-        <p><span>Updated:</span>2022-08-28, 19:23:18</p>
+        <p><span>Updated:</span>2023-05-13, 10:26:38</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2022/08/04/matlab/" title="">https://gao-hongfei123.github.io/2022/08/04/matlab/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/08/04/matlab/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>

@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230424200430692.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230424200615760.png">
 <meta property="article:published_time" content="2022-07-17T01:44:21.871Z">
-<meta property="article:modified_time" content="2023-05-02T11:19:04.980Z">
+<meta property="article:modified_time" content="2023-06-03T08:40:56.912Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/assets/image-20230204210400351.png">
@@ -391,7 +391,9 @@
 
 <p>10.在Views创建新窗体，并将MainWindow里面的东西复制到新窗体里面，以后使用MainView新窗体作为主窗体。</p>
 <p>11.将图片拷贝到文件夹之后，右键属性，需要将‘生成操作’改为‘资源’，否则运行之前显示，运行之后不显示</p>
-<p>12.button等控件使用md的flatbutton格式，会生成点击感。</p>
+<p>12.设置窗体可拖动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">colorZone.MouseMove += (s, e) =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                if (e.LeftButton == MouseButtonState.Pressed)</span><br><span class="line">                &#123;</span><br><span class="line">                    this.DragMove();</span><br><span class="line">                &#125;</span><br><span class="line">               </span><br><span class="line">            &#125;;</span><br></pre></td></tr></table></figure>
+
 <p>13.修改app.xaml.cs中的resource中的light为dart会将主题变为dart模式</p>
 <p>14.listbox如何绑定事件。以及它是如何向后端传递一个对象的。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;ListBox </span><br><span class="line">                       x:Name=&quot;menuBar&quot;</span><br><span class="line">                       ItemsSource=&quot;&#123;Binding MenuBars&#125;&quot;//绑定数据源</span><br><span class="line">                       SelectionChanged=&quot;ListBox_SelectionChanged&quot;</span><br><span class="line">                       &gt;</span><br><span class="line">                   &lt;i:Interaction.Triggers&gt;</span><br><span class="line">                       &lt;i:EventTrigger</span><br><span class="line">                           EventName=&quot;SelectionChanged&quot;&gt;</span><br><span class="line">                           &lt;i:InvokeCommandAction</span><br><span class="line">                               Command=&quot;&#123;Binding NavigateCommand&#125;&quot;</span><br><span class="line">			CommandParameter=&quot;&#123;Binding ElementName=menuBar, Path=SelectedItem&#125;&quot; /&gt;</span><br><span class="line">                           </span><br><span class="line">                       &lt;/i:EventTrigger&gt;</span><br><span class="line">                   &lt;/i:Interaction.Triggers&gt;</span><br><span class="line">                   &lt;ListBox.ItemTemplate&gt;</span><br><span class="line">                       &lt;DataTemplate&gt;</span><br><span class="line">                           &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;10&quot;&gt;</span><br><span class="line">                               &lt;materialDesign:PackIcon Kind=&quot;&#123;Binding Icon&#125;&quot;  /&gt;</span><br><span class="line">                               &lt;TextBlock Text=&quot;&#123;Binding Title&#125;&quot; Margin=&quot;20,0,0,0&quot;/&gt;</span><br><span class="line">                           &lt;/StackPanel&gt;</span><br><span class="line">                       &lt;/DataTemplate&gt;</span><br><span class="line">                   &lt;/ListBox.ItemTemplate&gt;</span><br><span class="line">               &lt;/ListBox&gt;</span><br></pre></td></tr></table></figure>
@@ -405,9 +407,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextBox Width=&quot;200&quot; HorizontalAlignment=&quot;Left&quot; Margin=&quot;10,5&quot; md:HintAssist.Hint=&quot;查找代办事项&quot;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>19.属性，方法绑定</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public ObservableCollection&lt;ToDoDtos&gt; ToDoDtos</span><br><span class="line">        &#123;</span><br><span class="line">            get &#123; return toDoDtos; &#125;</span><br><span class="line">            set &#123; toDoDtos = value; RaisePropertyChanged(); &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> 方法绑定的是ViewModel中的委托名字，而不是方法名字</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public ObservableCollection&lt;ToDoDtos&gt; ToDoDtos</span><br><span class="line">        &#123;</span><br><span class="line">            get &#123; return toDoDtos; &#125;</span><br><span class="line">            set &#123; toDoDtos = value; RaisePropertyChanged(); &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> 方法绑定的是ViewModel中的委托名字，而不是方法名字</span><br><span class="line"> public MainViewModel(IRegionManager regionManager)</span><br><span class="line">        &#123;</span><br><span class="line">            GoBackCommand = new DelegateCommand(GoBack);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        public DelegateCommand GoBackCommand &#123; get; set; &#125;</span><br></pre></td></tr></table></figure>
 
-<p>20.实现将两个元素分别放在某一行的两端，即两端对齐。1.使用grid，2.使用dockpanel（将lastfill改为false，同时将dockpanel.dock改为right）</p>
+<p>20.实现将两个元素分别放在某一行的两端，即两端对齐。1.使用grid，然后使用位置布局2.使用dockpanel（将lastfill改为false，同时将dockpanel.dock改为right,如果仍然没有分布，则可能是因为集合控件里面没有将HorizontalContentAlignment&#x3D;”Stretch”）</p>
 <p>21.net5无法使用  Configuration.GetConnectionString(“connectionstring”);的方式去获取字符串，只能使用Configuration[“MyTodo2ConnectionString”]的方式去获取</p>
 <p>22.UnitOfWork的作用就是底层的手写Repository的逻辑已经被泛型的方式封装好了，我们只需要拿来使用即可。需要导入Microsoft.EntityFrameworkCore.AutoHistory的包</p>
 <p>然后往unitofwork里面导入上下文，和同时导入相关的数据库。这样工作单元就可以获取每个类的仓储以及数据库上下文。</p>
@@ -425,11 +427,12 @@
 <p>24.使用到了需要对泛型进行约束的情况，尽量将泛型进行约束，否则需要传入对象类型结果传入的是string类型则会报异常。</p>
 <p>25.不能将增删改查的实现写在一个ServiceBase里面，然后具体某个Todoservice去继承ServiceBase，因为使用泛型的不知该泛型具体有哪些属性，在ServiceBase里面无法获取该属性，使用泛型约束也无法顾全所有情况，解决办法1.就是让每个实体Service都去实现一遍增删改查。2.不使用实体类中的属性去增删改查，而是直接使用实体类去实现。</p>
 <p>26：predicte：&#x2F;&#x2F;观察源码，predicte解决了unitofwork中的二义性问题，GetFirstOrDefaultAsync该方法行参数有多个委托类型，此时不知应向哪个形参传递实参，使用形参名+冒号的方式指定向哪个形参传递</p>
-<p>27.automapper：在service层实现转换</p>
-<p>​	1.导入automapper包&#x3D;》 2.创建一个类继承MapperConfigurationExpression如下</p>
+<p>27.automapper：在service层实现转换，只有具体操作到数据库的时候才传递原型，其他都是dto，而且是将参数全部转成dto</p>
+<p>​	1.导入automapper包（预发行）&#x3D;》 2.创建一个类继承MapperConfigurationExpression如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class AutoMapperProfile:MapperConfigurationExpression</span><br><span class="line">    &#123;//构造方法里面注册</span><br><span class="line">        public AutoMapperProfile() &#123; </span><br><span class="line">            CreateMap&lt;ToDo,ToDoDto&gt;().ReverseMap();</span><br><span class="line">            CreateMap&lt;Memo,MemoDto&gt;().ReverseMap();</span><br><span class="line">            CreateMap&lt;User,UserDto&gt;().ReverseMap();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p> 3.注册：var automapperconfig &#x3D; new MapperConfiguration(config &#x3D;&gt; { config.AddProfile(new AutoMapperProfile()); }) ;<br>                services.AddSingleton(automapperconfig.CreateMapper());</p>
+<p>引入静态类：&lt;ContentControl prism:RegionManager.RegionName&#x3D;”{x:Static ext:}”</p>
 <p> 4.在service层注入automapper对象，并在需要转换对应的方法里面完成转换，如下,service层及以上的传参部分全部转换为dto，repository与数据库交互不需要转换，别人的库中的泛型不能使用dto，因为别人的库肯定是针对具体某个类进行操作的。自定义的类视情况而定。</p>
 <pre><code>public TodoService(IMapper mapper)
     &#123;
@@ -460,6 +463,19 @@
 <p>39.在prism的mvvm中启动弹窗的功能是依赖注入IDialogService接口，然后进行showdialog(“窗口名”);窗口名是自己创建的xaml窗口，同时在app中注册registerdialog<AddDialog>（）;进行注册</AddDialog></p>
 <p>40.窗体间传值：1.通过设置弹框的返回值DialogResult</p>
 <p>41.前端数据是如何传递到后端的：就是通过绑定。</p>
+<p>42.关于如何设置margin使其仅右侧和下侧起作用，使用位置进行约束即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">      Grid.Row=&quot;0&quot;</span><br><span class="line">      Margin=&quot;0,0,16,-20&quot;</span><br><span class="line">      HorizontalAlignment=&quot;Right&quot;</span><br><span class="line">      VerticalAlignment=&quot;Bottom&quot;</span><br></pre></td></tr></table></figure>
+
+<p>43，如果想要给grid，stackpanel等添加圆角等操作，有两种方法：</p>
+<p>​       1.在外面套一层border，在border里面才有cornerradius属性，缺点是不能使用background(不推荐)</p>
+<p>​	   2.创建一个border，然后使用grid.row 附加属性将其附加上去，stackpanel的话就是外面套一个grid，然后创建border将其附加在grid.row,可以随意更改背景色（推荐）。</p>
+<p>44.stackpanel什么时候外面套grid？需要添加背景色，比如使用border为某个布局添加背景色，使用border中的grid.row为某个区域添加背景色。</p>
+<p>45.解决listbox或者itemscontrol无法滚动的问题，在外层加上scrollerviewer</p>
+<p>46.针对变量类型Object的另一种等价的方式是使用泛型，这样在需要使用指定类型的话不必进行强转了，而是通过泛型直接指定了方式</p>
+<p>47.所有的增删改查方法必须具有返回类型，不要使用void，所以需要封装一个ApiResponse类，一个bool属性，一个Object属性，而代替Object的方式的另一种解决办法就是使用泛型，参考46。一般两者都需要写，带泛型一般用在多个方法具有同一个返回类型上，例如add，update，而非泛型用在不具有特定返回类型的地方例如delete</p>
+<p>48.prism官方文档：<a target="_blank" rel="noopener" href="https://prismlibrary.com/docs/index.html">https://prismlibrary.com/docs/index.html</a></p>
+<p>49.部署</p>
+<p>复制数据库到webapi目录下</p>
 
       
     </div>
@@ -471,7 +487,7 @@
         <p><span>Title:</span><a href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2022-07-17, 09:44:21</p>
-        <p><span>Updated:</span>2023-05-02, 19:19:04</p>
+        <p><span>Updated:</span>2023-06-03, 16:40:56</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/" title="net5项目">https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2022/07/17/net5%E9%A1%B9%E7%9B%AE/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
