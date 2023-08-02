@@ -269,6 +269,334 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-STM32" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/07/10/STM32/" class="article-date">
+      <time datetime="2023-07-10T10:30:12.825Z" itemprop="datePublished">2023-07-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="/2023/07/10/STM32/assets/image-20230710185149434.png" alt="image-20230710185149434"></p>
+<p>如果想要单片机工作，首先需要将红色和蓝色部分的引脚配置好。</p>
+<p>带ft的表示电平常规为0-3.3v，但是可以容忍5v</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230710190710553.png" alt="image-20230710190710553"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731151523848.png" alt="image-20230731151523848"></p>
+<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p><img src="/2023/07/10/STM32/assets/image-20230726215735884.png" alt="image-20230726215735884"></p>
+<h1 id="GPIO1"><a href="#GPIO1" class="headerlink" title="GPIO1"></a>GPIO1</h1><p><img src="/2023/07/10/STM32/assets/image-20230727102405998.png" alt="image-20230727102405998"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230726211652064.png" alt="image-20230726211652064"></p>
+<p>下图解释参考P44</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230726212906589.png" alt="image-20230726212906589"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230726212952814.png" alt="image-20230726212952814"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230727095154279.png" alt="image-20230727095154279"></p>
+<p>GPIO是如何被封装的？：P31</p>
+<p>寄存器位操作方法的四种方法：P36</p>
+<p>32位寄存器如何用16位表示：四个字节用8421码表示，共8个字节</p>
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>ifdef…end if 防止出现一个函数文件被调用时出现被使用#include重复包含两次的情况，进而导致出现redefine的报错</p>
+<h2 id="文件夹说明"><a href="#文件夹说明" class="headerlink" title="文件夹说明"></a>文件夹说明</h2><p>启动文件：</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731121154455.png" alt="image-20230731121154455"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731115829061.png" alt="image-20230731115829061"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731115945148.png" alt="image-20230731115945148"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120253128.png" alt="image-20230731120253128"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120329784.png" alt="image-20230731120329784"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120350839.png" alt="image-20230731120350839"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120902529.png" alt="image-20230731120902529"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120815028.png" alt="image-20230731120815028"></p>
+<p>引脚：stm32f103c8t6引脚个数为48，引脚是物理上的，而io口是引脚的功能，可作为IO口，因为每个引脚占4位，而一个寄存器共32位，所以每个寄存器占8个引脚</p>
+<h1 id="LED闪烁：参考书籍"><a href="#LED闪烁：参考书籍" class="headerlink" title="LED闪烁：参考书籍"></a>LED闪烁：参考书籍</h1><h2 id="GPIO输出"><a href="#GPIO输出" class="headerlink" title="GPIO输出"></a>GPIO输出</h2><p>低电平触发</p>
+<p>GPIO的功能就是用来控制高低电平的，而大部分外设都是通过高低电平来工作的，所以将GPIO与各种外设联系起来实现各种功能。</p>
+<p>在stm32单片机中引脚分成了很多组GPIOA~GPIOE，并且每一组中又有0-15共16个引脚;每个IO口（引脚）由4bit位来控制那么一组IO就需要16*4 &#x3D; 64bit,而8个引脚就已经32位，构成一个寄存器了，所以使用两个寄存器CRL和CRH来控制GPIO的16个引脚，高32bit由GPIOX_CRH寄存器来配置;低32bit由GPIOX_CRL寄存器来进行配置.对应的引脚CRL为0到7，CRH为8到15。从上面我们可以看出不管是GPIOX_CRL还是GPIOX_CRH每个IO都是由CNF[1:0]和MODE[1:0]两部分进行配置选择的;其中MODE[1:0]是进行配置输入还是输出，一般00为输入， 11为输出。CNF[1:0]则配合MODE[1:0]进行具体的模式配置。所以如果使用8-15号引脚就是用CRH，否则使用CRL，使用低寄存器中的某个引脚就控制对应的引脚的CNF和MODE</p>
+<p>在源代码中assert_param()函数用于检查参数中的函数是否复合true，若为true则不管，若为false则向控制台报错</p>
+<p>pin:引脚</p>
+<p>GPIO_SetBits();设置BSRR寄存器，输出高电平</p>
+<p>GPIO_ResetBits();设置BRR寄存器，输出低电平，set代表置位，即高电平，reset代表复位，即低电平</p>
+<p>推挽输出：<img src="/2023/07/10/STM32/assets/image-20230731132633929.png" alt="image-20230731132633929"></p>
+<p>开漏输出：</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731132724859.png" alt="image-20230731132724859"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731132835401.png" alt="image-20230731132835401"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731142457816.png" alt="image-20230731142457816"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731133210607.png" alt="image-20230731133210607"></p>
+<p>如下，一个GPIO外设共有下面这些寄存器，而共有A-H个这样的外设，所以封装为结构体</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731143004091.png" alt="image-20230731143004091"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	//四步：1.配置时钟	2.配置GPIO3个属性	3.调用GPIO函数初始化	4.设置高低电平</span><br><span class="line">	//GPIO都挂在ABP2上面</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);//打开时钟，为了降低功耗</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure; //引入结构体，不是定义结构体，命名为GPIO_InitStructure</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;//推挽输出，对应的寄存器是CRH（端口配置高寄存器）</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;//0引脚</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;//速度，对应的寄存器是CRL（端口配置低寄存器）</span><br><span class="line">	GPIO_Init(GPIOA,&amp;GPIO_InitStructure);</span><br><span class="line">	//GPIO_ResetBits(GPIOA,GPIO_Pin_0);设置0引脚位低电平</span><br><span class="line">	//GPIO_SetBits(GPIOA,GPIO_Pin_0);设置引脚0位高电平</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_RESET);</span><br><span class="line">		Delay_ms(500);</span><br><span class="line">		GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_SET);</span><br><span class="line">		Delay_ms(500);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>16进制与2进制转换：</p>
+<p>例如0x 0 0 0 1实际上代表：0000 0000 0000 0001      而0x 0 0 8 0 实际上代表 0000 0000 1000 0000</p>
+<h2 id="GPIO输入"><a href="#GPIO输入" class="headerlink" title="GPIO输入"></a>GPIO输入</h2><p><img src="/2023/07/10/STM32/assets/image-20230731192709292.png" alt="image-20230731192709292"></p>
+<p>一般配置为上拉输入模式</p>
+<p><strong>上拉输入：有上拉电阻</strong></p>
+<p>按键未按下时端口接高电平，即高电平 1 状态—3.3v</p>
+<p>按键按下时端口接低电平，即低电平 0 状态——-0v</p>
+<p><strong>下拉输入：有下拉电阻</strong></p>
+<p>按键未按下时端口接低电平，即低电平 0 状态—0v</p>
+<p>按键按下时端口接高电平，即高电平 1 状态——3.3v</p>
+<p>1、 上拉输入（GPIO_Mode_IPU）</p>
+<p>输入上拉就是直接从IO端口进来，通过上拉电阻将电平拉高，再经过施密特触发器转换成0、1信号，读取此时的引脚电平为高电平, 然后就输入到数据到寄存器里面。</p>
+<p>2、 下拉输入（GPIO_Mode_IPD）</p>
+<p>输入下拉就是直接从IO端口进来，通过下拉电阻将电平拉低，再经过施密特触发器转换成0、1信号，读取此时的引脚电平为低电平, 然后就输入到数据到寄存器里面。</p>
+<p>3、 模拟输入（GPIO_Mode_AIN）</p>
+<p>信号进入后不经过上拉电阻或者下拉电阻，关闭施密特触发器，经由另一线路把电压信号传送到片上外设模块。比如传送给ADC模块，由ADC采集电压信号。所以可以理解为模拟输入的信号是未经处理的信号。</p>
+<p>4、 浮空输入(GPIO_Mode_IN_FLOATING)</p>
+<p>浮空最大的特点就是电压的不确定性，它可能是0V，也可能是VCC，还可能是介于两者之间的某个值（最有可能） 浮空一般用来做ADC输入用，这样可以减少上下拉电阻对结果的影响。由于其输入阻抗比较大，一般把这种模式用于标准的通讯协议，比如IIC、USART的等。</p>
+<h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><p>中断源触发，使当前程序暂停，去处理中断程序，中断函数是我们来写里面的逻辑但不是由我们调用的，而是中断来了后自动调用的。中断源（中断外设）：EXTI，TIM，ADC,USART,SPI,IIC,RTC等。即有中断脉冲过来，就执行中断操作，若没有中断脉冲过来，就执行自己的程序</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Raider1/article/details/128722797">https://blog.csdn.net/Raider1/article/details/128722797</a></p>
+<h2 id="NVIC：嵌套向量中断控制器"><a href="#NVIC：嵌套向量中断控制器" class="headerlink" title="NVIC：嵌套向量中断控制器"></a>NVIC：嵌套向量中断控制器</h2><p><img src="/2023/07/10/STM32/assets/image-20230801120753738.png" alt="image-20230801120753738"></p>
+<p>NVIC_IPRx:中断优先级控制器，中断优先级分为抢占优先级和响应优先级，共占四位，若前者占n位，则后者占4-n位，分组如下</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230801152902209.png" alt="image-20230801152902209"></p>
+<h2 id="EXTI-外部中断-x2F-事件控制器"><a href="#EXTI-外部中断-x2F-事件控制器" class="headerlink" title="EXTI:外部中断&#x2F;事件控制器"></a>EXTI:外部中断&#x2F;事件控制器</h2><p>什么时候需要外部中断：比如放在那平时不起眼，一旦某个时刻触发电平变化，输出波形，而且是快速变化的，比如旋转编码器，此时需要外部中断EXTI</p>
+<p>因为有多个GPIO外设，但是只有16个引脚，所以通过AFIO去选择使用哪个IO口外设，通过EXTI去检测使用上边沿触发还是下边沿触发，通过NVIC去设置中断优先级</p>
+<p>需要5个步骤：</p>
+<p>1.配置RCC，包括AFIO的RCC</p>
+<p>2.配置GPIO为输入模式</p>
+<p>3.配置AFIO选择GPIO的哪个外设</p>
+<p>4.配置EXTI选择上升沿还是下降沿触发</p>
+<p>5.配置NVIC</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230801172416984.png" alt="image-20230801172416984"></p>
+<p>AFIO：内部结构图：</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230802095641704.png" alt="image-20230802095641704"></p>
+<p>上图中EXTI部分内部的的执行流程：参考书籍P136</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230802094030830.png" alt="image-20230802094030830"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-matdem" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/07/03/matdem/" class="article-date">
+      <time datetime="2023-07-03T07:33:48.185Z" itemprop="datePublished">2023-07-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>材料赋值</p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703153422698.png" alt="image-20230703153422698"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">第一种方式，直接赋值</span><br><span class="line">//引入第一组材料</span><br><span class="line">matTxt=load(&#x27;Mats\Soil1.txt&#x27;);%将soil1文件以矩阵的形式保存在mattxt里面</span><br><span class="line">%设置材料名为Soil1</span><br><span class="line">Mats&#123;1,1&#125;=material(&#x27;Soil1&#x27;,matTxt,B.ballR);</span><br><span class="line">Mats&#123;1,1&#125;.Id=1;</span><br><span class="line">//引入第二组材料</span><br><span class="line">matTxt2=load(&#x27;Mats\Soil2.txt&#x27;);</span><br><span class="line">Mats&#123;2,1&#125;=material(&#x27;Soil2&#x27;,matTxt2,B.ballR);</span><br><span class="line">Mats&#123;2,1&#125;.Id=2;</span><br><span class="line">d.Mats=Mats;%将元胞赋给d.mats对象</span><br><span class="line">%为颗粒赋值,声明颗粒组与材料组的对应关系</span><br><span class="line">d.setGroupMat(&#x27;layer2&#x27;,&#x27;Soil2&#x27;);</span><br><span class="line">d.groupMat2Model(&#123;&#x27;sample&#x27;,&#x27;layer2&#x27;&#125;);%应用到sample，layer2两个层上</span><br><span class="line">d.balanceBondedModel();%开始平衡</span><br><span class="line">%---------end assign material to layers and balance the model</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/07/03/matdem/assets/image-20230717161723344.png" alt="image-20230717161723344"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230717162000449.png" alt="image-20230717162000449"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230717162132887.png" alt="image-20230717162132887"></p>
+<h3 id="平衡"><a href="#平衡" class="headerlink" title="平衡"></a>平衡</h3><p>平衡1</p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703161310351.png" alt="image-20230703161310351"></p>
+<p>平衡2</p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703162006963.png" alt="image-20230703162006963"></p>
+<p>平衡3</p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703161654843.png" alt="image-20230703161654843"></p>
+<p>平衡4</p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703162210045.png" alt="image-20230703162210045"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703162524145.png" alt="image-20230703162524145"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703164656591.png" alt="image-20230703164656591"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703164920666.png" alt="image-20230703164920666"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703172325581.png" alt="image-20230703172325581"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703172608015.png" alt="image-20230703172608015"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703173157123.png" alt="image-20230703173157123"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230703182756857.png" alt="image-20230703182756857"></p>
+<p><img src="/2023/07/03/matdem/assets/image-20230717152901873.png" alt="image-20230717152901873"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.mo.ax(sampleId)；获取单元的横坐标，结果为一个矩阵</span><br></pre></td></tr></table></figure>
+
+<p>;建模</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-51单片机" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/" class="article-date">
+      <time datetime="2023-06-28T13:22:37.504Z" itemprop="datePublished">2023-06-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<h2 id="title-51单片机"><a href="#title-51单片机" class="headerlink" title="title:51单片机"></a>title:51单片机</h2><h2 id="LCD显示屏调试"><a href="#LCD显示屏调试" class="headerlink" title="LCD显示屏调试"></a>LCD显示屏调试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;LCD1602.h&quot;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	LCD_Init();</span><br><span class="line">	LCD_ShowChar(2,2,&#x27;A&#x27;);</span><br><span class="line">	LCD_ShowString(1,1,&quot;Hello&quot;);</span><br><span class="line">	LCD_ShowNum(1,9,123,3);</span><br><span class="line">	LCD_ShowSignedNum(1,13,-66,2);</span><br><span class="line">	LCD_ShowHexNum(2,1,0xA8,2);</span><br><span class="line">	LCD_ShowBinNum(2,4,0xAA,8);</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="矩阵键盘"><a href="#矩阵键盘" class="headerlink" title="矩阵键盘"></a>矩阵键盘</h2><p>将键盘函数已经封装好，直接调用即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//将矩阵的返回值封装成函数，思路，先将所有引脚置1，然后低电平启动</span><br><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;Delay.h&quot;</span><br><span class="line">unsigned char MatrixKey()</span><br><span class="line">&#123;</span><br><span class="line">	unsigned char NumberKey=0;</span><br><span class="line">	P1=0xFF;</span><br><span class="line">	P1_3=0;//第一列置0</span><br><span class="line">	if(P1_7==0)&#123;Delay(20);while(P1_7==0);Delay(20);NumberKey=1;&#125;//判断是否为第一个按键,并进行消抖，消抖用在按键按下时不操作，按键松开时操作</span><br><span class="line">	if(P1_6==0)&#123;Delay(20);while(P1_6==0);Delay(20);NumberKey=5;&#125;</span><br><span class="line">	if(P1_5==0)&#123;Delay(20);while(P1_5==0);Delay(20);NumberKey=9;&#125;</span><br><span class="line">	if(P1_4==0)&#123;Delay(20);while(P1_4==0);Delay(20);NumberKey=13;&#125;</span><br><span class="line">	</span><br><span class="line">	//判断第二列</span><br><span class="line">	P1=0xFF;</span><br><span class="line">	P1_2=0;//第二列置0</span><br><span class="line">	if(P1_7==0)&#123;Delay(20);while(P1_7==0);Delay(20);NumberKey=2;&#125;</span><br><span class="line">	if(P1_6==0)&#123;Delay(20);while(P1_6==0);Delay(20);NumberKey=6;&#125;</span><br><span class="line">	if(P1_5==0)&#123;Delay(20);while(P1_5==0);Delay(20);NumberKey=10;&#125;</span><br><span class="line">	if(P1_4==0)&#123;Delay(20);while(P1_4==0);Delay(20);NumberKey=14;&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	P1=0xFF;</span><br><span class="line">	P1_1=0;//第三列置0</span><br><span class="line">	if(P1_7==0)&#123;Delay(20);while(P1_7==0);Delay(20);NumberKey=3;&#125;</span><br><span class="line">	if(P1_6==0)&#123;Delay(20);while(P1_6==0);Delay(20);NumberKey=7;&#125;</span><br><span class="line">	if(P1_5==0)&#123;Delay(20);while(P1_5==0);Delay(20);NumberKey=11;&#125;</span><br><span class="line">	if(P1_4==0)&#123;Delay(20);while(P1_4==0);Delay(20);NumberKey=15;&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	P1=0xFF;</span><br><span class="line">	P1_0=0;//第四列置0</span><br><span class="line">	if(P1_7==0)&#123;Delay(20);while(P1_7==0);Delay(20);NumberKey=4;&#125;</span><br><span class="line">	if(P1_6==0)&#123;Delay(20);while(P1_6==0);Delay(20);NumberKey=8;&#125;</span><br><span class="line">	if(P1_5==0)&#123;Delay(20);while(P1_5==0);Delay(20);NumberKey=12;&#125;</span><br><span class="line">	if(P1_4==0)&#123;Delay(20);while(P1_4==0);Delay(20);NumberKey=16;&#125;</span><br><span class="line">	return NumberKey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;MatrixKey.h&quot;</span><br><span class="line">#include &quot;LCD1602.h&quot;</span><br><span class="line"></span><br><span class="line">unsigned char NumberKey;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	LCD_Init();</span><br><span class="line">	LCD_ShowString(1,1,&quot;HelloWorld&quot;);</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		NumberKey = MatrixKey();</span><br><span class="line">		if(NumberKey) &#123;LCD_ShowNum(2,1,NumberKey,2);&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="矩阵键盘密码锁"><a href="#矩阵键盘密码锁" class="headerlink" title="矩阵键盘密码锁"></a>矩阵键盘密码锁</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;MatrixKey.h&quot;</span><br><span class="line">#include &quot;LCD1602.h&quot;</span><br><span class="line"></span><br><span class="line">//unsigned char PassWord;</span><br><span class="line">unsigned char KeyNum;</span><br><span class="line">unsigned int PassWord,Count;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	LCD_Init();//调用LCD前必须先调用该函数</span><br><span class="line">	LCD_ShowString(1,1,&quot;PassWord&quot;);</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		KeyNum = MatrixKey();</span><br><span class="line">		if(KeyNum)&#123;//必须判断是否为0，否则按完键之后根据循环又会迅速回0</span><br><span class="line">		if(KeyNum &lt;= 10)</span><br><span class="line">		&#123;</span><br><span class="line">			if(Count&lt;4)</span><br><span class="line">			&#123;</span><br><span class="line">			PassWord = PassWord*10;</span><br><span class="line">			PassWord += KeyNum%10;</span><br><span class="line">			LCD_ShowNum(2,1,PassWord,4);</span><br><span class="line">				Count++;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//按下确认键</span><br><span class="line">		if(KeyNum==11)</span><br><span class="line">			&#123;</span><br><span class="line">				if(PassWord==2345)</span><br><span class="line">					&#123;</span><br><span class="line">						PassWord=0;</span><br><span class="line">						Count=0;</span><br><span class="line">						LCD_ShowNum(2,1,PassWord,4);</span><br><span class="line">						LCD_ShowString(1,14,&quot;OK&quot;);</span><br><span class="line">					&#125;</span><br><span class="line">				else</span><br><span class="line">					&#123;</span><br><span class="line">						PassWord=0;</span><br><span class="line">						Count=0;</span><br><span class="line">						LCD_ShowNum(2,1,PassWord,4);</span><br><span class="line">						LCD_ShowString(1,14,&quot;ERR&quot;);</span><br><span class="line">					&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//按下取消键</span><br><span class="line">		if(KeyNum==12)</span><br><span class="line">		&#123;</span><br><span class="line">			PassWord=0;</span><br><span class="line">			Count=0;</span><br><span class="line">			LCD_ShowNum(2,1,PassWord,4);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="定时器0-x2F-计数器1"><a href="#定时器0-x2F-计数器1" class="headerlink" title="定时器0&#x2F;计数器1"></a>定时器0&#x2F;计数器1</h2><p>定时器个数3个，T0,T1,T2（可多可少，参考官方）</p>
+<p>原理：每个一个时间段计数单元就加1，所以单位事件乘以计数就是计时时间</p>
+<p>定时器属于CPU内部的资源。</p>
+<p>作用：1.计时   2.代替Delay，类似于并行 </p>
+<h3 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h3><p>一般只用到模式1 ，晶振为12MHZ，每个电平为1us，</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230630205734266.png" alt="image-20230630205734266"></p>
+<p>如上图一般只用到模式1 ，模式1工作原理如上图，左侧为计时单元，中间为计数单元，右侧为中断单元，TF0为中断信号。</p>
+<p>左侧时钟部分：时钟可以由两部分提供，1.SYSclk系统时钟 2.T0 Pin外设时钟。本51频率为12MHZ，其中12T代表12分频，所以每频为1M，对应的时间为1us。其中C&#x2F;T代表如果给1，开关连接T0Pin为计数器，如果给0连接计时器SySclk.</p>
+<p>中间部分的TL0为低字节，TH0为高字节。共可以存储65535次。</p>
+<h3 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h3><p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230630211158753.png" alt="image-20230630211158753"></p>
+<p>将计时器与中断系统连接在一起</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230630211543372.png" alt="image-20230701174338756"></p>
+<h3 id="定时器相关寄存器和中断寄存器"><a href="#定时器相关寄存器和中断寄存器" class="headerlink" title="定时器相关寄存器和中断寄存器"></a>定时器相关寄存器和中断寄存器</h3><p>观察定时器相关模式图可以看到图中的开关如何选择，就是通过寄存器来设置的，写代码时就是通过控制寄存器来控制相关功能的。</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230630212040036.png" alt="image-20230630212040036"></p>
+<p>以下为TCON控制寄存器的详细介绍，它是中断系统里面的东西，参考定时器和中断系统。根据系统图，除了tmod部分，其余都属于tcon部分</p>
+<p>TCON可位寻址</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230630212509612.png" alt="image-20230630212509612"></p>
+<h3 id="TMOD详细图解"><a href="#TMOD详细图解" class="headerlink" title="TMOD详细图解"></a>TMOD详细图解</h3><p>GATE&#x3D;0就是由TR0单独控制，&#x3D;1就是由INTO和TR0共同控制，一般只用到工作模式1，所以M1,M0&#x3D;0,1，根据图只有gate金额c&#x2F;t部分属于tmod，其余都属于TCON部分。</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230630212900610.png" alt="image-20230630212900610"></p>
+<p>案例：实现使用计时器实现LED等的亮灭。</p>
+<p>思路：首先实现计时一秒：因为一个代表1us，65535就是65毫秒，那么怎么使用1ms呢？从64535处开始计时，到65535就是1000个us就是1ms（开始执行中断函数），那么如何计时1s呢，利用if函数判断该函数是否被调用了1000次就是1s</p>
+<p>脉冲的原理：默认是共有65535个脉冲，每个脉冲1us，相当于所有脉冲已经编号号并且固定好，当执行的时候仅需要设置从哪里开始执行即可，达到第65535个脉冲是开始执行中断程序，执行完后默认从0开始，而不是从设置的起点开始。</p>
+<p>假如说，我们定时50毫秒，TH0，TL0对应着什么值呢？ 上面我们说了，TH0，TL0，组成的16位计数器计数范围是 0—65535 。50ms &#x3D; 50 000us，我们只要让 TH0 TL0 从（65535 - 50000）开始计数，TH0，TL0就会不停的+1，直到TH0，TL0&#x3D;65535，就是计数了50000次，时间就是过了50ms。我们只要在中断程序里面，重新赋值给TH0，TL0&#x3D;(65535 - 50000)，定时器就会不停得每50ms中断一次了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">代码如下：实现1s灯闪烁</span><br><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line"></span><br><span class="line">void Timer0_Init()</span><br><span class="line">&#123;</span><br><span class="line">		//TMOD=0x01; //选择模式0</span><br><span class="line">//		代码优化，我们现在操作定时器0，如果是在定时器1使用的情况下开启定时器0使用这种方式赋值可能会影响定时器1的使用，所以将上面的代码改为如下的目的是解耦，将两个定时器分别操作</span><br><span class="line">		TMOD=TMOD&amp;0xF0;//将高四位保持不变，低四位清0（即让定时器1按照原来的方式工作，定时器0复位）</span><br><span class="line">		TMOD=TMOD|&amp;0x01;//高四位保持不变，第四位设置成想要的值(即定时器1按照原来的方式工作，定时器0重新设置</span><br><span class="line">		//再一次优化为 TMOD &amp;= 0xF0; TMOD |= 0x01;</span><br><span class="line">		</span><br><span class="line">	//控制tcon，可以位寻址</span><br><span class="line">		TF0=0;	//中断标志</span><br><span class="line">		TR0=1;//允许计数</span><br><span class="line">		TH0=64535/256;//64535转换成16位后将前八位转换成10进制就是这样计算</span><br><span class="line">		TL0=64532%256;//同上，转换成16位后将后八位转化成10进制就是如此。</span><br><span class="line">		ET0=1;</span><br><span class="line">		EA=1;</span><br><span class="line">		PT0=0;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	Timer0_Init();</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		//P2_3=0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//思路，程序先进入while循环，同时计时器并行执行，同时计时器从64535处开始计时,达到65535进行中断函数，所以中断函数与主函数相当于是并联执行的。</span><br><span class="line">unsigned int TimeCount;</span><br><span class="line">void Timer0_Routine() interrupt 1</span><br><span class="line">&#123;</span><br><span class="line">	//这里重新赋值的原因是，执行中断后，脉冲会默认从0开始，而需要的是用64535开始</span><br><span class="line">	TH0=64535/256;</span><br><span class="line">	TL0=64532%256;</span><br><span class="line">	TimeCount++;</span><br><span class="line">	//大于1000是为了实现1s</span><br><span class="line">	if(TimeCount&gt;=1000)</span><br><span class="line">	&#123;</span><br><span class="line">		TimeCount=0;</span><br><span class="line">		P2_3=~P2_3;//闪烁就是取反</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的设置寄存器函数也可以使用软件自动生成，不过需要删除第一行和ET0,EA,PT0</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230703201135176.png" alt="image-20230703201135176"></p>
+<p>案例：小灯通过按键定时左右移动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;Timer0.h&quot;</span><br><span class="line">#include &quot;Key.h&quot;</span><br><span class="line">#include &lt;INTRINS.H&gt;</span><br><span class="line">unsigned char KeyNum,LEDMode;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	P2=0xFE;//先赋初值</span><br><span class="line">	Timer0_Init();</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		KeyNum=Key();</span><br><span class="line">		//进行0和1转换</span><br><span class="line">		if(KeyNum==1) </span><br><span class="line">		&#123;</span><br><span class="line">			LEDMode++;</span><br><span class="line">			if(LEDMode&gt;=2)</span><br><span class="line">			&#123;</span><br><span class="line">				LEDMode=0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//思路，程序先进入while循环，同时计时器并行执行，同时计时器从64535处开始计时,达到65535进行中断函数，所以中断函数与主函数相当于是并联执行的。</span><br><span class="line"></span><br><span class="line">void Timer0_Routine() interrupt 1</span><br><span class="line">&#123;</span><br><span class="line">	static unsigned int TimeCount;</span><br><span class="line">	TL0 = 0x18;		//设置定时初值</span><br><span class="line">	TH0 = 0xFC;</span><br><span class="line">	TimeCount++;</span><br><span class="line">	//大于1000是为了实现1s</span><br><span class="line">	if(TimeCount&gt;=500)</span><br><span class="line">	&#123;</span><br><span class="line">		TimeCount=0;</span><br><span class="line">		if(LEDMode==0)</span><br><span class="line">		&#123;</span><br><span class="line">			P2=_crol_(P2,1);//左移，是INTRINS.H中的函数</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;</span><br><span class="line">			P2=_cror_(P2,1);//右移</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>案例2：实现闹钟计时</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;Delay.h&quot;</span><br><span class="line">#include &quot;LCD1602.h&quot;</span><br><span class="line">#include &quot;Timer0.h&quot;</span><br><span class="line"></span><br><span class="line">unsigned int Sec,Min,Hour;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	LCD_Init();</span><br><span class="line">	Timer0_Init();</span><br><span class="line">	LCD_ShowString(1,1,&quot;Clock&quot;);</span><br><span class="line">	LCD_ShowString(2,3,&quot;:&quot;);</span><br><span class="line">	LCD_ShowString(2,6,&quot;:&quot;);</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		LCD_ShowNum(2,1,Hour,2);</span><br><span class="line">		</span><br><span class="line">		LCD_ShowNum(2,4,Min,2);</span><br><span class="line">		LCD_ShowNum(2,7,Sec,2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//延时函数</span><br><span class="line"></span><br><span class="line">void Timer0_Routine() interrupt 1</span><br><span class="line">&#123;</span><br><span class="line">	static unsigned int TimeCount;</span><br><span class="line">	TL0 = 0x18;		//设置定时初值</span><br><span class="line">	TH0 = 0xFC;		//设置定时初值</span><br><span class="line">	TimeCount++;</span><br><span class="line">	//大于1000是为了实现1s</span><br><span class="line">	if(TimeCount&gt;=1000)</span><br><span class="line">	&#123;</span><br><span class="line">		TimeCount=0;</span><br><span class="line">		Sec++;</span><br><span class="line">		if(Sec&gt;=60)</span><br><span class="line">		&#123;</span><br><span class="line">			Sec=0;</span><br><span class="line">			Min++;</span><br><span class="line">			if(Min&gt;=60)</span><br><span class="line">			&#123;</span><br><span class="line">				Min=0;</span><br><span class="line">				Hour++;</span><br><span class="line">				if(Hour&gt;=24)</span><br><span class="line">				&#123;</span><br><span class="line">					Hour=0;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><p>之前的程序是代码写好之后自动运行执行程序，无法与用户交互，使用串口可以将上位机与单片机相连实现用户控制单片机的执行（即通过电脑控制单片机的执行，而不是手动控制单片机）</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704205049750.png" alt="image-20230704205049750"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704205616583.png" alt="image-20230704205616583"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704205904103.png" alt="image-20230704205904103"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704210526549.png" alt="image-20230704210526549"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704210545615.png" alt="image-20230704210545615"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704211100470.png" alt="image-20230704211100470"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704211758191.png" alt="image-20230704211758191"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230704212224871.png" alt="image-20230704212224871"></p>
+<h3 id="以模式1为例"><a href="#以模式1为例" class="headerlink" title="以模式1为例"></a>以模式1为例</h3><p>将上面的所有寄存器都配置一边即可。</p>
+<p>SM0&#x2F;FE不需要管，因为方式1，2，3默认有检测帧错误功能</p>
+<p>SM0&#x3D;0（B7），SM1&#x3D;1则选择了方式1</p>
+<p>SM2不用管，因为使用的方式1</p>
+<p>REN：根据说明选择</p>
+<p>TB8,RB8不用管：方式一不需要</p>
+<p>TI必须手动清零： 数据发送完之后会自动置1，所以需要我们手动清0</p>
+<p>综上配出SCON&#x3D;0x40;</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230705192010035.png" alt="image-20230705192010035"></p>
+<p>SBUF:不用管，就是用来发送和接受数据的</p>
+<p>PCON:</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230706211848091.png" alt="image-20230706211848091"></p>
+<p>波特率与定时器1有关，所以需要配置定时器1，而且计时器使用的是模式2</p>
+<p>波特率计算器</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230706210700853.png" alt="image-20230706210700853"></p>
+<h3 id="串口向电脑发送数据"><a href="#串口向电脑发送数据" class="headerlink" title="串口向电脑发送数据"></a>串口向电脑发送数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;UART.H&quot;</span><br><span class="line">#include &quot;UART.H&quot;</span><br><span class="line">#include &quot;Delay.h&quot;</span><br><span class="line"></span><br><span class="line">unsigned char Sec;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	UART_Init();</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		UART_SendByte(Sec);</span><br><span class="line">		Sec++;</span><br><span class="line">		Delay(1000);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">模块的代码如下：</span><br><span class="line">//向串口发送数据</span><br><span class="line">void UART_SendByte(unsigned char Byte)</span><br><span class="line">	&#123;</span><br><span class="line">		SBUF=Byte;</span><br><span class="line">		while(TI==0);//若发送完成则清0</span><br><span class="line">		TI=0;</span><br><span class="line">	&#125;</span><br><span class="line">//串口初始化</span><br><span class="line">	void UART_Init()</span><br><span class="line">	&#123;</span><br><span class="line">		SCON=0x40;</span><br><span class="line">		PCON |= 0x80;</span><br><span class="line">		TMOD &amp;= 0x0F;		//设置定时器模式</span><br><span class="line">		TMOD |= 0x20; //波特率与定时器1相关，所以需要配置定时器1</span><br><span class="line">		TL1 = 0xF3;</span><br><span class="line">		TH1 = 0xF3;</span><br><span class="line">		ET1 = 0;</span><br><span class="line">		TR1 = 1;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="电脑向串口发送数据"><a href="#电脑向串口发送数据" class="headerlink" title="电脑向串口发送数据"></a>电脑向串口发送数据</h3><p>需要中断系统，因为单片机可能在执行过程中电脑发送过来数据。</p>
+<p>在UART_Init中将SCON改为0x50,即REN&#x3D;1;，添加EA&#x3D;1,ES&#x3D;1;</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230707212046702.png" alt="image-20230707212046702"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line">#include &quot;UART.h&quot;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	UART_Init();</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void UART_Route() interrupt 4</span><br><span class="line">&#123;</span><br><span class="line">	if(RI==1)</span><br><span class="line">	&#123;</span><br><span class="line">		P2=SBUF;</span><br><span class="line">		RI=0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>波特率计算原理：</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230707213826009.png" alt="image-20230707213826009"></p>
+<p>查看UART_Init函数中TH1&#x3D;0xF3,对应的为243，因为串口每256个数溢出一次，所以256-243&#x3D;13，即定时器13us溢出一次，，因为设置了smod走倍数为1的线，但是后面需要除以16，就是对应的溢出率，溢出率取倒数就是MHZ，变换单位就是4800HZ。</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230707214032707.png" alt="image-20230707214032707"></h2><h2 id="LED点阵屏"><a href="#LED点阵屏" class="headerlink" title="LED点阵屏"></a>LED点阵屏</h2><p>与LED数码管相似，只不过数码管控制8个等，点阵屏控制64个灯</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230708190449325.png" alt="image-20230708190449325"></p>
+<p>原理图</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230708191123389.png" alt="image-20230708191123389"></p>
+<p>因为引脚紧张，所以需要使用41H595拓展引脚个数</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230708191246334.png" alt="image-20230708191246334"></p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230708192641501.png" alt="image-20230708192641501"></p>
+<p>引脚与点阵屏排序对应关系。</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230708190816553.png" alt="image-20230708190816553"></p>
+<p>Sfr：用来定义某个寄存器的名称，将其附上地址，不可位寻址</p>
+<p>Sbit：针对某一位进行定义一个变量名，可以位寻址，实际上单片机直接操作的就是地址，而翻看源码文件实际上就是使用sfr，sbit针对地址进行了一个变量声明，通过操作变量取操作地址</p>
+<p><img src="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/assets/image-20230708195259756.png" alt="image-20230708195259756"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;REGX52.H&gt;</span><br><span class="line"></span><br><span class="line">//定义74HC595三个变量，库中没有该变量，</span><br><span class="line">sbit RCK=P3^5; //注意P3_5表示取该处的值，P3^5表示取该处的地址。</span><br><span class="line">sbit SCK=P3^6;</span><br><span class="line">sbit SER=P3^4;</span><br><span class="line"></span><br><span class="line">void _74HC595_WriteByte(unsigned char Byte)</span><br><span class="line">&#123;</span><br><span class="line">	unsigned char i;</span><br><span class="line">	for(i=0;i&lt;8;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		//注意：0x80&gt;&gt;0=80, 0x80&gt;&gt;1=0x40 ,0x80&gt;&gt;2=0x20;...</span><br><span class="line">		SER=Byte&amp;(0x80&gt;&gt;i);//针对74Hc595的8位进行赋值,执行类似压栈的过程，i=0时首先针对第八位进行赋值，i=1时，这对第七位进行赋值即0x40</span><br><span class="line">		SCK=1;//置1表示执行SER向下压栈一位</span><br><span class="line">		SCK=0;//压栈后清0，等待下一次操作。		</span><br><span class="line">	&#125;</span><br><span class="line">	RCK=1;//当SER执行八位赋值操作后，RCK置1将数值整体赋给对应的硬件引脚</span><br><span class="line">	RCK=0;//清0，等待下一次操作。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">	//首先执行重置操作。</span><br><span class="line">	SCK=0;</span><br><span class="line">	RCK=0;</span><br><span class="line">	_74HC595_WriteByte(0xF0);</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		P0=0x7F;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="DS1302时钟"><a href="#DS1302时钟" class="headerlink" title="DS1302时钟"></a>DS1302时钟</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-PFC" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -288,7 +616,7 @@
       
           
               <hr>
-<h2 id="title-PFC"><a href="#title-PFC" class="headerlink" title="title:PFC"></a>title:PFC</h2><p>博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44886253/article/details/119597508">https://blog.csdn.net/weixin_44886253/article/details/119597508</a></p>
+<h2 id="PFC"><a href="#PFC" class="headerlink" title="PFC"></a>PFC</h2><p>博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44886253/article/details/119597508">https://blog.csdn.net/weixin_44886253/article/details/119597508</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44886253/article/details/119597508">https://blog.csdn.net/weixin_44886253/article/details/119597508</a> </p>
           
       
@@ -393,7 +721,7 @@
       
           
               <hr>
-<h2 id="titile-blazor"><a href="#titile-blazor" class="headerlink" title="titile:blazor"></a>titile:blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
+<h2 id="blazor"><a href="#blazor" class="headerlink" title="blazor"></a>blazor</h2><p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
 <ul>
 <li>下载项大小明显小于 <code>Blazor WebAssembly</code> 应用，且应用加载速度快得多。</li>
 <li>支持瘦客户端。 例如，<code>Blazor Server</code> 应用适用于不支持 <code>WebAssembly</code> 的浏览器以及资源受限的设备。</li>
@@ -465,7 +793,7 @@
       
           
               <hr>
-<h2 id="title-matlab"><a href="#title-matlab" class="headerlink" title="title:matlab"></a>title:matlab</h2><h1 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h1><p>针对某个函数的使用方法，可以搜索，然后点击里面的example</p>
+<h2 id="matlab"><a href="#matlab" class="headerlink" title="matlab"></a>matlab</h2><h1 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h1><p>针对某个函数的使用方法，可以搜索，然后点击里面的example</p>
 <p>关闭matlab：quit或者exit</p>
 <p>matlab大部分函数只要能传入一个变量，那么就可以传入一个向量。例如sin30，sin([30 60 90])会分别计算出sin30 sin60 sin90即批量处理数据</p>
 <p>暂停20s：pause(20)</p>
@@ -682,197 +1010,6 @@
       
         <p class="article-more-link">
           <a href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/%E5%89%8D%E7%AB%AF/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.876Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML是用来构建网页的结构的（骨架），而css是用来构建样式的（外貌）。</p>
-<p>标签之间只有两种关系，1.嵌套关系2.并列关系</p>
-<p>head和body之间是并列关系，head标签和title之间是嵌套关系</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/%E5%89%8D%E7%AB%AF/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-winform学习" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.873Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
-<p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
-<p>this.close事件和Application.exit()的区别：后者是关闭所有进程，一般用在主窗口里面退出，而前者是只关闭当前窗口</p>
-<p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-SqlSugar" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/07/17/SqlSugar/" class="article-date">
-      <time datetime="2022-07-17T01:44:21.872Z" itemprop="datePublished">2022-07-17</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/17/SqlSugar/">SqlSugar</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>nuget:sqlsugarcore</p>
-<p>注：所有不能完成增删改查并且报错的原因是因为使用了sqlsugar的包而不是sqlsugarcore的包</p>
-<p>注意：使用第一种方式进行IOC注入的时候，不用通过构造函数再进行注入了，而是直接使用Dbscope.sugarScope这个全局对象即可。但是不推荐第一种方法，而是直接使用第二种方法（net注入），因为第一种方法无法使用SimpleClient中的特有方法。</p>
-<p>首先根据表生成实体类</p>
-<p>sqlClient：不能跨上下文，若出现错误则换成sqlscope</p>
-<p>SqlScope：线程安全，必须使用异步方式</p>
-<p>0.里面的所有的db都是为sqlclient对象。</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-        <p class="article-more-link">
-          <a href="/2022/07/17/SqlSugar/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

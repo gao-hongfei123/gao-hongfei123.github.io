@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="技术爱好者" />
+
+
+
+<meta name="description" content="如果想要单片机工作，首先需要将红色和蓝色部分的引脚配置好。 带ft的表示电平常规为0-3.3v，但是可以容忍5v   寄存器 GPIO1  下图解释参考P44    GPIO是如何被封装的？：P31 寄存器位操作方法的四种方法：P36 32位寄存器如何用16位表示：四个字节用8421码表示，共8个字节 前言：ifdef…end if 防止出现一个函数文件被调用时出现被使用#include重复包含">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://gao-hongfei123.github.io/2023/07/10/STM32/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如果想要单片机工作，首先需要将红色和蓝色部分的引脚配置好。 带ft的表示电平常规为0-3.3v，但是可以容忍5v   寄存器 GPIO1  下图解释参考P44    GPIO是如何被封装的？：P31 寄存器位操作方法的四种方法：P36 32位寄存器如何用16位表示：四个字节用8421码表示，共8个字节 前言：ifdef…end if 防止出现一个函数文件被调用时出现被使用#include重复包含">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230710185149434.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230710190710553.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731151523848.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230726215735884.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230727102405998.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230726211652064.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230726212906589.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230726212952814.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230727095154279.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731121154455.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731115829061.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731115945148.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731120253128.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731120329784.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731120350839.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731120902529.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731120815028.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731132633929.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731132724859.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731132835401.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731142457816.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731133210607.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731143004091.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230731192709292.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230801120753738.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230801152902209.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230801172416984.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230802095641704.png">
+<meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230802094030830.png">
+<meta property="article:published_time" content="2023-07-10T10:30:12.825Z">
+<meta property="article:modified_time" content="2023-08-02T02:17:28.105Z">
+<meta property="article:author" content="技术爱好者">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gao-hongfei123.github.io/2023/07/10/STM32/assets/image-20230710185149434.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Hexo</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/aaa.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/303515096@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">技术爱好者</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/aaa.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/303515096@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-STM32" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2023/07/10/STM32/" class="article-date">
+      <time datetime="2023-07-10T10:30:12.825Z" itemprop="datePublished">2023-07-10</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="/2023/07/10/STM32/assets/image-20230710185149434.png" alt="image-20230710185149434"></p>
+<p>如果想要单片机工作，首先需要将红色和蓝色部分的引脚配置好。</p>
+<p>带ft的表示电平常规为0-3.3v，但是可以容忍5v</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230710190710553.png" alt="image-20230710190710553"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731151523848.png" alt="image-20230731151523848"></p>
+<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p><img src="/2023/07/10/STM32/assets/image-20230726215735884.png" alt="image-20230726215735884"></p>
+<h1 id="GPIO1"><a href="#GPIO1" class="headerlink" title="GPIO1"></a>GPIO1</h1><p><img src="/2023/07/10/STM32/assets/image-20230727102405998.png" alt="image-20230727102405998"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230726211652064.png" alt="image-20230726211652064"></p>
+<p>下图解释参考P44</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230726212906589.png" alt="image-20230726212906589"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230726212952814.png" alt="image-20230726212952814"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230727095154279.png" alt="image-20230727095154279"></p>
+<p>GPIO是如何被封装的？：P31</p>
+<p>寄存器位操作方法的四种方法：P36</p>
+<p>32位寄存器如何用16位表示：四个字节用8421码表示，共8个字节</p>
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>ifdef…end if 防止出现一个函数文件被调用时出现被使用#include重复包含两次的情况，进而导致出现redefine的报错</p>
+<h2 id="文件夹说明"><a href="#文件夹说明" class="headerlink" title="文件夹说明"></a>文件夹说明</h2><p>启动文件：</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731121154455.png" alt="image-20230731121154455"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731115829061.png" alt="image-20230731115829061"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731115945148.png" alt="image-20230731115945148"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120253128.png" alt="image-20230731120253128"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120329784.png" alt="image-20230731120329784"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120350839.png" alt="image-20230731120350839"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120902529.png" alt="image-20230731120902529"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731120815028.png" alt="image-20230731120815028"></p>
+<p>引脚：stm32f103c8t6引脚个数为48，引脚是物理上的，而io口是引脚的功能，可作为IO口，因为每个引脚占4位，而一个寄存器共32位，所以每个寄存器占8个引脚</p>
+<h1 id="LED闪烁：参考书籍"><a href="#LED闪烁：参考书籍" class="headerlink" title="LED闪烁：参考书籍"></a>LED闪烁：参考书籍</h1><h2 id="GPIO输出"><a href="#GPIO输出" class="headerlink" title="GPIO输出"></a>GPIO输出</h2><p>低电平触发</p>
+<p>GPIO的功能就是用来控制高低电平的，而大部分外设都是通过高低电平来工作的，所以将GPIO与各种外设联系起来实现各种功能。</p>
+<p>在stm32单片机中引脚分成了很多组GPIOA~GPIOE，并且每一组中又有0-15共16个引脚;每个IO口（引脚）由4bit位来控制那么一组IO就需要16*4 &#x3D; 64bit,而8个引脚就已经32位，构成一个寄存器了，所以使用两个寄存器CRL和CRH来控制GPIO的16个引脚，高32bit由GPIOX_CRH寄存器来配置;低32bit由GPIOX_CRL寄存器来进行配置.对应的引脚CRL为0到7，CRH为8到15。从上面我们可以看出不管是GPIOX_CRL还是GPIOX_CRH每个IO都是由CNF[1:0]和MODE[1:0]两部分进行配置选择的;其中MODE[1:0]是进行配置输入还是输出，一般00为输入， 11为输出。CNF[1:0]则配合MODE[1:0]进行具体的模式配置。所以如果使用8-15号引脚就是用CRH，否则使用CRL，使用低寄存器中的某个引脚就控制对应的引脚的CNF和MODE</p>
+<p>在源代码中assert_param()函数用于检查参数中的函数是否复合true，若为true则不管，若为false则向控制台报错</p>
+<p>pin:引脚</p>
+<p>GPIO_SetBits();设置BSRR寄存器，输出高电平</p>
+<p>GPIO_ResetBits();设置BRR寄存器，输出低电平，set代表置位，即高电平，reset代表复位，即低电平</p>
+<p>推挽输出：<img src="/2023/07/10/STM32/assets/image-20230731132633929.png" alt="image-20230731132633929"></p>
+<p>开漏输出：</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731132724859.png" alt="image-20230731132724859"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731132835401.png" alt="image-20230731132835401"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731142457816.png" alt="image-20230731142457816"></p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731133210607.png" alt="image-20230731133210607"></p>
+<p>如下，一个GPIO外设共有下面这些寄存器，而共有A-H个这样的外设，所以封装为结构体</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230731143004091.png" alt="image-20230731143004091"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	//四步：1.配置时钟	2.配置GPIO3个属性	3.调用GPIO函数初始化	4.设置高低电平</span><br><span class="line">	//GPIO都挂在ABP2上面</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);//打开时钟，为了降低功耗</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure; //引入结构体，不是定义结构体，命名为GPIO_InitStructure</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;//推挽输出，对应的寄存器是CRH（端口配置高寄存器）</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;//0引脚</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;//速度，对应的寄存器是CRL（端口配置低寄存器）</span><br><span class="line">	GPIO_Init(GPIOA,&amp;GPIO_InitStructure);</span><br><span class="line">	//GPIO_ResetBits(GPIOA,GPIO_Pin_0);设置0引脚位低电平</span><br><span class="line">	//GPIO_SetBits(GPIOA,GPIO_Pin_0);设置引脚0位高电平</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_RESET);</span><br><span class="line">		Delay_ms(500);</span><br><span class="line">		GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_SET);</span><br><span class="line">		Delay_ms(500);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>16进制与2进制转换：</p>
+<p>例如0x 0 0 0 1实际上代表：0000 0000 0000 0001      而0x 0 0 8 0 实际上代表 0000 0000 1000 0000</p>
+<h2 id="GPIO输入"><a href="#GPIO输入" class="headerlink" title="GPIO输入"></a>GPIO输入</h2><p><img src="/2023/07/10/STM32/assets/image-20230731192709292.png" alt="image-20230731192709292"></p>
+<p>一般配置为上拉输入模式</p>
+<p><strong>上拉输入：有上拉电阻</strong></p>
+<p>按键未按下时端口接高电平，即高电平 1 状态—3.3v</p>
+<p>按键按下时端口接低电平，即低电平 0 状态——-0v</p>
+<p><strong>下拉输入：有下拉电阻</strong></p>
+<p>按键未按下时端口接低电平，即低电平 0 状态—0v</p>
+<p>按键按下时端口接高电平，即高电平 1 状态——3.3v</p>
+<p>1、 上拉输入（GPIO_Mode_IPU）</p>
+<p>输入上拉就是直接从IO端口进来，通过上拉电阻将电平拉高，再经过施密特触发器转换成0、1信号，读取此时的引脚电平为高电平, 然后就输入到数据到寄存器里面。</p>
+<p>2、 下拉输入（GPIO_Mode_IPD）</p>
+<p>输入下拉就是直接从IO端口进来，通过下拉电阻将电平拉低，再经过施密特触发器转换成0、1信号，读取此时的引脚电平为低电平, 然后就输入到数据到寄存器里面。</p>
+<p>3、 模拟输入（GPIO_Mode_AIN）</p>
+<p>信号进入后不经过上拉电阻或者下拉电阻，关闭施密特触发器，经由另一线路把电压信号传送到片上外设模块。比如传送给ADC模块，由ADC采集电压信号。所以可以理解为模拟输入的信号是未经处理的信号。</p>
+<p>4、 浮空输入(GPIO_Mode_IN_FLOATING)</p>
+<p>浮空最大的特点就是电压的不确定性，它可能是0V，也可能是VCC，还可能是介于两者之间的某个值（最有可能） 浮空一般用来做ADC输入用，这样可以减少上下拉电阻对结果的影响。由于其输入阻抗比较大，一般把这种模式用于标准的通讯协议，比如IIC、USART的等。</p>
+<h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><p>中断源触发，使当前程序暂停，去处理中断程序，中断函数是我们来写里面的逻辑但不是由我们调用的，而是中断来了后自动调用的。中断源（中断外设）：EXTI，TIM，ADC,USART,SPI,IIC,RTC等。即有中断脉冲过来，就执行中断操作，若没有中断脉冲过来，就执行自己的程序</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Raider1/article/details/128722797">https://blog.csdn.net/Raider1/article/details/128722797</a></p>
+<h2 id="NVIC：嵌套向量中断控制器"><a href="#NVIC：嵌套向量中断控制器" class="headerlink" title="NVIC：嵌套向量中断控制器"></a>NVIC：嵌套向量中断控制器</h2><p><img src="/2023/07/10/STM32/assets/image-20230801120753738.png" alt="image-20230801120753738"></p>
+<p>NVIC_IPRx:中断优先级控制器，中断优先级分为抢占优先级和响应优先级，共占四位，若前者占n位，则后者占4-n位，分组如下</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230801152902209.png" alt="image-20230801152902209"></p>
+<h2 id="EXTI-外部中断-x2F-事件控制器"><a href="#EXTI-外部中断-x2F-事件控制器" class="headerlink" title="EXTI:外部中断&#x2F;事件控制器"></a>EXTI:外部中断&#x2F;事件控制器</h2><p>什么时候需要外部中断：比如放在那平时不起眼，一旦某个时刻触发电平变化，输出波形，而且是快速变化的，比如旋转编码器，此时需要外部中断EXTI</p>
+<p>因为有多个GPIO外设，但是只有16个引脚，所以通过AFIO去选择使用哪个IO口外设，通过EXTI去检测使用上边沿触发还是下边沿触发，通过NVIC去设置中断优先级</p>
+<p>需要5个步骤：</p>
+<p>1.配置RCC，包括AFIO的RCC</p>
+<p>2.配置GPIO为输入模式</p>
+<p>3.配置AFIO选择GPIO的哪个外设</p>
+<p>4.配置EXTI选择上升沿还是下降沿触发</p>
+<p>5.配置NVIC</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230801172416984.png" alt="image-20230801172416984"></p>
+<p>AFIO：内部结构图：</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230802095641704.png" alt="image-20230802095641704"></p>
+<p>上图中EXTI部分内部的的执行流程：参考书籍P136</p>
+<p><img src="/2023/07/10/STM32/assets/image-20230802094030830.png" alt="image-20230802094030830"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2023/07/10/STM32/"></a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2023-07-10, 18:30:12</p>
+        <p><span>Updated:</span>2023-08-02, 10:17:28</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2023/07/10/STM32/" title="">https://gao-hongfei123.github.io/2023/07/10/STM32/</a>
+            <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2023/07/10/STM32/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2023/07/03/matdem/">
+                    
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GPIO1"><span class="toc-number">2.</span> <span class="toc-text">GPIO1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">前言：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E8%AF%B4%E6%98%8E"><span class="toc-number">3.1.</span> <span class="toc-text">文件夹说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LED%E9%97%AA%E7%83%81%EF%BC%9A%E5%8F%82%E8%80%83%E4%B9%A6%E7%B1%8D"><span class="toc-number">4.</span> <span class="toc-text">LED闪烁：参考书籍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GPIO%E8%BE%93%E5%87%BA"><span class="toc-number">4.1.</span> <span class="toc-text">GPIO输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPIO%E8%BE%93%E5%85%A5"><span class="toc-number">4.2.</span> <span class="toc-text">GPIO输入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD"><span class="toc-number">5.</span> <span class="toc-text">中断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NVIC%EF%BC%9A%E5%B5%8C%E5%A5%97%E5%90%91%E9%87%8F%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">NVIC：嵌套向量中断控制器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXTI-%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD-x2F-%E4%BA%8B%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">EXTI:外部中断&#x2F;事件控制器</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2023/07/03/matdem/" title="Next: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/07/10/STM32/">STM32</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/07/03/matdem/">matdem</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/06/28/51%E5%8D%95%E7%89%87%E6%9C%BA/">51单片机</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/31/PFC/">PFC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/29/Maui/">Maui</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/10/02/blazor%E5%AD%A6%E4%B9%A0/">blazor学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/08/04/matlab/">matlab</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E9%A1%B9%E7%9B%AE/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">网络安全基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/SqlSugar/">SqlSugar</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5%E9%A1%B9%E7%9B%AE/">net5项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/net5/">net core</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/MVC/">MVC</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/ef%E5%AD%A6%E4%B9%A0/">ef学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/07/17/csharp%E5%AD%A6%E4%B9%A0/">csharp学习</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2023 技术爱好者
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+            
+             tags: ".article-tag a", 
+             categories: ".article-category a, a.tag-list-link", 
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+             menu: ".header-menu a", 
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

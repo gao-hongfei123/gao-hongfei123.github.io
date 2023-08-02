@@ -269,6 +269,197 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-前端" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/07/17/%E5%89%8D%E7%AB%AF/" class="article-date">
+      <time datetime="2022-07-17T01:44:21.876Z" itemprop="datePublished">2022-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/17/%E5%89%8D%E7%AB%AF/">前端学习</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML是用来构建网页的结构的（骨架），而css是用来构建样式的（外貌）。</p>
+<p>标签之间只有两种关系，1.嵌套关系2.并列关系</p>
+<p>head和body之间是并列关系，head标签和title之间是嵌套关系</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/07/17/%E5%89%8D%E7%AB%AF/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-winform学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/" class="article-date">
+      <time datetime="2022-07-17T01:44:21.873Z" itemprop="datePublished">2022-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/">winform控件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="技巧："><a href="#技巧：" class="headerlink" title="技巧："></a>技巧：</h3><p>有些控件是不能添加到图形界面上的，例如time控件，tooltip控件，到时候我们直接使用即可。</p>
+<p>winform中，this指的是当前窗体的对象，而sender指的是控件</p>
+<p>this.close事件和Application.exit()的区别：后者是关闭所有进程，一般用在主窗口里面退出，而前者是只关闭当前窗口</p>
+<p>当弹出另一个窗口隐藏当前窗口，新窗口关闭时显示原来的窗口操作方法。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/07/17/winform%E5%AD%A6%E4%B9%A0/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-SqlSugar" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/07/17/SqlSugar/" class="article-date">
+      <time datetime="2022-07-17T01:44:21.872Z" itemprop="datePublished">2022-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/17/SqlSugar/">SqlSugar</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>nuget:sqlsugarcore</p>
+<p>注：所有不能完成增删改查并且报错的原因是因为使用了sqlsugar的包而不是sqlsugarcore的包</p>
+<p>注意：使用第一种方式进行IOC注入的时候，不用通过构造函数再进行注入了，而是直接使用Dbscope.sugarScope这个全局对象即可。但是不推荐第一种方法，而是直接使用第二种方法（net注入），因为第一种方法无法使用SimpleClient中的特有方法。</p>
+<p>首先根据表生成实体类</p>
+<p>sqlClient：不能跨上下文，若出现错误则换成sqlscope</p>
+<p>SqlScope：线程安全，必须使用异步方式</p>
+<p>0.里面的所有的db都是为sqlclient对象。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2022/07/17/SqlSugar/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-net5项目" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -463,6 +654,7 @@
 <p>48.prism官方文档：<a target="_blank" rel="noopener" href="https://prismlibrary.com/docs/index.html">https://prismlibrary.com/docs/index.html</a></p>
 <p>49.部署</p>
 <p>复制数据库到webapi目录下</p>
+<p>50.自定义询问窗口</p>
 
       
     </div>
