@@ -287,141 +287,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><img src="/2023/07/10/STM32/assets/image-20230710185149434.png" alt="image-20230710185149434"></p>
-<p>如果想要单片机工作，首先需要将红色和蓝色部分的引脚配置好。</p>
-<p>带ft的表示电平常规为0-3.3v，但是可以容忍5v</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230710190710553.png" alt="image-20230710190710553"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731151523848.png" alt="image-20230731151523848"></p>
-<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><p><img src="/2023/07/10/STM32/assets/image-20230726215735884.png" alt="image-20230726215735884"></p>
-<h1 id="GPIO1"><a href="#GPIO1" class="headerlink" title="GPIO1"></a>GPIO1</h1><p><img src="/2023/07/10/STM32/assets/image-20230727102405998.png" alt="image-20230727102405998"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230726211652064.png" alt="image-20230726211652064"></p>
-<p>下图解释参考P44</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230726212906589.png" alt="image-20230726212906589"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230726212952814.png" alt="image-20230726212952814"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230727095154279.png" alt="image-20230727095154279"></p>
-<p>GPIO是如何被封装的？：P31</p>
-<p>寄存器位操作方法的四种方法：P36</p>
-<p>32位寄存器如何用16位表示：四个字节用8421码表示，共8个字节</p>
-<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>ifdef…end if 防止出现一个函数文件被调用时出现被使用#include重复包含两次的情况，进而导致出现redefine的报错</p>
-<h2 id="文件夹说明"><a href="#文件夹说明" class="headerlink" title="文件夹说明"></a>文件夹说明</h2><p>启动文件：</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731121154455.png" alt="image-20230731121154455"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731115829061.png" alt="image-20230731115829061"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731115945148.png" alt="image-20230731115945148"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731120253128.png" alt="image-20230731120253128"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731120329784.png" alt="image-20230731120329784"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731120350839.png" alt="image-20230731120350839"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731120902529.png" alt="image-20230731120902529"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731120815028.png" alt="image-20230731120815028"></p>
-<p>引脚：stm32f103c8t6引脚个数为48，引脚是物理上的，而io口是引脚的功能，可作为IO口，因为每个引脚占4位，而一个寄存器共32位，所以每个寄存器占8个引脚</p>
-<h1 id="LED闪烁：参考书籍"><a href="#LED闪烁：参考书籍" class="headerlink" title="LED闪烁：参考书籍"></a>LED闪烁：参考书籍</h1><h2 id="GPIO输出"><a href="#GPIO输出" class="headerlink" title="GPIO输出"></a>GPIO输出</h2><p>低电平触发</p>
-<p>GPIO的功能就是用来控制高低电平的，而大部分外设都是通过高低电平来工作的，所以将GPIO与各种外设联系起来实现各种功能。</p>
-<p>在stm32单片机中引脚分成了很多组GPIOA~GPIOE，并且每一组中又有0-15共16个引脚;每个IO口（引脚）由4bit位来控制那么一组IO就需要16*4 &#x3D; 64bit,而8个引脚就已经32位，构成一个寄存器了，所以使用两个寄存器CRL和CRH来控制GPIO的16个引脚，高32bit由GPIOX_CRH寄存器来配置;低32bit由GPIOX_CRL寄存器来进行配置.对应的引脚CRL为0到7，CRH为8到15。从上面我们可以看出不管是GPIOX_CRL还是GPIOX_CRH每个IO都是由CNF[1:0]和MODE[1:0]两部分进行配置选择的;其中MODE[1:0]是进行配置输入还是输出，一般00为输入， 11为输出。CNF[1:0]则配合MODE[1:0]进行具体的模式配置。所以如果使用8-15号引脚就是用CRH，否则使用CRL，使用低寄存器中的某个引脚就控制对应的引脚的CNF和MODE</p>
-<p>在源代码中assert_param()函数用于检查参数中的函数是否复合true，若为true则不管，若为false则向控制台报错</p>
-<p>pin:引脚</p>
-<p>GPIO_SetBits();设置BSRR寄存器，输出高电平</p>
-<p>GPIO_ResetBits();设置BRR寄存器，输出低电平，set代表置位，即高电平，reset代表复位，即低电平</p>
-<p>推挽输出：<img src="/2023/07/10/STM32/assets/image-20230731132633929.png" alt="image-20230731132633929"></p>
-<p>开漏输出：</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731132724859.png" alt="image-20230731132724859"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731132835401.png" alt="image-20230731132835401"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731142457816.png" alt="image-20230731142457816"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731133210607.png" alt="image-20230731133210607"></p>
-<p>如下，一个GPIO外设共有下面这些寄存器，而共有A-H个这样的外设，所以封装为结构体</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230731143004091.png" alt="image-20230731143004091"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">	//四步：1.配置时钟	2.配置GPIO3个属性	3.调用GPIO函数初始化	4.设置高低电平</span><br><span class="line">	//GPIO都挂在ABP2上面</span><br><span class="line">	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);//打开时钟，为了降低功耗</span><br><span class="line">	GPIO_InitTypeDef GPIO_InitStructure; //引入结构体，不是定义结构体，命名为GPIO_InitStructure</span><br><span class="line">	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;//推挽输出，对应的寄存器是CRH（端口配置高寄存器）</span><br><span class="line">	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;//0引脚</span><br><span class="line">	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;//速度，对应的寄存器是CRL（端口配置低寄存器）</span><br><span class="line">	GPIO_Init(GPIOA,&amp;GPIO_InitStructure);</span><br><span class="line">	//GPIO_ResetBits(GPIOA,GPIO_Pin_0);设置0引脚位低电平</span><br><span class="line">	//GPIO_SetBits(GPIOA,GPIO_Pin_0);设置引脚0位高电平</span><br><span class="line">	while(1)</span><br><span class="line">	&#123;</span><br><span class="line">		GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_RESET);</span><br><span class="line">		Delay_ms(500);</span><br><span class="line">		GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_SET);</span><br><span class="line">		Delay_ms(500);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>16进制与2进制转换：</p>
-<p>例如0x 0 0 0 1实际上代表：0000 0000 0000 0001      而0x 0 0 8 0 实际上代表 0000 0000 1000 0000</p>
-<h2 id="GPIO输入"><a href="#GPIO输入" class="headerlink" title="GPIO输入"></a>GPIO输入</h2><p><img src="/2023/07/10/STM32/assets/image-20230731192709292.png" alt="image-20230731192709292"></p>
-<p>一般配置为上拉输入模式</p>
-<p><strong>上拉输入：有上拉电阻</strong></p>
-<p>按键未按下时端口接高电平，即高电平 1 状态—3.3v</p>
-<p>按键按下时端口接低电平，即低电平 0 状态——-0v</p>
-<p><strong>下拉输入：有下拉电阻</strong></p>
-<p>按键未按下时端口接低电平，即低电平 0 状态—0v</p>
-<p>按键按下时端口接高电平，即高电平 1 状态——3.3v</p>
-<p>1、 上拉输入（GPIO_Mode_IPU）</p>
-<p>输入上拉就是直接从IO端口进来，通过上拉电阻将电平拉高，再经过施密特触发器转换成0、1信号，读取此时的引脚电平为高电平, 然后就输入到数据到寄存器里面。</p>
-<p>2、 下拉输入（GPIO_Mode_IPD）</p>
-<p>输入下拉就是直接从IO端口进来，通过下拉电阻将电平拉低，再经过施密特触发器转换成0、1信号，读取此时的引脚电平为低电平, 然后就输入到数据到寄存器里面。</p>
-<p>3、 模拟输入（GPIO_Mode_AIN）</p>
-<p>信号进入后不经过上拉电阻或者下拉电阻，关闭施密特触发器，经由另一线路把电压信号传送到片上外设模块。比如传送给ADC模块，由ADC采集电压信号。所以可以理解为模拟输入的信号是未经处理的信号。</p>
-<p>4、 浮空输入(GPIO_Mode_IN_FLOATING)</p>
-<p>浮空最大的特点就是电压的不确定性，它可能是0V，也可能是VCC，还可能是介于两者之间的某个值（最有可能） 浮空一般用来做ADC输入用，这样可以减少上下拉电阻对结果的影响。由于其输入阻抗比较大，一般把这种模式用于标准的通讯协议，比如IIC、USART的等。</p>
-<h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><p>中断源触发，使当前程序暂停，去处理中断程序，中断函数是我们来写里面的逻辑但不是由我们调用的，而是中断来了后自动调用的。中断源（中断外设）：EXTI，TIM，ADC,USART,SPI,IIC,RTC等。即有中断脉冲过来，就执行中断操作，若没有中断脉冲过来，就执行自己的程序</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Raider1/article/details/128722797">https://blog.csdn.net/Raider1/article/details/128722797</a></p>
-<h2 id="NVIC：嵌套向量中断控制器"><a href="#NVIC：嵌套向量中断控制器" class="headerlink" title="NVIC：嵌套向量中断控制器"></a>NVIC：嵌套向量中断控制器</h2><p><img src="/2023/07/10/STM32/assets/image-20230801120753738.png" alt="image-20230801120753738"></p>
-<p>NVIC_IPRx:中断优先级控制器，中断优先级分为抢占优先级和响应优先级，共占四位，若前者占n位，则后者占4-n位，分组如下</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230801152902209.png" alt="image-20230801152902209"></p>
-<h2 id="EXTI-外部中断-x2F-事件控制器"><a href="#EXTI-外部中断-x2F-事件控制器" class="headerlink" title="EXTI:外部中断&#x2F;事件控制器"></a>EXTI:外部中断&#x2F;事件控制器</h2><p>什么时候需要外部中断：比如放在那平时不起眼，一旦某个时刻触发电平变化，输出波形，而且是快速变化的，比如旋转编码器，此时需要外部中断EXTI</p>
-<p>因为有多个GPIO外设，但是只有16个引脚，所以通过AFIO去选择使用哪个IO口外设，通过EXTI去检测使用上边沿触发还是下边沿触发，通过NVIC去设置中断优先级</p>
-<p>根据下图需要5个步骤：</p>
-<p>1.配置RCC，包括AFIO的RCC</p>
-<p>2.配置GPIO为输入模式</p>
-<p>3.配置AFIO选择GPIO的哪个外设</p>
-<p>4.配置EXTI选择上升沿还是下降沿触发和中断还是事件响应</p>
-<p>5.配置NVIC选择优先级，在NVIC部分，10-15的线路被封装到一起了</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230801172416984.png" alt="image-20230801172416984"></p>
-<p>AFIO：内部结构图：</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802095641704.png" alt="image-20230802095641704"></p>
-<p>上图中EXTI部分内部的的执行流程：参考书籍P136</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802094030830.png" alt="image-20230802094030830"></p>
-<h1 id="Timer定时器"><a href="#Timer定时器" class="headerlink" title="Timer定时器"></a>Timer定时器</h1><p><img src="/2023/07/10/STM32/assets/image-20230804172445624.png" alt="image-20230804172445624"></p>
-<p>功能1：定时器基本定时的功能，定时器每隔这个时间产生一个中断，来实现每隔一个固定时间执行一段程序的目的，比如要做一个时钟、秒表或者使用一些程序算法的时候都需要用到定时中断这个功能</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Raider1/article/details/128724833?spm=1001.2014.3001.5502">https://blog.csdn.net/Raider1/article/details/128724833?spm=1001.2014.3001.5502</a></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802171050080.png" alt="image-20230802171050080"></p>
-<p>STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4（没有基本定时器）</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802172723461.png" alt="image-20230802172723461"></p>
-<p>TIM（Timer）定时器，定时器可以对输入的时钟进行计数，并在计数值达到设定值时触发中断，如果对72MHz计72个数，那就是1MHz即1us的时间；如果计72000个数，那就是1KHz即1ms的时间</p>
-<p><strong>计数器：</strong>用来执行计数定时的一个寄存器，可以对预分频后的计数时钟进行计数，计数时钟每来一个上升沿计数器的值就+1，计数器也是16位的，里面的值可以从0~65535</p>
-<p><strong>预分频器</strong>：可以对计数器的时钟进行分频，让这个计数更加灵活</p>
-<p>​					写0：不分频或者一分频，输出频率&#x3D;输入频率&#x3D;72MHz；</p>
-<p>​					写1：二分频，输出频率&#x3D;输入频率&#x2F;2&#x3D;36MHz;</p>
-<p>​					写2：三分频，输出频率&#x3D;输入频率&#x2F;3&#x3D;24MHz；</p>
-<p>​				<strong>概括归纳：实际分频系数 &#x3D; 预分频器的值 + 1</strong></p>
-<p><strong>时钟源：</strong>参考书籍P405</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230803114939152.png" alt="image-20230803114939152"></p>
-<p><strong>自动重装寄存器：</strong>计数的目标值，即想要计多少个时钟后申请中断</p>
-<p>步骤如下：第一步：RCC开启时钟</p>
-<p>第二步：选择时基单元的时钟源</p>
-<p>第三步：配置时基单元</p>
-<p>第四步：配置输出中断控制，允许更新中断输出到NVIC</p>
-<p>第五步：配置NVIC，在NVIC中打开定时器中断的通道，并分配一个优先级</p>
-<p>第六步：运行控制，使能计数器</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802163506811.png" alt="image-20230802163506811"></p>
-<p>​			PSC：Prescaler预分频器</p>
-<p>​			CNT：Counter计数器</p>
-<p>​			ARR：AutoReloadRegister自动重装定时器</p>
-<p>​			中断输出控制：中断输出的允许位，如果需要某个中断就允许一下</p>
-<p>基本定时器时基单元内部图：原理参考书籍P399</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802172954899.png" alt="image-20230802172954899"></p>
-<p>通用定时器时基单元结构图如下，红线部分与基本单元相同，不同的部分是上面的时钟选择，其中TIMx_ETR是外部时钟，而基本定时器只能选择内部时钟。</p>
-<p>对于通用定时器而言，计数器的计数模式就不止<strong>向上计数</strong>一种，还有<strong>向下计数模式</strong>和<strong>中央对齐模式</strong>。</p>
-<p>中央对齐模式：先向上自增，计到重装值，申请中断，然后再向下自减，减到0，申请中断，一次循环…</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230802180217519.png" alt="image-20230802180217519"></p>
-<p>ITR0~3：可用于实现定时器的级联，比如可以先初始化TIM3，然后使用主模式把它的更新事件映射到TRGO上，再初始化TIM2，选择TIR2，对应就是TIM3的TRGO，再选择时钟为外部时钟模式1（TRGI），这样TIM3的更新事件就可以驱动TIM2的时基单元</p>
-<h2 id="TIM2第二部分：PWM"><a href="#TIM2第二部分：PWM" class="headerlink" title="TIM2第二部分：PWM"></a>TIM2第二部分：PWM</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Raider1/article/details/128727099?spm=1001.2014.3001.5502">https://blog.csdn.net/Raider1/article/details/128727099?spm=1001.2014.3001.5502</a></p>
-<p>功能2：定时器输出比较的功能，最常见的用途就是产生PWM波形，用于驱动电机等设备</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230803155456669.png" alt="image-20230803155456669"></p>
-<p>实际上就是用来输出一个模拟信号，那么它是如何实现的呢？就是来调制脉冲的宽度，通过输出比较寄存器，当输出比较器中的某一值大于另一个值时，触发上升沿，反之下降。亮度如何调节呢？就是通过快速的开启关闭，在这期间由个惯性，不会迅速变化，而是逐渐变化，此时通过占空比来计算亮暗程度，如左图，当高电平占比越大，可以用占空比越大表示，低电平占比越大，占空比越小，可以以此等效为模拟信号。一个区间，若高电平占80%,则表示占空比为80%，占空比等效为模拟电压的大小。若高电平为5v，低电平为0v，若占空比为50%，则表示模拟电压为2.5v。因此可以实现点击控速。</p>
-<p>输出比较器的输出结果共8种结果：</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230803161045529.png" alt="image-20230803161045529"></p>
-<p>如下图：步骤如下</p>
-<p>1.配置RCC</p>
-<p>2.配置时基单元</p>
-<p>3.配置输出比较单元</p>
-<p>4.配置GPIO</p>
-<p>5.运行控制使能</p>
-<p><img src="/2023/07/10/STM32/assets/image-20230803165551523.png" alt="image-20230803165551523"></p>
-<p>计算公式：</p>
-<p>PWM频率：Freq &#x3D; CK_PSC &#x2F; (PSC + 1) &#x2F; (ARR + 1)</p>
-<p>PWM占空比：Duty &#x3D; CCR &#x2F; (ARR + 1)</p>
-<p>PWM分辨率：Reso &#x3D; 1 &#x2F; (ARR + 1)——占空比最小的变化步距，值越小越好</p>
-<p>如果想要分辨率为1%，，占空比为50%，频率为1000hz，就将ARR&#x3D;100，CCR&#x3D;50，PSC控制1000hz即可，CK_PSC是72M</p>
-<h2 id="TIM2第三部分-输入捕获"><a href="#TIM2第三部分-输入捕获" class="headerlink" title="TIM2第三部分:输入捕获"></a>TIM2第三部分:输入捕获</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Raider1/article/details/128735468">STM32单片机入门学习笔记——定时器TIM第三部分_ti1fp1_AoXin_TechJZ.的博客-CSDN博客</a></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230805110329256.png" alt="image-20230805110329256"></p>
-<p><img src="/2023/07/10/STM32/assets/image-20230805110854652.png" alt="image-20230805110854652"></p>
-
+              <hr>
+<h2 id="title-STM32"><a href="#title-STM32" class="headerlink" title="title:STM32"></a>title:STM32</h2><h1 id="01：前言"><a href="#01：前言" class="headerlink" title="01：前言"></a>01：前言</h1><p>1.库函数中，cmd函数表示使能，ITConfig表示中断使能，</p>
+<p>2.RCC相当于人的心脏，提供频率信号的</p>
+<p>3.何为stm32就是一个寄存器占32位，但是在gpio中，四位对应一个引脚，所以gpio共8个引脚，所以需要两个寄存器去对应一个gpioA</p>
+<p>4,哪个寄存器寄存到哪个时钟上面，可以参考文档apb2,apb1,ahb三个时钟的各个位，</p>
+<p>5.使用地址操作寄存器的时候，&amp;和|的区别：&amp;是进行判断语句，可以看作只对比有1的位置，若两者相同则为1，而|是一种强制置1的语句。所以如果是置1则直接使用|即可，如果想要置0，则需要先使用左移或者右移将对应位置1，然后取反清零同时完成了该数的其他位置1，再将其与源地址&amp;，这样保证了其他位与1&amp;而保持不变，只是需要置0的位置变化了，而不是直接使用0进行&amp;</p>
+          
       
     </div>
     
@@ -430,6 +302,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2023/07/10/STM32/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -1094,7 +970,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016-2023 技术爱好者
+                2016-2024 技术爱好者
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
