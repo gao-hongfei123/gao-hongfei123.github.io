@@ -15,12 +15,12 @@
 
 
 
-<meta name="description" content="材料赋值  12345678910111213141516第一种方式，直接赋值&#x2F;&#x2F;引入第一组材料matTxt&#x3D;load(&amp;#x27;Mats\Soil1.txt&amp;#x27;);%将soil1文件以矩阵的形式保存在mattxt里面%设置材料名为Soil1Mats&amp;#123;1,1&amp;#125;&#x3D;material(&amp;#x27;Soil1&amp;#x27;,matTxt,B.ballR);Mats&amp;#123;1">
+<meta name="description" content="title:matdem材料赋值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="https://gao-hongfei123.github.io/2023/07/03/matdem/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="材料赋值  12345678910111213141516第一种方式，直接赋值&#x2F;&#x2F;引入第一组材料matTxt&#x3D;load(&amp;#x27;Mats\Soil1.txt&amp;#x27;);%将soil1文件以矩阵的形式保存在mattxt里面%设置材料名为Soil1Mats&amp;#123;1,1&amp;#125;&#x3D;material(&amp;#x27;Soil1&amp;#x27;,matTxt,B.ballR);Mats&amp;#123;1">
+<meta property="og:description" content="title:matdem材料赋值">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/03/matdem/assets/image-20230703153422698.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/03/matdem/assets/image-20230717161723344.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/03/matdem/assets/image-20230703182756857.png">
 <meta property="og:image" content="https://gao-hongfei123.github.io/2023/07/03/matdem/assets/image-20230717152901873.png">
 <meta property="article:published_time" content="2023-07-03T07:33:48.185Z">
-<meta property="article:modified_time" content="2023-07-17T13:23:12.716Z">
+<meta property="article:modified_time" content="2024-02-02T02:11:50.136Z">
 <meta property="article:author" content="技术爱好者">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gao-hongfei123.github.io/2023/07/03/matdem/assets/image-20230703153422698.png">
@@ -301,7 +301,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>材料赋值</p>
+        <hr>
+<h2 id="title-matdem"><a href="#title-matdem" class="headerlink" title="title:matdem"></a>title:matdem</h2><p>材料赋值</p>
+<span id="more"></span>
+
 <p><img src="/2023/07/03/matdem/assets/image-20230703153422698.png" alt="image-20230703153422698"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">第一种方式，直接赋值</span><br><span class="line">//引入第一组材料</span><br><span class="line">matTxt=load(&#x27;Mats\Soil1.txt&#x27;);%将soil1文件以矩阵的形式保存在mattxt里面</span><br><span class="line">%设置材料名为Soil1</span><br><span class="line">Mats&#123;1,1&#125;=material(&#x27;Soil1&#x27;,matTxt,B.ballR);</span><br><span class="line">Mats&#123;1,1&#125;.Id=1;</span><br><span class="line">//引入第二组材料</span><br><span class="line">matTxt2=load(&#x27;Mats\Soil2.txt&#x27;);</span><br><span class="line">Mats&#123;2,1&#125;=material(&#x27;Soil2&#x27;,matTxt2,B.ballR);</span><br><span class="line">Mats&#123;2,1&#125;.Id=2;</span><br><span class="line">d.Mats=Mats;%将元胞赋给d.mats对象</span><br><span class="line">%为颗粒赋值,声明颗粒组与材料组的对应关系</span><br><span class="line">d.setGroupMat(&#x27;layer2&#x27;,&#x27;Soil2&#x27;);</span><br><span class="line">d.groupMat2Model(&#123;&#x27;sample&#x27;,&#x27;layer2&#x27;&#125;);%应用到sample，layer2两个层上</span><br><span class="line">d.balanceBondedModel();%开始平衡</span><br><span class="line">%---------end assign material to layers and balance the model</span><br></pre></td></tr></table></figure>
 
@@ -338,7 +341,7 @@
         <p><span>Title:</span><a href="/2023/07/03/matdem/"></a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
         <p><span>Created:</span>2023-07-03, 15:33:48</p>
-        <p><span>Updated:</span>2023-07-17, 21:23:12</p>
+        <p><span>Updated:</span>2024-02-02, 10:11:50</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2023/07/03/matdem/" title="">https://gao-hongfei123.github.io/2023/07/03/matdem/</a>
             <span class="copy-path" data-clipboard-text="From https://gao-hongfei123.github.io/2023/07/03/matdem/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -374,7 +377,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1"><span class="toc-number">1.</span> <span class="toc-text">平衡</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#title-matdem"><span class="toc-number">1.</span> <span class="toc-text">title:matdem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">平衡</span></a></li></ol></li></ol>
         
     </div>
     <style>
