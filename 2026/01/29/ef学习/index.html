@@ -1,0 +1,1352 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="EF, 时代的寒流">
+    <meta name="description" content="Enitity framework (ef)学习属于ORM；O：DOmainObject领域模型
+​					R；Ralation Database 关系型数据库
+​					M：Maping映射关系
+ORM就是将相应的实体映射到相应的数据">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>EF | 时代的寒流</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../../../../css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="../../../../css/reward.css">
+    
+
+
+
+    <script src="../../../../libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">时代的寒流</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>联系</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">时代的寒流</div>
+        <div class="logo-desc">
+            
+            不断寻找人生的真谛
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			联系
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">EF</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-01-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Enitity-framework-ef-学习"><a href="#Enitity-framework-ef-学习" class="headerlink" title="Enitity framework (ef)学习"></a>Enitity framework (ef)学习</h1><p>属于ORM；O：DOmainObject领域模型</p>
+<p>​					R；Ralation Database 关系型数据库</p>
+<p>​					M：Maping映射关系</p>
+<p>ORM就是将相应的实体映射到相应的数据库表，然后使用orm框架封装好的api进行数据库访问，减少了自己写数据库访问类的步骤**。</p>
+<p>三种开发方式： 1.dbfirst：先创建数据库再开发（不推荐）</p>
+<p>​							2.modelfirst：先创建模型再创建数据库（不推荐）</p>
+<p>​							3.codefirst:代码优先（推荐）</p>
+<span id="more"></span>
+
+<p>注意事项：</p>
+<p>1.增删改查方法返回类型都是实体类型，而SaveChange返回的都是int类型，只有增删改才使用savechange方法，查询不用。这在设置接口的时候非常重要。</p>
+<h3 id="ef中的类型对应sqlserver中的类型"><a href="#ef中的类型对应sqlserver中的类型" class="headerlink" title="ef中的类型对应sqlserver中的类型"></a>ef中的类型对应sqlserver中的类型</h3><p><font color="red">efcore中属性被命名为Id或者类名+Id会被自动设置为主键，若类型为int或者guid，则主键自增长</font></p>
+<p>string ——nvarchar(Max)</p>
+<p>Guid——UinqueIdentifier,它使用的mac地址，时间戳等信息生成的全球唯一id，而且不是连续的，因此他不能作为索引，sqlserver可以不将主键设置为索引，但是mysql中必须将逐渐设置为索引，所以在mysql中不能使用guid</p>
+<p>对象&#x2F;引用类型——无映射，但是会在数据库中自动生成类名+id的外键</p>
+<p><img src="/2026/01/29/ef%E5%AD%A6%E4%B9%A0/assets/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt="无标题"></p>
+<p><img src="/2026/01/29/ef%E5%AD%A6%E4%B9%A0/assets/%E6%97%A0%E6%A0%87%E9%A2%982.png" alt="无标题2">必须将数据访问层与Ui层隔离开来，不应该将上下文暴露在UI层中，所以创建Service层，将上下文实例只在仓储层进行使用</p>
+<p><strong>创建上下文的方式</strong></p>
+<p>1.using(var context &#x3D; new Context())</p>
+<p>{</p>
+<p>​	var blog &#x3D; _BlogRepository.Get(context,BlogId);</p>
+<p>​	context.saveChanges();</p>
+<p>}</p>
+<p>2.DI注册：</p>
+<p>使用autofac等，或者自带的注册工具注入之后，直接使用即可</p>
+<p>在Programe里面注册之后</p>
+<p>var blog &#x3D; _BlogRepository.Get(BlogId);</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>0.引入efcore.sqlserver，和efcore tools两个包，有时候需要efcore design包</p>
+<p>1.创建实体类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Book</span><br><span class="line">   &#123;</span><br><span class="line">       public long id &#123; get; set; &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.创建继承自DbContest的类：DBContext将对数据库的所有操作都封装进去，向上访问数据库，向下访问实体类，里面封装了例如增删改查多个方法。而MyDbContext就相当于一个自己的数据库，DbContext相当于一个通用的数据库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"> class MyDbContext:DbContext</span><br><span class="line">    &#123;</span><br><span class="line">       	第一种创建上下文方式： 使用有参构造（推荐），在program.cs里面注册之后，会将options传递给DbContextOptions类，然后再通过有参构造传递给DbContext类，因为DbContextOptions不需要在其他地方使用，所以不必创建一个新的变量来接收.使用泛型是因为表示该参数将接收哪个配置项，因为可能会有来自MyDbContext2的options传递给base(options)</span><br><span class="line">        public MyDbContext(DbContextOptions&lt;MyDbContext&gt; options):base(options)</span><br><span class="line">        &#123;</span><br><span class="line">        		//这是efcore之前的数据库初始化策略。core之后用context.Database.EnsureCreated()</span><br><span class="line">        		DataBase.SetInitializer(new DropCreateDataBaseIfModelChanges&lt;MyDbContext&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        //重写OnModelCreating方法,进行fluentapi配置：https://www.cnblogs.com/wyy1234/archive/2018/09/18/9670529.html</span><br><span class="line">​        protected override void OnModelCreating(ModelBuilder modelBuilder)</span><br><span class="line">​        &#123;</span><br><span class="line"></span><br><span class="line">​            base.OnModelCreating(modelBuilder);</span><br><span class="line">​            //fluentapi配置</span><br><span class="line">​        &#125;</span><br><span class="line">        public DbSet&lt;Book&gt; Books &#123; get; set; &#125;//用来说明数据库中有Book类的表，如果还有其他类就再写一个DbSet</span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line">//然后在program.cs文件里面进行注入，进行配置，这是一种注册的语法糖，实际上底层仍然使用的SCope进行注册，目的是将MyDbContext进行注册，以方便后面所有的操作都是使用的MyDbContext类（Dbcontext注册不能使用Singleton，因为efcore是非线程安全的，）</span><br><span class="line">        services.AddDbContext&lt;MyDbContext&gt;(options=&gt;&#123;options.usesqlserver(&quot;连接字符串&quot;,b=&gt;b.MigrationAssemble(&quot;program.cs所在的项目名&quot;))&#125;)//另一种写法：services.AddDbContext&lt;MyDbContext&gt;(options=&gt;&#123;options.usesqlserver(builder.Configuration.GetConnectionString(&quot;ConnectionString&quot;);通过方法去获取json数据</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"> fluent使用方式:1.引入nuget包定义一个类继承于IEntityTypeConfiguration接口，里面进行fluent配置，然后在onModelCreating里面调用该配置类即可（推荐（https://blog.csdn.net/Fanbin168/article/details/79603230））。2.也可以将fluentapi直接写在onmodelcreating里面（https://www.cnblogs.com/wyy1234/archive/2018/09/18/9670529.html），但是一旦类比较多，就显得臃肿，所以对于每个类的配置，写自己的配置类继承IEntityTypeConfiguration</span><br><span class="line"> public class PostConfiguration : IEntityTypeCOnfiguration&lt;Post&gt;</span><br><span class="line"> &#123;</span><br><span class="line"> 	//第一种，引入Configure方法</span><br><span class="line"> 	public void Configure(EntityTypeBuilder&lt;Post&gt; builder);</span><br><span class="line"> 	//进行fluent配置</span><br><span class="line"> 	builder.property(x=&gt;x.Title).IsRequired().HasMaxLength(100);</span><br><span class="line"> 	//第二种：直接使用PostConfiguration的构造方法</span><br><span class="line"> 	public PostConfiguration()</span><br><span class="line"> 	&#123;</span><br><span class="line"> 		ToTable(&quot;Posts&quot;);</span><br><span class="line"> 		HasKey(t=&gt;t.Id);</span><br><span class="line"> 		Property(x=&gt;x.id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);//设置主键自增长</span><br><span class="line"> 	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> public class PersonConfiguration : IEntityTypeCOnfiguration&lt;Person&gt;</span><br><span class="line"> &#123;</span><br><span class="line"> 	public void Configure(EntityTypeBuilder&lt;Person&gt; builder);</span><br><span class="line"> 	//进行fluent配置</span><br><span class="line"> 	builder.property(x=&gt;x.name).IsRequired().HasMaxLength(100);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>class MyDbContext:DbContext
+    {
+   
+    //第二种创建上下文：使用无参构造 （不推荐，因为无法将连接字符串写死了）：重写OnConfiguring方法，将数据库连接配置在这个方法里面
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        //配置连接字符串
+        optionsBuilder.UseSqlServer(&quot;数据库连接字符串&quot;);
+    }
+    //重写父类方法,用来进行键映射，可以进行fluent api的配置。
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+			//同上
+    }
+   
+    public DbSet&lt;Book&gt; Books { get; set; }//用来说明数据库中有Book类的表，如果还有其他类就再写一个DbSet
+</code></pre>
+<p> 3.判断是否需要创建数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.DataBase.EnsureCreate();若数据库已存在，则不处理，若不存在，则创建数据库</span><br></pre></td></tr></table></figure>
+
+<p>4.数据库迁移Migration</p>
+<p>nuget安装microsoft.entityframework.tools</p>
+<p>运行add-migration即可生成建表语句，但是为了留下数据库操作记录，自己需要添加一个变量名 例如</p>
+<p>add-migration init后面的init就是一个变量民以方便查看，实际上执行命令的是add-migration,然后执行update-database才表示建表命令执行</p>
+<h3 id="数据库初始化策略"><a href="#数据库初始化策略" class="headerlink" title="数据库初始化策略"></a>数据库初始化策略</h3><p>​        		方式1：如果数据库不存在，就创建（不推荐）context.Database.EnsureCreated()<br>​        		方式2：总是创建数据库，无论存在与否(不推荐)context.Database.EnsureDeleted()+context.Database.EnsureCreated()</p>
+<p>​				确保删除：确保删除context.Database.EnsureDeleted()</p>
+<h3 id="主键，外键，索引的区别"><a href="#主键，外键，索引的区别" class="headerlink" title="主键，外键，索引的区别"></a>主键，外键，索引的区别</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xxeleanor/p/15024557.html">https://www.cnblogs.com/xxeleanor/p/15024557.html</a></p>
+<h1 id="UnitOfWork工作单元"><a href="#UnitOfWork工作单元" class="headerlink" title="UnitOfWork工作单元"></a>UnitOfWork工作单元</h1><p>它是对efcore的一种封装，使用起来更加好用，需要引用efcore autohistory包</p>
+<p>定义仓库，让其继承repository和irepository</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">每个仓库都进行该操作，实际上引用了反射	</span><br><span class="line">public class TodoRepository : Repository&lt;Todo&gt;, IRepository&lt;Todo&gt;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        public TodoRepository(MyTodo3DbContext dbContext) : base(dbContext)</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>下载unitofwork文件：具体使用可参考arch的unitofwork的readme部分。</p>
+<h2 id="FlentApi总结："><a href="#FlentApi总结：" class="headerlink" title="FlentApi总结："></a>FlentApi总结：</h2><p>0.对每个属性配置的时候都要使用Property(x&#x3D;&gt;x….)。。。</p>
+<p>1.设置表名：modelBuilder.Entity《Blog》.ToTable(“Blogs”);</p>
+<p>2.手动配置主键：modelBuilder.Entity《BLog》().HasKey(k&#x3D;&gt;k.Id);(注：若主键为int且值为手动分配，则需显示指定非标识列modelBuilder.Entity《BLog》().HasKey(k&#x3D;&gt;k.Id).Property(p&#x3D;&gt;p.Id).HasDatabaseGenerateOption(DataBaseGeneratedOption.None);)</p>
+<p>3.数值类型转换（C#中类型与数据库类型手动匹配时，都是通过HasColumeType进行设置）</p>
+<p>使用hasColumeType()进行设置（同下）</p>
+<p>4.字符串类型转换：</p>
+<p>string默认转换为nvarchar(Max)</p>
+<p>modelBuilder.Entity《BLog》().Property(p&#x3D;&gt;p.Name).HasColumeType(“varchar”).hasMaxlength(50);</p>
+<p>modelBuilder.Entity《BLog》().Property(p&#x3D;&gt;p.Name).HasColumeType(“varchar”).isMaxLength();&#x2F;&#x2F;设置为最大长度</p>
+<p>5.设置为字符串类型不可为null，和可为null（对于值类型，默认就是IsRequired的，对于引用类型，需要显示配置为null）</p>
+<p>modelBuilder.Entity《BLog》().Property(p&#x3D;&gt;p.Name).IsRequired();</p>
+<p>modelBuilder.Entity《BLog》().Property(p&#x3D;&gt;p.Name).IsOptional();</p>
+<p>6.修改日期类型</p>
+<p>默认为Date类型</p>
+<p>modelBuilder.Entity《BLog》().Property(p&#x3D;&gt;p.CreateTime).HasColume(“DATETIME2”);</p>
+<p>7.复杂类型映射：</p>
+<p>对于User中有个Address类型，若Address中没有主键配置，则Address的属性会映射为User表中的字段，名称为Address_属性名,即两个类对应一个表，一旦Address有自己的id主键，则建表时会创建两个表，两个表之间有映射。</p>
+<p>但是添加User对象时，必须也将Address创建对象，否则报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var user = new User()</span><br><span class="line">&#123;</span><br><span class="line">	name=&quot;&quot;;</span><br><span class="line">	Address = new Address()&#123;...&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>8.创建索引：</p>
+<p>使用HasIndex(p&#x3D;&gt;p.name);</p>
+<p>9.设置主键：HasKey(x&#x3D;&gt;x.id);</p>
+<p>10：设置自增</p>
+<pre><code>		Property(x=&gt;x.id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);//设置主键自增长
+</code></pre>
+<p>11.关系配置</p>
+<p>​	一对一关系配置(Student与Contact类一对一)：HasOptional(x&#x3D;&gt;)x.Contact.WithRequired(m&#x3D;&gt;m.Student)(这是ef不是efcore)</p>
+<p><strong>以下都是根据dbfirst开发方式进行的。</strong></p>
+<p>context.cs的DbSet里面里面写了很多增删改查的方法，即DbFirstEntitiels简称**<font color="red">上下文类，这在程序中是核心</font>**，在程序中调用的所有的方法都是上下文类中的方法。</p>
+<p><img src="/2026/01/29/ef%E5%AD%A6%E4%B9%A0/assets/%E6%8D%95%E8%8E%B72.jpg" alt="捕获2"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">//分页查询：需要三个参数1.当前页 2.每一页的个数 3.总页数，每一页可以显示的页码数</span><br><span class="line">//pageIndex:查询结果中表示跳过的页数</span><br><span class="line">//pageSize:查询结果中表示每页的个数</span><br><span class="line">static void pageQuery(int pageIndex,int pageSize) &#123;</span><br><span class="line">    using (var db= new DbFirstEntities()) &#123; </span><br><span class="line">        //查询前必须进行排序，使用linq进行分页</span><br><span class="line">        var result = db.Student.OrderBy(s =&gt; s.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();//这是固定的</span><br><span class="line">        foreach (var item in result)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(item.Name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<p>1.<font color="red">对数据的修改只是修改了内存中的数据，想要修改数据库中的数据的画必须使用savachangesAsync()方法，自然增删改查也就需要使用savechangesAsync()方法。</font>&gt;实际上调用增删改查的语句执行对某个表进行了状态的表示。Add()是告诉数据库在添加的时候执行什么对应的sql命令，而savechanges（）方法是检测到实体对象改变了，告诉数据库开始执行对应的命令。操作里面的表进行增删改查，查询方法后面必须使用firstOrdefault或者tolist才会执行，增加删除修改必须调用savechanges方法</p>
+<p>2.ef也提供了可以使用sql语句进行操作的方法；数据库上下文对象.database.executesqlcommand(“sql语句”);</p>
+<h3 id="延迟加载：用到数据的时候才会进行加载"><a href="#延迟加载：用到数据的时候才会进行加载" class="headerlink" title="延迟加载：用到数据的时候才会进行加载"></a>延迟加载：用到数据的时候才会进行加载</h3><p>当浏览图片时，图片较多，当滚动条滚动到对应位置图片才会加载显示，只有用到数据的时候才会进行加载。默认情况下ef启用延迟加</p>
+<p>载，可以手动关闭。</p>
+<p>延迟加载，它的导航属性必须加上virtual关键词</p>
+<p>延迟加载必备的三个条件：</p>
+<p>1.Configuation.ProxyCreationEnable&#x3D;true;</p>
+<p>2.Configuration.LazyLoadingEnable&#x3D;true;</p>
+<p>3.导航属性修饰符为Virtual</p>
+<h3 id="饥饿加载："><a href="#饥饿加载：" class="headerlink" title="饥饿加载："></a>饥饿加载：</h3><p>一般设计到子父类，当父类加载的同时子类也进行加载.使用Include()方法。例如</p>
+<p>MyDbContext.Customes.Include(d&#x3D;&gt;d.post).FirstOrDefault();</p>
+<p>若后续还有子类MyDbContext.Customes.Include(“Orders”).ThenInclude(c&#x3D;&gt;c.aaa)</p>
+<h3 id="显示加载：禁用延迟加载后可以使用显示加载进行延迟执行"><a href="#显示加载：禁用延迟加载后可以使用显示加载进行延迟执行" class="headerlink" title="显示加载：禁用延迟加载后可以使用显示加载进行延迟执行"></a>显示加载：禁用延迟加载后可以使用显示加载进行延迟执行</h3><p>解决关闭延迟加载后通过显示加载来延迟加载相关实体</p>
+<p>快照式变更追踪：自动启用</p>
+<p>代理式变更追踪:没什么用</p>
+<p>context.Entry(…)的形式。</p>
+<h3 id="一对多，多对多-一对一"><a href="#一对多，多对多-一对一" class="headerlink" title="一对多，多对多,一对一"></a>一对多，多对多,一对一</h3><p>官方文档 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/ef/core/modeling/relationships?tabs=fluent-api,fluent-api-simple-key,simple-key">https://learn.microsoft.com/zh-cn/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key</a></p>
+<p>hasXXX().withYYY()表示A实体有xxx个B，B实体有YYY个A对象。XXX和YYY有one和Many两个可选值</p>
+<p><strong>导航属性</strong>：就是将其他类作为本类中的字段，分为单向导航，和多向导航<a target="_blank" rel="noopener" href="https://www.shuzhiduo.com/A/amd0m61Xzg/">https://www.shuzhiduo.com/A/amd0m61Xzg/</a></p>
+<p>为什么同时需要外键和导航属性：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wsnbbdbbdbbdbb/article/details/122285977">https://blog.csdn.net/wsnbbdbbdbbdbb/article/details/122285977</a></p>
+<p>**单向导航：**比如用户类可能被多个其他的类作为属性，这个情况我们只需要在多的里面声明用户类即可，不必在用户类中声明所有的调用者，fluentapi配置的时候不需要在withmany指定属性即可</p>
+<p><strong>多向导航</strong>：一对多或者多对多中只有该两者之间关系比较密切，比如用户类只作为一个类的属性，不会作为其他类的属性</p>
+<p>例如前面创建表时如果字段是引用类型则不会映射到数据库中，在ef中这就是一对多，多对多。实际上就是外键。并且使用【Foreignkey】修饰，或者使用fluentapi</p>
+<p>在类中配置完外键之后，还需要使用fluentapi进行配置，两表之间的配置选择任意一个即可，对于单向导航，只能配置在一方</p>
+<p>在实际项目开发中，对于主从结构的一对多一般声明为双向导航，其他的比如被很多表引用的基础表，都是用单向导航</p>
+<p><img src="/2026/01/29/ef%E5%AD%A6%E4%B9%A0/assets/image-20230401092454204.png" alt="image-20230401092454204"></p>
+<p><strong>一对一</strong>:（最复杂）在学生中添加简历字段，同时在简历中添加学生字段</p>
+<p>在一对一中，必须显式的在类中声明一个外键属性</p>
+<p>例如学生和简历</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Student&#123;</span><br><span class="line">int id,</span><br><span class="line">string name,</span><br><span class="line">int resumeId,//一对一中，必须显示指定外键HasForeignKey(c=&gt;c.StudentId)</span><br><span class="line">Resume resume</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Resume&#123;</span><br><span class="line">int id,</span><br><span class="line">int studentId,</span><br><span class="line">Student student&#125;</span><br><span class="line">然后使用hasone().withone()进行配置</span><br></pre></td></tr></table></figure>
+
+<p><strong>一对多（多对一）</strong>：例如一个班级对应多个学生，一个学生对应一个班级（分别从班级和学生的角度看）。</p>
+<p>一对多中，会自动生成外键，所以可以不必显式指定外键</p>
+<p>class{id,name ,List&lt;Student》}</p>
+<p>Student{id,name,age,class}(学生的外键是班级id)&#x2F;&#x2F;学生表</p>
+<p>在类中添加完外键后，需要使用fluentapi设置配置：在onmodelcreating中进行设置，，配置可以放在任意一方</p>
+<p>例如</p>
+<p>在A实体类中配置builder.HasOne&lt;B》(c&#x3D;&gt;c.B).withMany(d&#x3D;&gt;d.A）表示A和B是一对多的关系，lambda表达式c.B中的B属性是对应B实体的。</p>
+<p>builder.entity&lt;Post》().Hasone(P&#x3D;&gt;P.Blog).withMany(b&#x3D;b.post).HasForignkey(p&#x3D;&gt;p.blogForeignkey)</p>
+<p>使用的hasone().withmany();或者hasmany().withOne()的形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">一对多</span><br><span class="line">//班级表</span><br><span class="line">public class Class</span><br><span class="line">&#123;</span><br><span class="line">	public long id;</span><br><span class="line">	public string name;</span><br><span class="line">	public List&lt;Student&gt; list;//如果是一对多，在一里面使用集合作为导航属性，在多里面使用类为导航属性</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//学生表</span><br><span class="line">public class Stduent</span><br><span class="line">&#123;</span><br><span class="line">	public long id;</span><br><span class="line">	public string name;</span><br><span class="line">	public long? classid;//默认约定：以类名+Id作为外键，对应下面的Class引用类型，也可以不写，数据库生成时会自动生成一个classid字段，若需要获取外键值，则可以手动添加上该外键。如果有想要单独获取外键的需求，可以使用类名+id的形式，如果没有该需求，可以不用写，efcore会在数据库中自动生成，若在类中定义了外键，那么就要使用fluentapi进行关系配置。</span><br><span class="line">	//增加一个Class班级引用类型字段,外键必须使用virtrual修饰</span><br><span class="line">	public Virtural Class Class;//在多里面使用一中的类作为导航属性</span><br><span class="line">	public int age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//测试类中创建班级对象之后直接往Student的Class字段中直接赋值即可。</span><br><span class="line">//上面默认使用类名+Id作为外键后需要使用fluentapi指定外键为ClassId</span><br><span class="line">class StudentConfig : IEntityTypeConfiguration&lt;Student&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        public void Configure(EntityTypeBuilder&lt;Student&gt; builder)</span><br><span class="line">        &#123;</span><br><span class="line">            builder.ToTable(&quot;T_Student&quot;);</span><br><span class="line">            this.HasRequried(e=&gt;e.Class).WithMany().HasForeignKey(e=e.ClassId);//一个学生必须有一个班级，一个班级有多个学生，外键为Classid</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>**多对多：**多个老师对应多个学生（此时需要引入一个中间表）</p>
+<p>Student{id,name,age,classid,list}&#x2F;&#x2F;学生表体现出一对多</p>
+<p>teacher{id,name,phoneNum,list}&#x2F;&#x2F;老师表体现出一对多</p>
+<p>studentTeacher{studentid,teacherid}&#x2F;&#x2F;中间表引入上面两个（可以省略，但不建议省略）</p>
+<p>同样使用fluentapi在任意一方进行配置，使用的hasmany(),withmany()的形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">多对多</span><br><span class="line">public class Teacher</span><br><span class="line">&#123;</span><br><span class="line">	public int id;</span><br><span class="line">	public string name;</span><br><span class="line">	public string sex;</span><br><span class="line">	public List&lt;Student&gt; list;//体现一对多</span><br><span class="line">&#125;</span><br><span class="line">public class Student</span><br><span class="line">&#123;</span><br><span class="line">	public int id;</span><br><span class="line">	public string name;</span><br><span class="line">	public string sex;</span><br><span class="line">	public string score;</span><br><span class="line">	public List&lt;Teacher&gt; list;//体现一对多</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">//中间表；只需要两者的id即可</span><br><span class="line">public class TeacherStudent</span><br><span class="line">&#123;</span><br><span class="line">	public int teacherId;</span><br><span class="line">	public int Stduentid;</span><br><span class="line">	public Teacher teacher;</span><br><span class="line">	public Student student;</span><br><span class="line">&#125;</span><br><span class="line">使用fluentapi：</span><br><span class="line">modelbuilder.entity&lt;PostTag&gt;().HasOne(pt=&gt;pt.Post).withmany(p=&gt;p.posttags).hasforiegn(pt=&gt;pt.postId)</span><br><span class="line">modelbuilder.entity&lt;PostTag&gt;().HasOne(pt=&gt;pt.Tag).withmany(t=&gt;t.posttags).hasforiegn(pt=&gt;pt.TagId)</span><br></pre></td></tr></table></figure>
+
+<p>**映射方法：**以下都是使用fluentapi进行配置</p>
+<p>1.hasOptional();&#x2F;&#x2F;有一个或者没有</p>
+<p>2.hasRequired();&#x2F;&#x2F;有一个必须的</p>
+<p>3.hasmany（）；&#x2F;&#x2F;有很多的</p>
+<p>4.withoptional();&#x2F;&#x2F;反向的有一个或者没有</p>
+<p>5.withrequired()；&#x2F;&#x2F;反向必须的</p>
+<p>6.withmany();&#x2F;&#x2F;反向有很多的。</p>
+<p>举例：在A实体中配置：this.HasRequred(p&#x3D;&gt;p.B).withMany();&#x2F;&#x2F;表示在A中有一个B，在B中有多个A；满足一对多</p>
+<p>​			在A实体中配置：this.HasRequired(p&#x3D;&gt;p.B).withReuqired();&#x2F;&#x2F;表示A中一个B，B中有一个A：满足一对一</p>
+<h3 id="获取关联数据："><a href="#获取关联数据：" class="headerlink" title="获取关联数据："></a>获取关联数据：</h3><p>例如获取id&#x3D;&#x3D;3的班级及其学生</p>
+<p>db.Student.Include(a&#x3D;&gt;a.class).single(a&#x3D;&gt;a.id&#x3D;&#x3D;1);</p>
+<h3 id="添加关联数据"><a href="#添加关联数据" class="headerlink" title="添加关联数据"></a>添加关联数据</h3><p>班级中添加学生0 </p>
+<p>class c1 &#x3D; new class();</p>
+<p>Student s1 &#x3D; new Student(“张三”);</p>
+<p>Student s2&#x3D; new Student(“李四”);</p>
+<p>c1.Students.Add(s1);</p>
+<p>c1.Students.Add(s2);</p>
+<p>await db.savechangesAsync();</p>
+<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p>例如Blog里面有Post属性,Post里面有Author属性</p>
+<p>context.Blogs.Include(blog&#x3D;&gt;blog.Posts).ThenInclude(Post&#x3D;&gt;Post.Author).ToList();</p>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><p>var blogsLike &#x3D; blogs.where(d&#x3D;&gt;EF.Functions.Like(d.name,”abcd”))；查询名字以abcd开头</p>
+<h3 id="efcore中的特性设置"><a href="#efcore中的特性设置" class="headerlink" title="efcore中的特性设置"></a>efcore中的特性设置</h3><p><strong>排除映射，排除实体</strong></p>
+<p>方法1.【notmapped】或者【ignore】；用到类上就不会映射成表，用到属性上就不会映射对应的属性</p>
+<p>2.fluentapi中设置 modelbuilder.entity《blog》().ignore(b&#x3D;b.loadedfromdatabase);</p>
+<p>注意：日期需要单独设置【datatype(DataType.Date)】</p>
+<p><strong>主键</strong></p>
+<p>1.【key】</p>
+<p>2.fluentapi中设置modelbuilder.entity《blog》().haskey(c&#x3D;new {c.state,c.licenseplate});</p>
+<p><strong>映射成表</strong></p>
+<p>1.DBSet《BLog》 blog{get;set}</p>
+<p>2.modelbuilder.entity《blog》();</p>
+<p><strong>改列名</strong>、字段</p>
+<p>【column(“blog_id”)】</p>
+<p>modelbuilder.entity《blog》().property(b&#x3D;&gt;b.BlogId).HasColumnName(“blog_id”);</p>
+<p><strong>该列的长度</strong></p>
+<p>【column(typename&#x3D;”varchar(200)”)】</p>
+<p>modelbuilder.entity《blog》().property(b&#x3D;&gt;b.BlogId).HasColumnType(“varchar(200)”).isrequired();</p>
+<p>【minlength】最小长度【maxlength】最大长度</p>
+<p>【stringlength】最大、最小长度</p>
+<p>【table】：设置表明及表的结构</p>
+<p>【index】配置该列为索引</p>
+<p>【foreignkey】：该列为外键</p>
+<h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3><p>查询不需要执行savechanges方法</p>
+<p>tolist();</p>
+<p>where();</p>
+<p>find();</p>
+<p>First();</p>
+<p>FirstOrDefault();</p>
+<p>single();&#x2F;&#x2F;查询一条</p>
+<p>singleOrdefault();</p>
+<p>last();</p>
+<p>select();</p>
+<p>LastOrdefault();</p>
+<p>count();</p>
+<p>LongCount();</p>
+<p>min()</p>
+<p>Max();</p>
+<p>Average();</p>
+<h3 id="添加操作"><a href="#添加操作" class="headerlink" title="添加操作"></a>添加操作</h3><p>conext.entity.add();</p>
+<p>context.savechanges();</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>context.dbset《entity》.remove(object)();</p>
+<p>context.savechanges();</p>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>context.dbset《entity》.update(object);</p>
+<p>context.savechanges();</p>
+<h2 id="仓储模式"><a href="#仓储模式" class="headerlink" title="仓储模式"></a>仓储模式</h2><p>优点：1.依赖注入要用泛型所以使用仓储。尽量使用scoped进行注入</p>
+<p>​			2.仓储模式不固定服务于某个数据库，所以只需要进行简单的更改即可更换数据库例如之前使用的是sqlserver，那么注入时就是用</p>
+<p>services.AddScoped《IStudentRepository，SqlStudentRepository》（）；即可</p>
+<p>现在更换到Oracle，只需要注入时修改为services.AddScoped《IStudentRepository，OracleStudentRepository》()；</p>
+<p>​			3.若50个实体类，则需创建100个类文件，比较枯燥，所以使用泛型仓储。</p>
+<p>​			4.推荐使用异步操作</p>
+<p>​			5.Controller里面不应该有DbContext，所以将其封装在Repository里面</p>
+<p>有两种方式实现仓储：</p>
+<p>1.每个实现类对应一个接口，则50个实现类有50个接口，并且一一对应，而且每个接口和每个实现类都要自己写一遍</p>
+<p>2.节约代码。即首先创建一个IRepositoryBase接口和RepositoryBase实现类，里面为通用方法，实现类实现接口中的方法。，然后创建其他的接口和实现类，仍然是一一对应，但是所有接口都实现IRepositoryBase接口，这样就只需要写自己独有的方法，同理所有的实现类继承RepositoryBase类和自己的接口，这样只需要实现自己接口中的方法。大量节约了代码</p>
+<p>步骤：1.创建两个文件IRepository (约定)和RepositoryBase（通用功能）</p>
+<p>举例</p>
+<p>&#x2F;&#x2F;查询,里面封装了几乎所有方法，在使用的时候，我们只需要挑选异步的，并且选择合适的即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br></pre></td><td class="code"><pre><span class="line">public interface IRepository&lt;T1,T2&gt; where T1:Class //T1为类，T2为主键类型</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	IQueryable&lt;T1&gt; GetAll();</span><br><span class="line"></span><br><span class="line">​	List&lt;T1&gt; GetAllList();</span><br><span class="line"></span><br><span class="line">​	Task List&lt;List&lt;T1&gt;&gt; GetAllListAsync();</span><br><span class="line"></span><br><span class="line">​	LIst&lt;T1&gt; GetAllList(Expression&lt;Expression Fuc&lt;T1,bool&gt;&gt; f2)</span><br><span class="line"></span><br><span class="line">   Task List&lt;LIst&lt;T1&gt;&gt; GetAllListAsync(Expression&lt;Fuc&lt;T1,bool&gt;&gt; f2)</span><br><span class="line"></span><br><span class="line">​	T1 Single(Expression&lt;Func&lt;T1,bool&gt;&gt; f2);</span><br><span class="line"></span><br><span class="line">​	Task&lt;T1&gt; SingleAsync(Expression&lt;Func&lt;T1,T2&gt;&gt; f2);</span><br><span class="line"></span><br><span class="line">​	T1 FirstOrDefault(Expression&lt;Func&lt;T1,bool&gt;&gt; f2);</span><br><span class="line"></span><br><span class="line">​	Task&lt;T1&gt; FirstOrDefaultAsync(Expression&lt;Func&lt;T1,bool&gt;&gt; f2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//添加</span><br><span class="line"></span><br><span class="line">Task&lt;T1&gt; InsertAsync(T1 t1)</span><br><span class="line"></span><br><span class="line">//修改</span><br><span class="line"></span><br><span class="line">Task&lt;T1&gt; UpdateAsync（T1 t1）；</span><br><span class="line"></span><br><span class="line">删除</span><br><span class="line"></span><br><span class="line">Task DeleteAsync(T1 t1)</span><br><span class="line"></span><br><span class="line">Task DeleteAsycn(Expression&lt;Func&lt;T1，bool&gt;f2&gt;)</span><br><span class="line"></span><br><span class="line">//总数</span><br><span class="line"></span><br><span class="line">Task&lt;int&gt; CountAsync();</span><br><span class="line"></span><br><span class="line">//其他通用方法</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RepositoryBase实现</span><br><span class="line"></span><br><span class="line">public class RepositoryBase&lt;T1,T2&gt;:IRepository&lt;T1,T2&gt; where T1:class</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	//注入</span><br><span class="line"></span><br><span class="line">protectd readonly AppDbContext _dbContext;</span><br><span class="line"></span><br><span class="line">public virtual DbSet&lt;T1&gt; Table= _dbContext.Set&lt;T1&gt;();</span><br><span class="line"></span><br><span class="line">public RepositoryBase(AppDbContext dbContext)</span><br><span class="line"></span><br><span class="line">​	&#123;</span><br><span class="line"></span><br><span class="line">​	_dbContext = dbContext；</span><br><span class="line"></span><br><span class="line">​	&#125;</span><br><span class="line"></span><br><span class="line">//查询</span><br><span class="line"></span><br><span class="line">IQueryable&lt;T1&gt; GetAll()</span><br><span class="line"></span><br><span class="line">​	&#123;</span><br><span class="line"></span><br><span class="line">​		return Table.Queryable();</span><br><span class="line"></span><br><span class="line">​	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">​	Task List&lt;List&lt;T1&gt;&gt; GetAllListAsync()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	return await GetAll().ToListAsync();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   Task List&lt;LIst&lt;T1&gt;&gt; GetAllListAsync(Expression&lt;Fuc&lt;T1,bool&gt;&gt; f2)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	return await GetAll().where(f2).ToListAsync();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">​	Task&lt;T1&gt; SingleAsync(Expression&lt;Func&lt;T1,T2&gt;&gt; f2)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	return await GetAll().SingleAsync(f2);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">​	Task&lt;T1&gt; FirstOrDefaultAsync(Expression&lt;Func&lt;T1,bool&gt;&gt; f2)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	return await GetAll().FirstOrDefaultAsync(f2);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//添加</span><br><span class="line"></span><br><span class="line">Task&lt;T1&gt; InsertAsync(T1 t1)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	var newentity = await Table.AddAsync(t1);</span><br><span class="line"></span><br><span class="line">​	await saveAsync();</span><br><span class="line"></span><br><span class="line">return newentity.entity();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//修改(同步省略了)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">​	public async Task&lt;T1&gt; updateAsync(T1 t1)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	AttachIfNot(t1);</span><br><span class="line"></span><br><span class="line">​	Table.update(t1);</span><br><span class="line"></span><br><span class="line">​	await saveAsync();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">删除(同步省略了)</span><br><span class="line"></span><br><span class="line">Task DeleteAsync(T1 t1)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	AttachIfNot(t1);</span><br><span class="line"></span><br><span class="line">​	Table.Remove(t1);</span><br><span class="line"></span><br><span class="line">​	await saveChangeAsync();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Task DeleteAsycn(Expression&lt;Func&lt;T1，bool&gt;f2&gt;)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	foreach(var entity in GetAll().where(f2).ToList())</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">​	await DeleteAsync(t1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">然后让其他类通过结成RepositoryBase的方式提供泛型类即可。</span><br><span class="line">例如ShopRepository&lt;Shop1,Shop2&gt;:RepositoryBase&lt;Shop1,Shop2&gt;//泛型仅起到占位符的作用，并不是通过创建对象的方式传给泛型</span><br><span class="line">&#123;</span><br><span class="line">	public ShopRepository(...):Base(...)</span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="乐观锁悲观锁解决并发冲突"><a href="#乐观锁悲观锁解决并发冲突" class="headerlink" title="乐观锁悲观锁解决并发冲突"></a>乐观锁悲观锁解决并发冲突</h2><p>并发冲突：当客户端同时两个或者两个以上的请求，同时读取并修改同一个数据时叫做并发冲突</p>
+<p>解决问题：为了解决多个用户同时访问同一个资源引起的并发冲突</p>
+<p>悲观锁：将资源锁定，确保只有一个使用者操作被锁定的资源。（使用简单）</p>
+<p>乐观锁：允许多个用户同时访问，通过检测避免算法避免冲突，导致最后一条记录被保存。推荐使用 （使用较难，但是ef底层默认使用乐观并发）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">解决一种特殊情况</span><br><span class="line">方式1：通过检测主键之外实体的属性检测并发冲突</span><br><span class="line">Property(p=&gt;p.Name).IsConcurrencyToken();</span><br><span class="line">方式2:设置行版本：添加一个字节数组</span><br><span class="line">public byte[] RowVersion&#123;get;set;&#125;</span><br><span class="line">Property(p=&gt;p.RowVersion).IsRowVersion();</span><br></pre></td></tr></table></figure>
+
+<p>出现并发异常的解决办法就是如何处理异常并重试</p>
+<p>中级版本1客户端获胜2数据库获胜3合并获胜</p>
+<p>高级版本：使用Polly重试策略《你必须掌握的ef6与efcore2.0》p227</p>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>1.使用Dbcontext的DataBase.log属性打印到控制台</p>
+<p>​		context.DataBase.log &#x3D; Console.WriteLine();</p>
+<p>2.打印到文件里面</p>
+<p>var sw &#x3D; new StreamWriter(@”d:\data.log”){AutoFlush&#x3D;true};</p>
+<p>context.DataBase.Log &#x3D; s&#x3D;&gt;{sw.write(s</p>
+<p>)}</p>
+<p>3.结构化输出：</p>
+<p>​	继承自DatabaseLogFormatter的类</p>
+<p>以上都只能在demo中使用，下面的是在正规项目中使用</p>
+<p>4.使用Nlog的IDbInterceptor接口：参考《你必须掌握的enitityframework6.x与2.0》p171</p>
+<p>前期未使用日志，后期可以通过配置文件加上，不必关闭服务器参考《你必须掌握的enitityframework6.x与2.0》p172</p>
+<h4 id="性能监控"><a href="#性能监控" class="headerlink" title="性能监控"></a>性能监控</h4><p>使用拦截器监控sql的性能</p>
+<p>方式1：实现IDbCommandInterceptor接口</p>
+<p>方式2：实现DbCommandInterceptor类</p>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>将数据插入多个表中时，如果对其中一个表插入数据失败，就应该回滚其他事务（增删改需要，查询不需要）</p>
+<p>案例说明事务：从银行账户A转移到B账户，一是从A账户提取金额，二是将金额存入账户B中。假设进程1成功，但进程二失败，那么这些钱将从A中扣除，但不会存在B账户。此时通过事务来完成操作，事务就是将一系列操作作为整体处理，要么全部成功，要么全部失败</p>
+<h3 id="连接弹性"><a href="#连接弹性" class="headerlink" title="连接弹性"></a>连接弹性</h3><p>由于网络超时，死锁导致操作中断，此时需要重新打开连接数据库并重试进行操作。连接弹性就是自动完成这种重试操作</p>
+<p>ef自带的四种重试策略：setExecutionStrategy(…)不够强大·。使用Polly库</p>
+<h3 id="级联删除"><a href="#级联删除" class="headerlink" title="级联删除"></a>级联删除</h3><p>builder.Hasone( m&#x3D;&gt;m.Contact).WithOne(p&#x3D;&gt;p.Student).HasForeignKey<StudentContact>(k&#x3D;&gt;k.Id).OnDeletee(DeleteBehavior.Cascade);</StudentContact></p>
+<p>​		Restrict:只删除主体，依赖实体不变</p>
+<p>​		SetNull;依赖实体中的外键属性设为null</p>
+<p>​		CasCade:相关实体也被删除</p>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p>1.预编译视图：使用ef power tools，右击上下文文件，实体框架-》生成视图：第二种方法使用api（推荐），第三种方法：使用efinteractiveviews</p>
+<p>2.关闭数据库初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class efconfiguration :dbconfiguration </span><br><span class="line">public efConfiguration()</span><br><span class="line">&#123;</span><br><span class="line">	setDatabseInitializer(EfDbContext)(null);</span><br><span class="line">	或者setDatabseInitializer(EfDbContext)(new NullDatabaseInitiallizer&lt;EfDbContext&gt;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.5避免数据库版本查询</p>
+<p>ef会每次都查询数据库的版本，若自己已知版本，则可以直接写死，使用Imanifesttoken类中的resolvemanifesttoken方法</p>
+<p>3.安装ef程序集</p>
+<p>4.AsNoTracking</p>
+<p>使用savechanges时，会自动调用detectchanges方法对每个属性和数据库的值进行比较，继而保存，但是对于查询操作，我们不会对数据进行修改，所以使用AsNoTracking不对数据进行比对，节约时间。所以单单对于查询操作，可以使用AsNoTracking。</p>
+<p>如何使用asnotracking 1.每次查询后面使用一次asNoTracking()</p>
+<p>​										2.直接在上下文中将AsNoTracking()为所有的查询开启，慎重</p>
+<p>5.缓存</p>
+<p>利用主键查询的时候，使用find方法而不是firstordefault或sigleordefault方法，因为find方法底层使用了缓存</p>
+<p>6.避免导航查询重复查询导航项</p>
+<p>Custom里面有个Order项，每次查询的Custom时候都会自动从数据库中查询Order，但是如果想要Custome里面的Order项，则必须再回数据库查询一下Custom的Order数据，重复操作，所以使用Include可以将Order放在缓存里面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.Customers.where(p=&gt;p.Name==&quot;jack&quot;).Include(d=&gt;d.Orders).ToList();</span><br></pre></td></tr></table></figure>
+
+<p>7.添加索引</p>
+<p>。。。</p>
+<p>8.关闭detectchanges方法</p>
+<p>对于插入操作，不需要进行数据对比，所以可以关闭detectchanges方法</p>
+<p>9.批量插入时，不要循环对每个对象添加调用Add方法，而是将所有对象放在一个集合里面，然后使用Addrange方法进行批量插入</p>
+<p>10.使用异步查询</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">时代的寒流</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://gao-hongfei123.github.io">http://gao-hongfei123.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="../../../../about" target="_blank">时代的寒流</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="../../../../libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="../../../../medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="../Maui/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/1.jpg" class="responsive-img" alt="WPF&amp;Maui">
+                        
+                        <span class="card-title">WPF&amp;Maui</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            wpf**wpf的所有控件的属性，**及其方法https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&amp;
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-01-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            时代的寒流
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../bootstrap/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/14.jpg" class="responsive-img" alt="Bootstrap">
+                        
+                        <span class="card-title">Bootstrap</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Bootstrap
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-01-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            时代的寒流
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="../../../../libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2016-2026</span>
+            
+            <a href="../../../../about" target="_blank">时代的寒流</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('../../../../search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="../../../../libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1303 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="blazor, 时代的寒流">
+    <meta name="description" content="Blazor Server 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）
+
+下载项大小明显小于 Blazor WebAssembly 应用，且应用加载速度快得多。
+支持瘦客户端。 例如，Blazor Server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>blazor | 时代的寒流</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../../../../css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="../../../../css/reward.css">
+    
+
+
+
+    <script src="../../../../libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">时代的寒流</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>联系</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">时代的寒流</div>
+        <div class="logo-desc">
+            
+            不断寻找人生的真谛
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			联系
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">blazor</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-01-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><code>Blazor Server</code> 托管模型具有以下优点：（网页文件都是cshtml类型，因为是服务端渲染）</p>
+<ul>
+<li>下载项大小明显小于 <code>Blazor WebAssembly</code> 应用，且应用加载速度快得多。</li>
+<li>支持瘦客户端。 例如，<code>Blazor Server</code> 应用适用于不支持 <code>WebAssembly</code> 的浏览器以及资源受限的设备。</li>
+<li>应用的 .NET&#x2F;C# 代码库（其中包括应用的组件代码）不适用于客户端。</li>
+</ul>
+<p><code>Blazor Server</code> 托管模型具有以下局限性：</p>
+<ul>
+<li>通常延迟较高。 每次用户交互都涉及到网络跃点。</li>
+<li>不支持脱机工作。 如果客户端连接失败，应用会停止工作。</li>
+</ul>
+<p><code>Blazor WebAssembly</code> 托管模型具有以下优点：（网页文件都是razor类型，因为是客户端渲染）</p>
+<ul>
+<li>没有 .NET 服务器端依赖，应用下载到客户端后即可正常运行。</li>
+<li>工作可从服务器转移到客户端。</li>
+</ul>
+<p><code>Blazor WebAssembly</code> 托管模型具有以下局限性：</p>
+<ul>
+<li><p>应用仅可使用浏览器功能。</p>
+</li>
+<li><p>需要可用的客户端硬件和软件（例如 <code>WebAssembly</code> 支持）。</p>
+</li>
+<li><p>下载项大小较大，应用加载耗时较长。</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><h2 id="项目目录："><a href="#项目目录：" class="headerlink" title="项目目录："></a><strong>项目目录：</strong></h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/aspnet/core/blazor/project-structure?view=aspnetcore-7.0">https://learn.microsoft.com/zh-cn/aspnet/core/blazor/project-structure?view=aspnetcore-7.0</a></p>
+<p>shared：将自定义组件放在该文件夹（局部组件或者布局文件），该组件只对外提供属性和事件作为标签的属性的事件，使用parameter进行标注，而具体的事件绑定的方法是在page文件夹里面的文件进行逻辑书写,不需带路由</p>
+<p>page：对外展示的整个页面放在该文件夹，需带路由（&#x2F;page）</p>
+<p>_Import.Razor文件：引用razor使用的标签对应的类，例如input，editform等</p>
+<p><strong>根据目录分析网页加载原理：</strong></p>
+<p>首先网站加载后，首先加载的是wwwroot下的index.html文件，而不是index.razor组件，那么index.razor组件是如何嵌入到index.html里面去的呢？在index.html里面有这样一句话：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;app&quot;&gt;定义了一个app的div</span><br></pre></td></tr></table></figure>
+
+<p>然后在program.cs中，有builder.RootComponents.Add<App>(“#app”);这样一句话，说明将App这个组件嵌入到id为app的div中，而App.razor中有《Router AppAssembly&#x3D;”@typeof(App).Assembly”&gt;将加载page文件夹下的所有路由，并建立对应的路由表，当url匹配到对应的路由之后，就会将对应的razor文件嵌入到index.html的id为app的div中，运行之后通过查看源码可以查看到index.razor嵌入到index.html中</App></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">builder.RootComponents.Add&lt;HeadOutlet&gt;(&quot;head::after&quot;);program.cs中的该行表示将HeadOutlet组件添加到index.html中的head标签的最后一行，该组件一般包含pagetitle组件等</span><br></pre></td></tr></table></figure>
+
+<p>**通过反编译：**每个razor文件最后都会编译成cs类：例如index.razor&#x3D;&#x3D;index.cs文件&#x3D;&#x3D;index类，里面的@code{}等等，都是index类里面的内容。包括html标签，都会使用对象.方法的方式提交标签内容。例如_builder.addMarkupContent(1,”button”)将所有标签组合成一起后传送到前端。类似于javaservlet</p>
+<p>支持异步</p>
+<p>@+字段：调用c#中的属性</p>
+<p>@+事件&#x3D;“方法名”；绑定到事件</p>
+<p>@code{</p>
+<p>​	纯c#代码</p>
+<p>}</p>
+<p>事件绑定时如何使用lambda表达式：使用@()里面添加表达式</p>
+<p>例如&lt;input @onclick&#x3D;”@(</p>
+<p>​											()&#x3D;&gt;{cw.writeLine(“lambda”);}</p>
+<p>​											 )”&gt;</p>
+<p><strong>前后端分离</strong>将c#代码与razor代码分开，例如在index.razor所在文件夹中，创建一个index.razor.cs的类，会出现Index类报错，在public后添加partial即可</p>
+<p>传统netcore转blazor：1.builder.AddServerSideBlazor	2.app.MapBlazorHup()	3.app.MapFallBackTopage(“&#x2F;.Host”)(BlazorServer)</p>
+<p>blazor中的依赖注入与传统的构造方法注入不同，使用的是在最上部使用@inject Http http进行注入,传统注入是构造注入</p>
+<p>第二种方式，创建一个组件+Base.cs的类，让其继承ComponentBase类也可前后分离，然后让前端的razor组件使用@inherit 组件Base即可。但是写法必须参照razor里面的@code的写法，例如注入使用【inject】的形式</p>
+<h2 id="级联参数"><a href="#级联参数" class="headerlink" title="级联参数"></a><strong>级联参数</strong></h2><p>如果要将值传递给组件的直接子组件，可以使用组件参数。 当具有包含子组件的子组件的较深层次结构时，事情便会变得难以应付。 组件参数不会从上级组件或沿着层次结构向下自动传递到下级组件。 为了完美处理此问题，Blazor 包含了级联参数。 在组件中设置级联参数的值时，其值将自动提供给所有子组件。</p>
+<p>(CascadingValue)：用来父组件与子组件之间传递参数的另一种方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">父组件中：</span><br><span class="line">@page &quot;/specialoffers&quot;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Special Offers&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;CascadingValue Name=&quot;DealName&quot; Value=&quot;Throwback Thursday&quot;&gt;</span><br><span class="line">    &lt;!-- Any descendant component rendered here will be able to access the cascading value. --&gt;</span><br><span class="line">&lt;/CascadingValue&gt;</span><br><span class="line">子组件中</span><br><span class="line">&lt;h2&gt;Deal: @DealName&lt;/h2&gt;</span><br><span class="line">@code &#123;</span><br><span class="line">    [CascadingParameter(Name=&quot;DealName&quot;)]</span><br><span class="line">    private string DealName &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AppState传递参数"><a href="#AppState传递参数" class="headerlink" title="AppState传递参数"></a>AppState传递参数</h2><p>用于解决两个不相关的组件之间相互传递参数。</p>
+<p>使用注入注册的方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class PizzaSalesState</span><br><span class="line">&#123;</span><br><span class="line">    public int PizzasSoldToday &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">// Add services to the container</span><br><span class="line">builder.Services.AddRazorPages();</span><br><span class="line">builder.Services.AddServerSideBlazor();</span><br><span class="line"></span><br><span class="line">// Add the AppState class</span><br><span class="line">builder.Services.AddScoped&lt;PizzaSalesState&gt;();</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">@page &quot;/&quot;</span><br><span class="line">@inject PizzaSalesState SalesState</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Welcome to Blazing Pizzas&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;Today, we&#x27;ve sold this many pizzas: @SalesState.PizzasSoldToday&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;button @onclick=&quot;IncrementSales&quot;&gt;Buy a Pizza&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private void IncrementSales()</span><br><span class="line">    &#123;</span><br><span class="line">        SalesState.PizzasSoldToday++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="组件引用"><a href="#组件引用" class="headerlink" title="组件引用"></a><strong>组件引用</strong></h2><p>例如《child @ref&#x3D;”@test”》 等价于在child test &#x3D; new child将组件看作对象，使用test.对象的形式访问子组件中的内容</p>
+<p>**布局：**布局文件是一种特殊的组件，在布局文件中，在nav和footer中有个@body代码，该代码表示凡是使用@layout 应用该布局文件是会将代码填充到@body内容部分，若没使用@layout指定，则默认为@layout MainLayout.razor。布局文件两个特殊的要求。</p>
+<ul>
+<li>必须继承 <code>LayoutComponentBase</code> 类。@inherits LayoutComponentBase</li>
+<li>必须在要呈现发起引用的组件内容的位置包含 <code>@Body</code> 指令。</li>
+<li>若要使用组件则@layout BlazingPizzasMainLayout</li>
+</ul>
+<p>如果要将默认布局应用于 Web 应用的所有文件夹中的所有组件，可以在 App.razor 组件中执行此操作，可以像在第 2 单元中学到的那样，在该组件中配置 Router 组件。 在 <code>&lt;RouteView&gt;</code> 标记中，使用 <code>DefaultLayout</code> 属性。</p>
+<p>**修改title和head内容：**因为默认是在index.html中，如果修改比较麻烦，对于单页面想要修改，则使用pagetitle组件修改title，使用headContent组件修改head部分，不必再再index.html中修改。</p>
+<h2 id="数据链接"><a href="#数据链接" class="headerlink" title="数据链接"></a><strong>数据链接</strong></h2><p>实现父组件属性改变情况下子组件属性也改变，反之也可实现，传统方式无法实现即@bind-{Property},@bind-{Property}:event ,@bind-{Property}:get,@bind-{Property}:set</p>
+<p>1.razor文件命名必须以大写字母开头</p>
+<p>razor语法：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/aspnet/core/mvc/views/razor?view=aspnetcore-7.0">https://learn.microsoft.com/zh-cn/aspnet/core/mvc/views/razor?view=aspnetcore-7.0</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">参考官方文档</span><br><span class="line">1.下面这两种呈现的结果是一样的，里面既可以写html代码，也可以写c#代码</span><br><span class="line">@code &#123;</span><br><span class="line">    //这种方式用在blazor中的</span><br><span class="line">&#125;</span><br><span class="line">@&#123;</span><br><span class="line">//这种方式是在cshmlt中使用的，mvc中的razor，不要使用在blazor中</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@&#123;</span><br><span class="line">    Student student = new Student &#123; Name = &quot;jerry&quot; ,age=20 &#125;;</span><br><span class="line">    public class Student</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125; = &quot;jerry&quot;;</span><br><span class="line">        public int age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;上面的代码等价于如下代码，及@&#123;&#125;中的代码放在一个类里面，该类名实际就是文件名</span><br><span class="line">public Test&#123;</span><br><span class="line">Student student = new Student &#123; Name = &quot;jerry&quot; ,age=20 &#125;;</span><br><span class="line">    public class Student</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125; = &quot;jerry&quot;;</span><br><span class="line">        public int age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如果想要输出@，就使用@@，若是电子邮件格式，则里面的@不会进行转义,其中name变量为jerry</span><br><span class="line">qq@Name.com会原样输出</span><br><span class="line">qq@@Name.com会输出为qq@Name.com</span><br><span class="line">qq@(Name).com会输出为qqjerry.com</span><br><span class="line">2.svg图像格式</span><br><span class="line">3.隐式razor表达式：就是使用@对象.变量名（面向对象）的方式代替@变量名的方式，但不能加上泛型，因为泛型中的&lt;&gt;会误判为html中的&lt;&gt;，若使用泛型，使用显式表达式</span><br><span class="line">4.显式razor表达式(建议全部使用显式的)：使用@();括号里面的内容是c#代码，括号外都是html代码</span><br><span class="line"> @(DateTime.Now - TimeSpan.FromDays(7))，显式表达式可以使用泛型</span><br><span class="line">5.表达式编码:htmlhelper不在学习范围内。</span><br><span class="line">6.在html里面写for循环</span><br><span class="line">@for (var i = 0; i &lt; people.Length; i++)</span><br><span class="line">&#123;</span><br><span class="line">    var person = people[i];</span><br><span class="line">    &lt;text&gt;Name: @person.Name&lt;/text&gt;</span><br><span class="line">&#125;</span><br><span class="line">7.显式行转换（看见认识即可，不会使用）： @:Name: @person.Name 使用@:进行换行，等价于</span><br><span class="line">&lt;p&gt;Name: @person.Name&lt;/p&gt;</span><br><span class="line">8.控制语句if,else，循环结构：while，for，foreach</span><br><span class="line">9.@using:用来释放非托管资源</span><br><span class="line">10@try，catch</span><br><span class="line">11注释：ctrl+k+c</span><br><span class="line">12添加特性：Test.razor最终编译成一个Test类，及</span><br><span class="line">public Test&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;如何在它上面添加授权特性，就是使用@attribute [Authorize]等价于</span><br><span class="line">[Authorize]</span><br><span class="line">public Test&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">13.@using 引入命名空间</span><br><span class="line">14.@implements Student让Test.razor最终生成的Test类实现某个Student接口</span><br><span class="line">15.@inherits用于继承某个其他的组件</span><br><span class="line">16.@inject依赖注入，不要使用传统的构造注入</span><br><span class="line">17.@layout 布局</span><br><span class="line">18.@namespace 设置命名空间</span><br><span class="line">19.@page 设置路由</span><br><span class="line">20.@attibute 为razor文件指定特性</span><br><span class="line">21.@attributes html中的标签属性放在c#代码中，这样比较规整</span><br><span class="line">22.@key:再数据不断增加的情况下，不会失去焦点（闪烁的光标）</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>页面中通过事件绑定到方法如下（单向绑定）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class=&quot;btn btn-primary&quot; @onclick=&quot;IncrementCount&quot;&gt;Click me&lt;/button&gt;通过@方法名的方式绑定到方法。</span><br><span class="line"></span><br><span class="line">@code &#123;</span><br><span class="line">    private void IncrementCount()</span><br><span class="line">    &#123;</span><br><span class="line">        currentCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>双向绑定：使用@bind</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">绑定属性：@bind=&quot;inputvalue&quot;等价于@bing:value=&quot;inputvalue&quot;。</span><br><span class="line">绑定事件：@bind:event=&quot;onchange&quot;如果没有写绑定事件，则默认绑定到失去焦点事件(onchange事件)</span><br><span class="line">完成代码： &lt;input @bind-value=&quot;inputvalue&quot; @bind-value:event=&quot;onchange&quot; /&gt;</span><br><span class="line">如果执行完官方事件之后，还想要执行自定义函数，则使用@bind:after=&quot;方法名&quot;</span><br><span class="line">设置绑定日期的格式：&lt;input @bind=&quot;birthdate&quot; @bind:format=&quot;dd-MM-yyyy&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>函数如何获取事件传递过来的参数？</p>
+<p>private void IncrementCount(MouseEventArgs e)    {}不同的事件提供不同的事件参数，如何区分如下：一般是将事件前面的on去掉，然后后面加上EventArgs</p>
+<p>当方法中需要主动获取标签里面的内容。则通过绑定事件对应的参数进行传入，参数类型如何确定？将鼠标放在事件上，会提示ChangeEventArgs或者其他类型的参数</p>
+<p><img src="/2026/01/29/blazor%E5%AD%A6%E4%B9%A0/assets/image-20221002212652264.png" alt="image-20221002212652264"></p>
+<h2 id="页面中获取c-代码中的属性作为标签的属性值（通过c-代码控制css属性）"><a href="#页面中获取c-代码中的属性作为标签的属性值（通过c-代码控制css属性）" class="headerlink" title="页面中获取c#代码中的属性作为标签的属性值（通过c#代码控制css属性）"></a>页面中获取c#代码中的属性作为标签的属性值（通过c#代码控制css属性）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 style=&quot;font-style:@Style&quot;&gt;Counter&lt;/h1&gt;通过@属性名的方式绑定到属性。，这种方式只是单向绑定，即前端页面数值改变并不会改变后端数据的大小。</span><br><span class="line">@code &#123;</span><br><span class="line">    private int currentCount = 0;</span><br><span class="line">    private string Style = &quot;italic&quot;;斜体</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">双向绑定:前端数据改变，同时后端对应的属性值也会立即随之改变,默认是鼠标离开输入框的时候会自动更改后端数据的值，如果更改为在数据输入的同时更改值则添加一个属性为@bind:event=&quot;oninput&quot;</span><br><span class="line">&lt;input @bind:&quot;Name&quot;/&gt;即将input的value与Name进行双向绑定。</span><br><span class="line">&lt;input @bind-Title=&quot;Name&quot;&gt;&lt;/input&gt;</span><br><span class="line">@bind:等价于@bind：</span><br></pre></td></tr></table></figure>
+
+<h2 id="模板组件"><a href="#模板组件" class="headerlink" title="模板组件"></a>模板组件</h2><p>主页面时index.razor</p>
+<p>当主页面引用组件的时候，使用&lt;组件名&gt;&lt;&#x2F;组件名称&gt;的方法进行引用其他组件 </p>
+<h2 id="组件参数"><a href="#组件参数" class="headerlink" title="组件参数"></a>组件参数</h2><p>（相当于标签属性）：引用组件的时候，如果在调用者的文件里面传递参数给被调用的组件，则须在被调用者的对应的属性里面写上【parameter】参数，相当于将Title属性暴露出去，类似于形参</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">一个Component组件</span><br><span class="line">page &quot;/Counter&quot;</span><br><span class="line">&lt;h1&gt;@Title&lt;/h1&gt;Component组件显示Title，调用c#中的title属性</span><br><span class="line">@Code</span><br><span class="line">&#123;</span><br><span class="line">[Parameter]</span><br><span class="line">private string Title&#123;get;set;&#125;</span><br><span class="line">[Paramter]</span><br><span class="line">private EventCallBack&lt;MouseEventArgs&gt; OnClick&#123;get;set;&#125;为该组件定义OnClick事件</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">在index里面引用Component组件</span><br><span class="line">&lt;Component Title=&quot;c#&quot; Onclick=&quot;@show&quot;/&gt;这样就会将Title的值传递给组件中的Title属性，然后在组件中显示出Title的值</span><br><span class="line">@code&#123;</span><br><span class="line">	public void show()</span><br><span class="line">	&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数参数传递"><a href="#函数参数传递" class="headerlink" title="函数参数传递"></a>函数参数传递</h2><p>使用EventCallback</p>
+<p>将函数作为参数在组件中进行传递</p>
+<h2 id="路由配置，在App-razor里面"><a href="#路由配置，在App-razor里面" class="headerlink" title="路由配置，在App.razor里面"></a>路由配置，在App.razor里面</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router组件用来遍历程序集里面的所有@page生成的路由表</span><br><span class="line">&lt;Router AppAssembly=&quot;@typeof(App).Assembly&quot;&gt;</span><br><span class="line">    &lt;Found Context=&quot;routeData&quot;&gt;</span><br><span class="line">    routeview组件用来接收所有的路由参数以及指定默认的布局</span><br><span class="line">        &lt;RouteView RouteData=&quot;@routeData&quot; DefaultLayout=&quot;@typeof(MainLayout)&quot; /&gt;</span><br><span class="line">        打开网页的时候，首先就会定位到h1标签所修饰的内容</span><br><span class="line">        &lt;FocusOnNavigate RouteData=&quot;@routeData&quot; Selector=&quot;h1&quot; /&gt;                           </span><br></pre></td></tr></table></figure>
+
+<p>使用@page“&#x2F;Counter”等价于使用@Attribute[Route(“&#x2F;Counter”)],相当于在该组件的类上面添加了该路由特性</p>
+<p>执行方法的时候进行导航，分为调用者和被调用者，如下 1.通过控件进行导航 </p>
+<p>首先在调用者里面引入路由对象，这是注入，而注册仍然是在program类里面</p>
+<p>@inject NavigationManager nm</p>
+<p>创建控件，绑定方法</p>
+<p>&lt;button @onclick&#x3D;”NavTo”&gt;update<br> public void NavTo()</p>
+<pre><code>{
+
+调用方法导航到对应的页面
+
+    nm.NavigateTo(&quot;test&quot;);
+
+}
+</code></pre>
+<p> 被调用者需要设置对应的路由url</p>
+<p> @page “&#x2F;test”</p>
+<p> 2.通过链接进行导航</p>
+<p> 使用Navlink标签指定href进行导航</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink class=&quot;nav-link&quot; href=&quot;&quot; Match=&quot;NavLinkMatch.All&quot;&gt;</span><br><span class="line">                &lt;span class=&quot;oi oi-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Home</span><br><span class="line">&lt;/NavLink&gt;</span><br><span class="line">属性</span><br><span class="line">NavLinkMatch.All：使用此值时，只有在链接的 href 与当前 URL 完全匹配时，该链接才突出显示为活动链接。</span><br><span class="line">NavLinkMatch.Prefix：使用此值时，当链接的 href 与当前 URL 的第一部分匹配时即baseurl，该链接就突出显示为活动链接。 例如，假设你拥有链接 &lt;NavLink href=&quot;pizzas&quot; Match=&quot;NavLinkMatch.Prefix&quot;&gt;。 当前 URL 为 http://www.contoso.com/pizzas 及该 URL 中的任意位置（例如 http://www.contoso.com/pizzas/formaggio）时，此链接将突出显示为活动链接。 此行为可帮助用户了解自己当前正在查看网站的哪一部分。</span><br></pre></td></tr></table></figure>
+
+
+<p>路由参数：例如前端使用url传参，后端如何接收：使用路由参数，为类中的属性&#x2F;字段添加[parameter]特性,凡是使用parameter修饰的属性都表示该属性作为url的接收参数，通过OnInitialized方法对传递进来的参数进行处理，该方法表示该组件启动之后首先做的事情</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@page &quot;/test/&#123;parameter1:int&#125;&quot;参数传递给parameter1，并且约束为int类型</span><br><span class="line">//@page &quot;/FavoritePizza/&#123;*favorites&#125;&quot;使用*可以获取所有的路由参数,例如url为http://www.contoso.com/favoritepizza/margherita/hawaiian，则最后favorites捕获的是margherita/hawaiian，而不是单单的margherita</span><br><span class="line">&lt;p&gt;Your favorite pizza is: @Favorite&lt;/p&gt;</span><br><span class="line">@code&#123;</span><br><span class="line">	[parameter]</span><br><span class="line">	//在url中显示parameter2=。。。，而不是parameter1</span><br><span class="line">	[SupplyParameterFromQuery(Name = &quot;parameter2&quot;)];</span><br><span class="line">	public string parameter1&#123;get;set;&#125;</span><br><span class="line">	protected override void OnInitialized()</span><br><span class="line">    &#123;</span><br><span class="line">        parameter1 = parameter1 ?? &quot;fantastic&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">以上代码参数的传递顺序为@page中的parameter1首先获取，然后是传递给在@code中parameter1，在然后是在p标签中进行显示</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>路由约束可设置的情况：</p>
+<table>
+<thead>
+<tr>
+<th>bool</th>
+<th>{vegan:bool}</th>
+<th><code>http://www.contoso.com/pizzas/true</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>datetime</td>
+<td>{birthdate:datetime}</td>
+<td><code>http://www.contoso.com/customers/1995-12-12</code></td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>{maxprice:decimal}</td>
+<td><code>http://www.contoso.com/pizzas/15.00</code></td>
+</tr>
+<tr>
+<td>double</td>
+<td>{weight:double}</td>
+<td><code>http://www.contoso.com/pizzas/1.234</code></td>
+</tr>
+<tr>
+<td>float</td>
+<td>{weight:float}</td>
+<td><code>http://www.contoso.com/pizzas/1.564</code></td>
+</tr>
+<tr>
+<td>guid</td>
+<td>{pizza id:guid}</td>
+<td><code>http://www.contoso.com/pizzas/CD2C1638-1638-72D5-1638-DEADBEEF1638</code></td>
+</tr>
+<tr>
+<td>long</td>
+<td>{totals ales:long}</td>
+<td><code>http://www.contoso.com/pizzas/568192454</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">当前完整 URI，例如 http://www.contoso.com/pizzas/margherita?extratopping=pineapple。使用NavManager.ToAbsoluteUri(NavManager.Uri)</span><br><span class="line">基本 URI，例如 http://www.contoso.com/。</span><br><span class="line">基本相对路径，例如 pizzas/margherita。</span><br><span class="line">查询字符串，例如 ?extratopping=pineapple。</span><br><span class="line">获取baseuri</span><br><span class="line">protected override void OnInitialized()</span><br><span class="line">	&#123;</span><br><span class="line">		HomePageURI = NavManager.BaseUri;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">获取查询参数：使用QueryHelpers</span><br><span class="line">@page &quot;/pizzas&quot;</span><br><span class="line">@using Microsoft.AspNetCore.WebUtilities</span><br><span class="line">@inject NavigationManager NavManager</span><br><span class="line">@code &#123;</span><br><span class="line">	protected override void OnInitialized()</span><br><span class="line">	&#123;</span><br><span class="line">		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);</span><br><span class="line">		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue(&quot;extratopping&quot;, out var extraTopping))</span><br><span class="line">		&#123;</span><br><span class="line">			ToppingName = System.Convert.ToString(extraTopping);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据验证"><a href="#数据验证" class="headerlink" title="数据验证"></a>数据验证</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">使用editform代替html默认的form</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&lt;EditForm Model=&quot;@student&quot; OnValidSubmit=&quot;HandleValidSubmit&quot;&gt;//model表示绑定到哪个对象，这样下面的标签才可以使用。onvalidsubmit表示提交之后触发对应的事件(可以不写事件)</span><br><span class="line">    &lt;DataAnnotationsValidator/&gt;//进行数据验证的条件</span><br><span class="line">    &lt;ValidationSummary/&gt;//错误消息汇总在一起，一般使用下面的message</span><br><span class="line">    &lt;InputText @bind-Value=&quot;@student.Code&quot;/&gt;</span><br><span class="line">    &lt;ValidationMessage For=&quot;()=&gt;student.Code&quot;/&gt;</span><br><span class="line">    &lt;InputText @bind-Value=&quot;@student.Name&quot;/&gt;</span><br><span class="line">    &lt;ValidationMessage For=&quot;()=&gt;student.Name&quot;/&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot;&gt;submit&lt;button/&gt;当提交之后，会依次从上往下执行数据验证</span><br><span class="line">&lt;/EditForm&gt;</span><br><span class="line">对应的类</span><br><span class="line">@code&#123;</span><br><span class="line">@using System.ComponentModel.DataAnnotations</span><br><span class="line">Stduent student = new Stduent();</span><br><span class="line">    public class Stduent</span><br><span class="line">    &#123; </span><br><span class="line">        [required]</span><br><span class="line">        public string Code &#123; get; set; &#125;</span><br><span class="line">        [required]</span><br><span class="line">        public string Name &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="input组件"><a href="#input组件" class="headerlink" title="input组件"></a>input组件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">inputtext单行</span><br><span class="line">inputtextarea多行</span><br><span class="line">inputnumber</span><br><span class="line">inputselect</span><br><span class="line">inputdate日期</span><br><span class="line">inputcheckbox选择框</span><br></pre></td></tr></table></figure>
+
+<h2 id="razor组件-页面-之间如何传递参数-组件参数"><a href="#razor组件-页面-之间如何传递参数-组件参数" class="headerlink" title="razor组件(页面)之间如何传递参数(组件参数)"></a>razor组件(页面)之间如何传递参数(组件参数)</h2><p>razor组件作为标签嵌入到父组件时，如何将父组件中的字段传递到子组件中的字段？</p>
+<p>1.子组件字段使用parameter修饰（参考路由部分</p>
+<p>2.子组件作为标签写入父组件，其字段作为标签的属性。不要在get，set中写逻辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">如下</span><br><span class="line">子组件Test.razor中</span><br><span class="line">@code&#123;</span><br><span class="line">	[parameter]</span><br><span class="line">	public string? childName&#123;get;set;&#125;</span><br><span class="line">&#125;</span><br><span class="line">父组件UserTest.razor中</span><br><span class="line">&lt;Test childName=&quot;@parentName&quot;&gt;&lt;/Test&gt;</span><br><span class="line">@code&#123;</span><br><span class="line">	public string? ParentName&#123;get;set;&#125;</span><br><span class="line">&#125;</span><br><span class="line">如何在&lt;Test&gt;&lt;/Test&gt;开始和结束标签之间添加内容？</span><br><span class="line">1.隐式方式：在子组件中定义添加下面的属性作为接收参数，该属性的名字是固定的ChildContent不能改变</span><br><span class="line">[Parameter]</span><br><span class="line">public RenderFragment ChildContent&#123;get;set;&#125; </span><br><span class="line">2.显示方式：改ChildContent为MyContent </span><br><span class="line">public RenderFragment MyContent&#123;get;set;&#125; </span><br><span class="line">使用时则如下</span><br><span class="line">&lt;Test&gt;</span><br><span class="line">	&lt;MyContent&gt;</span><br><span class="line">		&lt;p&gt;这是添加内容&lt;/p&gt;</span><br><span class="line">	&lt;/MyContent&gt;</span><br><span class="line">&lt;/Test&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/2026/01/29/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230203091316922.png" alt="image-20230203091316922"></p>
+<p>0：将所有组件编译成类</p>
+<p>1：该方法将当前所有使用parameter修饰的属性或caclingparameter的属性注入到组件中</p>
+<p>2：用来执行界面渲染之前需执行的操作（自定义）</p>
+<p>3：每次被parameter修饰的属性值发生改变时，都会调用该方法(自定义)</p>
+<p>4：OnAfterRenderAsync：每次渲染后需执行的操作（自定义）</p>
+<p><img src="/2026/01/29/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230318212033418.png" alt="image-20230318212033418"></p>
+<h2 id="js与c-互操作"><a href="#js与c-互操作" class="headerlink" title="js与c#互操作"></a>js与c#互操作</h2><p>JavaScript 添加到 Blazor 应用的方法是使用 HTML <code>&lt;script&gt;</code> 元素。 若要将 JavaScript 代码添加到 Blazor 应用，请在 Pages&#x2F;_Host.cshtml 文件或 wwwroot&#x2F;index.html 文件中的现有 <code>&lt;script src=&quot;_framework/blazor.*.js&quot;&gt;&lt;/script&gt;</code> 标记后添加 <code>&lt;script&gt;</code> 标记，表示引用了某个现成的库，如果单纯使用js语法，不需要此步骤</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">		&lt;script src=&quot;_framework/blazor.server.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/sweetalert@latest/dist/sweetalert.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a> 从 .NET 代码调用 JavaScript 函数。 若要使 JS 互操作运行时可用，请将 <code>IJSRuntime</code> 抽象实例注入 Blazor 页面，在文件顶部附近的 <code>@page</code> 指令之后。</p>
+<p><code>IJSRuntime</code> 接口公开了几种方法来调用 JavaScript 代码：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.ijsruntime.invokeasync">InvokeAsync</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.jsruntimeextensions.invokevoidasync">InvokeVoidAsync</a></li>
+</ul>
+<p>使用 <code>InvokeAsync&lt;TValue&gt;</code> 调用返回值的 JavaScript 函数，否则调用 <code>InvokeVoidAsync</code>。 顾名思义，这两种方法都是异步的，因此请使用 C# <code>await</code> 运算符来捕获任何结果。 <code>InvokeAsync</code> 和 <code>InvokeVoidAsync</code> 方法的参数是要调用的 JavaScript 函数的名称，后跟函数所需的任何参数。 JavaScript 函数必须属于 <code>window</code> 作用域或 <code>window</code> 子作用域。 参数必须可序列化为 JSON。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@inject OrderState OrderState</span><br><span class="line">@inject IJSRuntime JavaScript</span><br><span class="line"></span><br><span class="line">async Task RemovePizzaConfirmation(Pizza removePizza)</span><br><span class="line">&#123;</span><br><span class="line">    if (await JavaScript.InvokeAsync&lt;bool&gt;(</span><br><span class="line">        &quot;confirm&quot;,</span><br><span class="line">        $&quot;&quot;&quot;Do you want to remove the &quot;&#123;removePizza.Special!.Name&#125;&quot; from your order?&quot;&quot;&quot;))</span><br><span class="line">    &#123;</span><br><span class="line">        OrderState.RemoveConfiguredPizza(removePizza);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>js调用.net代码：  <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.jsinterop.dotnetobjectreference">DotNetObjectReference</a> 此类是 JS 互操作库的一部分。 <code>DotNet</code> 类公开了帮助程序函数 <code>invokeMethod</code> 和 <code>invokeMethodAsync</code>。 使用 <code>invokeMethod</code> 运行方法并等待结果，使用 <code>invokeMethodAsync</code> 异步调用方法。 <code>invokeMethodAsync</code> 方法返回 JavaScript <code>Promise</code>。</p>
+<h2 id="表单组件"><a href="#表单组件" class="headerlink" title="表单组件"></a>表单组件</h2><p>使用editform组件代替html中的form标签，editform与form的区别如下：</p>
+<p>​	1数据绑定。 可将对象与 EditForm 关联。 EditForm 的作用类似于用于数据输入和显示的对象视图。<br>​	2验证。 EditForm 提供了广泛且可扩展的验证功能。 可以向指定验证规则的 EditForm 中的元素添加属性。 EditForm 将自动应用这些规则。 将在本模块的后	续单元中介绍此功能。<br>​	3表单提交。 HTML 表单将在提交后向表单处理程序发送一个发布请求。 该表单处理程序应会执行提交过程，然后显示任何结果。 EditForm 遵循 Blazor 事件	模型；请指定捕获 OnSubmit 事件的 C# 事件处理程序。 事件处理程序执行提交逻辑。<br>​	4输入元素。 HTML 表单使用 <input> 控件收集用户输入，并使用 submit 按钮发布表单以供处理。 EditForm 可以使用这些相同的元素，但 Blazor 提供了具	有其他功能（例如内置验证和数据绑定）的输入组件库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditForm Model=@currentForecast&gt;</span><br><span class="line">    &lt;InputDate @bind-Value=currentForecast.Date&gt;&lt;/InputDate&gt;</span><br><span class="line">    &lt;InputNumber @bind-Value=currentForecast.TemperatureC&gt;&lt;/InputNumber&gt;</span><br><span class="line">    &lt;InputText @bind-Value=currentForecast.Summary&gt;&lt;/InputText&gt;</span><br><span class="line">&lt;/EditForm&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">HTML &lt;form&gt; 元素支持 &lt;input&gt; 元素，以便用户能够输入数据。 &lt;input&gt; 有一个 type 属性，用于指定输入的类型及其显示方式（作为数字、文本框、单选按钮、复选框、按钮等）。</span><br><span class="line">Blazor 拥有自己的一组组件，旨在专用于 &lt;EditForm&gt; 元素并支持其他功能中的数据绑定。 下表列出了这些组件。 当 Blazor 呈现包含这些组件的页面时，它们将转换为表中列出的相应 HTML &lt;input&gt; 元素。 一些 Blazor 组件是通用的；类型参数由 Blazor 运行时根据绑定到元素的数据类型确定：</span><br><span class="line"></span><br><span class="line">输入组件	呈现为 (HTML)</span><br><span class="line">InputCheckbox	&lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">InputDate&lt;TValue&gt;	&lt;input type=&quot;date&quot;&gt;</span><br><span class="line">InputFile	&lt;input type=&quot;file&quot;&gt;</span><br><span class="line">InputNumber&lt;TValue&gt;	&lt;input type=&quot;number&quot;&gt;</span><br><span class="line">InputRadio&lt;TValue&gt;	&lt;input type=&quot;radio&quot;&gt;</span><br><span class="line">InputRadioGroup&lt;TValue&gt;	一组子单选按钮</span><br><span class="line">InputSelect&lt;TValue&gt;	&lt;select&gt;</span><br><span class="line">InputText	&lt;input&gt;</span><br><span class="line">InputTextArea	&lt;textarea&gt;</span><br><span class="line">这些元素中的每一个都具有由 Blazor 识别的属性，例如 DisplayName（用于将输入元素与标签关联）和 @ref（可用于保存对 C# 变量中的字段的引用）。 任何无法识别的非 Blazor 属性都将按原样传递给 HTML 呈现器。 这意味着可以利用 HTML 输入元素属性。 例如，可以将 min、max 和 step 属性添加到 InputNumber 组件，它们将作为所呈现的 &lt;input type=&quot;number&quot;&gt; 元素的一部分正常运行。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><p> Blazor 支持两种类型的验证：声明性和编程性。</p>
+<p>1.声明性：使用组件： DataAnnotationsValidator 组件（进行验证）和ValidationSummary （进行汇总错误信息）</p>
+<p><img src="/2026/01/29/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230319194531505.png" alt="image-20230319194531505"></p>
+<p><img src="/2026/01/29/blazor%E5%AD%A6%E4%B9%A0/assets/image-20230319194514083.png" alt="image-20230319194514083"></p>
+<p>想要在每个控件旁边显示验证消息，请使用多个 ValidationMessage 组，使用 <code>For</code> 属性将每个 ValidationMessage 控件与模型的特定属性相关联</p>
+<p>&lt;InputText id&#x3D;”name” @bind-Value&#x3D;”pizza.Name” &#x2F;&gt;</p>
+<p> &lt;ValidationMessage For&#x3D;”@(() &#x3D;&gt; pizza.Name)” </p>
+<p>2.编程性：自己使用js或者c#以编程方式逐个字段地检查和验证数据。 但是，不建议使用这种方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class PizzaBase : ValidationAttribute</span><br><span class="line">&#123;</span><br><span class="line">    public string GetErrorMessage() =&gt; $&quot;Sorry, that&#x27;s not a valid pizza base.&quot;;</span><br><span class="line"></span><br><span class="line">    protected override ValidationResult IsValid(</span><br><span class="line">        object value, ValidationContext validationContext)</span><br><span class="line">    &#123;</span><br><span class="line">        if (value != &quot;Tomato&quot; || value != &quot;Pesto&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            return new ValidationResult(GetErrorMessage());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ValidationResult.Success;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">使用时如下：</span><br><span class="line"> [PizzaBase]</span><br><span class="line">    public string Base &#123; get; set; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>三种验证事件：</p>
+<ul>
+<li><p><code>OnValidSubmit</code>. 如果输入域成功通过其验证属性定义的验证规则，则会触发此事件。</p>
+</li>
+<li><p><code>OnInvalidSubmit</code>. 如果表单上的任何输入域都未能通过其验证属性定义的验证，则会触发此事件。</p>
+</li>
+<li><p><code>OnSubmit</code>. 无论所有输入域是否有效，提交 EditForm 时都会发生此事件。</p>
+<p>对于在单个输入域级别实现基本验证的 EditForm，<code>OnValidSubmit</code> 和 <code>OnInvalidSubmit</code> 事件很有用。 如果验证要求更复杂，例如将一个输入域与另一个输入域进行交叉检查以确保值的有效组合，请考虑使用 <code>OnSubmit</code> 事件。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>​        required</p>
+<p>​        Range：检查是否在合理范围内</p>
+<p>​        [EmailAddress]</p>
+<ul>
+<li><code>[ValidationNever]</code>. 如果要确保该字段从不包含在验证中，请使用此注释。</li>
+<li><code>[CreditCard]</code>. 如果要记录用户的有效信用卡号，请使用此注释。</li>
+<li><code>[Compare]</code>. 如果要确保模型中的两个属性匹配，请使用此注释。</li>
+<li><code>[Phone]</code>. 如果要记录用户的有效电话号码，请使用此注释。</li>
+<li><code>[RegularExpression]</code>. 如果通过将值与正则表达式进行比较来检查值的格式，请使用此注释。</li>
+<li><code>[StringLength]</code>. 如果要检查字符串值的长度是否不超过最大长度，请使用此注释。</li>
+<li><code>[Url]</code>. 如果要记录用户的有效 URL，请使用此注释。</li>
+</ul>
+</li>
+</ul>
+<h2 id="导航菜单"><a href="#导航菜单" class="headerlink" title="导航菜单"></a>导航菜单</h2><p>使用NavMenu</p>
+<h2 id="WebApi"><a href="#WebApi" class="headerlink" title="WebApi"></a>WebApi</h2><p>blazor也可实现类似WebApi形式的前后端分离，使用Controller形式。<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/training/modules/interact-with-data-blazor-web-apps/5-exercise-access-data-from-blazor-components">https://learn.microsoft.com/zh-cn/training/modules/interact-with-data-blazor-web-apps/5-exercise-access-data-from-blazor-components</a></p>
+<h1 id="三方ui库"><a href="#三方ui库" class="headerlink" title="三方ui库"></a>三方ui库</h1><p>matblazor，masablazor,bootstrapblazor</p>
+<h3 id="WpfBlazor"><a href="#WpfBlazor" class="headerlink" title="WpfBlazor"></a>WpfBlazor</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Dotnet9-com/p/16868009.html">https://www.cnblogs.com/Dotnet9-com/p/16868009.html</a></p>
+<h3 id="MauiBlazor"><a href="#MauiBlazor" class="headerlink" title="MauiBlazor"></a>MauiBlazor</h3><p>开启hyper-v和安装HAXM</p>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/maui/get-started/installation?view=net-maui-7.0&tabs=vswin">https://learn.microsoft.com/zh-cn/dotnet/maui/get-started/installation?view=net-maui-7.0&amp;tabs=vswin</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">时代的寒流</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://gao-hongfei123.github.io">http://gao-hongfei123.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="../../../../about" target="_blank">时代的寒流</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="../../../../libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="../../../../medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="../bootstrap/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/14.jpg" class="responsive-img" alt="Bootstrap">
+                        
+                        <span class="card-title">Bootstrap</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Bootstrap
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-01-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            时代的寒流
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../Avalonia/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/23.jpg" class="responsive-img" alt="avalonia">
+                        
+                        <span class="card-title">avalonia</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            项目结构
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-01-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            时代的寒流
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="../../../../libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2016-2026</span>
+            
+            <a href="../../../../about" target="_blank">时代的寒流</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('../../../../search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="../../../../libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

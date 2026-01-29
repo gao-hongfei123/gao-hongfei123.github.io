@@ -1,0 +1,1469 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="WPF&amp;Maui, 时代的寒流">
+    <meta name="description" content="wpf**wpf的所有控件的属性，**及其方法https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&amp;amp;">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>WPF&amp;Maui | 时代的寒流</title>
+    <link rel="icon" type="image/png" href="../../../../favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/my.css">
+<link rel="stylesheet" type="text/css" href="../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../../../../css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="../../../../css/reward.css">
+    
+
+
+
+    <script src="../../../../libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="../../../../index.html" class="waves-effect waves-light">
+                    
+                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">时代的寒流</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../index.html" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>联系</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="../../../../friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">时代的寒流</div>
+        <div class="logo-desc">
+            
+            不断寻找人生的真谛
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../index.html" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			联系
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="../../../../friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">WPF&amp;Maui</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-01-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="wpf"><a href="#wpf" class="headerlink" title="wpf"></a>wpf</h1><p>**wpf的所有控件的属性，**及其方法<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&viewFallbackFrom=netcore-3.1">https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.controls?view=windowsdesktop-6.0&amp;viewFallbackFrom=netcore-3.1</a></p>
+<p>wpf官方文档：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/wpf-samples?view=netframeworkdesktop-4.8">https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/wpf-samples?view=netframeworkdesktop-4.8</a></p>
+<p>为什么一些控件是使用Content显示内容，一些使用Text属性显示内容？因为他们继承的父类不一样，使用Content显示的内容可以显示各种东西，而使用Text显示的内容只可以显示字符串。</p>
+<p>引入阿里巴巴图库字体的使用方式：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/msjqd/p/14790480.html%EF%BC%8C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AD%97%E4%BD%93%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8/#%E5%BD%A2%E5%BC%8F">https://www.cnblogs.com/msjqd/p/14790480.html，嵌入式字体需要使用/#形式</a></p>
+<p>cursor属性：例如《Button cursor&#x3D;“No” toolTip&#x3D;”This is mine”&#x2F;》表示当button控件获取到鼠标焦点时，光标会变成对应的样式，toolTip属性：工具提示</p>
+<p>ListBox：是一种数据集合：可选择。博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yang-fei/p/4720596.html,%E4%B8%8B%E4%B8%80%E7%BA%A7%E6%98%AFItemTemplate">https://www.cnblogs.com/yang-fei/p/4720596.html,下一级是ItemTemplate</a></p>
+<span id="more"></span>
+
+<p><img src="/2026/01/29/Maui/assets/image-20230206165427406.png" alt="image-20230206165427406"></p>
+<p>**itemsControl：**也是一种集合，不可选择，仅展示作用,是一种容器，她下面包含三种模板，1.控件模板 （整个容器）2.项目面板模板（每个小容器如何布局，uniformed，wrappanel）3.数据模板：用来展示数据。(注，只有先将数据源绑定之后，才会显示面板和数据),如果数据过多，默认不会添加滚动条，可以在外层添加也给scrollerView来手动添加。</p>
+<p>itemscontrol与listbox的区别</p>
+<pre><code> 1. ListBox是ItemsControl的一个子类，它提供了一些额外的功能，如选择项、多选、滚动条等。而ItemsControl只是一个简单的控件，只提供了显示数据的功能。
+ 2.  ListBox默认使用StackPanel作为ItemsPanel，而ItemsControl默认使用ItemsPanelTemplate来定义ItemsPanel。这意味着你可以更容易地自定义ItemsPanelTemplate来改变ItemsControl的布局方式。
+ 3.   ListBox提供了一些附加属性，如SelectionMode、SelectedIndex、SelectedValue等，用于控制选择项的行为。而ItemsControl没有这些属性。 
+ 4.  ListBox提供了一些事件，如SelectionChanged、Selected、Unselected等，用于处理选择项的变化。而ItemsControl没有这些事件。 总之，如果你需要一个简单的列表控件来显示数据，可以使用ItemsControl。如果你需要更多的功能，如选择项、多选、滚动条等，可以使用ListBox。
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--创建ItemsControl，让其条目的数值为绑定的数据源的值--&gt;</span><br><span class="line">        &lt;ItemsControl Grid.Row=&quot;1&quot; Grid.Column=&quot;0&quot; Margin=&quot;10&quot; ItemsSource=&quot;&#123;Binding Source=&#123;StaticResource myTodoList&#125;&#125;&quot;&gt;</span><br><span class="line">            &lt;ItemsControl.Template&gt;    &lt;!--ItemsControl作为一个容器，设置其整体的外观--&gt;</span><br><span class="line">                &lt;ControlTemplate TargetType=&quot;ItemsControl&quot;&gt;</span><br><span class="line">                    &lt;Border BorderBrush=&quot;Red&quot; BorderThickness=&quot;6&quot; CornerRadius=&quot;30&quot;&gt;</span><br><span class="line">                        &lt;ItemsPresenter/&gt;</span><br><span class="line">                    &lt;/Border&gt;</span><br><span class="line">                &lt;/ControlTemplate&gt;</span><br><span class="line">            &lt;/ItemsControl.Template&gt;</span><br><span class="line">            &lt;ItemsControl.ItemsPanel&gt;  &lt;!--设置该容器中子控件的布局类型为 WrapPanel--&gt;</span><br><span class="line">                &lt;ItemsPanelTemplate&gt;</span><br><span class="line">                    &lt;WrapPanel/&gt;</span><br><span class="line">                &lt;/ItemsPanelTemplate&gt;</span><br><span class="line">            &lt;/ItemsControl.ItemsPanel&gt;</span><br><span class="line">            &lt;ItemsControl.ItemTemplate&gt; &lt;!--设置容器中每个条目的模板--&gt;</span><br><span class="line">                &lt;DataTemplate&gt;</span><br><span class="line">                    &lt;DataTemplate.Resources&gt;</span><br><span class="line">                        &lt;Style TargetType=&quot;TextBlock&quot;&gt;</span><br><span class="line">                            &lt;Setter Property=&quot;FontSize&quot; Value=&quot;14&quot;/&gt;</span><br><span class="line">                            &lt;Setter Property=&quot;HorizontalAlignment&quot; Value=&quot;Center&quot;/&gt;</span><br><span class="line">                        &lt;/Style&gt;</span><br><span class="line">                    &lt;/DataTemplate.Resources&gt;</span><br><span class="line">                    &lt;Grid&gt;</span><br><span class="line">                        &lt;Ellipse Fill=&quot;Silver&quot;/&gt;</span><br><span class="line">                        &lt;StackPanel&gt;</span><br><span class="line">                            &lt;TextBlock Margin=&quot;3,3,3,0&quot; Text=&quot;&#123;Binding Path=TaskPriority&#125;&quot;/&gt;</span><br><span class="line">                            &lt;TextBlock Margin=&quot;3,0,3,7&quot; Text=&quot;&#123;Binding Path=TaskName&#125;&quot;/&gt;</span><br><span class="line">                        &lt;/StackPanel&gt;</span><br><span class="line">                    &lt;/Grid&gt;</span><br><span class="line">                &lt;/DataTemplate&gt;</span><br><span class="line">            &lt;/ItemsControl.ItemTemplate&gt;</span><br><span class="line">            &lt;ItemsControl.ItemContainerStyle&gt; &lt;!--设置容器中每个子控件的样式，如尺寸及Triggers等--&gt;</span><br><span class="line">                &lt;Style&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;Control.Width&quot; Value=&quot;100&quot;/&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;Control.Margin&quot; Value=&quot;5&quot;/&gt;</span><br><span class="line">                    &lt;Style.Triggers&gt;</span><br><span class="line">                        &lt;Trigger Property=&quot;Control.IsMouseOver&quot; Value=&quot;True&quot;&gt;</span><br><span class="line">                            &lt;Setter Property=&quot;Control.ToolTip&quot; </span><br><span class="line">                                    Value=&quot;&#123;Binding RelativeSource=&#123;x:Static RelativeSource.Self&#125;,Path=Content.TaskDescription&#125;&quot;/&gt;</span><br><span class="line">                        &lt;/Trigger&gt;</span><br><span class="line">                    &lt;/Style.Triggers&gt;</span><br><span class="line">                &lt;/Style&gt;</span><br><span class="line">            &lt;/ItemsControl.ItemContainerStyle&gt;</span><br><span class="line">        &lt;/ItemsControl&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/29/Maui/assets/image-20230428184653543.png" alt="image-20230428184653543"></p>
+<p>**ToggleButton:**开关按钮，第一次单机保持按下状态，再一次单机表示释放。checkBox和radioButton继承于ToggleButton</p>
+<p>**ReaptButton:**只要按钮保持按下状态，该类就不断触发click事件。例如滚动条上的箭头。对于普通按钮，用户只触发一次。</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230206165439708.png" alt="image-20230206165439708"></p>
+<p><strong>textblock与textbox于label的区别：</strong></p>
+<p>前者类似于label，只显示，无功能，无边框，而textbox类似于html中的input输入框，label功能比textblock强大，label使用Content设置文本，还可添加其他东西，而textblock通过text设置文本，只能设置文本</p>
+<p><strong>allowstransparents</strong>   如果设置为false，在窗口上面仍然会有一个窄白色边框，所以通常设置为true<img src="/2026/01/29/Maui/assets/image-20230425214208404.png" alt="image-20230425214208404"></p>
+<h4 id="wpf所有布局控件："><a href="#wpf所有布局控件：" class="headerlink" title="wpf所有布局控件："></a><strong>wpf所有布局控件</strong>：</h4><p>grid,stackpanel,dockpanel,wrappanel,canvas</p>
+<p>区别：grid网格布局，注意grid和stack panel如何选择：如果是针对两个或者两个以上的控件进行具体的布局（即stackpanel的最底层是控件），则使用stack panel，反之如果还有一些更复杂的结构，则使用grid。即stackpanel针对的控件，而grid针对的是空间。再比如，如果两个控件分布在一行的两端，则使用grid而不是stackpanel，因为stackpanel是相互贴近排列的。</p>
+<p>StackPanel:一般常用于局部布局：属性orientation可设置水平或垂直布局（如果是整体布局中的整行则使用grid，如果是局部布局中的整行则使用stackpanel）</p>
+<p>WrapPanel:类似于bootstrap，是一种自适应布局,默认横向排列，如果满则自动换行。</p>
+<p>DockPanel:可以设置停靠的布局，它只停靠在容器的边缘dockpanel里面的元素会被附上DockPanel.Dock&#x3D;”left&#x2F;top,right”属性（默认从left开始），DockPanel自身具有LastChildFill&#x3D;true属性，默认为true，容器中最后一个元素会填充面板中的所有内容，所以如果应用了dockpanel首先做的是就是将LastChildFill&#x3D;false，否则如果设置最后一个控件的位置不起作用。<font color="red">一般用在只有两个元素，其中最后一个元素占有剩余所有空间的情况。</font>&gt;</p>
+<p>UniformGrid:将grid表格均分，通过设置rows和columns来设置行和列的数量</p>
+<p>GridSpitter:分割窗口，例如windows管理器，左侧是文件夹，右侧是文件，可拖动分割条调整窗口大小。vertialAlignment&#x3D;center为竖直分割，HorizontalAlignment&#x3D;center为水平分割。grddSpitter必须放在Grid里面，最好放在具体的行或者列里面，宽度或者高度设置为auto</p>
+<p>Progressbar进度条如何根据比例显示？先设置最大值，然后设计进度值即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ProgressBar Height=&quot;10&quot; Value=&quot;19.88&quot; Maximum=&quot;40&quot; Foreground=&quot;Black&quot; &gt;&lt;/ProgressBar&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>标签格式</strong></p>
+<p>单标签格式。 。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;markName /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>双标签格式。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;markName&gt; 【可嵌⼊其他的标签】 &lt;/markName&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="App-xmal代码解释"><a href="#App-xmal代码解释" class="headerlink" title="App.xmal代码解释"></a>App.xmal代码解释</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window x:Class=&quot;WpfHelloworld.MainWindow&quot;</span><br><span class="line">		//此 URI 只是由 Microsoft.Maui NuGet 包中的程序集定义的一个或多个命名空间的别名，</span><br><span class="line">        xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span><br><span class="line">        xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span><br><span class="line">        xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;</span><br><span class="line">        xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span><br><span class="line">        xmlns:local=&quot;clr-namespace:WpfHelloworld&quot;</span><br><span class="line">        mc:Ignorable=&quot;d&quot;</span><br><span class="line">        Title=&quot;MainWindow&quot; Height=&quot;450&quot; Width=&quot;800&quot;&gt;</span><br><span class="line">    &lt;Grid&gt;</span><br><span class="line"></span><br><span class="line">​    &lt;/Grid&gt;</span><br><span class="line"></span><br><span class="line">&lt;/Window&gt;</span><br></pre></td></tr></table></figure>
+
+<p>解释上述代码</p>
+<p>1.window表示windows对象，来源于默认的命名空间，grid同理，xaml语言每看见一个标签就创建一个对象。</p>
+<p> 2.xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.microsoft.com/winfx/2006/xaml/presentation%22%E8%A1%A8%E7%A4%BA%E5%BC%95%E5%85%A5%E4%B8%80%E4%B8%AA%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%B2%A1%E6%9C%89%E8%B5%B7%E5%90%8D%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%AE%80%E5%8C%96%E5%86%99%E6%B3%95%EF%BC%8C%E5%9B%A0%E4%B8%BAwindow%EF%BC%8Cgrid%E7%AD%89%E8%BF%99%E4%BA%9B%E5%AF%B9%E8%B1%A1%E5%9D%87%E6%9D%A5%E6%BA%90%E4%BA%8E%E5%AE%83%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%B5%B7%E5%90%8D%E5%AD%97%EF%BC%8C%E5%88%99%E6%AF%8F%E4%B8%AA%E5%AF%B9%E8%B1%A1%E5%89%8D%E9%9D%A2%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E2%80%9Cy:%E2%80%9D%E7%9A%84%E5%BD%A2%E5%BC%8F%EF%BC%8C%E6%AF%94%E8%BE%83%E9%BA%BB%E7%83%A6%E3%80%82%E4%BD%86%E6%98%AF%E4%B8%80%E4%B8%AAxaml%E6%96%87%E4%BB%B6%E4%B8%AD%E4%BB%85%E8%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E9%BB%98%E8%AE%A4%E5%90%8D%E7%A7%B0%E7%9A%84%E5%86%99%E6%B3%95">http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;表示引入一个命名空间，没有起名的原因是可以简化写法，因为window，grid等这些对象均来源于它，如果起名字，则每个对象前面需要使用“y:”的形式，比较麻烦。但是一个xaml文件中仅能有一个默认名称的写法</a></p>
+<p>3.xmlns:x&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.microsoft.com/winfx/2006/xaml">http://schemas.microsoft.com/winfx/2006/xaml</a>“ 引入xaml命名控件，并命名为x</p>
+<p><strong>4.x:Class</strong>&#x3D;”WpfHelloworld.MainWindow表示xaml生成的代码要与后台的c#代码进行合并。</p>
+<p>xmal语言写的代码代码会生成一个类，后台c#代码也会有一个类，两者代码会进行合并，所以后台的c#使用partial修饰，表示两者生成之后会自动合并到一个类里边，就是mainwindow类，若前后台名称不一样，则会生成两个类，两者之间没有关系。</p>
+<p><strong>x:classModifier</strong>;访问级别，前台的访问级别必须与后台的访问级别相同。</p>
+<p><strong>x:name</strong>;为控件起一个名字。如果是wpf中的自有的控件，则使用x:name和使用name是完全一样的，如果是是后台的实体类被引入xaml中，则其没有Name属性，但一定有必x:name的形式。所以为了方便，所有控件都直接使用x:Name访问。Name是只针对某个控件的，x:name是针对于整个xmal文件的。</p>
+<p>**x:Key：**用在xaml Resources，ResourceDictionary需要key来访问</p>
+<p><strong>背景色border</strong>：对于控件中的背景色直接使用background属性即可，但是对于区域中的背景色(因为他不是控件)，需单独使用border控件来添加，实际上它是一个添加边框的控件，默认是填充所有区域（可以设置边框宽度），如果区域里面有其他控件，就填充除空间外的其他区域</p>
+<p><strong>5.MVVM</strong>：就是将mvc中的C变成了VM，他与View是一一对应的关系。<font color="red">这个一般用于大型企业项目中。对于比较小的程序可以不使用MVVM。</font></p>
+<p><strong>不使用mvvm</strong>，则如下格式：事件直接写在控件里面。<font color="red">优点是简单，缺点就是如果前端改变，则后端代码需要改变，维护比较麻烦。</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前端</span><br><span class="line">&lt;Button x:Name=&quot;bt1&quot; Grid.Row=&quot;3&quot;  Content=&quot;addclick&quot; Width=&quot;200&quot; Height=&quot;100&quot; Click=&quot;bt1_Click&quot;&gt;&lt;/Button&gt;</span><br><span class="line">后台</span><br><span class="line"> private void bt1_Click(object sender, RoutedEventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            double d1 = Double.Parse(tb0.Text);//引用了前台的变量名，所以前台和后台的代码耦合性比较严重</span><br><span class="line">            double d2 = Double.Parse(tb1.Text);</span><br><span class="line">            double result = d1 + d2;</span><br><span class="line">            tb2.Text = result.ToString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="行为："><a href="#行为：" class="headerlink" title="行为："></a>行为：</h4><p>也类似于第三方包，针对于前端一些用户操作的代码，例如，允许拖动，缩放，停靠等界面特性，它的代码逻辑非常麻烦，而且都是重复性工作，但是这都是一些<font color="red">通用</font>功能 ,如果每个用到的地方去使用后台代码实现则会非常麻烦，此时行为大展拳脚，我们只需要在后台代码写好一次，然后在前端需要的地方直接拿来用即可。甚至已经提供了一些写好的方法，例如拖动，缩放，甚至不用写后台代码，它是依赖属性。</p>
+<p>例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;i:interaction.triggers&gt;</span><br><span class="line">	&lt;i:MouseDragElementBehavior/&gt;//这是自带的功能，就是因为行为具有通用性，所以可以对任何控件使用</span><br><span class="line">&lt;/i:interaction.triggers&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果自定义一些行为，参考如下。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30537451/article/details/97989655">https://blog.csdn.net/weixin_30537451/article/details/97989655</a></p>
+<h4 id="转换器"><a href="#转换器" class="headerlink" title="转换器"></a>转换器</h4><p>可以将源数据和目标数据之间进行特定的转化，例如在viewmodel中使用0代表男，1代表女，那么前端在绑定到该属性的时候，仍然是0和1，此时需要使用转换器将0转换为男，实际上就是定义了一种规则，实现毫无关联的数据之间一一对应，当然也可以在View model中通过方法实现，但是前端的标签不一定能够通过事件触发去调用命令，此时就体现了转换器的作用，即在用户不进行操作的情况下完成数据之间转换。使用方法参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zh7791/p/9311332.html">https://www.cnblogs.com/zh7791/p/9311332.html</a></p>
+<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><h4 id="底层逻辑"><a href="#底层逻辑" class="headerlink" title="底层逻辑"></a>底层逻辑</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">每个xaml文件对应一个viewmodel，然后变化的地方写成属性，将执行的逻辑写成方法。</span><br><span class="line">1.（控制属性）在viewmodel文件夹中写一个基类NotificationObject继承INotifiaction，用来连接前端和后端的桥梁，一旦后端属性值改变，则绑定到前端的值也会发生改变。使用委托的好处是与前端进行交互的时候可以通过委托的参数传递任何方法。在属性的set方法中将该属性作为参数传递给NotificationObject中的委托。</span><br><span class="line">2.（控制方法）创建DelegateCommand接口并实现Icommand中对应的方法，也相当于一个基类，用来决定控件是否可执行，以及执行哪个方法。所有的方法的合集称为command，就相当于webapi中所有方法称为action。在viewmodel的构造函数中将该方法传递给DelegateCommand中的委托。</span><br><span class="line">3.在mainwindow里面将viewmodel与datacontext进行关联。</span><br><span class="line">4.在xaml文件中使用Text=&quot;binding Input &quot;进行属性绑定,使用Command = &quot;binding AddCommand&quot;进行方法绑定</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>不使用底层逻辑，使用mvvm框架，微软官方mvvm：Toolkit.Mvvm，导包CommunityToolkit.Mvvm，</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p><img src="/2026/01/29/Maui/assets/image-20221112182415112.png" alt="image-20221112182415112"></p>
+<h4 id="mvvm框架使用"><a href="#mvvm框架使用" class="headerlink" title="mvvm框架使用"></a>mvvm框架使用</h4><p>toolkitmvvm，prism（该框架应用大大型企业级项目，比较中，但是功能最全）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">1.写viewmodel</span><br><span class="line">public class MainPageViewModel :ObservableObject//这是toolkit中的类,prism中是binadable</span><br><span class="line">    &#123;</span><br><span class="line">		private string _result;</span><br><span class="line"></span><br><span class="line">		public string Result属性</span><br><span class="line">		&#123;</span><br><span class="line">			get &#123; return _result; &#125;</span><br><span class="line">			set &#123; SetProperty(ref _result, value, nameof(Result)); &#125;//相当于mvvmlight中的set()</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		private RelayCommand _helloCommmand;</span><br><span class="line"> 		public RelayCommand IncrementAgeCommand &#123; get; &#125;</span><br><span class="line"> 		private void IncrementAge() =&gt; Age++;</span><br><span class="line">        public MainPageViewModel()构造方法进行方法传递，如果需要传递参数，则使用泛型，泛型里面的参数类型代表前端的参数</span><br><span class="line">      	 &#123;</span><br><span class="line">      		IncrementAgeCommand = new RelayCommand(IncrementAge);</span><br><span class="line">      		public RelayCommand HelloCommand =&gt; _helloCommmand??new RelayCommand(()=&gt;Result= &quot;helloworld&quot;);</span><br><span class="line">      	  &#125;		</span><br><span class="line">&#125;		</span><br><span class="line">2.创建locator注册viewmodel，以方便在app.xaml中调用，如果使用微软的IOc，则不必写这里</span><br><span class="line">public class ViewModelLocator</span><br><span class="line">    &#123;</span><br><span class="line">    //构造注入，这里是手动创建，如果使用自带Ioc，则不用写，而是直接addsingleton即可</span><br><span class="line">        public static  IServiceProvider ServiceProvide &#123; get; set; &#125;</span><br><span class="line">        public ViewModelLocator()</span><br><span class="line">        &#123;</span><br><span class="line">            ServiceProvide = GetService();</span><br><span class="line">        &#125;</span><br><span class="line">        private IServiceProvider GetService()</span><br><span class="line">        &#123;</span><br><span class="line">            var service = new ServiceCollection();</span><br><span class="line">            service.AddSingleton&lt;MainPageViewModel&gt;();</span><br><span class="line">            return service.BuildServiceProvider();</span><br><span class="line">        &#125;</span><br><span class="line">        //获取viewmodel实例</span><br><span class="line">        public MainPageViewModel MainPageViewModel</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                return ServiceProvide.GetService(TypeOf(MainPageViewModel));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">3.在appxaml中引入 xmlns:vm =&quot;clr-namespace:MVVM.ViewModels;assembly=MVVM&quot;		</span><br><span class="line">并在&lt;Application.Resources&gt;</span><br><span class="line">        &lt;vm:ViewModelLocator x:Key=&quot;viewmodellocator&quot;/&gt;					x:key用来定义文件资源</span><br><span class="line">    &lt;/Application.Resources&gt;</span><br><span class="line">4.在对应的xaml文件中绑定viewmodle，BindingContext=&quot;&#123;Binding MainPageViewModel,Source=&#123;StaticResource viewmodellocator&#125;&#125;&quot;;							view先去找appxaml中的viewlocator，再找MainPageViewModel</span><br><span class="line">并手动绑定&lt;Label Text=&quot;&#123;Binding Result&#125;&quot;</span><br><span class="line">               FontSize=&quot;48&quot;/&gt;</span><br><span class="line">        &lt;Button Text=&quot;click me&quot;</span><br><span class="line">                Command=&quot;&#123;Binding HelloCommand&#125;&quot;/&gt;</span><br><span class="line">                </span><br><span class="line">整个思路如上图所示：view想要访问viewmodel，但是需要通过app.xaml定位到viewmodellocator，再通过viewmodelloactor找到viewmodel，（注可以不使用viewmodellocator而是直接在mainwindow里面同通过contextdata= new mainpageviewmodel进行绑定，推荐不使用locator，太麻烦）</span><br><span class="line"></span><br><span class="line">toolkit中对含有参数的方法进行mvvm</span><br><span class="line">		如下navigate方法，形参为MenuBar类型。</span><br><span class="line">		private void Navigate(MenuBar obj)</span><br><span class="line">        		&#123;</span><br><span class="line">        		&#125;</span><br><span class="line">         public DelegateCommand&lt;MenuBar&gt; NavigateCommand &#123; get; private set; &#125;将该方法的形参作为委托的泛型传递。</span><br><span class="line">		在viewmodel的构造方法中通过如下代码绑定</span><br><span class="line">		NavigateCommand = new DelegateCommand&lt;MenuBar&gt;(Navigate);</span><br><span class="line">		</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Prism框架："><a href="#Prism框架：" class="headerlink" title="Prism框架："></a>Prism框架：</h1><p>官方文档prism unity(不推荐)：(<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff921153(v=pandp.40)">https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff921153(v=pandp.40)</a>)</p>
+<p>推荐(<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nickyangmiracle/p/16169069.html)%EF%BC%88dryioc%EF%BC%89%E5%92%8C">https://www.cnblogs.com/nickyangmiracle/p/16169069.html)（dryioc）和</a></p>
+<p><a target="_blank" rel="noopener" href="https://dotnet9.com/2023/06/Data-Binding-for-the-Prism-Series-of-the-dotNETCore-3-WPF-MVVM-Framework%EF%BC%88unity%EF%BC%89">https://dotnet9.com/2023/06/Data-Binding-for-the-Prism-Series-of-the-dotNETCore-3-WPF-MVVM-Framework（unity）</a></p>
+<p>prism介绍：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class MainWindowViewModel : BindableBase继承BindableBase</span><br><span class="line">  &#123;</span><br><span class="line">      private string _title = &quot;Prism Application&quot;;</span><br><span class="line">      private readonly IRegionManager regionManager;</span><br><span class="line">      private DelegateCommand OpenCommand&#123;get;set;&#125;</span><br><span class="line">      public string Title</span><br><span class="line">      &#123;</span><br><span class="line">          get &#123; return _title; &#125;</span><br><span class="line">          set &#123; SetProperty(ref _title, value); &#125;属性操作</span><br><span class="line">      &#125;</span><br><span class="line">//所有的区域操作都是通过IRegionManager进行操作</span><br><span class="line">      public MainWindowViewModel(IRegionManager regionManager)</span><br><span class="line">      &#123;</span><br><span class="line">          this.regionManager = regionManager;</span><br><span class="line">          regionManager.RegisterViewWithRegion(&quot;ContentRegion&quot;, typeof(ViewA));//表示向ContentRegion控件中注册了一个ViewA</span><br><span class="line">      &#125;</span><br><span class="line">      OpenCommand = new DelegateCommand(()=&gt;cw...)//方法绑定</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>1.Region区域：模板分为如下三个区域，所有的区域操作都是通过RegionManager进行操作，其中Header区放toolbar，menu区放listbox，content区放ContentControl。定义成区域的原因是ContentRegion点击MenuRegion中的导航栏部分，ContentRegion部分会发生内容改变，通过RegionManager进行管理此区域内容，如果传统方式则，则页面的内容是固定的。<font color="red">作用，可使用RegionManager可以动态添加容器。进行该区域的内容管理</font></p>
+<p><img src="/2026/01/29/Maui/assets/image-20230203210142259.png" alt="image-20230203210142259"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;ContentControl Grid.row=&quot;1&quot; prism:RegionManager.RegionName=&quot;ContentRegion&quot; /&gt;ContentControl是个控件，这个控件用来操作其他控件，类似于Border，表示再MainWindow的ContentControl区域起个名字叫ContentRegion，通过RegionManager.RegionName这个类进行管理,相当于定义区域</span><br><span class="line">访问：RegionManager.Regions[&quot;ContentRegion&quot;]；对区域进行访问</span><br></pre></td></tr></table></figure>
+
+<p>2.Module模块</p>
+<p>每个模块只为实现一个局部功能，可能对应多个页面，每个模块的功能不同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class ModuleNameModule : IModule//实现IModule的类就是一个模块</span><br><span class="line">    &#123;</span><br><span class="line">        private readonly IRegionManager _regionManager;</span><br><span class="line"></span><br><span class="line">        public ModuleNameModule(IRegionManager regionManager)</span><br><span class="line">        &#123;</span><br><span class="line">        	//构造方法注入regionMananger</span><br><span class="line">            _regionManager = regionManager;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void OnInitialized(IContainerProvider containerProvider)</span><br><span class="line">        &#123;	//此方法会将ViewA的内容添加到ContentRegion区域</span><br><span class="line">            _regionManager.RequestNavigate(RegionNames.ContentRegion, &quot;ViewA&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void RegisterTypes(IContainerRegistry containerRegistry)</span><br><span class="line">        &#123;</span><br><span class="line">	        //注册导航，为每个视图窗口创建一个自己的名字，以提供给regionmanager进行使用，不加参数默认名字为类名</span><br><span class="line">            containerRegistry.RegisterForNavigation&lt;ViewA&gt;();//每个模块有自己的View，每个都是在该方法中注册</span><br><span class="line">            containerRegistry.RegisterForNavigation&lt;ViewA,ViewAViewModel&gt;();构建viewmodel与view之间的关系如果在mainView里面引入了prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;则不必显示注册上述View和ViewModel之间的关系(不推荐使用，推荐手动注册)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">那么，总程序如何构建每个模块之间的关系呢？</span><br><span class="line"> 在总项目文件的App.xaml.cs里面有如下方法，该方法就是用来引入所有模块</span><br><span class="line"> protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)</span><br><span class="line">        &#123;</span><br><span class="line">            moduleCatalog.AddModule&lt;ModuleNameModule&gt;();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3.MVVM视图注入</p>
+<p>参考MVVM框架使用部分</p>
+<p>4.Event Aggregator事件聚合器：订阅：用来实现通讯的，用来实现ViewModels之间发送消息，viewmodel和view之间，moduls之间。<a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15127653/3337981">https://blog.51cto.com/u_15127653/3337981</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.定义一个事件，告诉所传消息类型</span><br><span class="line">public class MessageEvent:PubSubEvent&lt;string&gt;</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">发送者，接收者先注入IeventAggregator接口</span><br><span class="line">使用eventAggregator.GetEvent&lt;MessageEvent&gt;().Publish(&quot;你好&quot;)；发出去消息，该方法必须写在其他的方法里面，因为必须执行某个事件的时候发送消息</span><br><span class="line">接收者同理通过eventAggregator.GetEvent&lt;MessageEvent&gt;().Subscribe(ReceivedMessage);形参表示的是个委托，表示接收到消息如何进行处理</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>事件聚合器的具体使用：在窗口间实现加载一个等待窗口</p>
+<p>发送者和接收者如何判别：发送者实际上是执行在接收者之后，在第二个页面打开之前发送消息，第一个页面接收到消息开始进行方法执行。</p>
+<p>​	1）创建events文件夹，创建如下两个类，eventaggretor需要使用该两个类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//第一个类用来执行需要被传送的消息</span><br><span class="line">public class UpdateModel</span><br><span class="line">    &#123; </span><br><span class="line">        public bool IsOpen &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //第二个类用来指定需要被传送的事件</span><br><span class="line">    public class UpdateLoadingEvent:PubSubEvent&lt;UpdateModel&gt;</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​	2)因为需要在导航期间产生操作，所以需要使用prism的导航，我们经常在两个页面之间导航需要处理一些逻辑，例如，LoginMainContent页面导航到CreateAccount页面时候，LoginMainContent退出页面的时刻要保存页面数据，导航到CreateAccount页面的时刻处理逻辑(例如获取从LoginMainContent页面的信息)，Prism的导航系统通过一个INavigationAware接口：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">实际上继承了该类的就是作为一个发送者，这是为了提供一种通用的方法，任何两个页面之间都可以进行等待窗口，只需要发送者继承该类，接收者使用<span class="number">4</span>）的步骤即可    </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">NavigationViewModel</span> : <span class="title">INavigationAware</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IContainerProvider containerProvider;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> IEventAggregator aggregator;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">NavigationViewModel</span>(<span class="params">IContainerProvider containerProvider</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.containerProvider = containerProvider;</span><br><span class="line">            <span class="comment">//获取事件聚合器，然后使用它发送消息</span></span><br><span class="line">            aggregator = containerProvider.Resolve&lt;IEventAggregator&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="built_in">bool</span> <span class="title">IsNavigationTarget</span>(<span class="params">NavigationContext navigationContext</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnNavigatedFrom</span>(<span class="params">NavigationContext navigationContext</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OnNavigatedTo</span>(<span class="params">NavigationContext navigationContext</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UpdateLoading</span>(<span class="params"><span class="built_in">bool</span> IsOpen</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            aggregator.UpdateLoading(<span class="keyword">new</span> Common.Events.UpdateModel() &#123; IsOpen = IsOpen &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>OnNavigatedFrom：离开该页面前需要执行的想要的操作,一般用于保存该页面的数据</p>
+</li>
+<li><p>OnNavigatedTo：到达目的页面前执行想要的操作，一般用于初始化或者接受上页面的传递参数</p>
+</li>
+<li><p>IsNavigationTarget：True则重用该View实例，Flase则每一次导航到该页面都会实例化一次</p>
+<p>3）创建扩展类对接受和发送进行封装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//类名无用，因为是拓展方法</span><br><span class="line">    public static class DialogExtensions</span><br><span class="line">    &#123;</span><br><span class="line">        //实际上是将publish进行了封装</span><br><span class="line">        public static void UpdateLoading(this IEventAggregator aggregator, UpdateModel model)</span><br><span class="line">        &#123; </span><br><span class="line">            //所以updatemodel类是需要被传送的消息</span><br><span class="line">            aggregator.GetEvent&lt;UpdateLoadingEvent&gt;().Publish(model);</span><br><span class="line">        &#125;</span><br><span class="line">        //将subscribe进行了封装</span><br><span class="line">        public static void Register(this IEventAggregator aggregator, Action&lt;UpdateModel&gt; action)</span><br><span class="line">        &#123; </span><br><span class="line">        aggregator.GetEvent&lt;UpdateLoadingEvent&gt;().Subscribe(action);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4）在接收者中接受消息如何进行操作，本例中接受消息后进行弹出等待窗口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">aggregator.Register(arg =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                this.DialoggHost.IsOpen = arg.IsOpen;</span><br><span class="line">                if (DialoggHost.IsOpen)</span><br><span class="line">                &#123;</span><br><span class="line">                    DialoggHost.DialogContent = new ProgressbarView();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            </span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+<p>5）发送者中继承NavigationViewModel，调用updateloading(true)就是打开等待窗口，false就是关闭等待窗口</p>
+</li>
+</ul>
+<p>5.Navigation导航</p>
+<p>引入IregionManager接口,而不是RegionManager类</p>
+<p>regionManager.RequestNavigate&#x3D;()”ContentRegion”,”ViewA”);&#x2F;&#x2F;通过该方法进行导航,ViewA已经再App.cs里面进行了注册 ，代替了传统使用New ViewA()创建一个新窗口类的方式</p>
+<p>6.Dialog对话</p>
+<p>传统弹出对话框：new ViewA().showDialog();这样耦合比较大，为了避免耦合，使用prism合集中的对话服务</p>
+<p>7.注册上下文：在其他mvvm框架中需要手动context去构建viewmodel于xaml之间的关系，第一种方式(推荐)：在prism框架中在xaml文件里面有个prism:ViewModelLocator.AutoWireViewModel&#x3D;”True” &gt;代码，该代码表示view中的文件自动匹配ViewModels文件里面的对应的viewmodel条件是必须在ViewModels和View文件夹下，而且是名字相同。第二种设置上下文的方式：使用代码，在每个模块文件的RegisterTypes方法里面，通过containerRegistry.RegisterForNavigation&lt;ViewA,ViewAViewModel&gt;();的方式进行相连(一般用于注册仓储接口与仓储实体类等使用)</p>
+<p>8.实现导航期间操作</p>
+<p>比如两个页面跳转的时候需要进行操作，例如保存数据，加载旋转动画等就是使用该操作。</p>
+<p><a target="_blank" rel="noopener" href="http://hk.javashuo.com/article/p-sjofzxza-cn.html">http://hk.javashuo.com/article/p-sjofzxza-cn.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30522183/article/details/98070785">https://blog.csdn.net/weixin_30522183/article/details/98070785</a></p>
+<h5 id="prism具体使用"><a href="#prism具体使用" class="headerlink" title="prism具体使用"></a>prism具体使用</h5><p>1.引入prism.dryIoc,或者prism.unity,前者轻量级，后者支持生命周期管理和其他高级功能</p>
+<p>2.将app继承的Application修改为PrismApplication</p>
+<p>3.app.xaml文件中引入xmlns:prism &#x3D;”<a target="_blank" rel="noopener" href="http://prismlibrary.com/">http://prismlibrary.com/</a>“</p>
+<p>4.将app.xaml中app修改为prism:PrismApplication,删除startupUrl路径</p>
+<p>5.实现PrismApplication中的抽象方法（先运行程序抱一下错，否则无法重写如下方法）,在这之前需要编译一下让其报错。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">App.Xaml.cs</span><br><span class="line">//默认呈现的首页</span><br><span class="line">     protected override Window CreateShell()</span><br><span class="line">     &#123;</span><br><span class="line">     	该方法是获取泛型里面的实例，该实例未在App中注册过，可以为接口</span><br><span class="line">         return Container.Resolve&lt;MainWindow&gt;();</span><br><span class="line">     &#125;</span><br><span class="line">     //用来注册各个实体类，类似于program.cs中的IOc</span><br><span class="line">     protected override void RegisterTypes(IContainerRegistry containerRegistry)</span><br><span class="line">     &#123;</span><br><span class="line">         containerRegistry.RegisterSingleton&lt;IMessageService, MessageService&gt;();</span><br><span class="line">     &#125;</span><br><span class="line">     //用来引入各个模块</span><br><span class="line">     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)</span><br><span class="line">     &#123;</span><br><span class="line">         moduleCatalog.AddModule&lt;ModuleNameModule&gt;();</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.以上需要手动更改配置代码，点击拓展，管理扩展里面搜索prism template pack安装插件后重新创建prism full 即可自动更改以上配置。在xaml里面配置</p>
+<p>在mainView.xaml加上　xmlns:prism&#x3D;”<a target="_blank" rel="noopener" href="http://prismlibrary.com/">http://prismlibrary.com/</a>“     prism:ViewModelLocator.AutoWireViewModel&#x3D;”True”会自动绑定上下文，即自动绑定View和ViewModel之间的关系，不必使用在构造中去new ViewModel的形式，或者不必在RegisterTypes方法中使用 containerRegistry.RegisterForNavigation&lt;ViewA,ViewAViewModel&gt;()的方式去显示注册。但是对于Service与Repository等关系仍然需要使用RegisterTypes的方式去注册。</p>
+<p>Prism对话框：</p>
+<p>可以使用Prism实现一个窗体作为对话框弹出。</p>
+<p><a target="_blank" rel="noopener" href="https://dotnet9.com/2023/06/dotNET-Core-3-WPF-MVVM-Framework-Prism-Series-Dialogs-Service">https://dotnet9.com/2023/06/dotNET-Core-3-WPF-MVVM-Framework-Prism-Series-Dialogs-Service</a></p>
+<p>加上Iservice时候进行改造</p>
+<p><img src="/2026/01/29/Maui/assets/image-20221113112544573.png" alt="image-20221113112544573"></p>
+<h4 id="wpf布局容器："><a href="#wpf布局容器：" class="headerlink" title="wpf布局容器："></a>wpf布局容器：</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zh7791/p/9012880.html">https://www.cnblogs.com/zh7791/p/9012880.html</a></p>
+<p><img src="/2026/01/29/Maui/assets/image-20221118162824500.png" alt="image-20221118162824500"></p>
+<h4 id="样式设置"><a href="#样式设置" class="headerlink" title="样式设置"></a>样式设置</h4><p><img src="/2026/01/29/Maui/assets/image-20221118170453091.png" alt="image-20221118170453091"></p>
+<p>1.样式可以直接写在控件属性里面，例如button1，2。也可以使用类似css例如button3，这样可以避免 </p>
+<p>2.样式定义在window.Resource里面，style标签中，使用x：key区分样式名称，targettype用来说明该样式应用于什么类型的控件</p>
+<p>3.在setter控件里面使用键值的方式设置具体的样式，样式可以使用baseOn进行继承</p>
+<p>4.button控件中使用Style&#x3D;”{StaticResource 样式名}进行引用</p>
+<p>5.如果在控件里面直接使用属性赋值和引用样式赋值，优先使用前者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window.Resources&gt;</span><br><span class="line">        &lt;Style x:Key=&quot;baseStyle&quot; TargetType=&quot;Button&quot;&gt;</span><br><span class="line">            &lt;Setter Property=&quot;Height&quot; Value=&quot;40&quot;/&gt;</span><br><span class="line">        &lt;/Style&gt;</span><br><span class="line">        &lt;Style x:Key=&quot;buttonStyle&quot; TargetType=&quot;Button&quot; BasedOn=&quot;&#123;StaticResource baseStyle&#125;&quot;&gt;    继承上面的样式</span><br><span class="line">            &lt;Setter Property=&quot;FontSize&quot; Value=&quot;15&quot;/&gt;</span><br><span class="line">            &lt;Setter Property=&quot;Foreground&quot; Value=&quot;Red&quot;/&gt;</span><br><span class="line">            &lt;Setter Property=&quot;Width&quot;  Value=&quot;100&quot;/&gt;</span><br><span class="line">        &lt;/Style&gt;</span><br><span class="line">    &lt;/Window.Resources&gt;</span><br><span class="line">    &lt;StackPanel&gt;</span><br><span class="line">        &lt;Button FontSize=&quot;20&quot; Width=&quot;80&quot; Height=&quot;40&quot; Content=&quot;button1&quot;/&gt;</span><br><span class="line">        &lt;Button FontSize=&quot;20&quot; Width=&quot;80&quot; Height=&quot;40&quot; Content=&quot;button1&quot;/&gt;</span><br><span class="line">        &lt;Button Style=&quot;&#123;StaticResource buttonStyle&#125;&quot; Content=&quot;button1&quot;/&gt;</span><br><span class="line">    &lt;/StackPanel&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>属性元素</strong>：</p>
+<p>对于一些属性可以以元素的方式进行展现：以background为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button backGround=&quot;red&quot;/&gt;这是传统方式，他与</span><br><span class="line">&lt;Button&gt;</span><br><span class="line">	&lt;Button.Background&gt;</span><br><span class="line">		&lt;SolidBrush color=&quot;red&quot;/&gt;</span><br><span class="line">	&lt;/Button.Background&gt;</span><br><span class="line">&lt;/Button&gt;是等价的，即将属性可以用作标签的形式展现，好处是后者可以设置一些复杂的情况，例如为Button设置背景为图片就无法使用第一种方式了。注意：所有的属性都可以使用属性元素语法</span><br></pre></td></tr></table></figure>
+
+<h4 id="样式触发器"><a href="#样式触发器" class="headerlink" title="样式触发器"></a>样式触发器</h4><p>1.triggers 属性触发器，属性满足某个值的时候就会触发</p>
+<p>2.multiTrigger多条件触发器</p>
+<p>3.DataTrigger数据触发器：数据满足某个值时，就会触发</p>
+<p>4.EventTrigger：事件触发，它触发之后是用来对样式进行操作的，如下（参考wpf2012动画部分）</p>
+<p>5.i:interactions.trigger:交互触发器,是一种附加属性，什么时候使用呢？当WPFmvvm模式下某个控件：好比如Button的点击事件，在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=mvvm&spm=1001.2101.3001.7020">mvvm</a>模式下Button的点击事件有时候是不可以直接使用Command进行绑定的(比如Button按钮被放在了ListBox或者ItemsControl的dataTemplate里面,或者想要对grid添加command事件)，这时候这中特殊手段就对mvvm模式非常有用,<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44558009/article/details/117586373%EF%BC%8C%E4%BA%A4%E4%BA%92%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8E%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%EF%BC%8C%E5%89%8D%E8%80%85%E7%94%A8%E4%BA%8Examl%E4%B8%8Eviewmodel%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%EF%BC%8C%E8%80%8C%E5%90%8E%E8%80%85%E4%BB%85%E7%94%A8%E4%BA%8E%E5%89%8D%E7%AB%AFxaml%E9%83%A8%E5%88%86%E7%9A%84%E4%BA%A4%E4%BA%92%E8%A1%8C%E4%B8%BA%E3%80%82%E4%BA%A4%E4%BA%92%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8E%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8command%E8%BF%9B%E8%A1%8C%E7%BB%91%E5%AE%9A%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E5%89%8D%E8%80%85%E5%8F%AF%E4%BB%A5%E7%BB%91%E5%AE%9A%E5%90%84%E7%A7%8D%E4%BA%8B%E4%BB%B6%EF%BC%8C%E8%80%8C%E5%90%8E%E8%80%85%E5%8F%AA%E8%83%BD%E5%AF%B9click%E4%BA%8B%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%BB%91%E5%AE%9A%E3%80%82">https://blog.csdn.net/qq_44558009/article/details/117586373，交互触发器与事件触发器的区别是，前者用于xaml与viewmodel之间的事件绑定，而后者仅用于前端xaml部分的交互行为。交互触发器与直接使用command进行绑定的区别是前者可以绑定各种事件，而后者只能对click事件进行绑定。</a></p>
+<p>当然，针对特定事件进行绑定的方式有两种，一种是使用inputbinding，另一种就是使用行为触发器。</p>
+<p>两者区别：InputBindings只能绑定到控件的输入事件（例如KeyDown、KeyUp、MouseLeftButtonDown等），而Interaction.Triggers可以绑定到任何控件事件（例如Loaded、MouseEnter、MouseLeave等）。 InputBindings只能绑定到控件自身的输入事件，而Interaction.Triggers可以绑定到控件内部的子元素的事件。 总的来说，InputBindings更适合用于控件级别的简单交互，而Interaction.Triggers更适合用于更复杂的交互，例如动画、状态转换等。在MVVM模式下，建议使用Interaction.Triggers，因为它可以将任何事件与命令绑定起来，更加灵活。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">在我们大多数拥有Command依赖属性的控件，大多数是由于继承了ICommandSource接口，ICommandSource接口拥有着三个函数成员ICommand接口类型属性Command，object 类型属性CommandParameter,IInputElement 类型属性CommandTarget，而基本继承着ICommandSource接口这两个基础类的就是ButtonBase和MenuItem，因此像Button，Checkbox，RadioButton等继承自ButtonBase拥有着Command依赖属性，而MenuItem也同理。但是我们常用的Textbox那些就没有。</span><br><span class="line"></span><br><span class="line">现在我们有这种需求，我们要在这个界面基础上新增第二个Textbox，当Textbox的文本变化时，需要将按钮的Name和第二个Textbox的文本字符串合并更新到第一个Textbox上，我们第一直觉肯定会想到用Textbox的TextChanged事件，那么如何将TextChanged转为命令？</span><br><span class="line"></span><br><span class="line">首先我们在xaml界面引入：</span><br><span class="line">xmlns:i=&quot;http://schemas.microsoft.com/expression/2010/interactivity&quot;</span><br><span class="line">该程序集 System.Windows.Interactivity dll是在 Expression Blend SDK中的,而Prism的包也也将其引入包含在内了，因此我们可以直接引入，然后我们新增第二个Textbox的代码：</span><br><span class="line"></span><br><span class="line">&lt;TextBox Margin=&quot;10&quot; FontSize=&quot;32&quot; Text=&quot;&#123;Binding Foo,UpdateSourceTrigger=PropertyChanged&#125;&quot;&gt;</span><br><span class="line">    &lt;i:Interaction.Triggers&gt;</span><br><span class="line">        &lt;i:EventTrigger EventName=&quot;TextChanged&quot;&gt;</span><br><span class="line">            &lt;i:InvokeCommandAction Command=&quot;&#123;Binding TextChangedCommand&#125;&quot; CommandParameter=&quot;&#123;Binding ElementName=mybtn&#125;&quot;/&gt;</span><br><span class="line">        &lt;/i:EventTrigger&gt;</span><br><span class="line">    &lt;/i:Interaction.Triggers&gt;</span><br><span class="line">&lt;/TextBox&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一种方式</span><br><span class="line">&lt;Button Content=&quot;Click Me&quot; Command=&quot;&#123;Binding MyCommand&#125;&quot;&gt;</span><br><span class="line">    &lt;Button.InputBindings&gt;</span><br><span class="line">        &lt;MouseBinding Gesture=&quot;LeftButtonUp&quot; /&gt;</span><br><span class="line">    &lt;/Button.InputBindings&gt;</span><br><span class="line">&lt;/Button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">第二种方式</span><br><span class="line">交互触发器（trigger）的方式。</span><br><span class="line">xmlns:i=&quot;http://schemas.microsoft.com/xaml/behaviors  </span><br><span class="line"></span><br><span class="line"> &lt;Button Name=&quot;btn&quot; Content=&quot;Button&quot; Height=&quot;33&quot; HorizontalAlignment=&quot;Left&quot; Margin=&quot;40,24,0,0&quot; VerticalAlignment=&quot;Top&quot; Width=&quot;109&quot;&gt;  </span><br><span class="line">            &lt;i:Interaction.Triggers&gt;  </span><br><span class="line">                &lt;i:EventTrigger EventName=&quot;Click&quot;&gt;  </span><br><span class="line">                    &lt;i:InvokeCommandAction Command=&quot;&#123;Binding Command1&#125;&quot; CommandParameter=&quot;10&quot; /&gt;  </span><br><span class="line">                &lt;/i:EventTrigger&gt;  </span><br><span class="line">                &lt;i:EventTrigger EventName=&quot;MouseMove&quot;&gt;  </span><br><span class="line">                    &lt;i:InvokeCommandAction Command=&quot;&#123;Binding Command2&#125;&quot; CommandParameter=&quot;&#123;Binding ElementName=btn&#125;&quot; /&gt;  </span><br><span class="line">                &lt;/i:EventTrigger&gt;  </span><br><span class="line">            &lt;/i:Interaction.Triggers&gt;  </span><br><span class="line">        &lt;/Button&gt;  </span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">事件触发器只针对xaml中的交互进行处理，无法与viewmodel中的方法进行绑定</span><br><span class="line">&lt;EventTrigger RoutedEvent=&quot;Mouse.MouseEnter&quot;&gt;鼠标按下</span><br><span class="line">                        &lt;BeginStoryboard&gt;执行开始面板，还有暂停面板等</span><br><span class="line">                            &lt;Storyboard&gt;套路，使用它的原因是下面的DoubleAnimation控件会调用storyboard.targetproperty的属性来设置针对某个属性值进行变化</span><br><span class="line">                            doubleanimation的属性有四个：duration动画时间，To：变化终点，By变化幅度，From：变化起点</span><br><span class="line">                                &lt;DoubleAnimation Duration=&quot;0:0:0.2&quot; Storyboard.TargetProperty=&quot;FontSize&quot; To=&quot;24&quot;/&gt;</span><br><span class="line">                            &lt;/Storyboard&gt;</span><br><span class="line">                        &lt;/BeginStoryboard&gt;         </span><br><span class="line">                &lt;/EventTrigger&gt;</span><br><span class="line">                &lt;EventTrigger RoutedEvent=&quot;Mouse.MouseLeave&quot;&gt;鼠标离开</span><br><span class="line">                    &lt;EventTrigger.Actions&gt;</span><br><span class="line">                        &lt;BeginStoryboard&gt;</span><br><span class="line">                            &lt;Storyboard&gt;</span><br><span class="line">                                &lt;DoubleAnimation Duration=&quot;0:0:1&quot; Storyboard.TargetProperty=&quot;FontSize&quot;/&gt;</span><br><span class="line">                            &lt;/Storyboard&gt;</span><br><span class="line">                        &lt;/BeginStoryboard&gt;</span><br><span class="line">                    &lt;/EventTrigger.Actions&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zh7791/p/11372623.html">https://www.cnblogs.com/zh7791/p/11372623.html</a></p>
+<p>​	样式触发器相当于前端的js，在前端页面执行if，else操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">触发器：鼠标移动控件上面或离开控件时触发</span><br><span class="line">&lt;Style x:Key=&quot;trigger&quot; TargetType=&quot;Button&quot;&gt;</span><br><span class="line">            &lt;Style.Triggers&gt;</span><br><span class="line">                &lt;Trigger Property=&quot;IsMouseOver&quot; Value=&quot;True&quot;&gt;//这个不是事件，而是属性</span><br><span class="line">                    &lt;Setter Property=&quot;Background&quot; Value=&quot;Green&quot;/&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;FontSize&quot; Value=&quot;50&quot;/&gt;</span><br><span class="line">                &lt;/Trigger&gt;</span><br><span class="line">                &lt;Trigger Property=&quot;IsMouseOver&quot; Value=&quot;False&quot;&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;Background&quot; Value=&quot;Green&quot;/&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;FontSize&quot; Value=&quot;50&quot;/&gt;</span><br><span class="line">                &lt;/Trigger&gt;        </span><br><span class="line">            &lt;/Style.Triggers&gt;</span><br><span class="line"> &lt;/Style&gt;</span><br><span class="line"> 多条件触发器：同时满足多个条件时触发</span><br><span class="line">  &lt;Style x:Key=&quot;multicon&quot; TargetType=&quot;Button&quot;&gt;</span><br><span class="line">            &lt;Style.Triggers&gt;</span><br><span class="line">                &lt;MultiTrigger&gt;</span><br><span class="line">                    &lt;MultiTrigger.Conditions&gt;</span><br><span class="line">                        &lt;Condition Property=&quot;IsMouseOver&quot; Value=&quot;true&quot;/&gt;</span><br><span class="line">                        &lt;Condition Property=&quot;IsFocus&quot; Value=&quot;true&quot;/&gt;</span><br><span class="line">                    &lt;/MultiTrigger.Conditions&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;Foreground&quot; Value=&quot;Blue&quot;/&gt;</span><br><span class="line">                    &lt;Setter Property=&quot;FontSize&quot; Value=&quot;50&quot;/&gt;</span><br><span class="line">                &lt;/MultiTrigger&gt;</span><br><span class="line">            &lt;/Style.Triggers&gt;</span><br><span class="line">        &lt;/Style&gt;</span><br><span class="line">事件触发器：eventTrigger，触发事件，更改前端的样式，实际上也属于样式触发器的一种</span><br><span class="line">&lt;Window.Resources&gt;</span><br><span class="line">    &lt;Style x:Key=&quot;SetButtonMouseOver&quot;&gt;</span><br><span class="line">        &lt;!--设置触发器--&gt;</span><br><span class="line">        &lt;Style.Triggers&gt;</span><br><span class="line">            &lt;!--设置触发器的路由事件--&gt;</span><br><span class="line">            &lt;EventTrigger RoutedEvent=&quot;Control.MouseEnter&quot;&gt;</span><br><span class="line">                &lt;!--设置一个动画，改变元素的字体的大小--&gt;</span><br><span class="line">                &lt;EventTrigger.Actions&gt;</span><br><span class="line">                    &lt;BeginStoryboard&gt;                            </span><br><span class="line">                        &lt;Storyboard&gt;</span><br><span class="line">                             &lt;DoubleAnimation Duration=&quot;0:0:0:2&quot; Storyboard.TargetProperty=&quot;FontSize&quot; To=&quot;30&quot;&gt;&lt;/DoubleAnimation&gt;</span><br><span class="line">                        &lt;/Storyboard&gt;</span><br><span class="line">                    &lt;/BeginStoryboard&gt;</span><br><span class="line">                &lt;/EventTrigger.Actions&gt;</span><br><span class="line">            &lt;/EventTrigger&gt;</span><br><span class="line">        &lt;/Style.Triggers&gt;</span><br><span class="line">    &lt;/Style&gt;</span><br><span class="line">&lt;/Window.Resources&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="控件模板"><a href="#控件模板" class="headerlink" title="控件模板"></a>控件模板</h4><p>ControlTemplate</p>
+<p>控件模板是一种更加激进的方法，允许完全重写控件的内容模型，即可以修改某些控件的外观</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Window.Resources&gt;</span><br><span class="line">    &lt;!--在资源中定义一个名叫button_template的模板--&gt;</span><br><span class="line">    &lt;ControlTemplate x:Key=&quot;button_template&quot; TargetType=&quot;&#123;x:Type Button&#125;&gt;为Button控件添加控件模板，修改Button控件的外观</span><br><span class="line">        &lt;!--添加Border元素,为其设置属性--&gt;其中border相当于定义一个矩形，BorderThickess是矩形的边框厚度，BorderBrush是矩形的边框颜色，backGround是矩形里面除了边框后部分背景</span><br><span class="line">        &lt;Border BorderBrush=&quot;Orange&quot; Background=&quot;LightCyan&quot; TextBlock.Foreground=&quot;Black&quot; BorderThickness=&quot;2&quot; CornerRadius=&quot;5&quot;&gt;</span><br><span class="line">            &lt;ContentPresenter RecognizesAccessKey=&#x27;True&#x27; HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot;&gt;&lt;/ContentPresenter&gt;</span><br><span class="line">        &lt;/Border&gt;</span><br><span class="line">    &lt;/ControlTemplate&gt;</span><br><span class="line">&lt;/Window.Resources&gt;</span><br><span class="line">    </span><br><span class="line">&lt;StackPanel&gt;</span><br><span class="line">    &lt;!--为第一个Button元素设置模板。使用上面修改后的控件模板--&gt;</span><br><span class="line">    &lt;Button Template=&quot;&#123;StaticResource button_template&#125;&quot; Padding=&quot;5&quot; Margin=&quot;5&quot; Height=&quot;50&quot;&gt;我是Button1&lt;/Button&gt;</span><br><span class="line">    &lt;Button Padding=&quot;5&quot; Margin=&quot;5&quot; Height=&quot;50&quot;&gt;我是Button2&lt;/Button&gt;</span><br><span class="line">&lt;/StackPanel&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数据模板"><a href="#数据模板" class="headerlink" title="数据模板"></a>数据模板</h4><p>DataTemplate，数据模板的上一级必须是ItemTemplate</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/1024E/p/15744315.html">https://www.cnblogs.com/1024E/p/15744315.html</a></p>
+<p>数据模板的作用就是对于集合控件中的每个数据进行外观显示设置，这样不必使用循环进行操作，而且xmal中也没有循环。对于一个集合控件，定义的数据模板是针对每个集合控件的子项来说的。是每个子项的数据模板。或者说，集合控件在生成子项时，根据定义好的数据模板去定义出每个子项。<font color="red">所以数据模板用来装饰集合中的每一条数据如何显示,而控件模板应用于每一个控件，对某个控件外观修饰，无法对数据进行修饰</font>&gt;</p>
+<p><strong>ItemsControl</strong>条目模板，用来设置设置各种相似控件的，仅起展示作用。而数据模板用来展示相似数据的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ItemsControl&gt;</span><br><span class="line">                        &lt;ItemsControl.ItemsPanel&gt;</span><br><span class="line">                            &lt;ItemsPanelTemplate&gt;</span><br><span class="line">                                &lt;UniformGrid Columns=&quot;2&quot;&gt;&lt;/UniformGrid&gt;</span><br><span class="line">                            &lt;/ItemsPanelTemplate&gt;</span><br><span class="line">                        &lt;/ItemsControl.ItemsPanel&gt;                      </span><br><span class="line">                            &lt;Button Style=&quot;&#123;StaticResource MaterialDesignIconButton&#125;&quot; ToolTip=&quot;Google Chrome&quot;&gt;</span><br><span class="line">                                &lt;materialDesign:PackIcon Kind=&quot;GoogleChrome&quot; Height=&quot;24&quot; Width=&quot;24&quot; &gt;&lt;/materialDesign:PackIcon&gt;</span><br><span class="line">                            &lt;/Button&gt;</span><br><span class="line">&lt;/ItemsControl&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>wpf数据绑定<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/data/?view=netdesktop-6.0">https://learn.microsoft.com/zh-cn/dotnet/desktop/wpf/data/?view=netdesktop-6.0</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zh7791/p/11379942.html">https://www.cnblogs.com/zh7791/p/11379942.html</a></p>
+<p>binding的标准形式：{Binding ElementName&#x3D;源, Path&#x3D;属性,Mode&#x3D;方式,FallbackValue&#x3D;默认值,UpdateSourceTrigger&#x3D;触发方式}。</p>
+<p>binding中有两个属性：path用来寻找控件中的属性，source（ElementName(有名字的控件之间),RelativeSource(无名字的控件))用来寻找控件，</p>
+<p><strong>没有Path的情况</strong>：使用了资源，Source是某些固定的字符串或者int类型，它是固定的，因此他没有属性</p>
+<p>**没有Source的情况：**因为使用了DataContext，将DataContext作为自己的Source。注意每个标签都有DataContext属性。但是如果没有为当前控件设置datacontext的话，该控件会将父级控件的dataContext借过来作为自己的属性值。</p>
+<p>在prism中系统会默认将View中的DataContext设置为对应的ViewModel，所以这也是为什么在绑定的时候不需要设置Source而直接设置path的值就会与ViewModel中的属性相关联。（没指定Source，DataContext就是Source，指定了Source，则source为指定的控件，datacontext指向VIewmodel）</p>
+<p>另一种方式是在后台使用this.DataContext&#x3D;类名绑定类。一般用在集合控件中，集合中的每一个item就是一个dataContext,所以对于集合类控件，直接写{binding}意味着与集合中的每一项进行绑定。如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xmlns:local=&quot;cls-namespace:WpfApplication&quot;</span><br><span class="line">&lt;StackPanel.DataContext&gt;</span><br><span class="line">	&lt;local:Student Id=&quot;6&quot; Age=&quot;29&quot; Name=&quot;Tim&quot;/&gt;//相当于StackPanel.DataContext= new Student&#123;Id=6,Age=29,Name=Tim&#125;,DataContext可以是各种类型，string，int类型都可。</span><br><span class="line">&lt;/StackPanel.DataContext&gt;</span><br><span class="line">绑定时如下,没有Source</span><br><span class="line">&lt;TextBox Text=&quot;&#123;Binding Path=Id&#125;&quot;&gt;path会自动沿着树寻找具有id属性的值。</span><br><span class="line">&lt;TextBox Text=&quot;&#123;Binding Path=Age&#125;&quot;&gt;</span><br><span class="line">&lt;TextBox Text=&quot;&#123;Binding Path=Name&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>既没有Source也没有Path的情况：当DataContext是个简单对象，即没有属性等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;StackPanel.DataContext&gt;</span><br><span class="line">	&lt;sys:String&gt;HelloWorld&lt;/sys:Strings&gt;</span><br><span class="line">&lt;/StackPanel.DataContext&gt;</span><br><span class="line"></span><br><span class="line">	&lt;StackPanel&gt;</span><br><span class="line">		&lt;TextBlock Text=&quot;&#123;Binding&#125;&quot;/&gt;</span><br><span class="line">	&lt;/StackPanel&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以下是针对Listbox和ItemsControl的DataContext溯源问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> &lt;ListBox </span><br><span class="line">                        x:Name=&quot;menuBar&quot;</span><br><span class="line">                        ItemsSource=&quot;&#123;Binding MenuBars&#125;&quot;</span><br><span class="line">                        &gt;</span><br><span class="line">                    &lt;i:Interaction.Triggers&gt;</span><br><span class="line">                        &lt;i:EventTrigger</span><br><span class="line">                            EventName=&quot;SelectionChanged&quot;&gt;</span><br><span class="line">                            &lt;i:InvokeCommandAction</span><br><span class="line">如下：在command中想要绑定ViewModel中Navigate方法，</span><br><span class="line">第一种方式是用相邻控件方式先找到ListBox作为Source，在Path中如果不指定DataContext则它会报错，（因为Source是ListBox，而ListBox中无Navigate属性，）而从上面“没有Source的情况”分析可知，ListBox的DataContext指向ViewModel</span><br><span class="line">                                1.Command=&quot;&#123;Binding DataContext.NavigateCommand, RelativeSource=&#123;RelativeSource AncestorType=ListBox, Mode=FindAncestor &#125;&#125;&quot;</span><br><span class="line"> 第二种方式是直接绑定，因为交互触发器并不位于DataTemplate里面，所以，它的DataContext并不是ItemSource里面的项，根据上面“没有Source的情况”可知，此时的DataContext就是Source，而此时DataContext是ViewModel了，而如果改为Command=&quot;&#123;binding DataConetext.NavigateCommand&#125;&quot;也是错误的，因为Source已经为ViewModel，了DataContext则会被认为是ViewmModel中的属性，而ViewModel中没有该属性。</span><br><span class="line">                               //  2.Command=&quot;&#123;binding NavigateCommand&#125;&quot;</span><br><span class="line">                                CommandParameter=&quot;&#123;Binding ElementName=menuBar, Path=SelectedItem&#125;&quot; /&gt;//返回当前选中项</span><br><span class="line">                        &lt;/i:EventTrigger&gt;</span><br><span class="line">                    &lt;/i:Interaction.Triggers&gt;</span><br><span class="line">                    &lt;ListBox.ItemTemplate&gt;</span><br><span class="line">                        &lt;DataTemplate&gt;</span><br><span class="line">                            &lt;StackPanel Orientation=&quot;Horizontal&quot; Margin=&quot;10&quot;&gt;</span><br><span class="line">                                &lt;materialDesign:PackIcon Kind=&quot;&#123;Binding Icon&#125;&quot;  /&gt;</span><br><span class="line">                                &lt;TextBlock Text=&quot;&#123;Binding Title&#125;&quot; Margin=&quot;20,0,0,0&quot;/&gt;</span><br><span class="line">                            &lt;/StackPanel&gt;</span><br><span class="line">                        &lt;/DataTemplate&gt;</span><br><span class="line">                    &lt;/ListBox.ItemTemplate&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> ItemsControl与Listbox不同，在返回参数时，ListBox具有SelectedItem属性来返回对象，而ItemsControl是没有的，所以需要将其写在DataTemplate来返回对象。一旦放在DataTemplate里面了，则此时的DataContext就指向了ItemsSource里面的每个对象。所以在Command绑定方面与ListBox不一样。</span><br><span class="line"> </span><br><span class="line"> &lt;ItemsControl</span><br><span class="line">                 ItemsSource=&quot;&#123;Binding Memo&#125;&quot;</span><br><span class="line">                &lt;ItemsControl.ItemsPanel&gt;</span><br><span class="line">                    &lt;ItemsPanelTemplate&gt;</span><br><span class="line">                        &lt;WrapPanel</span><br><span class="line">                            Margin=&quot;10&quot;&gt;&lt;/WrapPanel&gt;</span><br><span class="line">                    &lt;/ItemsPanelTemplate&gt;</span><br><span class="line">                &lt;/ItemsControl.ItemsPanel&gt;</span><br><span class="line">                &lt;ItemsControl.ItemTemplate&gt;</span><br><span class="line">                    &lt;DataTemplate&gt;</span><br><span class="line">                        &lt;StackPanel</span><br><span class="line">                            Background=&quot;Green&quot;</span><br><span class="line">                            Width=&quot;150&quot;</span><br><span class="line">                            Height=&quot;100&quot;</span><br><span class="line">                            Margin=&quot;10&quot;&gt;</span><br><span class="line">                                &lt;i:Interaction.Triggers&gt;</span><br><span class="line">                                    &lt;i:EventTrigger</span><br><span class="line">                                        EventName=&quot;MouseLeftButtonUp&quot;&gt;</span><br><span class="line">                                        &lt;i:InvokeCommandAction</span><br><span class="line"> </span><br><span class="line">                                            CommandParameter =&quot;&#123;Binding&#125;&quot;//返回当前项</span><br><span class="line">1. 可以看到，要想绑定到ViewModel中的SelectedCommand方法，首先让source跳出ItemsSource中的项，此时datacontext指向了Viewmodel，否则指向ItemsSource中的项</span><br><span class="line"> Command=&quot;&#123;Binding 	Path=DataContext.SelectedCommand, RelativeSource=&#123;RelativeSource Mode=FindAncestor,AncestorType=ItemsControl&#125;&#125;&quot; /&gt; </span><br><span class="line">2.如下，则此时上下文指向ItemsSource中的项，但是该项没有SelectedCommand方法。所以报错</span><br><span class="line"> &lt;Command=&quot;&#123;Binding SelectedCommand&#125;&quot; /&gt;</span><br><span class="line">3.也会报错，因为DataContext指向ItemsSource中的项，同2</span><br><span class="line">&lt;Command=&quot;&#123;Binding DataContext.SelectedCommand&quot; /&gt;</span><br><span class="line">4.也会报错，因为Source已经为ItemsControl,但是ItemsControl里面没有SelectedCommand属性。</span><br><span class="line"> Command=&quot;&#123;Binding SelectedCommand, RelativeSource=&#123;RelativeSource Mode=FindAncestor,AncestorType=ItemsControl&#125;&#125;&quot; /&gt;</span><br><span class="line"> </span><br><span class="line">                                    &lt;/i:EventTrigger&gt;</span><br><span class="line">                                &lt;/i:Interaction.Triggers&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-wpf元素之间绑定"><a href="#1-wpf元素之间绑定" class="headerlink" title="1.wpf元素之间绑定"></a>1.wpf元素之间绑定</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Slider x:Name=&quot;mySlider&quot; Width=&quot;300&quot; Background=&quot;yellow&quot;/&gt;</span><br><span class="line">&lt;TextBox Text=&quot;&#123;Binding ElementName=mySlider,Path=Value&#125;&quot; /&gt;Path指的是绑定的对应控件的哪个属性</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-控件与model类中属性进行绑定（单向绑定）"><a href="#2-控件与model类中属性进行绑定（单向绑定）" class="headerlink" title="2.控件与model类中属性进行绑定（单向绑定）"></a>2.控件与model类中属性进行绑定（单向绑定）</h4><p>​		1）.使用datacontext与model类进行绑定</p>
+<p>​		2）.text属性与model类中属性绑定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextBox x:Name=&quot;tb&quot; Width=&quot;200&quot; Text=&quot;&#123;Binding Name&#125;&quot;/&gt;</span><br><span class="line">tb.DataContext = new classmate();这个写在初始化中</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-xaml与viewmodel绑定（单向绑定）"><a href="#3-xaml与viewmodel绑定（单向绑定）" class="headerlink" title="3.xaml与viewmodel绑定（单向绑定）"></a>3.xaml与viewmodel绑定（单向绑定）</h4><p>类似2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextBox Width=&quot;200&quot; Text=&quot;&#123;Binding Name&#125;&quot;/&gt;</span><br><span class="line">DataContext = new Person &#123; Name=&quot;张三&quot;&#125;;</span><br><span class="line">public class classmateViewModel</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125; = &quot;张三&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Xaml与资源进行绑定："><a href="#4-Xaml与资源进行绑定：" class="headerlink" title="4.Xaml与资源进行绑定："></a>4.Xaml与资源进行绑定：</h4><p>控件与资源之间，通过{Binding Source&#x3D;{StaticResource 资源名}}的方式进行绑定，如果资源还有其他属性，则需要指定Path对应的属性名，若纯文本内容，则不需要指定Path。获取硬编码的数据，将数据写在资源里面，然后通过staticResource获取。通常将资源写在window里面，因为对应每个窗口中的顶级资源。如果多个窗口使用相同的资源，则不是将其定义在window下而是定义在App.xaml文件中，这样多个窗口共用同一资源,参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/rolayblog/p/15630417.html%EF%BC%88%E6%B3%A8%E6%84%8F%E4%BD%BF%E7%94%A8%E8%B5%84%E6%BA%90%E5%AD%97%E5%85%B8%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E5%9B%A0%E4%B8%BA%E5%8F%AF%E8%83%BD%E4%BC%9A%E5%B8%83%E7%BD%AE%E5%A4%9A%E4%B8%AA%E8%B5%84%E6%BA%90%EF%BC%89">https://www.cnblogs.com/rolayblog/p/15630417.html（注意使用资源字典的原因是因为可能会布置多个资源）</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">何为资源：就是文件或者写死的东西，任何.Resource都是资源</span><br><span class="line"> &lt;Window.Resources&gt;//&lt;StaticPanel.Resources&gt;</span><br><span class="line">        &lt;sys:String x:Key=&quot;zero&quot;&gt;静夜思&lt;/sys:String&gt;</span><br><span class="line">        &lt;sys:String x:Key=&quot;one&quot;&gt;床前明月光，疑似地上霜。&lt;/sys:String&gt;</span><br><span class="line">        &lt;sys:String x:Key=&quot;two&quot;&gt;举头望明月，低头思故乡。&lt;/sys:String&gt;</span><br><span class="line">    &lt;/Window.Resources&gt;</span><br><span class="line">    &lt;StackPanel Orientation=&quot;Vertical&quot; HorizontalAlignment=&quot;Center&quot; VerticalAlignment=&quot;Center&quot; &gt;</span><br><span class="line">        &lt;TextBlock x:Name=&quot;title&quot;  Text=&quot;&#123;Binding Source=&#123;StaticResource zero&#125;&#125;&quot; Margin=&quot;5&quot; Padding=&quot;5&quot; FontSize=&quot;20&quot; TextAlignment=&quot;Center&quot;&gt;&lt;/TextBlock&gt;</span><br><span class="line">        &lt;TextBlock x:Name=&quot;first&quot;  Text=&quot;&#123;Binding Source=&#123;StaticResource one&#125;&#125;&quot; Margin=&quot;5&quot; Padding=&quot;5&quot; FontSize=&quot;20&quot;&gt;&lt;/TextBlock&gt;</span><br><span class="line">        &lt;TextBlock x:Name=&quot;after&quot; Text=&quot;&#123;Binding Source=&#123;StaticResource two&#125;&#125;&quot; Margin=&quot;5&quot; Padding=&quot;5&quot; FontSize=&quot;20&quot;&gt;&lt;/TextBlock&gt;</span><br><span class="line">    &lt;/StackPanel&gt;</span><br></pre></td></tr></table></figure>
+
+<p>静态资源StaticResource与动态资源DynamicResource的区别：</p>
+<p>在使用过程中，两者无本质差别，使用哪个都可以，区别是使用动态资源的需求是需要动态改变资源里面的内容。</p>
+<h4 id="5-集合类与集合控件绑定"><a href="#5-集合类与集合控件绑定" class="headerlink" title="5.集合类与集合控件绑定"></a>5.集合类与集合控件绑定</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">参考数据模板部分，注意：使用ItemsSource与集合进行绑定时，不要使用List而是使用ObservableCollection代替List，因为后者实现了INotifyCollectionChanged接口，集合变化时会立即通知控件，改变会立即显示</span><br><span class="line">前端</span><br><span class="line">&lt;ListView x:Name=&quot;mylistview&quot;										所有的属性都是在listview标签里面设置</span><br><span class="line">                          ItemTapped=&quot;mylistview_ItemTapped&quot;		点击事件</span><br><span class="line">                          ItemsSource=&quot;&#123;Binding MenuBars&#125;&quot;&gt;			绑定</span><br><span class="line">                    &lt;ListView.ItemTemplate&gt;</span><br><span class="line">                        &lt;DataTemplate&gt;</span><br><span class="line">                            &lt;TextCell Text=&quot;&#123;Binding Name&#125;&quot;			后端name与前端text绑定</span><br><span class="line">                             Detail=&quot;&#123;Binding Content&#125;&#125;&quot;/&gt;	同上</span><br><span class="line">                        &lt;/DataTemplate&gt;</span><br><span class="line">                    &lt;/ListView.ItemTemplate&gt;</span><br><span class="line">                &lt;/ListView&gt;</span><br><span class="line">         </span><br><span class="line">后端</span><br><span class="line">1.mylistview.ItemsSource = poetryList;			//另一种绑定方式</span><br><span class="line">2.private async void mylistview_ItemTapped(object sender, ItemTappedEventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            await DisplayAlert(&quot;tap&quot;,(e.Item as Poety).Name,&quot;ok&quot;);  使用前端的某一项需将使用ItemTappedEventArgs</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-对方法的返回值绑定"><a href="#6-对方法的返回值绑定" class="headerlink" title="6.对方法的返回值绑定"></a>6.对方法的返回值绑定</h4><p>使用ObjectDataProvider绑定</p>
+<p>一些情况下，xaml显示的数据可能是后台中方法返回的值，则无法绑定属性参考深入浅出wpf</p>
+<h3 id="7-对相邻元素进行绑定"><a href="#7-对相邻元素进行绑定" class="headerlink" title="7.对相邻元素进行绑定"></a>7.对相邻元素进行绑定</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">针对未设置Name属性的控件绑定使用RelativeSource进行绑定，Mode模式由FindAncestor，self等，前者表示查询父控件，后者表示查找本身控件，path表示与该控件的某个属性进行绑定。如下，实际上Text最终的值就是Box1</span><br><span class="line">&lt;Grid&gt;</span><br><span class="line">        &lt;StackPanel&gt;</span><br><span class="line">            &lt;TextBox Height=&quot;30&quot; Width=&quot;60&quot; Name=&quot;Box1&quot; Text=&quot;&#123;Binding RelativeSource=&#123;RelativeSource Mode=self&#125;,Path=Name &#125;&quot;/&gt;</span><br><span class="line">        &lt;/StackPanel&gt;</span><br><span class="line">    &lt;/Grid&gt;</span><br><span class="line"> 同理如下：如果设置了AncestorType=&#123;x:Type Grid&#125;则在寻找时会忽略非Grid的控件只招Grid类型的控件，AncestorLevel=2表示向上找两层。如下，最终TextBox值为G1，如果删除 AncestorType=&#123;x:Type Grid&#125;则最终为G2</span><br><span class="line"> &lt;Grid Name=&quot;G1&quot;&gt;</span><br><span class="line">        &lt;Grid Name=&quot;G2&quot;&gt;</span><br><span class="line">            &lt;StackPanel Name=&quot;S1&quot;&gt;</span><br><span class="line">                &lt;TextBox Height=&quot;30&quot; Width=&quot;60&quot; Name=&quot;Box1&quot; Text=&quot;&#123;Binding RelativeSource=&#123;RelativeSource Mode=FindAncestor, AncestorType=&#123;x:Type Grid&#125;, AncestorLevel=2&#125;,Path=Name &#125;&quot;/&gt;</span><br><span class="line">            &lt;/StackPanel&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">    &lt;/Grid&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="绑定模式"><a href="#绑定模式" class="headerlink" title="绑定模式"></a>绑定模式</h4><p>1.default:自动确定，若是可编辑的则双向绑定，若是只读的则单向绑定</p>
+<p>2.OneWay：单向绑定</p>
+<p>3.TwoWay:双向绑定</p>
+<p>4.OneTime:只绑定初始值</p>
+<p>5.OneWayToSource:反过来单向绑定</p>
+<h3 id="git使用方法：参考xamarin视频"><a href="#git使用方法：参考xamarin视频" class="headerlink" title="git使用方法：参考xamarin视频"></a>git使用方法：参考xamarin视频</h3><p>1.数据库打包进项目中更改为嵌入式资源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ItemGroup&gt;</span><br><span class="line">    &lt;EmbeddedResource Include=&quot;poetrydb.sqlite3&quot;&gt;</span><br><span class="line">      &lt;CopyToOutputDirectory&gt;PreserveNewest&lt;/CopyToOutputDirectory&gt;</span><br><span class="line">    &lt;/EmbeddedResource&gt;</span><br><span class="line">  &lt;/ItemGroup&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.数据库拷贝到对应的文件路径时需修改配置文件，否则拷贝的数据库为空：在1的基础上加上LoginName</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ItemGroup&gt;</span><br><span class="line">    &lt;EmbeddedResource Include=&quot;poetrydb.sqlite3&quot;&gt;</span><br><span class="line">      &lt;CopyToOutputDirectory&gt;PreserveNewest&lt;/CopyToOutputDirectory&gt;</span><br><span class="line">		&lt;LogicalName&gt;poetrydb.sqlite3&lt;/LogicalName&gt;</span><br><span class="line">    &lt;/EmbeddedResource&gt;</span><br><span class="line">  &lt;/ItemGroup&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.单元测试下Preferce偏好存储不能使用</p>
+<h2 id="MaterialDesign"><a href="#MaterialDesign" class="headerlink" title="MaterialDesign"></a>MaterialDesign</h2><p>一种应用于wpf的前端界面框架；使用方式参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/rolayblog/p/15630417.html">https://www.cnblogs.com/rolayblog/p/15630417.html</a></p>
+<p>引入themes4.8.0ci155nuget包</p>
+<p>App.xaml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在Home的Source里面</span><br><span class="line">&lt;Application.Resources&gt;</span><br><span class="line">        &lt;ResourceDictionary&gt;</span><br><span class="line">            &lt;ResourceDictionary.MergedDictionaries&gt;</span><br><span class="line">                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml&quot; /&gt;</span><br><span class="line">                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml&quot; /&gt;</span><br><span class="line">                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml&quot; /&gt;</span><br><span class="line">                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml&quot; /&gt;</span><br><span class="line">            &lt;/ResourceDictionary.MergedDictionaries&gt;</span><br><span class="line">        &lt;/ResourceDictionary&gt;</span><br><span class="line">    &lt;/Application.Resources&gt;</span><br><span class="line">———————————————</span><br><span class="line">原文链接：https://blog.csdn.net/huatoudd/article/details/114529859</span><br></pre></td></tr></table></figure>
+
+<p>1.&lt;md:DialogHost Identifier&#x3D;“Root”&gt;”，它的作用是用来作为弹出框的载体，用来放置弹出框所在的主页面，dialoghost由三部分组成，宿主控件，覆盖层和对话框，宿主控件包含应将对话框放在其上的内容（一般是整个页面），通常放在xaml的根目录附近，叠加层就是变暗区域，对话框本身就是显示的内容其中md是对MaterialDesign的命名空间的申明，这个xaml意思是将此整个窗口作为对话框的DialogHost，并用“Root”命名作为唯一识别。。此名称将传递到对话框中，告诉对话框悬停在哪个DialogHost上，<a target="_blank" rel="noopener" href="https://www.likecs.com/show-284803.html%EF%BC%8Chttps://www.cnblogs.com/IRisingStar/p/16127986.html,%E5%AE%83%E6%98%AF%E7%94%A8%E6%9D%A5%E8%AE%BE%E7%BD%AE%E8%8C%83%E5%9B%B4%E7%9A%84%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E7%94%A8%E6%9D%A5%E8%AE%BE%E7%BD%AE%E5%B8%83%E5%B1%80%E7%9A%84%E3%80%82">https://www.likecs.com/show-284803.html，https://www.cnblogs.com/IRisingStar/p/16127986.html,它是用来设置范围的，而不是用来设置布局的。</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;materialDesign:DialogHost&gt;</span><br><span class="line">//下面这句话相当于后台的messagebox.show();只不过这里可以自定义弹出框的内容</span><br><span class="line">&lt;materialDesign:DialogHost.DialogContent&gt;</span><br><span class="line">        &lt;Grid</span><br><span class="line">            Margin=&quot;16&quot;&gt;</span><br><span class="line">            &lt;TextBlock</span><br><span class="line">                Text=&quot;我的第一个DialogHost&quot;</span><br><span class="line">                FontSize=&quot;20&quot; /&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">    &lt;/materialDesign:DialogHost.DialogContent&gt;</span><br><span class="line">    &lt;materialDesign:DialogHost.Content&gt;//下面是设置非弹框页面，该行代码可以省略，默认赋值给Content，content本身不具备布局功能</span><br><span class="line">    		&lt;gird&gt;</span><br><span class="line">            &lt;Button&gt;&lt;/Button&gt;</span><br><span class="line">            &lt;button&gt;&lt;/Button&gt;</span><br><span class="line">            &lt;/grid&gt;</span><br><span class="line">        &lt;/materialDesign:DialogHost.Content&gt;</span><br><span class="line">&lt;/materialDesign:DialogHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们会看到drawerhost放在dialoghost里面，这是因为实际上将drawerhost赋给了DialogHost.Content属性，drawerhost包含整个页面的内容，是因为它作为导航栏的载体，而dialoghost作为弹框的载体。页面可能会有弹窗，一旦弹窗就按照dialoghost.dialogcontent设置的格式弹窗，如果没有弹框，那么dialoghost实际上可以省略，只使用drawerhost即可</p>
+<p>2.&lt;md:DrawerHost ,它的级别与dialoghost是同一级别，只不过它是一般用来制作导航栏，<a target="_blank" rel="noopener" href="https://blog.csdn.net/sD7O95O/article/details/104911926%E3%80%82">https://blog.csdn.net/sD7O95O/article/details/104911926。</a></p>
+<p>3.materialDesign:ColorZone是用来设置背景颜色的，类似border</p>
+<p>传统方式的弹出框如下，弹出框是在整个屏幕的中间弹出</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230321195807935.png" alt="image-20230321195807935"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> &lt;materialDesign:DialogHost CloseOnClickAway=&quot;True&quot;&gt;</span><br><span class="line">// dialoghost.dialogcontet是用来设置弹出框内容的。</span><br><span class="line">        &lt;materialDesign:DialogHost.DialogContent&gt;</span><br><span class="line">            &lt;Grid Margin=&quot;16&quot;&gt;</span><br><span class="line">                &lt;TextBlock Text=&quot;我的第一个DialogHost&quot; FontSize=&quot;20&quot;/&gt;</span><br><span class="line">            &lt;/Grid&gt;</span><br><span class="line">        &lt;/materialDesign:DialogHost.DialogContent&gt;</span><br><span class="line">//在非dialoghost.dialogcontet部分是显示灰色。</span><br><span class="line">        &lt;Button Command=&quot;&#123;x:Static materialDesign:DialogHost.OpenDialogCommand&#125;&quot; Width=&quot;160&quot; Content=&quot;打开&quot; Margin=&quot;0,64,0,0&quot;/&gt;</span><br><span class="line"> 对应的图像如下，弹框是在程序界面的中间弹出</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2026/01/29/Maui/assets/image-20230321211231001.png" alt="image-20230321211231001"></p>
+<p><img src="/2026/01/29/Maui/assets/image-20230321194017374.png" alt="image-20230321194017374"></p>
+<p>如下我们可以看见，dialoghost所在的区域是第二行，第二行为变暗区域。</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230418201452091.png" alt="image-20230418201452091"></p>
+<p>4.Card控件：类似于windform中的panel，一种容器，在Materials Design中也非常强调使用卡片式布局,它可以让页面中的元素看起来就像在卡片中一样,并且还能拥有圆角和投影等效果,看上去会有立体的感觉。针对小容器中既有图片又有文字的情况会使用card控件</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230406203155086.png" alt="image-20230406203155086"></p>
+<p>5.materialDesign:TransitioningContent：用来设置动画的。可以设置从哪里飞入<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Dotnet9-com/p/13111207.html">https://www.cnblogs.com/Dotnet9-com/p/13111207.html</a>,</p>
+<p><a target="_blank" rel="noopener" href="https://dotnet9.com/2020/06/WPF-Food-Application-Login-UI-Design">https://dotnet9.com/2020/06/WPF-Food-Application-Login-UI-Design</a></p>
+<p>6.文字，border设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">正文颜色：Foreground=&quot;&#123;DynamicResource MaterialDesignBodyLight&#125;&quot;</span><br><span class="line">Border分割线颜色:BorderBrush=&quot;&#123;DynamicResource MaterialDesignDivider&#125;&quot; borderthickness=0.1</span><br><span class="line">另一种分割线:  &lt;Separator Style=&quot;&#123;StaticResource MaterialDesignLightSeparator&#125;&quot; /&gt;</span><br><span class="line">另一种分割线： &lt;Border Style=&quot;&#123;StaticResource HorizontalDividerBorder&#125;&quot; /&gt;</span><br><span class="line">自动换行:TextWrapping=&quot;Wrap&quot;</span><br></pre></td></tr></table></figure>
+
+<p>7.样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">按钮样式：Style=&quot;&#123;StaticResource MaterialDesignFlatButton&#125;&quot;</span><br><span class="line">文字样式:Style=&quot;&#123;StaticResource MaterialDesignHeadline5TextBlock&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>8.图片</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;materialDesign:PackIcon Kind=&quot;Gift&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>9.PupBox</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;materialDesign:PopupBox </span><br><span class="line">       Style=&quot;&#123;StaticResource MaterialDesignMultiFloatingActionPopupBox&#125;&quot;&gt;</span><br><span class="line">      	&lt;StackPanel&gt;</span><br><span class="line">        &lt;Button Click=&quot;GitHubButton_OnClick&quot;</span><br><span class="line">                Content=&quot;&#123;materialDesign:PackIcon Kind=Github,Size=20&#125;&quot;</span><br><span class="line">                ToolTip=&quot;GitHub&quot; /&gt;</span><br><span class="line">        &lt;Button Background=&quot;&#123;DynamicResource PrimaryHueMidBrush&#125;&quot;</span><br><span class="line">        &lt;/Button&gt;</span><br><span class="line">      &lt;/StackPanel&gt;</span><br><span class="line">    &lt;/materialDesign:PopupBox&gt;</span><br></pre></td></tr></table></figure>
+
+<p>10.Button</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">总结：方形flat(无外边框)，outline(有外边框),Raise(带背景色)圆形float,背景为图片Icon</span><br><span class="line">动画：&lt;Button</span><br><span class="line">    materialDesign:ShadowAssist.ShadowAnimationDuration=&quot;0:0:0.5&quot;</span><br><span class="line">    Style=&quot;&#123;StaticResource MaterialDesignRaisedDarkButton&#125;&quot;&gt;</span><br><span class="line">  Long Duration</span><br><span class="line">&lt;/Button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>11.隐藏文字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">materialDesign:HintAssist.Hint=&quot;Setting 1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>12.圆形，方形进度条</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">  materialDesign:ButtonProgressAssist.IsIndicatorVisible=&quot;True&quot;</span><br><span class="line">  materialDesign:ButtonProgressAssist.Value=&quot;75&quot;</span><br><span class="line">  Content=&quot;&#123;materialDesign:PackIcon DotsHorizontal&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>13.卡片</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;materialDesign:Card</span><br><span class="line">  Width=&quot;200&quot;&gt;</span><br><span class="line">  &lt;Grid&gt;</span><br><span class="line">    &lt;Grid.RowDefinitions&gt;</span><br><span class="line">      &lt;RowDefinition</span><br><span class="line">        Height=&quot;140&quot; /&gt;</span><br><span class="line">      &lt;RowDefinition</span><br><span class="line">        Height=&quot;*&quot; /&gt;</span><br><span class="line">      &lt;RowDefinition</span><br><span class="line">        Height=&quot;Auto&quot; /&gt;</span><br><span class="line">    &lt;/Grid.RowDefinitions&gt;</span><br><span class="line">    &lt;Image</span><br><span class="line">      Width=&quot;196&quot;</span><br><span class="line">      Height=&quot;140&quot;</span><br><span class="line">      Source=&quot;Resources/Chartridge046_small.jpg&quot;</span><br><span class="line">      Stretch=&quot;UniformToFill&quot; /&gt;//图片均匀填充区域</span><br><span class="line">    &lt;Button</span><br><span class="line">      Grid.Row=&quot;0&quot;</span><br><span class="line">      Margin=&quot;0,0,16,-20&quot;</span><br><span class="line">      HorizontalAlignment=&quot;Right&quot;</span><br><span class="line">      VerticalAlignment=&quot;Bottom&quot;</span><br></pre></td></tr></table></figure>
+
+<p>14.允许反转的卡片</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;materialDesign:Flipper</span><br><span class="line">  IsFlippedChanged=&quot;Flipper_OnIsFlippedChanged&quot;</span><br><span class="line">  Style=&quot;&#123;StaticResource MaterialDesignCardFlipper&#125;&quot;&gt;</span><br><span class="line">  //正面</span><br><span class="line">  &lt;materialDesign:Flipper.FrontContent&gt;</span><br><span class="line">    &lt;Button</span><br><span class="line">      Width=&quot;184&quot;</span><br><span class="line">      Margin=&quot;8&quot;</span><br><span class="line">      Command=&quot;&#123;x:Static materialDesign:Flipper.FlipCommand&#125;&quot;//反转命令</span><br><span class="line">      Content=&quot;FLIPPABLZ!&quot;</span><br><span class="line">      Style=&quot;&#123;StaticResource MaterialDesignFlatButton&#125;&quot; /&gt;</span><br><span class="line">  &lt;/materialDesign:Flipper.FrontContent&gt;</span><br><span class="line">  //反面</span><br><span class="line">  &lt;materialDesign:Flipper.BackContent&gt;</span><br><span class="line">    &lt;Button</span><br><span class="line">      Width=&quot;184&quot;</span><br><span class="line">      Margin=&quot;8&quot;</span><br><span class="line">      Command=&quot;&#123;x:Static materialDesign:Flipper.FlipCommand&#125;&quot;</span><br><span class="line">      Content=&quot;GO BACK&quot;</span><br><span class="line">      Style=&quot;&#123;StaticResource MaterialDesignFlatButton&#125;&quot; /&gt;</span><br><span class="line">  &lt;/materialDesign:Flipper.BackContent&gt;</span><br><span class="line">&lt;/materialDesign:Flipper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>15.后退按钮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">            &lt;materialDesign:PackIcon</span><br><span class="line">              HorizontalAlignment=&quot;Right&quot;</span><br><span class="line">              Kind=&quot;ArrowLeft&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>16.panel.zindex</p>
+<p>通过该附加属性来设置两个重合的控件，哪个控件放在上面。</p>
+<p>17.dialoghost弹出，收缩窗口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">md中自带一些方法可以绑定在command上面。仅操作前端的数据，不操作后端的数据，也可以通过viewmodel中的方法去弹出框</span><br><span class="line">Command=&quot;&#123;x:Static materialDesign:DialogHost.OpenDialogCommand&#125;&quot;，不必绑定后端了</span><br><span class="line">Command=&quot;&#123;x:Static materialDesign:DialogHost.CloseDialogCommand&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>18.Memu控件，用于菜单栏即下拉列表</p>
+<p>19.ToolBars工具栏，即快捷图标</p>
+<p>20.单行文本:textbox，多行文本richtextbox</p>
+<p>21.日期选择:datapicker</p>
+<p>22.时间选择:TimePicker</p>
+<p>23.消息通知snackbar</p>
+<p>24.选项卡：可以用来实现导航栏</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;TabControl</span><br><span class="line">  Width=&quot;300&quot;&gt;</span><br><span class="line">  &lt;TabItem</span><br><span class="line">    Header=&quot;TAB 1&quot;&gt;</span><br><span class="line">    &lt;TextBlock</span><br><span class="line">      Margin=&quot;8&quot;</span><br><span class="line">      Text=&quot;Default Tab 1&quot; /&gt;</span><br><span class="line">  &lt;/TabItem&gt;</span><br><span class="line">  &lt;TabItem</span><br><span class="line">    Header=&quot;TAB 2&quot;&gt;</span><br><span class="line">    &lt;TextBlock</span><br><span class="line">      Margin=&quot;8&quot;</span><br><span class="line">      Text=&quot;Default Tab 2&quot; /&gt;</span><br><span class="line">  &lt;/TabItem&gt;</span><br><span class="line">&lt;/TabControl&gt;</span><br></pre></td></tr></table></figure>
+
+<p>25.例如listbox，tabcontrol等集合控件，如果想要设置内容的布局，可以通过HorizontalContentAlignment&#x3D;”Center”，VerticleContentAlignment来设置item的布局。</p>
+<p>26.滑动条sliderbar</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230509212646768.png" alt="image-20230509212646768"></p>
+<p>27.进度条progressbar</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230509212712348.png" alt="image-20230509212712348"></p>
+<h1 id="Maui"><a href="#Maui" class="headerlink" title="Maui"></a>Maui</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>首先执行的文件是AppShell.xaml文件，看见里面首先启动的页面才是MainPage.xaml</p>
+<p><strong>App.xaml</strong>. 此文件定义应用将在 XAML 布局中使用的应用程序资源。</p>
+<p><strong>App.xaml.cs</strong>. 这是 此文件定义 App 类。此类在运行时表示应用程序。此类中的构造函数创建一个初始窗口并将其分配给属性;此属性确定应用程序开始运行时显示哪个页面。</p>
+<p><strong>AppShell.xaml</strong>  .NET MAUI 提供了许多对多平台应用有益的功能，包括应用样式、基于 URI 的导航和布局选项，包括浮出控件导航和应用程序根目录的选项卡。</p>
+<p><strong>MainPage.xaml</strong>。此文件包含用户界面定义。该控件使控件垂直排列（在堆栈中），如果视图太大而无法在设备上显示，则提供滚动条。</p>
+<p><strong>MainPage.xaml.cs.</strong> 这是页面的代码隐藏。</p>
+<p><strong>MauiProgram.cs</strong>。 每个本机平台都有不同的起点来创建和初始化应用程序。可以在项目的<strong>PlatForms</strong>文件夹下找到此代码。此代码是特定于平台的，但最后它调用静态类的方法。该类和方法在各个platforms的的代码中被调用。提供用于注册字体、为依赖项注入配置服务、为控件注册自定义处理程序等任务的方法</p>
+<p><strong>PlatForms</strong>：此文件夹包含特定于平台的初始化代码文件和资源。</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230314205607664.png" alt="image-20230314205607664"></p>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p><img src="/2026/01/29/Maui/assets/image-20230314213245906.png" alt="image-20230314213245906"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FlexLayout`，它与`StackLayout` 类似，如果它们不适合单行或列，允许您包装它包含的子控件，。此布局还提供了对齐和适应不同屏幕尺寸的选项。例如，FlexLayout 控件可以在垂直排列时将其子控件向左、向右或居中对齐。</span><br></pre></td></tr></table></figure>
+
+<p>还有两种布局：VertialStackLayout和HorizontalStackLayout这两种是显示指定了布局方式，优化比StackLayout更好一些，StackLayout可以通过属性设置为前面两种方式的布局</p>
+<p>位置选项：在wpf的水平和垂直布局有left，right，center，top，bottom属性，而在maui中改为了start，end和center属性如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VerticalOptions=&quot;End&quot; HorizontalOptions=&quot;Start&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>内容页通常显示视图。视图使您能够以特定方式检索和显示数据。内容页面的默认视图是 <code>ContentView</code>，它按原样显示项目。如果缩小视图，项目可能会从显示中消失，直到调整视图大小为止。</p>
+<p>ScrollView<code> 使您能够在滚动窗口中显示项目;如果缩小窗口，则可以上下滚动以显示项目。</code> </p>
+<p><code>CarouselView``是一个可滚动的视图，使用户能够在项目集合中轻扫。</code></p>
+<p>CollectionView&#96;可以从具名数据源中检索数据，并使用模板作为格式显示每个项目。还有许多其他类型的视图可用。</p>
+<h2 id="使用代码进行平台区分"><a href="#使用代码进行平台区分" class="headerlink" title="使用代码进行平台区分"></a>使用代码进行平台区分</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">针对平台页面大小不同，pading或者颜色等也有差别，可以针对某个平台进行独特的设计</span><br><span class="line">xaml中区分</span><br><span class="line">对于 iOS 以外的平台，填充将保持设置为其默认值“0，0，0，0”。对于 WinUI 和 Android，您可以使用其他块将填充设置为 30 磅：</span><br><span class="line">&lt;VerticalStackLayout&gt;</span><br><span class="line">    &lt;VerticalStackLayout.Padding&gt;</span><br><span class="line">        &lt;OnPlatform x:TypeArguments=&quot;Thickness&quot;&gt;</span><br><span class="line">            &lt;On Platform=&quot;iOS&quot; Value=&quot;30,60,30,30&quot; /&gt;</span><br><span class="line">            &lt;On Platform=&quot;Android&quot; Value=&quot;30&quot; /&gt;</span><br><span class="line">            &lt;On Platform=&quot;WinUI&quot; Value=&quot;30&quot; /&gt;</span><br><span class="line">        &lt;/OnPlatform&gt;</span><br><span class="line">    &lt;/VerticalStackLayout.Padding&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/VerticalStackLayout&gt;</span><br><span class="line"></span><br><span class="line">简化语法：</span><br><span class="line">&lt;VerticalStackLayout Padding=&quot;&#123;OnPlatform iOS=&#x27;30,60,30,30&#x27;, Default=&#x27;30&#x27;&#125;&quot;&gt;</span><br><span class="line">    &lt;!--XAML for other controls goes here --&gt;</span><br><span class="line">&lt;/VerticalStackLayout&gt;</span><br><span class="line"></span><br><span class="line">后台区分平台：使用deviceInfo</span><br><span class="line">MyStackLayout.Padding = </span><br><span class="line">    DeviceInfo.Platform == DevicePlatform.iOS</span><br><span class="line">        ? new Thickness(30, 60, 30, 30) // Shift down by 60 points on iOS only</span><br><span class="line">        : new Thickness(30); // Set the default margin to be 30 points</span><br></pre></td></tr></table></figure>
+
+<h2 id="行和列定义"><a href="#行和列定义" class="headerlink" title="行和列定义"></a>行和列定义</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;Grid&gt;</span><br><span class="line">    &lt;Grid.RowDefinitions&gt;</span><br><span class="line">        &lt;RowDefinition /&gt;</span><br><span class="line">        &lt;RowDefinition /&gt;</span><br><span class="line">        &lt;RowDefinition /&gt;</span><br><span class="line">    &lt;/Grid.RowDefinitions&gt;</span><br><span class="line">    &lt;Grid.ColumnDefinitions&gt;</span><br><span class="line">        &lt;ColumnDefinition /&gt;</span><br><span class="line">        &lt;ColumnDefinition /&gt;</span><br><span class="line">    &lt;/Grid.ColumnDefinitions&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/Grid&gt;</span><br><span class="line">简化为</span><br><span class="line">&lt;Grid RowDefinitions=&quot;*, *, *&quot; ColumnDefinitions=&quot;*, *&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/Grid&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><h3 id="浮出控件导航FlyoutItem"><a href="#浮出控件导航FlyoutItem" class="headerlink" title="浮出控件导航FlyoutItem"></a>浮出控件导航FlyoutItem</h3><p><img src="/2026/01/29/Maui/assets/image-20230317202546033.png" alt="image-20230317202546033"></p>
+<p>上面的图标是通过设置flyBehavior属性为flyout而显示的，默认为disable，如果为locked则自动展开，如下</p>
+<p>在AppShell.xaml中设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Shell</span><br><span class="line">    x:Class=&quot;MauiApp3.AppShell&quot;</span><br><span class="line">  	。。。</span><br><span class="line">    FlyoutBehavior=&quot;Locked&quot;&gt;			</span><br></pre></td></tr></table></figure>
+
+<p>浮出控件导航是一种导航类型，其中菜单项窗口从设备屏幕一侧滑动（或飞出）。它通常通过点击所谓的“汉堡包”菜单或三条水平线堆叠在一起的图标来调用。弹出菜单由几个部分组成：Header<code>FlyoutItems</code>MenuItems&#96;Footer</p>
+<p><img src="/2026/01/29/Maui/assets/image-20230315205244754.png" alt="image-20230315205244754"></p>
+<p><code>FlyoutItem</code>需要托管在<code>Shell</code>页面中，该页面用作应用程序的主页，通过设置它里面的属性来展示展开框所显示的内容。您可以通过设置其ShellContent属性来指定点击时显示的内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">flyoutitmes</span><br><span class="line">&lt;Shell xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;</span><br><span class="line">       xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;</span><br><span class="line">       xmlns:controls=&quot;clr-namespace:Xaminals.Controls&quot;</span><br><span class="line">       xmlns:views=&quot;clr-namespace:Xaminals.Views&quot;</span><br><span class="line">       x:Class=&quot;Xaminals.AppShell&quot;&gt;</span><br><span class="line">    &lt;FlyoutItem Title=&quot;Cats&quot;							//flyoutitme用来定义定义浮动控件里面的列表</span><br><span class="line">                Icon=&quot;cat.png&quot;&gt;</span><br><span class="line">       &lt;Tab&gt;</span><br><span class="line">           &lt;ShellContent ContentTemplate=&quot;&#123;DataTemplate views:CatsPage&#125;&quot; /&gt;	//shellContent是导航标记，用来定义导航到CatsPage.xaml页面</span><br><span class="line">       &lt;/Tab&gt;</span><br><span class="line">    &lt;/FlyoutItem&gt;</span><br><span class="line">    &lt;FlyoutItem Title=&quot;Dogs&quot;</span><br><span class="line">                Icon=&quot;dog.png&quot;&gt;</span><br><span class="line">       &lt;Tab&gt;</span><br><span class="line">           &lt;ShellContent ContentTemplate=&quot;&#123;DataTemplate views:DogsPage&#125;&quot; /&gt;</span><br><span class="line">       &lt;/Tab&gt;</span><br><span class="line">    &lt;/FlyoutItem&gt;</span><br><span class="line">&lt;/Shell&gt;</span><br><span class="line"></span><br><span class="line">简化为</span><br><span class="line">&lt;Shell xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;</span><br><span class="line"> 		。。。&quot;&gt;</span><br><span class="line">   &lt;ShellContent Title=&quot;Cats&quot;</span><br><span class="line">                 Icon=&quot;cat.png&quot;</span><br><span class="line">                 ContentTemplate=&quot;&#123;DataTemplate views:CatsPage&#125;&quot; /&gt;</span><br><span class="line">   &lt;ShellContent Title=&quot;Dogs&quot;</span><br><span class="line">                 Icon=&quot;dog.png&quot;</span><br><span class="line">                 ContentTemplate=&quot;&#123;DataTemplate views:DogsPage&#125;&quot; /&gt;</span><br><span class="line">&lt;/Shell&gt;</span><br><span class="line">menuitems</span><br><span class="line">&lt;Shell ...&gt;</span><br><span class="line">    ...            </span><br><span class="line">    &lt;MenuItem Text=&quot;Help&quot;</span><br><span class="line">              IconImageSource=&quot;help.png&quot;</span><br><span class="line">              Command=&quot;&#123;Binding HelpCommand&#125;&quot;</span><br><span class="line">              CommandParameter=&quot;https://learn.microsoft.com/dotnet/maui/fundamentals/shell&quot; /&gt;    </span><br><span class="line">&lt;/Shell&gt;</span><br><span class="line"></span><br><span class="line">header</span><br><span class="line">&lt;Shell ...&gt;</span><br><span class="line">    &lt;Shell.FlyoutHeader&gt;</span><br><span class="line">        &lt;Grid&gt;</span><br><span class="line">            &lt;Image Source=&quot;header-image.png&quot;&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">    &lt;/Shell.FlyoutHeader&gt;</span><br><span class="line">&lt;/Shell&gt;</span><br><span class="line"></span><br><span class="line">footer</span><br><span class="line">&lt;Shell ...&gt;</span><br><span class="line">    &lt;Shell.FlyoutFooter&gt;</span><br><span class="line">        &lt;Grid&gt;</span><br><span class="line">            &lt;Image Source=&quot;footer-image.png&quot;&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">    &lt;/Shell.FlyoutFooter&gt;</span><br><span class="line">&lt;/Shell&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="选项卡导航TabBar"><a href="#选项卡导航TabBar" class="headerlink" title="选项卡导航TabBar"></a>选项卡导航TabBar</h3><p><img src="/2026/01/29/Maui/assets/image-20230316200301165.png" alt="image-20230316200301165"></p>
+<p>在移动设备上，选项卡条通常具有有限的空间，并且只能显示固定数量的选项卡，具体取决于设备大小和方向。建议仅使用三到四个选项卡。如果需要四个以上的选项卡，请考虑使用其他导航模式，例如浮出控件项导航。</p>
+<p>请创建<code>TabBar类的实例作为``Shell</code>类的子级。然后将<code>Tab</code>对象添加到 <code>TabBar</code>对象中，在<code>Tab</code>对象中，<code>ShellContent</code>应设置为对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Shell xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;</span><br><span class="line">       xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;</span><br><span class="line">       xmlns:views=&quot;clr-namespace:Xaminals.Views&quot;</span><br><span class="line">       x:Class=&quot;Xaminals.AppShell&quot;&gt;</span><br><span class="line">    &lt;TabBar&gt;</span><br><span class="line">       &lt;Tab Title=&quot;Moon Phase&quot;</span><br><span class="line">            Icon=&quot;moon.png&quot;&gt;</span><br><span class="line">           &lt;ShellContent ContentTemplate=&quot;&#123;DataTemplate local:MoonPhasePage&#125;&quot; /&gt;通过shellContent标记实现导航到对应的MoonPhasePage.xaml页面</span><br><span class="line">       &lt;/Tab&gt;</span><br><span class="line">       &lt;Tab Title=&quot;Sunrise&quot;</span><br><span class="line">            Icon=&quot;sun.png&quot;&gt;</span><br><span class="line">           &lt;ShellContent ContentTemplate=&quot;&#123;DataTemplate local:SunrisePage&#125;&quot; /&gt;</span><br><span class="line">       &lt;/Tab&gt;</span><br><span class="line">    &lt;/TabBar&gt;</span><br><span class="line">&lt;/Shell&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Stack导航"><a href="#Stack导航" class="headerlink" title="Stack导航"></a>Stack导航</h3><p>浮出控件和选项卡导航提供了一种有用的机制，使用户能够随时选择要查看的页面。用户只需选择适当的选项卡或浮出控件项即可导航到页面。这种形式的导航对于彼此具有<em>对等</em>关系的数据项非常有用。但是，对于分层数据，stack导航可能更合适。stack导航使用户能够<em>向下钻取</em>一系列页面，其中堆栈中的下一页提供上一页上所选项目的更详细视图。（类似于树结构，每个标题可能对应多个图片内容等情况）</p>
+<ul>
+<li><p><code>BackButtonBehavior</code>，BackButtonBehavior<code>类型 ，定义后退按钮行为的附加属性。</code></p>
+</li>
+<li><p><code>CurrentItem</code>，<code>ShellItem</code>类型为 ，表示当前选定的项目。</p>
+</li>
+<li><p>CurrentPage<code>，Page</code>类型，为当前显示的页面。&#96;</p>
+</li>
+<li><p><code>CurrentState</code>，<code>ShellNavigationState</code>类型为 、<code>Shell</code> 的当前导航状态。</p>
+</li>
+<li><p><code>Current</code>、<code>Shell</code>的类型、<code>Application.Current.MainPage</code>的类型转换别名。</p>
+<p>导航是通过从<code>Shell</code>类调用<code>GoToAsync</code>方法来执行的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">btnComet.Clicked += async (s, e) =&gt; await Shell.Current.GoToAsync(&quot;astronomicalbodydetails?astroName=comet&quot;);</span><br><span class="line">btnEarth.Clicked += async (s, e) =&gt; await Shell.Current.GoToAsync(&quot;astronomicalbodydetails?astroName=earth&quot;);</span><br><span class="line">btnMoon.Clicked += async (s, e) =&gt; await Shell.Current.GoToAsync(&quot;astronomicalbodydetails?astroName=moon&quot;);</span><br><span class="line">btnSun.Clicked += async (s, e) =&gt; await Shell.Current.GoToAsync(&quot;astronomicalbodydetails?astroName=sun&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>路由被定义在FlyoutItem<code>, </code>TabBar<code>, </code>Tab<code>, and </code>ShellContent的属性里面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;Shell ...&gt;</span><br><span class="line">    &lt;FlyoutItem ... </span><br><span class="line">        Route = &quot;astronomy&quot;&gt;</span><br><span class="line">        &lt;ShellContent ...</span><br><span class="line">            Route=&quot;moonphase&quot; /&gt;</span><br><span class="line">        &lt;ShellContent ...</span><br><span class="line">            Route=&quot;sunrise&quot; /&gt;</span><br><span class="line">    &lt;/FlyoutItem&gt;</span><br><span class="line">    &lt;FlyoutItem&gt;</span><br><span class="line">        &lt;ShellContent ...</span><br><span class="line">            Route=&quot;about&quot; /&gt;</span><br><span class="line">    &lt;/FlyoutItem&gt;</span><br><span class="line">&lt;/Shell&gt;</span><br><span class="line"></span><br><span class="line">后台注册，写在appshell.xaml.cs的构造函数里面</span><br><span class="line">Routing.RegisterRoute(&quot;astronomicalbodydetails&quot;, typeof(AstronomicalBodyPage));</span><br><span class="line">后台导航，写在页面的构造函数里面。参数变量是bodyName,参数值是celestialName</span><br><span class="line">await Shell.Current.GoToAsync($&quot;astronomicalbodydetails?bodyName=&#123;celestialName&#125;&quot;);`</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="判断网络是否连接"><a href="#判断网络是否连接" class="headerlink" title="判断网络是否连接"></a>判断网络是否连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">networkaccess类里面有五个值：ConstrainedInternet, Internet, Local, None, and Unknown</span><br><span class="line">if (Connectivity.Current.NetworkAccess == NetworkAccess.None)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ConnectivityChanged事件还使您能够确定设备是否已连接到互联网。当网络状态更改时，将自动触发该事件。例如，如果从活动网络连接开始并最终丢失它，则会引发该事件以通知您有关更改的信息。传递给事件处理程序的参数之一是对象。此对象包含一个名为 的属性。可以使用该属性来确定是否已连接到互联网。下面是一个示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Connectivity.Current.ConnectivityChanged += Connectivity_ConnectivityChanged;</span><br><span class="line">...</span><br><span class="line">void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs  e)</span><br><span class="line">&#123;</span><br><span class="line">    bool stillConnected = e.IsConnected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h2><p><code>HttpClient</code>是一个 .NET 类，应用可以使用该类从 REST Web 服务发送 HTTP 请求和接收 HTTP 响应。Web 服务公开的资源由一组 URI 标识。URI 将 Web 服务的地址与该地址上可用资源的名称组合在一起。</p>
+</li>
+</ul>
+<h2 id="存储方式："><a href="#存储方式：" class="headerlink" title="存储方式："></a>存储方式：</h2><h4 id="偏好存储"><a href="#偏好存储" class="headerlink" title="偏好存储"></a>偏好存储</h4><p>就是一种小型数据库，通过键值进行保存。用于处理简单的片段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Preferens.Set(&quot;key&quot;,result.Text);按照键值对进行保存</span><br><span class="line">Preferens.Get(&quot;key&quot;,&quot;NoValue&quot;);根据键进行获取，第二个参数表示未获取到情况下的默认值</span><br><span class="line">该类还存在remove，clear，containkey(是否存在)等方法</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据库存储"><a href="#数据库存储" class="headerlink" title="数据库存储"></a>数据库存储</h4><p>uwp，Android，ios针对不同平台提供了同一个方法获取存储路径，如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">label1.Text = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);uwp，Android，ios通用，路径名在不同的平台下是不同的。</span><br><span class="line">Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));path.combine方法自动根据不同平台分成不同的路径写法，以进行保存，避免手动去拼路径字符串</span><br></pre></td></tr></table></figure>
+
+<p>数据库打包进项目里面：复制到项目里面需要右键数据库属性，生成操作改为嵌入式资源</p>
+<h4 id="web服务存储"><a href="#web服务存储" class="headerlink" title="web服务存储"></a>web服务存储</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HttpClient httpClient = new HttpClient();</span><br><span class="line">         var response = await httpClient.GetAsync(&quot;https://v2.jinrishici.com/token&quot;);	访问接口</span><br><span class="line">         var json = response.Content.ReadAsStringAsync();//								获取json	</span><br><span class="line">         var token = JsonConvert.DeserializeObject&lt;jinrishici&gt;(await json);json转c#需要导newtonsoft.json包</span><br><span class="line">         label1.Text = token.data;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>就是将xaml，文本文件等保存以流的形式保存在文件系统里面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">using System.Text.Json;</span><br><span class="line">using System.IO;</span><br><span class="line"></span><br><span class="line">// Data to be written to the file system, and read back later</span><br><span class="line">List&lt;Customer&gt; customers = ...;</span><br><span class="line"></span><br><span class="line">// Serialize and save</span><br><span class="line">string fileName = ...;</span><br><span class="line">var serializedData = JsonSerializer.Serialize(customers);</span><br><span class="line">File.WriteAllText(fileName, serializedData);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">// Read and deserialize</span><br><span class="line">var rawData = File.ReadAllText(fileName);</span><br><span class="line">customers = JsonSerializer.Deserialize&lt;List&lt;Customer&gt;&gt;(rawData);</span><br></pre></td></tr></table></figure>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="../../../../about" rel="external nofollow noreferrer">时代的寒流</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://gao-hongfei123.github.io">http://gao-hongfei123.github.io</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="../../../../about" target="_blank">时代的寒流</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="../../../../libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="../../../../medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="../MVC/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/2.jpg" class="responsive-img" alt="MVC">
+                        
+                        <span class="card-title">MVC</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            技巧MVC5：新建项目的时候选择web项目-》mvc
+更换访问端口：右击项目-》属性-》web
+MVC是一种web开发框架。
+​	Models：实体模型，就是用来操作数据库的
+​	View：视图，用户可以看到的前端界面
+​	Controll
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-01-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            时代的寒流
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../ef%E5%AD%A6%E4%B9%A0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../medias/featureimages/1.jpg" class="responsive-img" alt="EF">
+                        
+                        <span class="card-title">EF</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Enitity framework (ef)学习属于ORM；O：DOmainObject领域模型
+​					R；Ralation Database 关系型数据库
+​					M：Maping映射关系
+ORM就是将相应的实体映射到相应的数据
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-01-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            时代的寒流
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="../../../../libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2016-2026</span>
+            
+            <a href="../../../../about" target="_blank">时代的寒流</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('../../../../search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../libs/aos/aos.js"></script>
+    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="../../../../libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
