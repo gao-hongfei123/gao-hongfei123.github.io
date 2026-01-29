@@ -583,7 +583,7 @@ head和body之间是并列关系，head标签和title之间是嵌套关系
 <p>​			具体的方法参考文档</p>
 <p>字符串常见方法：参考api</p>
 <h2 id="DOM（文档对象模型）"><a href="#DOM（文档对象模型）" class="headerlink" title="DOM（文档对象模型）"></a>DOM（文档对象模型）</h2><p>document:一个网页就是一个document ，object：网页中每个标签，每个标签内中的内容就是一个对象，model：用来描述每个对象之间的关系即节点关系：如下图，每个html，head，body，title，内容都是一个对象（节点），而每个对象之间的关系就是右侧图为包含或者并列的关系，实际上节点就是对象，只不过节点描述了文档结构之间的关系。</p>
-<p><img src="/.io//Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220409231643719.png" alt="image-20220409231643719"></p>
+<p><img src="/.github//Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220409231643719.png" alt="image-20220409231643719"></p>
 <p>在js中，js将html的每个标签都看为一个子对象，document将html的所有代码封装成一个对象，而每个标签又都是一个子对象，每个标签中的属性类似于每个对象的属性，</p>
 <p>使用document获取HTML元素对象</p>
 <p>​		直接获取方式：</p>
@@ -695,25 +695,25 @@ head和body之间是并列关系，head标签和title之间是嵌套关系
 <p>4.书写内容</p>
 <h3 id="布局容器"><a href="#布局容器" class="headerlink" title="布局容器"></a>布局容器</h3><p>整个浏览器界面相当于一个容器。我们要做的就是往容器里面装东西</p>
 <p>1.Container类：大屏宽度1170px（col-lg），中屏宽度：970px(col-md)，小屏宽度：750px(col-sm)，，超小屏(col-xs)：100%，容器在中间，两边都是边框</p>
-<p><img src="/.io//assets/image-20220208224014335.png" alt="image-20220208224014335"></p>
+<p><img src="/.github//assets/image-20220208224014335.png" alt="image-20220208224014335"></p>
 <p>2.Container-fluid：流式布局，100%，适合移动端开发。中间是容器，两个各有15px的边框</p>
-<p><img src="/.io//assets/image-20220208224105245.png" alt="image-20220208224105245"></p>
+<p><img src="/.github//assets/image-20220208224105245.png" alt="image-20220208224105245"></p>
 <h3 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h3><p>就是将容器划分成12个列（div），不管容器多大，都是12个列，所以会产生缩放效果即响应式。在栅格系统中，div默认是独占一行的，但是一旦加上了对栅格的设置（例col-lg-4），则会自动改为浮动式，即一行可以有多个div。内容应当放置于“列（column）”内，并且，只有“列（column）”可以作为行（row）”的直接子元素。每一个div默认左右有15个像素的padding</p>
 <p>container里面的内容是通过行row和列colum来控制的。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;//设置一个容器</span><br><span class="line">&lt;div class=&quot;row&quot;&gt;//一个行div里面包含四个子div</span><br><span class="line">//在大屏幕下每行4个div，每个div四个栅格，在中屏幕下，共三个div，每div四个栅格，小屏幕下每行两列，每列6个栅格，超小屏幕下共一列，每列12个栅格</span><br><span class="line">  &lt;div class=&quot;col-lg-3 col-md-4 col-sm-6 col-xs-12&quot;&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;col-lg-3 col-md-4 col-sm-6 col-xs-12&quot;&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;col-lg-3 col-md-4 col-sm-6 col-xs-12&quot;&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;col-lg-3 col-md-4 col-sm-6 col-xs-12&quot;&gt;4&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;col-lg-6&quot;&gt;1&lt;/div&gt;独占6列</span><br><span class="line">  &lt;div class=&quot;col-lg-2&quot;&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;col-lg-2&quot;&gt;3&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;col-lg-2&quot;&gt;4&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.io//assets/image-20220208230134993.png" alt="image-20220208230134993"></p>
+<p><img src="/.github//assets/image-20220208230134993.png" alt="image-20220208230134993"></p>
 <h3 id="列嵌套"><a href="#列嵌套" class="headerlink" title="列嵌套"></a>列嵌套</h3><p>若一行内有三个div，其中一个div中还要再分为2个子div，那么该盒子再分为12个栅格，每个子div各占6个栅格即可。列嵌套最好加上一个行row，这样可以取消父元素的padding值，且高度和父级元素一样</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;col-lg-3 &quot;&gt;1&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">		&lt;div class = &quot;col-sm-6&quot;&gt;a&lt;/div&gt;</span><br><span class="line">		&lt;div class = &quot;col-sm-6&quot;&gt;b&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="列偏移"><a href="#列偏移" class="headerlink" title="列偏移"></a>列偏移</h3><p>用来解决将两个盒子靠向两侧，而不是挨着：将右侧的盒子向右偏移 col-lg-offset-4</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">      &lt;div class=&quot;col-lg-4&quot;&gt;a&lt;/div&gt;</span><br><span class="line">      &lt;div class=&quot;col-lg-4 col-lg-offset-4&quot;&gt;a&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.io//assets/image-20220209211617687.png" alt="image-20220209211617687"></p>
+<p><img src="/.github//assets/image-20220209211617687.png" alt="image-20220209211617687"></p>
 <h3 id="列排序"><a href="#列排序" class="headerlink" title="列排序"></a>列排序</h3><p>特殊情况下用于解决将左侧盒子移到右侧，将右侧盒子移到左侧。使用到了浮动</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;row&quot;&gt;</span><br><span class="line">       &lt;div class=&quot;col-md-4 col-md-push-6&quot;&gt;左侧&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;col-md-4 col-md-pull-4&quot;&gt;右侧&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.io//assets/image-20220209212204208.png" alt="image-20220209212204208"></p>
+<p><img src="/.github//assets/image-20220209212204208.png" alt="image-20220209212204208"></p>
 <h3 id="响应式工具"><a href="#响应式工具" class="headerlink" title="响应式工具"></a>响应式工具</h3><p>一些内容在大屏中屏，小屏是否显示不一样。例如广告，在大屏下显示，但是在小屏幕下隐藏</p>
 <h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><p>就是在浏览器中向服务器中发送请求，不会进行页面刷新，例如点击输入框输入关键字自动显示搜索量最多的信息，再比如局部页面可执行访问服务器的请求，但是整个页面无变化。（原生使用AJax，vue中使用axios）</p>
 <p>优点：1.无需刷新页面前端即可向后端发起请求    2.允许根据事件更新部分页面内容</p>
@@ -985,7 +985,7 @@ head和body之间是并列关系，head标签和title之间是嵌套关系
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github.io/2026/01/28/%E5%89%8D%E7%AB%AF/">https://gao-hongfei123.github.io/2026/01/28/%E5%89%8D%E7%AB%AF/</a>
+                    <a href="https://gao-hongfei123.github/2026/01/28/%E5%89%8D%E7%AB%AF/">https://gao-hongfei123.github/2026/01/28/%E5%89%8D%E7%AB%AF/</a>
                 </span>
             </div>
             <div class="reprint__notice">

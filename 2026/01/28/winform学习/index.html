@@ -421,10 +421,10 @@ this.close事件和Application.exit()">
 <p>窗口图标：窗口样式&#x3D;》icon属</p>
 <p>是否允许用户拖动更改窗体大小：布局&#x3D;》autoSizeMode&#x3D;》Growandshrink</p>
 <p>窗体出现的位置：布局&#x3D;》startPosition&#x3D;&gt;居中显示</p>
-<p><img src="/.io//assets/image-20260129100816212.png" alt="image-20260129100816212"></p>
-<p><img src="/.io//assets/image-20220930112651982.png" alt="image-20220930112651982"></p>
-<p><img src="/.io//assets/image-20220930112651982.png" alt="image-20220930112651982"></p>
-<p><img src="/.io//assets/image-20220930112651982.png" alt="image-20220930112651982"></p>
+<p><img src="/.github//assets/image-20260129100816212.png" alt="image-20260129100816212"></p>
+<p><img src="/.github//assets/image-20220930112651982.png" alt="image-20220930112651982"></p>
+<p><img src="/.github//assets/image-20220930112651982.png" alt="image-20220930112651982"></p>
+<p><img src="/.github//assets/image-20220930112651982.png" alt="image-20220930112651982"></p>
 <p>属性：autosize是否启用自动修改窗体大小：一般用于文本标签，当输入文字超过窗体大小时，就会自动增大</p>
 <p>​			backcolor：控件的背景色</p>
 <p>​			backgroundimage:背景图片</p>
@@ -448,7 +448,7 @@ this.close事件和Application.exit()">
 <p>窗体与容器之间的距离设置</p>
 <p>this.left &#x3D; …</p>
 <p>this.top &#x3D; …</p>
-<p><img src="/.io//assets/image-20220930113756747.png" alt="image-20220930113756747"></p>
+<p><img src="/.github//assets/image-20220930113756747.png" alt="image-20220930113756747"></p>
 <p>窗体基本事件：</p>
 <p>​	控件对应的事件是在窗体进入构造方法中进入InitializeComponent()方法后会发现自动调用控件对应的事件。如果想要解绑控件，即不是运行后就自动执行该控件对应的事件，可以在事件&#x3D;》属性&#x3D;》load属性中删除该控件名称</p>
 <p>调整容器距边界距离的三种方式：</p>
@@ -463,14 +463,14 @@ this.close事件和Application.exit()">
 <p>2．将winform的AutoSizeMode改为GrowAndShrink,这种方式是不让用户更改窗体大小，治标不治本。</p>
 <p>关闭窗体标题栏：<br>            this.Text &#x3D; “”;<br>            this.ControlBox &#x3D; false;</p>
 <p>窗体闪烁来引起用户注意</p>
-<p><img src="/.io//assets/image-20220930164828130.png" alt="image-20220930164828130"></p>
+<p><img src="/.github//assets/image-20220930164828130.png" alt="image-20220930164828130"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private void timer1_Tick(object sender, EventArgs e)</span><br><span class="line">       &#123;</span><br><span class="line">           FlashWindow(this.Handle, true);</span><br><span class="line">       &#125;</span><br><span class="line">       [System.Runtime.InteropServices.DllImport(&quot;user32.dll&quot;)]</span><br><span class="line">       private static extern bool FlashWindow(IntPtr hanle, bool bInvert);</span><br><span class="line">       private void button1_Click(object sender, EventArgs e)</span><br><span class="line">       &#123;</span><br><span class="line">           timer1.Enabled = true;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       private void button2_Click(object sender, EventArgs e)</span><br><span class="line">       &#123;</span><br><span class="line">           timer1.Enabled = false;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <h3 id="获取显示器和工作区的大小"><a href="#获取显示器和工作区的大小" class="headerlink" title="获取显示器和工作区的大小"></a>获取显示器和工作区的大小</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//获取显示器屏幕的大小和工作区的大小，工作区不包括工具栏等</span><br><span class="line">            int screen_width = Screen.PrimaryScreen.WorkingArea.Width;</span><br><span class="line">            int screen_height = Screen.PrimaryScreen.WorkingArea.Height;</span><br><span class="line">            </span><br><span class="line">            this.Width = Convert.ToInt32(screen_width * 0.8);</span><br><span class="line">            this.Height = Convert.ToInt32(screen_height * 0.8);</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.io//assets/image-20220930161336376.png" alt="image-20220930161336376"></p>
+<p><img src="/.github//assets/image-20220930161336376.png" alt="image-20220930161336376"></p>
 <h3 id="鼠标操作"><a href="#鼠标操作" class="headerlink" title="鼠标操作"></a>鼠标操作</h3><p>获取鼠标位置：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var c = e as MouseEventArgs;</span><br><span class="line">           MessageBox.Show(c.X.ToString()+ c.Y.ToString());</span><br></pre></td></tr></table></figure>
 
@@ -495,7 +495,7 @@ this.close事件和Application.exit()">
 <p>修改textbox的ImeMode属性即可</p>
 <h3 id="button控件"><a href="#button控件" class="headerlink" title="button控件"></a>button控件</h3><p>Button中MouseClick事件与click事件的区别：mouseClick会接受鼠标其他按键（右键、中键、其他），而click仅支持鼠标左键的点击</p>
 <p>设置控件的外观</p>
-<p><img src="/.io//assets/image-20221002104234240.png" alt="image-20221002104234240"></p>
+<p><img src="/.github//assets/image-20221002104234240.png" alt="image-20221002104234240"></p>
 <h3 id="获取计算机系统信息"><a href="#获取计算机系统信息" class="headerlink" title="获取计算机系统信息"></a>获取计算机系统信息</h3><p>获取系统时间：datatime.now</p>
 <p>访问系统路径即system32文件路径:MessageBox.Show(Environment.SystemDirectory);</p>
 <p>获取计算机名称：Environment.MachineName+E);</p>
@@ -540,8 +540,8 @@ this.close事件和Application.exit()">
 <p>绑定数据源的方式是将集合赋给DataSource属性，不必将数据一个一个读取到表格里面，通常是直接将该控件绑定到数据库</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">dataGridView1.DataSource = new List&lt;Student&gt;()</span><br><span class="line">            &#123;</span><br><span class="line">                new Student(&quot;张三&quot;,23),</span><br><span class="line">                new Student(&quot;李四&quot;,24),</span><br><span class="line">                new Student(&quot;王五&quot;,25)</span><br><span class="line">            &#125;;</span><br><span class="line">            </span><br><span class="line"> 设置为仅显示</span><br><span class="line"> dataGridView1.AllowUserToAddRows = false;</span><br><span class="line">            dataGridView1.AllowUserToDeleteRows = false;</span><br><span class="line">            dataGridView1.ReadOnly = true;</span><br><span class="line">            </span><br><span class="line"> 实现用户可以在datagridview里面可以进行选项选择，而不必手动输入</span><br><span class="line"> datagridviewcomboboxcoclum dgv = new datagridviewcomboboxcolum;</span><br><span class="line"> dgv.itmes.add(&quot;苹果&quot;);</span><br><span class="line"> dgv.items.add(&quot;橘子&quot;);</span><br><span class="line"> dataGridView1.Columns.Add(dgv);</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.io//assets/image-20221005205808702.png" alt="image-20221005205808702"></p>
-<p><img src="/.io//assets/image-20221005203626127.png" alt="image-20221005203626127"></p>
+<p><img src="/.github//assets/image-20221005205808702.png" alt="image-20221005205808702"></p>
+<p><img src="/.github//assets/image-20221005203626127.png" alt="image-20221005203626127"></p>
 <p>​        </p>
 <h3 id="ComboBox下拉框"><a href="#ComboBox下拉框" class="headerlink" title="ComboBox下拉框"></a>ComboBox下拉框</h3><p>​	下拉框选项，类似于枚举，选项设置：在图像选中小三角&#x3D;》编辑项添加即可。第二种方式在属性&#x3D;》数据&#x3D;》itmes中添加枚举即可</p>
 <p>默认第一项为空值，如果想要设置默认项，则改为</p>
@@ -560,8 +560,8 @@ this.close事件和Application.exit()">
 <p>​	CheckBox1  cb1 &#x3D; (CheckBox1)this.Controls[i];</p>
 <p>}</p>
 <h3 id="进度条：Trackbar控件。"><a href="#进度条：Trackbar控件。" class="headerlink" title="进度条：Trackbar控件。"></a>进度条：Trackbar控件。</h3><p>修改步长：将maxxmum实际上它的大小取决于每个歌曲的时间长度，maximum是最大值，value是图片中的小游标。</p>
-<p><img src="/.io//assets/wpsD638.tmp.jpg" alt="img"> </p>
-<h3 id="Progressbar（进度条）控件"><a href="#Progressbar（进度条）控件" class="headerlink" title="Progressbar（进度条）控件"></a>Progressbar（进度条）控件</h3><p><img src="/.io//assets/image-20210228133139651.png" alt="image-20210228133139651"></p>
+<p><img src="/.github//assets/wpsD638.tmp.jpg" alt="img"> </p>
+<h3 id="Progressbar（进度条）控件"><a href="#Progressbar（进度条）控件" class="headerlink" title="Progressbar（进度条）控件"></a>Progressbar（进度条）控件</h3><p><img src="/.github//assets/image-20210228133139651.png" alt="image-20210228133139651"></p>
 <p>​	</p>
 <p>​	基本属性：MaxNum最大值，</p>
 <p>​							minNum最小值，</p>
@@ -575,7 +575,7 @@ this.close事件和Application.exit()">
 <p>​			textAlin：设置文本显示的位置，左对齐，居中，右对齐</p>
 <p>​			Hexadecimal：以16进制显示数据</p>
 <p>​			Increment：按向上或向下键进行增减。</p>
-<p><img src="/.io//assets/image-20210228135015953.png" alt="image-20210228135015953"></p>
+<p><img src="/.github//assets/image-20210228135015953.png" alt="image-20210228135015953"></p>
 <h3 id="ToolTip（提示信息）控件"><a href="#ToolTip（提示信息）控件" class="headerlink" title="ToolTip（提示信息）控件"></a>ToolTip（提示信息）控件</h3><p>​			toolTip1.InitialDelay &#x3D; 1000;&#x2F;&#x2F;悬停时间<br>​            toolTip1.AutoPopDelay &#x3D; 1000;&#x2F;&#x2F;提示保存的时间<br>​            toolTip1.AutomaticDelay &#x3D; 1000;&#x2F;&#x2F;延迟时间<br>​            toolTip1.ReshowDelay &#x3D; 1000;&#x2F;&#x2F;转换到其他控件时的时间间隔；</p>
 <h3 id="Notifylcon-托盘控件"><a href="#Notifylcon-托盘控件" class="headerlink" title="Notifylcon(托盘控件)"></a>Notifylcon(托盘控件)</h3><p>就是点击最小化之后显示在桌面右下角的最小化窗口中，例如360等，注意只有为控件添加背景图片之后才能够看得见。如果想要双击之后仍然能够打开原来的窗口，则在事件doubleClick中写入Windowstate &#x3D; FormWindowState.Normal即可</p>
 <h3 id="ConTextMenuStrip（右键之后显示菜单）控件"><a href="#ConTextMenuStrip（右键之后显示菜单）控件" class="headerlink" title="ConTextMenuStrip（右键之后显示菜单）控件"></a>ConTextMenuStrip（右键之后显示菜单）控件</h3><h3 id="timer（时钟）控件"><a href="#timer（时钟）控件" class="headerlink" title="timer（时钟）控件"></a>timer（时钟）控件</h3><p>当调用timer.start()的时候，就会执行timer事件,一般将需要频率执行的方法写在timer方法里面，然后通过设置time.start()来启动执行timer事件里面的方法。执行timer里面的方法有两种方式：1.使用timer.start()  2.设置timer.enable&#x3D;true;</p>
@@ -583,10 +583,10 @@ this.close事件和Application.exit()">
 <p>​				short（xx&#x2F;xx&#x2F;xx），</p>
 <p>​				time（时：分：秒），</p>
 <p>​				custom自定义（同时设置格式属性customFormat按照yy-MM-dd HH:mm:ss）。</p>
-<p><img src="/.io//assets/image-20210228172837013.png" alt="image-20210228172837013"></p>
+<p><img src="/.github//assets/image-20210228172837013.png" alt="image-20210228172837013"></p>
 <h3 id="TreeView（树）控件"><a href="#TreeView（树）控件" class="headerlink" title="TreeView（树）控件"></a>TreeView（树）控件</h3><p>​			属性：Nodes  每个子节点作为一个选项。最直接的例子是windows中的注册表</p>
 <p>​						HotTracking：移动至该节点的时候，该节点的文字会自动添加下划线</p>
-<p><img src="/.io//assets/image-20210228180018611.png" alt="image-20210228180018611"></p>
+<p><img src="/.github//assets/image-20210228180018611.png" alt="image-20210228180018611"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            //添加节点第一中方式</span><br><span class="line">            treeView1.Nodes.Add(&quot;添加的第一个节点&quot;);</span><br><span class="line"></span><br><span class="line">            //第二种方式</span><br><span class="line">            TreeNode tn = new TreeNode();</span><br><span class="line">            tn.Name = &quot;tn2&quot;;</span><br><span class="line">            tn.Text = &quot;第二个节点&quot;;</span><br><span class="line">            treeView1.Nodes.Add(tn);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button2_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            //移除最后一个节点</span><br><span class="line">            treeView1.Nodes.RemoveAt(treeView1.Nodes.Count-1);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="LIstVIew（列表）控件"><a href="#LIstVIew（列表）控件" class="headerlink" title="LIstVIew（列表）控件"></a>LIstVIew（列表）控件</h3><p>属性：view：显示模式，常用为details</p>
@@ -622,8 +622,8 @@ this.close事件和Application.exit()">
 <p>​	第一列只能左对齐，其余列可以设置居中显示</p>
 <p>​	Items：是所有行的集合，ListViewItem是一行，也就是所有列的集合。</p>
 <h3 id="checkedlistbox"><a href="#checkedlistbox" class="headerlink" title="checkedlistbox"></a>checkedlistbox</h3><p>和checklistbox差不多，只不过是将checkbox的集合，里面可以放多个checkbox</p>
-<p><img src="/.io//assets/image-20221004210355938.png" alt="image-20221004210355938"></p>
-<h3 id="MenuStrip菜单栏"><a href="#MenuStrip菜单栏" class="headerlink" title="MenuStrip菜单栏"></a>MenuStrip菜单栏</h3><p><img src="/.io//assets/image-20220930170649613.png" alt="image-20220930170649613"></p>
+<p><img src="/.github//assets/image-20221004210355938.png" alt="image-20221004210355938"></p>
+<h3 id="MenuStrip菜单栏"><a href="#MenuStrip菜单栏" class="headerlink" title="MenuStrip菜单栏"></a>MenuStrip菜单栏</h3><p><img src="/.github//assets/image-20220930170649613.png" alt="image-20220930170649613"></p>
 <h3 id="ContextMenustrip"><a href="#ContextMenustrip" class="headerlink" title="ContextMenustrip:"></a>ContextMenustrip:</h3><p>右键时候出现的菜单。将ContextMenuStrip绑定在listView上方法：当添加ContextMenuStrip控件之后，默认在ListView属性中会有ContextMenustrip属性，将其选择即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">int i = 2;</span><br><span class="line"></span><br><span class="line">​    private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)</span><br><span class="line"></span><br><span class="line">​    &#123;</span><br><span class="line"></span><br><span class="line">​      //当右键点击添加的时候，为表格添加一列</span><br><span class="line"></span><br><span class="line">​      ListViewItem lvi = new ListViewItem();</span><br><span class="line"></span><br><span class="line">​      lvi.Text = i.ToString() ;//第一列</span><br><span class="line"></span><br><span class="line">​      lvi.SubItems.Add(&quot;3&quot;);//第二例</span><br><span class="line"></span><br><span class="line">​      lvi.SubItems.Add(&quot;3&quot;);//第三列</span><br><span class="line"></span><br><span class="line">​      lvi.SubItems.Add(&quot;3&quot;);//第四列</span><br><span class="line"></span><br><span class="line">​      lvi.SubItems.Add(&quot;3&quot;);//第五列</span><br><span class="line"></span><br><span class="line">​      listView1.Items.Add(lvi);</span><br><span class="line"></span><br><span class="line">​      i++;</span><br><span class="line"></span><br><span class="line">​    &#125;</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 
@@ -650,16 +650,16 @@ this.close事件和Application.exit()">
 <h3 id="保存组件"><a href="#保存组件" class="headerlink" title="保存组件"></a>保存组件</h3><p>SaveFileDialog的showdialog方法。返回结果为dialogResult</p>
 <h3 id="选择文件夹组件"><a href="#选择文件夹组件" class="headerlink" title="选择文件夹组件"></a>选择文件夹组件</h3><p>FolderBrowerDialog的showdialog方法，返回结果为DialogResult</p>
 <h3 id="设置字体组件"><a href="#设置字体组件" class="headerlink" title="设置字体组件"></a>设置字体组件</h3><p>FontDialog</p>
-<p><img src="/.io//assets/image-20221004213517565.png" alt="image-20221004213517565"></p>
+<p><img src="/.github//assets/image-20221004213517565.png" alt="image-20221004213517565"></p>
 <h3 id="设置颜色组件"><a href="#设置颜色组件" class="headerlink" title="设置颜色组件"></a>设置颜色组件</h3><h3 id="Panel面板"><a href="#Panel面板" class="headerlink" title="Panel面板"></a>Panel面板</h3><p>相当于背景板，可以批量操作子控件。与GroupBox的区别是GroupBox在左上角有个标签提示，如果使用Dork属性发现一个控件被另一个控件覆盖了了，那么右键将其置于底层即可。·</p>
 <p>打开多个文件：设置multiselect属性为true</p>
 <h3 id="SplitContainer"><a href="#SplitContainer" class="headerlink" title="SplitContainer"></a>SplitContainer</h3><p>可以在运行时进行拖拉的控件，类似于QQ窗口一样。点击右上角的小三角可以将水平更改为垂直</p>
 <p>属性isSplitterFixed为false时设置可以拖动，true时不可以拖动</p>
-<p><img src="/.io//assets/wps3239.tmp.jpg" alt="img"> </p>
-<h4 id="toolStrip工具栏"><a href="#toolStrip工具栏" class="headerlink" title="toolStrip工具栏"></a>toolStrip工具栏</h4><p><img src="/.io//assets/image-20220930170538802.png" alt="image-20220930170538802"></p>
+<p><img src="/.github//assets/wps3239.tmp.jpg" alt="img"> </p>
+<h4 id="toolStrip工具栏"><a href="#toolStrip工具栏" class="headerlink" title="toolStrip工具栏"></a>toolStrip工具栏</h4><p><img src="/.github//assets/image-20220930170538802.png" alt="image-20220930170538802"></p>
 <h3 id="RichTextBox控件"><a href="#RichTextBox控件" class="headerlink" title="RichTextBox控件"></a>RichTextBox控件</h3><p>功能强大：可以添加文本，图片等。</p>
 <p>可以添加文本链接：可以使用Text属性添加，2.使用richTextBox1.AppendText(“<a target="_blank" rel="noopener" href="http://www.tengxun.com" );方法进行添加、 ">www.tengxun.com&quot;);方法进行添加、</a></p>
-<h3 id="Tabcontrol选项卡"><a href="#Tabcontrol选项卡" class="headerlink" title="Tabcontrol选项卡"></a>Tabcontrol选项卡</h3><p><img src="/.io//assets/wps323A.tmp.jpg" alt="img"> </p>
+<h3 id="Tabcontrol选项卡"><a href="#Tabcontrol选项卡" class="headerlink" title="Tabcontrol选项卡"></a>Tabcontrol选项卡</h3><p><img src="/.github//assets/wps323A.tmp.jpg" alt="img"> </p>
 <h3 id="用户控件：（UserControl）。"><a href="#用户控件：（UserControl）。" class="headerlink" title="用户控件：（UserControl）。"></a>用户控件：（UserControl）。</h3><p>将窗体中已经布局好界面一部分单独创立一个文件独立出去，这样可以节约主窗体中的代码，使用的时候直接引用即可。样式与panel差不多</p>
 <p>用户控件UserControls，相当于一个不带边框的窗体</p>
 <p>拆分层级的方法：</p>
@@ -740,7 +740,7 @@ this.close事件和Application.exit()">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github.io/2026/01/28/winform%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github.io/2026/01/28/winform%E5%AD%A6%E4%B9%A0/</a>
+                    <a href="https://gao-hongfei123.github/2026/01/28/winform%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github/2026/01/28/winform%E5%AD%A6%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">

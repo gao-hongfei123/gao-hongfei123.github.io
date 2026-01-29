@@ -428,7 +428,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.安装nodejs</span><br><span class="line">2.set-ExecutionPolicy RemoteSigned回车，把策略改成A</span><br><span class="line">3.npm install -g cnpm</span><br><span class="line">4.npm install -g hexo-cli</span><br><span class="line">5.建立Blog文件夹</span><br><span class="line">6.安装git，Blog文件夹下右键git bash</span><br><span class="line">7.hexo init</span><br><span class="line">8.npm install --save  hexo-deployer-git</span><br><span class="line">9.设置_config.yml文件</span><br><span class="line">	  type: &#x27;git&#x27;</span><br><span class="line">  	  repo: https://github.com/gao-hongfei123/gao-hongfei123.github.io</span><br><span class="line">  	  branch: master</span><br><span class="line">10. hexo -d</span><br><span class="line">11.报错：”不知道用户名是谁(Please tell me who you are.)“，在git bash命令窗口中输入git config --global user.name &quot;邮箱&quot;</span><br><span class="line">12.hexo -d</span><br><span class="line">13.报错 不能访问是因为网不行，等待即可</span><br><span class="line">14.修改主题。</span><br><span class="line">15.重新hexo -d</span><br><span class="line">16.在github上图片不显示：F12观察源码</span><br></pre></td></tr></table></figure>
 
 <p>typora偏好设置：</p>
-<p><img src="/.io//assets/image-20260129092758133.png" alt="image-20260129092758133"></p>
+<p><img src="/.github//assets/image-20260129092758133.png" alt="image-20260129092758133"></p>
 <h2 id="窗口设置"><a href="#窗口设置" class="headerlink" title="窗口设置"></a>窗口设置</h2><p>窗口标题更改：属性：外观，text修改即可</p>
 <p>修改窗口左上角小图标：窗口样式，Icon，选择图片进行设置即可，最大不超过72x72</p>
 <p>窗体出现的位置设置：布局，startposition。</p>
@@ -565,7 +565,7 @@
     		String，说明var类型是个自动识别变量类型的变量。
 </code></pre>
 <p>数据类型和表示范围：int ：占4个字节，long :占8个字节，byte，一个字节，short：两个字节，float :4个字节，double:8个字节，char：2个字节，bool，1&#x2F;8个字节，<font color="red">整数默认是int，小数默认是double</font>&gt;，所以long x&#x3D;8888888888L错误，float x &#x3D; 12.3错误，应为float x &#x3D; 12.3f。</p>
-<p><img src="/.io//assets/image-20210202203407102.png" alt="image-20210202203407102"></p>
+<p><img src="/.github//assets/image-20210202203407102.png" alt="image-20210202203407102"></p>
 <p>c#五大数据类型： 1.类类型class</p>
 <p>​							    2.接口interface</p>
 <p>​								3.结构体类型struct</p>
@@ -737,15 +737,15 @@ static void method2(String name, int age) {
 <p>写事件之前先把以上五个关于事件的东西写出来</p>
 <p>事件拥有者和事件的响应者共有四种组合方式，推荐第四种</p>
 <p>如下第一种组合方式和对应代码，</p>
-<p><img src="/.io//assets/image-20210219214254615.png" alt="image-20210219214254615"></p>
+<p><img src="/.github//assets/image-20210219214254615.png" alt="image-20210219214254615"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Timer time = new Timer();//事件的拥有者，即小闪电符号的就是事件，小扳手是属性，小方块是方法</span><br><span class="line">​           time.Interval = 1000;</span><br><span class="line">            Boy boy = new Boy();//事件的响应者</span><br><span class="line">            Girl girl = new Girl();</span><br><span class="line">            time.Elapsed += boy.Action;//左边是事件，右侧是事件处理器（即Action方法），中间+=就是事件的订阅</span><br><span class="line">            time.Elapsed += girl.Acton;</span><br><span class="line">            time.Start();</span><br><span class="line">            Console.ReadLine();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Boy &#123;</span><br><span class="line">    internal void Action(object sender, ElapsedEventArgs e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;jump&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Girl &#123;</span><br><span class="line"></span><br><span class="line">    internal void Acton(object sender, ElapsedEventArgs e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;sing&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <p>第二种组合方式，事件的拥有者和事件的响应者是两个不同的对象。代码重新看视频</p>
-<p><img src="/.io//assets/image-20210219214539229.png" alt="image-20210219214539229"></p>
+<p><img src="/.github//assets/image-20210219214539229.png" alt="image-20210219214539229"></p>
 <p>第三种组合方式，事件的拥有者和事件的响应者是同一个对象</p>
-<p><img src="/.io//assets/image-20210219214620011.png" alt="image-20210219214620011"></p>
+<p><img src="/.github//assets/image-20210219214620011.png" alt="image-20210219214620011"></p>
 <p>第四种组合方式：事件的拥有者是事件响应者的字段成员</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            MyForm mf = new MyForm();</span><br><span class="line">            mf.ShowDialog();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    class MyForm : Form &#123;//myFrom 作为事件的响应者</span><br><span class="line">        private Button button;//事件拥有者</span><br><span class="line">        private TextBox tb;</span><br><span class="line">        public MyForm()</span><br><span class="line">        &#123;</span><br><span class="line">            button = new Button();</span><br><span class="line">            tb = new TextBox();</span><br><span class="line">            this.Controls.Add(button);</span><br><span class="line">            this.Controls.Add(tb);</span><br><span class="line">            this.button.Click += this.action;//事件+=事件处理=》事件订阅</span><br><span class="line">            this.button.Text = &quot;say hello&quot;;</span><br><span class="line">            this.button.Top = 50;</span><br><span class="line">        &#125;</span><br><span class="line">        private void action(object sender, EventArgs e)</span><br><span class="line">    &#123;	</span><br><span class="line">        this.tb.Text = &quot;helloWorld&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -917,7 +917,7 @@ static void method2(String name, int age) {
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">自己创建特性：</span><br><span class="line"></span><br><span class="line">​	Class DefindAtrribute:Attribute&#123;</span><br><span class="line"></span><br><span class="line">​			public DefindAttribute(String showInfo)&#123;</span><br><span class="line"></span><br><span class="line">​				console.writelin(showInfo);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">当调用该特性时为[Defind(&quot;自定义特性&quot;)]</span><br></pre></td></tr></table></figure>
 
 <p>所有的特性再视图-》对象浏览器下面搜索</p>
-<p><img src="/.io//assets/image-20220129112920767.png" alt="image-20220129112920767"></p>
+<p><img src="/.github//assets/image-20220129112920767.png" alt="image-20220129112920767"></p>
 <h3 id="异步和多线程："><a href="#异步和多线程：" class="headerlink" title="异步和多线程："></a>异步和多线程：</h3><p>多线程：用于计算密集型</p>
 <p>异步：用于IO密集型</p>
 <p>例如点击一个按钮，该按钮处理的逻辑太多（比如加载网页内容过多），导致主线程阻滞，这时可以开启一个新的线程去处理该按钮，而主线程还可以处理其他的东西。</p>
@@ -954,7 +954,7 @@ static void method2(String name, int age) {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github.io/2026/01/28/csharp%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github.io/2026/01/28/csharp%E5%AD%A6%E4%B9%A0/</a>
+                    <a href="https://gao-hongfei123.github/2026/01/28/csharp%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github/2026/01/28/csharp%E5%AD%A6%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
