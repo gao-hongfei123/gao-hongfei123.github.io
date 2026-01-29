@@ -483,8 +483,8 @@
 <p>函数如何获取事件传递过来的参数？</p>
 <p>private void IncrementCount(MouseEventArgs e)    {}不同的事件提供不同的事件参数，如何区分如下：一般是将事件前面的on去掉，然后后面加上EventArgs</p>
 <p>当方法中需要主动获取标签里面的内容。则通过绑定事件对应的参数进行传入，参数类型如何确定？将鼠标放在事件上，会提示ChangeEventArgs或者其他类型的参数</p>
-<p><img src="/.github//assets/image-20221002212652264.png" alt="image-20221002212652264"></p>
-<p><img src="/.github//assets/image-20260129014827029.png" alt="image-20260129014827029"></p>
+<p><img src="/.io//assets/image-20221002212652264.png" alt="image-20221002212652264"></p>
+<p><img src="/.io//assets/image-20260129014827029.png" alt="image-20260129014827029"></p>
 <h2 id="页面中获取c-代码中的属性作为标签的属性值（通过c-代码控制css属性）"><a href="#页面中获取c-代码中的属性作为标签的属性值（通过c-代码控制css属性）" class="headerlink" title="页面中获取c#代码中的属性作为标签的属性值（通过c#代码控制css属性）"></a>页面中获取c#代码中的属性作为标签的属性值（通过c#代码控制css属性）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1 style=&quot;font-style:@Style&quot;&gt;Counter&lt;/h1&gt;通过@属性名的方式绑定到属性。，这种方式只是单向绑定，即前端页面数值改变并不会改变后端数据的大小。</span><br><span class="line">@code &#123;</span><br><span class="line">    private int currentCount = 0;</span><br><span class="line">    private string Style = &quot;italic&quot;;斜体</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">双向绑定:前端数据改变，同时后端对应的属性值也会立即随之改变,默认是鼠标离开输入框的时候会自动更改后端数据的值，如果更改为在数据输入的同时更改值则添加一个属性为@bind:event=&quot;oninput&quot;</span><br><span class="line">&lt;input @bind:&quot;Name&quot;/&gt;即将input的value与Name进行双向绑定。</span><br><span class="line">&lt;input @bind-Title=&quot;Name&quot;&gt;&lt;/input&gt;</span><br><span class="line">@bind:等价于@bind：</span><br></pre></td></tr></table></figure>
 
 <h2 id="模板组件"><a href="#模板组件" class="headerlink" title="模板组件"></a>模板组件</h2><p>主页面时index.razor</p>
@@ -574,13 +574,13 @@
 
 
 
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/.github//assets/image-20230203091316922.png" alt="image-20230203091316922"></p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="/.io//assets/image-20230203091316922.png" alt="image-20230203091316922"></p>
 <p>0：将所有组件编译成类</p>
 <p>1：该方法将当前所有使用parameter修饰的属性或caclingparameter的属性注入到组件中</p>
 <p>2：用来执行界面渲染之前需执行的操作（自定义）</p>
 <p>3：每次被parameter修饰的属性值发生改变时，都会调用该方法(自定义)</p>
 <p>4：OnAfterRenderAsync：每次渲染后需执行的操作（自定义）</p>
-<p><img src="/.github//assets/image-20230318212033418.png" alt="image-20230318212033418"></p>
+<p><img src="/.io//assets/image-20230318212033418.png" alt="image-20230318212033418"></p>
 <h2 id="js与c-互操作"><a href="#js与c-互操作" class="headerlink" title="js与c#互操作"></a>js与c#互操作</h2><p>JavaScript 添加到 Blazor 应用的方法是使用 HTML <code>&lt;script&gt;</code> 元素。 若要将 JavaScript 代码添加到 Blazor 应用，请在 Pages&#x2F;_Host.cshtml 文件或 wwwroot&#x2F;index.html 文件中的现有 <code>&lt;script src=&quot;_framework/blazor.*.js&quot;&gt;&lt;/script&gt;</code> 标记后添加 <code>&lt;script&gt;</code> 标记，表示引用了某个现成的库，如果单纯使用js语法，不需要此步骤</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">		&lt;script src=&quot;_framework/blazor.server.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/sweetalert@latest/dist/sweetalert.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
@@ -602,8 +602,8 @@
 
 <h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><p> Blazor 支持两种类型的验证：声明性和编程性。</p>
 <p>1.声明性：使用组件： DataAnnotationsValidator 组件（进行验证）和ValidationSummary （进行汇总错误信息）</p>
-<p><img src="/.github//assets/image-20230319194531505.png" alt="image-20230319194531505"></p>
-<p><img src="/.github//assets/image-20230319194514083.png" alt="image-20230319194514083"></p>
+<p><img src="/.io//assets/image-20230319194531505.png" alt="image-20230319194531505"></p>
+<p><img src="/.io//assets/image-20230319194514083.png" alt="image-20230319194514083"></p>
 <p>想要在每个控件旁边显示验证消息，请使用多个 ValidationMessage 组，使用 <code>For</code> 属性将每个 ValidationMessage 控件与模型的特定属性相关联</p>
 <p>&lt;InputText id&#x3D;”name” @bind-Value&#x3D;”pizza.Name” &#x2F;&gt;</p>
 <p> &lt;ValidationMessage For&#x3D;”@(() &#x3D;&gt; pizza.Name)” </p>
@@ -664,7 +664,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github/2026/01/28/blazor%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github/2026/01/28/blazor%E5%AD%A6%E4%B9%A0/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/blazor%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github.io/2026/01/28/blazor%E5%AD%A6%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">

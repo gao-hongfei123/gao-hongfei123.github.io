@@ -402,14 +402,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="/.github//assets/image-20260112221236868.png" alt="image-20260112221236868"></p>
+                <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="/.io//assets/image-20260112221236868.png" alt="image-20260112221236868"></p>
 <span id="more"></span>
 
 <p>第一项：使用codebehind</p>
 <p>第二项：使用mvvm框架，支持windows，macos 和linux</p>
 <p>第三项：cross-platform 支持windows，macos 和linux，ios，android，wasm</p>
 <p>项目结构</p>
-<p><img src="/.github//assets/image-20260112224345382.png" alt="image-20260112224345382"></p>
+<p><img src="/.io//assets/image-20260112224345382.png" alt="image-20260112224345382"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">program.cs中的代码解释</span><br><span class="line">internal sealed class Program</span><br><span class="line">&#123;</span><br><span class="line">    [STAThread] //单线程</span><br><span class="line">    public static void Main(string[] args) =&gt; BuildAvaloniaApp()</span><br><span class="line">        .StartWithClassicDesktopLifetime(args);//启动应用程序生命周期管理</span><br><span class="line"></span><br><span class="line">    // Avalonia configuration, don&#x27;t remove; also used by visual designer.</span><br><span class="line">    public static AppBuilder BuildAvaloniaApp()</span><br><span class="line">        =&gt; AppBuilder.Configure&lt;App&gt;()//设置启动文件为APP.axaml.cs类</span><br><span class="line">            .UsePlatformDetect()//设置平台，windows，linux，macos</span><br><span class="line">            .WithInterFont()//设置字体</span><br><span class="line">            .LogToTrace();//设置日志</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -432,74 +432,74 @@
 <h2 id="布局控件："><a href="#布局控件：" class="headerlink" title="布局控件："></a>布局控件：</h2><p>所有控件及其属性可参考文档Avalonia Control Gallery：<a target="_blank" rel="noopener" href="https://github.com/AvaloniaUI/ControlCatalogStandalone">https://github.com/AvaloniaUI/ControlCatalogStandalone</a></p>
 <p>布局控件：<a target="_blank" rel="noopener" href="https://docs.avaloniaui.net/zh-Hans/docs/basics/user-interface/building-layouts/panels-overview">https://docs.avaloniaui.net/zh-Hans/docs/basics/user-interface/building-layouts/panels-overview</a></p>
 <p>Grid</p>
-<p><img src="/.github//assets/image-20260111102527502.png" alt="image-20260111102527502"></p>
+<p><img src="/.io//assets/image-20260111102527502.png" alt="image-20260111102527502"></p>
 <p>StackPanel:</p>
-<p><img src="/.github//assets/image-20260111102607285.png" alt="image-20260111102607285"></p>
+<p><img src="/.io//assets/image-20260111102607285.png" alt="image-20260111102607285"></p>
 <p>DockPanel:</p>
-<p><img src="/.github//assets/image-20260111102648592.png" alt="image-20260111102648592"></p>
+<p><img src="/.io//assets/image-20260111102648592.png" alt="image-20260111102648592"></p>
 <p>WrapPanel:</p>
-<p><img src="/.github//assets/image-20260111102742081.png" alt="image-20260111102742081"></p>
+<p><img src="/.io//assets/image-20260111102742081.png" alt="image-20260111102742081"></p>
 <p>Canvas:</p>
-<p><img src="/.github//assets/image-20260111102809582.png" alt="image-20260111102809582"></p>
+<p><img src="/.io//assets/image-20260111102809582.png" alt="image-20260111102809582"></p>
 <p>UniformGrid:</p>
-<p><img src="/.github//assets/image-20260111102826353.png" alt="image-20260111102826353"></p>
+<p><img src="/.io//assets/image-20260111102826353.png" alt="image-20260111102826353"></p>
 <h3 id="布局属性："><a href="#布局属性：" class="headerlink" title="布局属性："></a>布局属性：</h3><p><a target="_blank" rel="noopener" href="https://docs.avaloniaui.net/zh-Hans/docs/basics/user-interface/building-layouts/alignment-margins-and-padding">https://docs.avaloniaui.net/zh-Hans/docs/basics/user-interface/building-layouts/alignment-margins-and-padding</a></p>
 <p>HorizontalAlignment和VerticalAlignment:</p>
-<p><img src="/.github//assets/image-20260111103027102.png" alt="image-20260111103027102"></p>
+<p><img src="/.io//assets/image-20260111103027102.png" alt="image-20260111103027102"></p>
 <p>margin与pading,Spacing之间的区别：</p>
-<p><img src="/.github//assets/image-20260111170856089.png" alt="image-20260111170856089"></p>
-<p><img src="/.github//assets/image-20260111104902951.png" alt="image-20260111104902951"></p>
+<p><img src="/.io//assets/image-20260111170856089.png" alt="image-20260111170856089"></p>
+<p><img src="/.io//assets/image-20260111104902951.png" alt="image-20260111104902951"></p>
 <p>Spacing：用来设置子元素之间的间距</p>
-<p><img src="/.github//assets/image-20260111110035976.png" alt="image-20260111110035976"></p>
-<p><img src="/.github//assets/image-20260111110111108.png" alt="image-20260111110111108"></p>
+<p><img src="/.io//assets/image-20260111110035976.png" alt="image-20260111110035976"></p>
+<p><img src="/.io//assets/image-20260111110111108.png" alt="image-20260111110111108"></p>
 <h2 id="内置控件"><a href="#内置控件" class="headerlink" title="内置控件"></a>内置控件</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://docs.avaloniaui.net/zh-Hans/docs/basics/user-interface/controls/builtin-controls">https://docs.avaloniaui.net/zh-Hans/docs/basics/user-interface/controls/builtin-controls</a>)</p>
-<p><img src="/.github//assets/image-20260111105147266.png" alt="image-20260111105147266"></p>
+<p><img src="/.io//assets/image-20260111105147266.png" alt="image-20260111105147266"></p>
 <p>重点：Border:border通常用来包裹其他的控件,为其添加边框圆角背景色等视觉效果</p>
-<p><img src="/.github//assets/image-20260111105648715.png" alt="image-20260111105648715"></p>
-<p><img src="/.github//assets/image-20260111110437172.png" alt="image-20260111110437172"></p>
+<p><img src="/.io//assets/image-20260111105648715.png" alt="image-20260111105648715"></p>
+<p><img src="/.io//assets/image-20260111110437172.png" alt="image-20260111110437172"></p>
 <p>常用主题库和控件库：</p>
-<p><img src="/.github//assets/image-20260111112258778.png" alt="image-20260111112258778"></p>
+<p><img src="/.io//assets/image-20260111112258778.png" alt="image-20260111112258778"></p>
 <h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>为什么需要资源？假设现在有一个应用，界面上有很多按钮，文本框，面板等控件，你希望所有的按钮都用统一的颜色字体和圆角样式，方便后期统一调整和维护，如果每个控件都单独设置属性不仅代码冗余而且维护成本极高，这个时候资源系统就能帮你解决这些问题。通过集中声明和复用资源可以让界面的风格统一在修改样式的时候只需要修改一个地方所有引用的地方都会自动更新。（将属性值抽离出来生成资源）。</p>
-<p><img src="/.github//assets/image-20260111140459747.png" alt="image-20260111140459747"></p>
-<p><img src="/.github//assets/image-20260111140544490.png" alt="image-20260111140544490"></p>
-<p><img src="/.github//assets/image-20260111140850272.png" alt="image-20260111140850272"></p>
+<p><img src="/.io//assets/image-20260111140459747.png" alt="image-20260111140459747"></p>
+<p><img src="/.io//assets/image-20260111140544490.png" alt="image-20260111140544490"></p>
+<p><img src="/.io//assets/image-20260111140850272.png" alt="image-20260111140850272"></p>
 <p>第二种方式：将资源卸载文件里面，然后使用ResourceInclude来引用</p>
-<p><img src="/.github//assets/image-20260111140939143.png" alt="image-20260111140939143"></p>
-<p><img src="/.github//assets/image-20260111141037096.png" alt="image-20260111141037096"></p>
+<p><img src="/.io//assets/image-20260111140939143.png" alt="image-20260111140939143"></p>
+<p><img src="/.io//assets/image-20260111141037096.png" alt="image-20260111141037096"></p>
 <p>将资源可以存放的地方</p>
-<p><img src="/.github//assets/image-20260111141342829.png" alt="image-20260111141342829"></p>
+<p><img src="/.io//assets/image-20260111141342829.png" alt="image-20260111141342829"></p>
 <p>使用资源</p>
-<p><img src="/.github//assets/image-20260111141458763.png" alt="image-20260111141458763"></p>
+<p><img src="/.io//assets/image-20260111141458763.png" alt="image-20260111141458763"></p>
 <p>举例：</p>
-<p><img src="/.github//assets/image-20260111141546387.png" alt="image-20260111141546387"></p>
+<p><img src="/.io//assets/image-20260111141546387.png" alt="image-20260111141546387"></p>
 <p>资源查找顺序</p>
-<p><img src="/.github//assets/image-20260111141716966.png" alt="image-20260111141716966"></p>
+<p><img src="/.io//assets/image-20260111141716966.png" alt="image-20260111141716966"></p>
 <h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><p>如果我们希望统一管理控件的外观，比如所有按钮都长成一样，鼠标在悬停的时候有特殊的效果。仅仅靠资源还不够，这个时候我们就需要样式系统了。样式可以让我们批量定义控件的外观和交互逻辑及大提示的UI开发的效率和可维护性。（将控件的动态行为抽离出来）</p>
 <p>声明样式</p>
-<p><img src="/.github//assets/image-20260111142644291.png" alt="image-20260111142644291"></p>
+<p><img src="/.io//assets/image-20260111142644291.png" alt="image-20260111142644291"></p>
 <p>引用样式</p>
-<p><img src="/.github//assets/image-20260111142735497.png" alt="image-20260111142735497"></p>
+<p><img src="/.io//assets/image-20260111142735497.png" alt="image-20260111142735497"></p>
 <p>样式选择器</p>
-<p><img src="/.github//assets/image-20260111142913101.png" alt="image-20260111142913101"></p>
+<p><img src="/.io//assets/image-20260111142913101.png" alt="image-20260111142913101"></p>
 <p>举例</p>
-<p><img src="/.github//assets/image-20260111143020236.png" alt="image-20260111143020236"></p>
+<p><img src="/.io//assets/image-20260111143020236.png" alt="image-20260111143020236"></p>
 <p>举例引用第三方控件的样式</p>
-<p><img src="/.github//assets/image-20260111143127524.png" alt="image-20260111143127524"></p>
+<p><img src="/.io//assets/image-20260111143127524.png" alt="image-20260111143127524"></p>
 <p>选择所有属于Button或者继承Button类型的控件</p>
-<p><img src="/.github//assets/image-20260111143236786.png" alt="image-20260111143236786"></p>
+<p><img src="/.io//assets/image-20260111143236786.png" alt="image-20260111143236786"></p>
 <p>选择Name为NameButton的控件</p>
-<p><img src="/.github//assets/image-20260111143438405.png" alt="image-20260111143438405"></p>
+<p><img src="/.io//assets/image-20260111143438405.png" alt="image-20260111143438405"></p>
 <p>类选择器</p>
-<p><img src="/.github//assets/image-20260111143508801.png" alt="image-20260111143508801"></p>
+<p><img src="/.io//assets/image-20260111143508801.png" alt="image-20260111143508801"></p>
 <p>伪类选择器</p>
-<p><img src="/.github//assets/image-20260111143636561.png" alt="image-20260111143636561"></p>
-<p><img src="/.github//assets/image-20260111143647706.png" alt="image-20260111143647706"></p>
+<p><img src="/.io//assets/image-20260111143636561.png" alt="image-20260111143636561"></p>
+<p><img src="/.io//assets/image-20260111143647706.png" alt="image-20260111143647706"></p>
 <p>举例</p>
-<p><img src="/.github//assets/image-20260111143908991.png" alt="image-20260111143908991"></p>
-<p><img src="/.github//assets/image-20260111143940079.png" alt="image-20260111143940079"></p>
-<p><img src="/.github//assets/image-20260111144017866.png" alt="image-20260111144017866"></p>
-<p><img src="/.github//assets/image-20260111144033190.png" alt="image-20260111144033190"></p>
-<p><img src="/.github//assets/image-20260111144212132.png" alt="image-20260111144212132"></p>
+<p><img src="/.io//assets/image-20260111143908991.png" alt="image-20260111143908991"></p>
+<p><img src="/.io//assets/image-20260111143940079.png" alt="image-20260111143940079"></p>
+<p><img src="/.io//assets/image-20260111144017866.png" alt="image-20260111144017866"></p>
+<p><img src="/.io//assets/image-20260111144033190.png" alt="image-20260111144033190"></p>
+<p><img src="/.io//assets/image-20260111144212132.png" alt="image-20260111144212132"></p>
 <p>样式的优先级（就近原则）</p>
 <h2 id="控件主题"><a href="#控件主题" class="headerlink" title="控件主题"></a>控件主题</h2><h2 id="绑定（binding）"><a href="#绑定（binding）" class="headerlink" title="绑定（binding）"></a>绑定（binding）</h2><p><a target="_blank" rel="noopener" href="https://docs.avaloniaui.net/zh-Hans/docs/basics/data/data-binding/">https://docs.avaloniaui.net/zh-Hans/docs/basics/data/data-binding/</a></p>
 <p>通常情况下使用数据上下文进行绑定，将view与viewmodel绑定起来</p>
@@ -653,12 +653,12 @@
 <li>第 5 步：设置视图的 DataContext。</li>
 </ul>
 <p>所有这些步骤都发生在运行时，这就是为什么 View 在编译时不必担心它的 ViewModel 绑定。</p>
-<p><img src="/.github//assets/image-20260111162735106.png" alt="image-20260111162735106"></p>
-<p><img src="/.github//assets/image-20260111162847865.png" alt="image-20260111162847865"></p>
-<p><img src="/.github//assets/image-20260111162812088.png" alt="image-20260111162812088"></p>
-<p><img src="/.github//assets/image-20260111162907763.png" alt="image-20260111162907763"></p>
-<p><img src="/.github//assets/image-20260111162957224.png" alt="image-20260111162957224"></p>
-<p><img src="/.github//assets/image-20260111163008310.png" alt="image-20260111163008310"></p>
+<p><img src="/.io//assets/image-20260111162735106.png" alt="image-20260111162735106"></p>
+<p><img src="/.io//assets/image-20260111162847865.png" alt="image-20260111162847865"></p>
+<p><img src="/.io//assets/image-20260111162812088.png" alt="image-20260111162812088"></p>
+<p><img src="/.io//assets/image-20260111162907763.png" alt="image-20260111162907763"></p>
+<p><img src="/.io//assets/image-20260111162957224.png" alt="image-20260111162957224"></p>
+<p><img src="/.io//assets/image-20260111163008310.png" alt="image-20260111163008310"></p>
 <p>样式绑定：</p>
 <p>绑定到控件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextBox Name=&quot;other&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 绑定到命名为 other 控件的 Text 属性 --&gt;</span><br><span class="line">&lt;TextBlock Text=&quot;&#123;Binding #other.Text&#125;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">绑定到祖先控件</span><br><span class="line">&lt;Border Tag=&quot;Hello World!&quot;&gt;</span><br><span class="line">  &lt;TextBlock Text=&quot;&#123;Binding $parent.Tag&#125;&quot;/&gt;</span><br><span class="line">&lt;/Border&gt;</span><br></pre></td></tr></table></figure>
@@ -834,15 +834,15 @@
 
 <p><strong>6.项目分层</strong></p>
 <p>UI层调用ViewModel层，ViewModel层调用Service层</p>
-<p><img src="/.github//assets/image-20260115075922291.png" alt="image-20260115075922291"></p>
+<p><img src="/.io//assets/image-20260115075922291.png" alt="image-20260115075922291"></p>
 <p>（1）.Dao层&#x3D;Business层<br>DAO（Data Access Object） 模型就是写一个类，把访问数据库的代码封装起来，DAO在数据库与业务逻辑（Service）之间。</p>
 <p>Dao是数据访问层，Dao的作用是封装对数据库的访问：增删改查，不涉及业务逻辑，只是达到按某个条件获得指定数据的要求。</p>
-<p><img src="/.github//assets/image-20260114201557134.png" alt="image-20260114201557134"></p>
+<p><img src="/.io//assets/image-20260114201557134.png" alt="image-20260114201557134"></p>
 <p>（2）.Entity层<br>Entity层，顾名思义就是实体层，放置一个个实体，及其相应的set、get方法。如果想要对数据库进行一些操作（比如说读取）的话，就要先写entity层。</p>
-<p><img src="/.github//assets/image-20260114201730375.png" alt="image-20260114201730375"></p>
+<p><img src="/.io//assets/image-20260114201730375.png" alt="image-20260114201730375"></p>
 <p>（3.）Service层</p>
 <p>Service被称作业务逻辑层。顾名思义，它处理逻辑上的业务，而不去考虑具体的实现。</p>
-<p><img src="/.github//assets/image-20260114201829847.png" alt="image-20260114201829847"></p>
+<p><img src="/.io//assets/image-20260114201829847.png" alt="image-20260114201829847"></p>
 <p>（4）Controller层&#x3D;ViewModel层</p>
 <p>（5）UI层&#x3D;Page层&#x3D;View层</p>
 <p><strong>7.const与static readonly的区别</strong></p>
@@ -861,7 +861,7 @@
 <p>当你已经手动创建并初始化好了某个对象，希望将其放入 DI 容器中，<strong>让整个应用共享该实例</strong>（例如：预配置的第三方客户端、<strong>全局配置对象</strong>）。</p>
 <p>使用<code>ServiceCollection</code>的<code>AddSingleton&lt;T&gt;(T instance)</code>方法，直接将现成实例注册为单例</p>
 <p>第二种方法</p>
-<p><img src="/.github//assets/image-20260118133248119.png" alt="image-20260118133248119"></p>
+<p><img src="/.io//assets/image-20260118133248119.png" alt="image-20260118133248119"></p>
 <p>**11.**x:DataType&#x3D;”vm:MainWindowViewModel”是用来检测是否能够进行绑定的。</p>
 <p><strong>12.通过反射获取项目中的资源文件</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DbName=“文件名”</span><br><span class="line">typeof(类名).Assembly.GetName().Name.ToString()+&quot;.&quot;+DbName)</span><br></pre></td></tr></table></figure>
@@ -883,7 +883,7 @@
 
 <p><strong>23.设计某一个功能时</strong>，按照serviceice层，viewmodel层和View层的方式进行设计，因为View层仅仅是显示界面，其调用Viewmodel层，而Viewmodel层是调用Service层</p>
 <p>**24.解决xaml回车后属性不对齐的问题：**工具-》 选项-》格式化-》在单独的行上对齐</p>
-<p><img src="/.github//assets/image-20260124104144777.png" alt="image-20260124104144777"></p>
+<p><img src="/.io//assets/image-20260124104144777.png" alt="image-20260124104144777"></p>
 <p><strong>25.按钮乱码：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">更改字体后重启vs</span><br><span class="line">&lt;Button Content=&quot;中文按钮&quot; FontFamily=&quot;Microsoft YaHei&quot;/&gt;</span><br></pre></td></tr></table></figure>
 
@@ -900,7 +900,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">以  </span><br><span class="line">（1）xmlns:lvm=&quot;using:PoetryPro.Library.ViewModels&quot; </span><br><span class="line">（2）DataContext=&quot;&#123;Binding QueryViewModel, Source=&#123;StaticResource ServiceLocator&#125;&#125;&quot;为例</span><br><span class="line">解释：</span><br><span class="line">（1）中前缀lvm对应的是PoetryPro.Library.ViewModels这个代码命名空间，XAML 中通过lvm:就能找到该命名空间下的所有类，解决 “XAML 认识哪个类” 的问题。</span><br><span class="line">使用场景：仅引用静态成员，不需要数据进行动态更新</span><br><span class="line">（2）DataContext中解决 “UI 控件的 Binding 该从哪个对象拿数据” 的问题。</span><br><span class="line">使用场景：需要数据进行动态更新</span><br></pre></td></tr></table></figure>
 
 <p>31.前端向后端传递数据</p>
-<p><img src="/.github//assets/image-20260125120112776.png" alt="image-20260125120112776"></p>
+<p><img src="/.io//assets/image-20260125120112776.png" alt="image-20260125120112776"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">（1）向后端传递一个参数</span><br><span class="line">前端</span><br><span class="line">&lt;TextBox x:Name=&quot;SearchTextBox&quot; PlaceholderText=&quot;请输入关键词&quot;/&gt;</span><br><span class="line">&lt;Button Content=&quot;搜索&quot; </span><br><span class="line">        Command=&quot;&#123;Binding SearchCommand&#125;&quot; &lt;!-- 自动生成的命令属性 --&gt;</span><br><span class="line">        CommandParameter=&quot;&#123;Binding Text, ElementName=SearchTextBox&#125;&quot;/&gt; </span><br><span class="line"> </span><br><span class="line"> 后端：</span><br><span class="line"> [RelayCommand]</span><br><span class="line">private void Search(string keyword)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine($&quot;搜索关键词：&#123;keyword&#125;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">（2）向后端传递两个参数</span><br><span class="line">步骤 1：定义参数实体类</span><br><span class="line">// 封装需要传递的多个参数</span><br><span class="line">public class LoginParams</span><br><span class="line">&#123;</span><br><span class="line">    public string Username &#123; get; set; &#125;  // 第一个参数：用户名</span><br><span class="line">    public string Password &#123; get; set; &#125;  // 第二个参数：密码</span><br><span class="line">&#125;</span><br><span class="line">步骤 2：ViewModel 中定义带参数的命令</span><br><span class="line">public partial class LoginViewModel : ObservableObject</span><br><span class="line">&#123;</span><br><span class="line">    // 用于展示结果</span><br><span class="line">    [ObservableProperty]</span><br><span class="line">    private string loginResult = &quot;未登录&quot;;</span><br><span class="line"></span><br><span class="line">    // 定义接收封装对象的命令</span><br><span class="line">    [RelayCommand]</span><br><span class="line">    private void Login(LoginParams loginParams)</span><br><span class="line">    &#123;</span><br><span class="line">        // 解构获取两个参数</span><br><span class="line">        string username = loginParams.Username;</span><br><span class="line">        string password = loginParams.Password;</span><br><span class="line"> </span><br><span class="line"> 步骤3：xaml中实现传递对象</span><br><span class="line"> &lt;TextBox x:Name=&quot;TxtUsername&quot; Width=&quot;200&quot; PlaceholderText=&quot;请输入用户名&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 第二个参数：密码输入框 --&gt;</span><br><span class="line">        &lt;PasswordBox x:Name=&quot;PwdPassword&quot; Width=&quot;200&quot; PlaceholderText=&quot;请输入密码&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 登录按钮：传递封装后的对象参数 --&gt;</span><br><span class="line">        &lt;Button Content=&quot;登录&quot; </span><br><span class="line">                Command=&quot;&#123;Binding LoginCommand&#125;&quot;&gt;</span><br><span class="line">            &lt;Button.CommandParameter&gt;</span><br><span class="line">                &lt;!-- 封装两个参数为LoginParams对象 --&gt;</span><br><span class="line">                &lt;local:LoginParams </span><br><span class="line">                    Username=&quot;&#123;Binding Text, ElementName=TxtUsername&#125;&quot;</span><br><span class="line">                    Password=&quot;&#123;Binding Password, ElementName=PwdPassword&#125;&quot;/&gt;</span><br><span class="line">            &lt;/Button.CommandParameter&gt;</span><br><span class="line">        &lt;/Button&gt;</span><br></pre></td></tr></table></figure>
@@ -951,14 +951,14 @@
 </li>
 </ol>
 <h2 id="项目1（PoetryPro）"><a href="#项目1（PoetryPro）" class="headerlink" title="项目1（PoetryPro）"></a>项目1（PoetryPro）</h2><p>导航共包含三级。（1）MainWindowView   (2)MainView   （3）ContentView</p>
-<p>（1）整个项目的View之间关系<img src="/.github//assets/%E5%B9%BB%E7%81%AF%E7%89%871.PNG" alt="幻灯片1"></p>
+<p>（1）整个项目的View之间关系<img src="/.io//assets/%E5%B9%BB%E7%81%AF%E7%89%871.PNG" alt="幻灯片1"></p>
 <p>（2）ContentView</p>
-<p><img src="/.github//assets/%E5%B9%BB%E7%81%AF%E7%89%872.PNG" alt="幻灯片2"></p>
+<p><img src="/.io//assets/%E5%B9%BB%E7%81%AF%E7%89%872.PNG" alt="幻灯片2"></p>
 <p>（3）ViewModel中的方法及其对应的导航实现关系</p>
-<p><img src="/.github//assets/%E5%B9%BB%E7%81%AF%E7%89%873.PNG" alt="幻灯片3"></p>
-<p><img src="/.github//assets/%E5%B9%BB%E7%81%AF%E7%89%874.PNG" alt="幻灯片4"></p>
+<p><img src="/.io//assets/%E5%B9%BB%E7%81%AF%E7%89%873.PNG" alt="幻灯片3"></p>
+<p><img src="/.io//assets/%E5%B9%BB%E7%81%AF%E7%89%874.PNG" alt="幻灯片4"></p>
 <p>项目结构：PoetryPro是View项目，PoetryPro.Library是第二个项目，View项目和Library中都包含Services层，View项目的Service层主要因为需要引入ServiceLocator中的对象，所以将其写在View项目中，其他的service及其所有接口都是写在Library的项目中</p>
-<p><img src="/.github//assets/image-20260127193918656.png" alt="image-20260127193918656"><img src="/.github//assets/image-20260127200148294.png" alt="image-20260127200148294"><img src="/.github//assets/image-20260127195750969.png" alt="image-20260127195750969"> </p>
+<p><img src="/.io//assets/image-20260127193918656.png" alt="image-20260127193918656"><img src="/.io//assets/image-20260127200148294.png" alt="image-20260127200148294"><img src="/.io//assets/image-20260127195750969.png" alt="image-20260127195750969"> </p>
 <p>项目思路：</p>
 <p>（1）构建两个项目：包括View项目和Library项目，建立数据库字段和实体类之间的关系(Models层)。</p>
 <p>（2）建立Service层，实现包括数据库，导航，警告的业务逻辑。使用服务定位器模式进行DI注入。</p>
@@ -1921,7 +1921,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github/2026/01/28/Avalonia/">https://gao-hongfei123.github/2026/01/28/Avalonia/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/Avalonia/">https://gao-hongfei123.github.io/2026/01/28/Avalonia/</a>
                 </span>
             </div>
             <div class="reprint__notice">

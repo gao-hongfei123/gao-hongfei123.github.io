@@ -403,11 +403,11 @@
 <p>1.分析每个页面中的所有部分，需分成可变部分和不变部分</p>
 <p>2.对于每个页面中的可变部分，需使用ViewModel，对于不可变部分并且重复，需使用基础类和集合通过已有的ViewModel进行绑定</p>
 <p>3.如果需要封装类和集合，那么考虑里面所有的元素封装成类之后都有哪些属性</p>
-<p><img src="/.github//assets/image-20230204210400351.png" alt="image-20230204210400351"></p>
-<p><img src="/.github//assets/image-20230204203216222.png" alt="image-20230204203216222"></p>
+<p><img src="/.io//assets/image-20230204210400351.png" alt="image-20230204210400351"></p>
+<p><img src="/.io//assets/image-20230204203216222.png" alt="image-20230204203216222"></p>
 <p>如上：上面图片的所有元素都是不可变元素，并且导航部分都是重复的，所以构建一个类进行封装，属性包含图片，标题，以及导航的路径。对于不可变部分最终都是被应用到ViewModel里面，不过不是自己的ViewModel而是整体页面的ViewModel</p>
 <p>如下：将页面划分为2行2列</p>
-<p><img src="/.github//assets/image-20230214195728686.png" alt="image-20230214195728686"></p>
+<p><img src="/.io//assets/image-20230214195728686.png" alt="image-20230214195728686"></p>
 <h1 id="项目1："><a href="#项目1：" class="headerlink" title="项目1："></a>项目1：</h1><h2 id="1-在返回的Json中修改时间格式"><a href="#1-在返回的Json中修改时间格式" class="headerlink" title="1.在返回的Json中修改时间格式"></a>1.在返回的Json中修改时间格式</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/11/">https://bxshare.top/index.php/archives/11/</a></p>
 <h2 id="2-修改swagger中的界面"><a href="#2-修改swagger中的界面" class="headerlink" title="2.修改swagger中的界面"></a>2.修改swagger中的界面</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/12/">https://bxshare.top/index.php/archives/12/</a></p>
 <h2 id="3-Sqlsugar注入"><a href="#3-Sqlsugar注入" class="headerlink" title="3.Sqlsugar注入"></a>3.Sqlsugar注入</h2><p><a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=2247%E6%B3%A8%E6%84%8F%E6%98%AFsqlsugarcore%E7%9A%84%E5%8C%85%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AFsqlsugar%E7%9A%84%E5%8C%85">https://www.donet5.com/Home/Doc?typeId=2247注意是sqlsugarcore的包，而不是sqlsugar的包</a></p>
@@ -423,10 +423,10 @@
 </ul>
 <p>MVC与三层架构的关系，MVC中的V和C就是三层架构中的UI层，而三层架构中的BLL和DAL和Model层就是MVC中的Model层,在webapi中没有了V所以C就是UI层</p>
 <p>而调用流程是Repository引用Models层，Service层引用Repository层，Net（UI）引用Service层</p>
-<p><img src="/.github//assets/image-20220202215116862.png" alt="image-20220202215116862"></p>
-<h3 id="Model层"><a href="#Model层" class="headerlink" title="Model层"></a>Model层</h3><p><img src="/.github//assets/image-20220202220005580.png" alt="image-20220202220005580"></p>
+<p><img src="/.io//assets/image-20220202215116862.png" alt="image-20220202215116862"></p>
+<h3 id="Model层"><a href="#Model层" class="headerlink" title="Model层"></a>Model层</h3><p><img src="/.io//assets/image-20220202220005580.png" alt="image-20220202220005580"></p>
 <h3 id="repository"><a href="#repository" class="headerlink" title="repository"></a>repository</h3><p>repository的作用：实际上他是等价于Dao层的，只不过dao层中进行增删改查，因为数据库中有很多表，所以dao层中，每个表的增删改查都需要重写一边，那么就重复性工作，所以单独创建一个Repository层，该层创建一个Repository的实体类和泛型接口，该接口封装了对所有的表的操作的常用方法，这样，我们在调用的时候只需要传入对应的实体类即可完成增删改查操作。对于一些更细致的方法，让Dao层自己去实现。</p>
-<p><img src="/.github//assets/image-20220202220242360.png" alt="image-20220202220242360"></p>
+<p><img src="/.io//assets/image-20220202220242360.png" alt="image-20220202220242360"></p>
 <h2 id="5-添加泛型仓储，重新注入"><a href="#5-添加泛型仓储，重新注入" class="headerlink" title="5.添加泛型仓储，重新注入"></a>5.添加泛型仓储，重新注入</h2><p><a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1228">https://www.donet5.com/Home/Doc?typeId=1228</a></p>
 <h2 id="6-设置路由"><a href="#6-设置路由" class="headerlink" title="6.设置路由"></a>6.设置路由</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/22/">https://bxshare.top/index.php/archives/22/</a></p>
 <h2 id="7-fluentvalidation"><a href="#7-fluentvalidation" class="headerlink" title="7.fluentvalidation"></a>7.fluentvalidation</h2><h2 id="8-跨域"><a href="#8-跨域" class="headerlink" title="8.跨域"></a>8.跨域</h2><p><a target="_blank" rel="noopener" href="https://bxshare.top/index.php/archives/24/">https://bxshare.top/index.php/archives/24/</a></p>
@@ -469,7 +469,7 @@
 <li>在本项目中完美的实现了在一个Base里面写完增删改查方法具体实现，通过泛型传递实现类，而不必每个实现类去实现同样的方法。实现了类似efcore中构造AADbContext构造方法中只通过Base往DbContext里面传入DbContextOptions的形式。。</li>
 </ol>
 <p>7.wpf项目结构如下：</p>
-<p>1.前端wpf部分<img src="/.github//assets/image-20230424200430692.png" alt="image-20230424200430692"><img src="/.github//assets/image-20230424200615760.png" alt="image-20230424200615760">2.后台webapi部分</p>
+<p>1.前端wpf部分<img src="/.io//assets/image-20230424200430692.png" alt="image-20230424200430692"><img src="/.io//assets/image-20230424200615760.png" alt="image-20230424200615760">2.后台webapi部分</p>
 <p>8.窗体的属性部分都是复制mateiraldesign的demo源码</p>
 <p>9.裁剪图像</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Image.Clip&gt;</span><br><span class="line">                                    &lt;EllipseGeometry</span><br><span class="line">                                        Center=&quot;27,18&quot;</span><br><span class="line">                                        RadiusX=&quot;20&quot;</span><br><span class="line">                                        RadiusY=&quot;20&quot;&gt;&lt;/EllipseGeometry&gt;</span><br><span class="line">                                &lt;/Image.Clip&gt;</span><br></pre></td></tr></table></figure>
@@ -588,7 +588,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github/2026/01/28/net5%E9%A1%B9%E7%9B%AE/">https://gao-hongfei123.github/2026/01/28/net5%E9%A1%B9%E7%9B%AE/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/net5%E9%A1%B9%E7%9B%AE/">https://gao-hongfei123.github.io/2026/01/28/net5%E9%A1%B9%E7%9B%AE/</a>
                 </span>
             </div>
             <div class="reprint__notice">

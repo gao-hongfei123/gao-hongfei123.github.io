@@ -404,9 +404,9 @@
 <span id="more"></span>
 
 <h3 id="2-项目的发布"><a href="#2-项目的发布" class="headerlink" title="2.项目的发布"></a>2.项目的发布</h3><p>视频参考杨中科1-6：点击项目右键，发布，文件夹，文件夹，点击所有设置观察信息其中依赖框架指的是要求目标计算机上已有.net运行环境，而独立指的是在打包过程中将.net环境包含进去，保存，发布。</p>
-<p><img src="/.github//assets/image-20220118152015612.png" alt="image-20220118152015612"></p>
+<p><img src="/.io//assets/image-20220118152015612.png" alt="image-20220118152015612"></p>
 <p>若选择生成单个文件，启用readytorun则表示将所有的文件打包到.exe文件中（pdb文件无用），则产生的文件只有一个.exe文件（仅适用于.nect core3）。</p>
-<p><img src="/.github//assets/image-20220118154815553.png" alt="image-20220118154815553"></p>
+<p><img src="/.io//assets/image-20220118154815553.png" alt="image-20220118154815553"></p>
 <h3 id="net5中的program-cs文件分析："><a href="#net5中的program-cs文件分析：" class="headerlink" title=".net5中的program.cs文件分析："></a>.net5中的program.cs文件分析：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Program</span><br><span class="line">   &#123;</span><br><span class="line">       public static void Main(string[] args)</span><br><span class="line">       &#123;</span><br><span class="line">           CreateHostBuilder(args).Build().Run();</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       public static IHostBuilder CreateHostBuilder(string[] args) =&gt;</span><br><span class="line">           Host.CreateDefaultBuilder(args)</span><br><span class="line">               .ConfigureWebHostDefaults(webBuilder =&gt;</span><br><span class="line">               &#123;</span><br><span class="line">                   webBuilder.UseStartup&lt;Startup&gt;();</span><br><span class="line">               &#125;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>main方法中如果什么也没有则是控制台应用，添加了上面的代码之后则变成了.net core应用程序，其中里面的startup是一个启动类，对应右侧的startup文件</p>
@@ -522,7 +522,7 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">被注入的类</span><br><span class="line">    class Test</span><br><span class="line">    &#123;</span><br><span class="line">        private readonly ILogger&lt;Test&gt; logger;</span><br><span class="line">        //构造方法注入方式</span><br><span class="line">        public Test(ILogger&lt;Test&gt; logger) &#123;</span><br><span class="line">            this.logger = logger;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //调用方法输出日志</span><br><span class="line">        public void print() &#123;</span><br><span class="line">            logger.LogDebug(&quot;开始数据库调试&quot;);</span><br><span class="line">            logger.LogDebug(&quot;连接数据库成功&quot;);</span><br><span class="line">            logger.LogWarning(&quot;查住数据失败&quot;);</span><br><span class="line">            logger.LogError(&quot;查找数据最终失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.github//assets/image-20220126230050166.png" alt="image-20220126230050166"></p>
+<p><img src="/.io//assets/image-20220126230050166.png" alt="image-20220126230050166"></p>
 <h3 id="将日志写入文件"><a href="#将日志写入文件" class="headerlink" title="将日志写入文件"></a>将日志写入文件</h3><p>1.nuget安装 NLog.Extensions.Logging </p>
 <p>2.项目根目录下建nlog.config，右键属性改为：”如果较新的复制“</p>
 <p>3.增加logbuilder.addNlog();</p>
@@ -546,7 +546,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//json转js对象</span><br><span class="line">var json = &#x27;&#123;&quot;name&quot;:&quot;孙悟空“,&quot;age&quot;:&quot;18&quot;,&quot;gender&quot;:&quot;男&quot;&#125;&#x27;；</span><br><span class="line"></span><br><span class="line">var obj = Json.parse(json);这个代码来转换</span><br><span class="line"></span><br><span class="line">//js转json</span><br><span class="line">var str = JSON.stringify(obj);</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 
 <h1 id="webapi"><a href="#webapi" class="headerlink" title="webapi"></a>webapi</h1><p>如果swagger页面报错，说明action没有写【HttpGet】或者【httpPost】</p>
-<p><img src="/.github//assets/image-20220127165726467.png"></p>
+<p><img src="/.io//assets/image-20220127165726467.png"></p>
 <p>在webapi中，get（）就是控制器里面的action，当有get请求时就会执行这里面的内容，其中里面的weatherforecast是系统自带的实体类，主要是为了测试使用</p>
 <p>返回的数据</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;&quot;date&quot;:&quot;2022-01-28T16:59:42.1593514+08:00&quot;,&quot;temperatureC&quot;:-20,&quot;temperatureF&quot;:-3,&quot;summary&quot;:&quot;Warm&quot;&#125;,&#123;&quot;date&quot;:&quot;2022-01-29T16:59:42.1606711+08:00&quot;,&quot;temperatureC&quot;:-13,&quot;temperatureF&quot;:9,&quot;summary&quot;:&quot;Bracing&quot;&#125;,&#123;&quot;date&quot;:&quot;2022-01-30T16:59:42.1606763+08:00&quot;,&quot;temperatureC&quot;:31,&quot;temperatureF&quot;:87,&quot;summary&quot;:&quot;Mild&quot;&#125;,&#123;&quot;date&quot;:&quot;2022-01-31T16:59:42.1606768+08:00&quot;,&quot;temperatureC&quot;:41,&quot;temperatureF&quot;:105,&quot;summary&quot;:&quot;Freezing&quot;&#125;,&#123;&quot;date&quot;:&quot;2022-02-01T16:59:42.1606771+08:00&quot;,&quot;temperatureC&quot;:-7,&quot;temperatureF&quot;:20,&quot;summary&quot;:&quot;Balmy&quot;&#125;]</span><br></pre></td></tr></table></figure>
@@ -573,10 +573,10 @@
 <p>3.如果想要返回一个对象，里面包含多个信息，那么直接将属性信息封装到一个类里面，然后直接返回一个自定义对象</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public ActionResult&lt;int&gt; add(int i1) &#123;</span><br><span class="line">            if (i1 &gt; 1)</span><br><span class="line">            &#123;</span><br><span class="line">                return 1;//因为1是int类型，而notfound是IActionResult类型,所以actionresult&lt;int&gt;底层会自动转换为ActionResult类型</span><br><span class="line">            &#125;</span><br><span class="line">            else if(i1==1)&#123;</span><br><span class="line">                return NotFound(&quot;404&quot;);    //notFound底层会自动转为泛型的ActionResult类型</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            	return BadRequest(new ErrorInfo(1,&quot;id必须是参数&quot;));</span><br><span class="line">			</span><br><span class="line">        &#125;</span><br><span class="line">        return new StudentInfo(&quot;张三&quot;,23,oneclass,...)；这样就直接将对象封装成一个json</span><br><span class="line">        </span><br><span class="line">    return Json(&quot;&quot;);会返回一个JsonResult类型，但是最好都是直接用IActionResult来接收</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.github//assets/%E6%97%A0%E6%A0%87%E9%A2%98-16557329698491.png" alt="无标题"></p>
-<p><img src="/.github//assets/image-20220620214809722.png" alt="无标题"></p>
-<p><img src="/.github//assets/%E6%97%A0%E6%A0%87%E9%A2%98-16557330285702.png" alt="无标题"></p>
-<p><img src="/.github//assets/image-20220620215045094.png" alt="image-20220620215045094"></p>
+<p><img src="/.io//assets/%E6%97%A0%E6%A0%87%E9%A2%98-16557329698491.png" alt="无标题"></p>
+<p><img src="/.io//assets/image-20220620214809722.png" alt="无标题"></p>
+<p><img src="/.io//assets/%E6%97%A0%E6%A0%87%E9%A2%98-16557330285702.png" alt="无标题"></p>
+<p><img src="/.io//assets/image-20220620215045094.png" alt="image-20220620215045094"></p>
 <h3 id="WebApi参数传递（模型绑定）"><a href="#WebApi参数传递（模型绑定）" class="headerlink" title="WebApi参数传递（模型绑定）"></a>WebApi参数传递（模型绑定）</h3><p>前端提交的数据自动与后端控制器中的参数进行绑定，绑定原理是通过参数名称进行匹配，前端参数与后端参数相同则成功映射，否则报异常，true和false这些参数也都能自动识别为bool类型，不区分大小写，解决办法使用给参数添加【fromroute】如果控制器中需要传入的是个数组，则使用List《》进行绑定。如果前后端参数名称没有统一，则手动绑定。控制器中参数写[【bind(prefix&#x3D;”email”)】 List《string》 Name，表示前端的email映射到后端的Name上。</p>
 <p>例如后端参数名为classNum,而前端参数为calssNo：则方法中写GetAll(【string schoolName,【fromroute(Name&#x3D;”classNo”)】string classNum})</p>
 <p>1.直接通过参数来获取前端数据【stringquery(Name&#x3D;”gender”)】string genderdisplay;前端名字为gender，后端名字为genderdisplay，这样一一对应。</p>
@@ -597,7 +597,7 @@
 <p>如果请求端是个类,则在访问使用会出现json格式的Person类，这时我们只需要为json里面的参数赋值即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public int add(Person p1)&#123;</span><br><span class="line">	return p1.age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.github//assets/image-20220127232208936.png" alt="image-20220127232208936"></p>
+<p><img src="/.io//assets/image-20220127232208936.png" alt="image-20220127232208936"></p>
 <p>默认的模型绑定从三个方面提供数据，顺序为1.表单数据	2.路由变量	3.查询串</p>
 <p>例如&#x2F;home&#x2F;index&#x2F;3?id&#x3D;1因为3为路由变量中的值，而id&#x3D;1为查询串中的值，所以index方法将收到3，而id&#x3D;1将被忽略</p>
 <p>因为模型绑定系统中，对于参数为int类型，如果url中没有传入数值，则会将int类型默认赋值为0，但是需要需要区分未赋值但系统默认为0和手动传入参数为0的两种情况，此时需要使用可空类型</p>
@@ -629,7 +629,7 @@
 <h1 id="中间件（MiddleWare）"><a href="#中间件（MiddleWare）" class="headerlink" title="中间件（MiddleWare）"></a>中间件（MiddleWare）</h1><p>就是在管道中运行中的请求和服务器之间的数据处理dd，中间件构成了管道，若一个管道里什么都没有，则是畅通无阻，但是如果想要过滤掉一些东西，就需要中间件，所以中间件的作用，就是过滤掉请求或者响应中的一些不符合要求的信息。例如starpup中的app.UseRouting();&#x2F;&#x2F;该中间件的作用就是路由中间件，是请求地址和控制器之间的映射。中间件的作用就是指定数据提交给服务器和服务器返回的顺序，否则一次所有内容全部提交会导致系统冲突，而且在这过程中进行报文的处理。</p>
 <p>筛选器是net core  mvc中的功能，而中间件是netcore中提供的功能中间件可以处理所有请求，而filter只能处理控制器的请求，优先使用中间件，如果这个组件只针对mvc或者需要使用mvc的功能的时候则使用filter</p>
 <p>每一个中间件都有权做出决定是否将请求传递给下一个中间件，中间件是有顺序的，就是请求就是按照使用的顺序，如下，请求执行1begin，next（）方法跳到2begin请求，next（）方法跳到hellorun，然后返回响应2end，接着响应1end</p>
-<p><img src="/.github//assets/image-20220128233337920.png" alt="image-20220128233337920"></p>
+<p><img src="/.io//assets/image-20220128233337920.png" alt="image-20220128233337920"></p>
 <p>Map:用来定义一个管道可以处理哪些请求，是中间件的入口</p>
 <p>Use和Run：用来定义管道，每个Use引入一个中间件（后面还可执行别的中间件，后面有next（）方法），而Run用来执行最后一个中间件，没有next（）方法）执行run时及时后面还有中间件也不执行了，run方法作为最后一个中间件，是没有next（）方法的。</p>
 <p>举例</p>
@@ -759,23 +759,23 @@
 
 
 
-<p><img src="/.github//assets/image-20220129101807057.png" alt="image-20220129101807057"></p>
+<p><img src="/.io//assets/image-20220129101807057.png" alt="image-20220129101807057"></p>
 <h3 id="5-添加中间件："><a href="#5-添加中间件：" class="headerlink" title="5.添加中间件："></a>5.添加中间件：</h3><p>app.UseAuthentication()；</p>
 <h3 id="6-在控制器中添加payload："><a href="#6-在控制器中添加payload：" class="headerlink" title="6.在控制器中添加payload："></a>6.在控制器中添加payload：</h3><p>每一个claim都是要是payload信息，只需要添加必要的信息，不要什么都填</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">private readonly IOptionsSnapshot&lt;JWTSetting&gt; jwtSetting;</span><br><span class="line"></span><br><span class="line">        public Login2Controller(IOptionsSnapshot&lt;JWTSetting&gt; jwtSetting)</span><br><span class="line">        &#123;</span><br><span class="line">            this.jwtSetting = jwtSetting;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        [HttpPost]</span><br><span class="line">        public  ActionResult&lt;string&gt; Login(string name, string password)</span><br><span class="line">        &#123;</span><br><span class="line">            if (name == &quot;yzk&quot; &amp;&amp; password == &quot;123456&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                List&lt;Claim&gt; claims = new List&lt;Claim&gt;();</span><br><span class="line">                claims.Add(new Claim(ClaimTypes.NameIdentifier, &quot;1&quot;));</span><br><span class="line">                claims.Add(new Claim(ClaimTypes.Name, name));</span><br><span class="line"></span><br><span class="line">                string key = jwtSetting.Value.SecKey;//通过配置文件读取,从这里直接到return之间直接抄，最终就是经过加密获得jwt</span><br><span class="line">                DateTime expires = DateTime.Now.AddSeconds(jwtSetting.Value.ExpireSeconds);//当前时间加上一小时</span><br><span class="line">                byte[] secBytes = Encoding.UTF8.GetBytes(key);</span><br><span class="line">                var secKey = new SymmetricSecurityKey(secBytes);</span><br><span class="line">                var credentials = new SigningCredentials(secKey, SecurityAlgorithms.HmacSha256Signature);</span><br><span class="line">                var tokenDescriptor = new JwtSecurityToken(claims: claims,</span><br><span class="line">                    expires: expires, signingCredentials: credentials);</span><br><span class="line">                string jwt = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);//</span><br><span class="line">                return jwt;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                return BadRequest();</span><br><span class="line">            &#125;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>访问之后可以看到获取的jwt为下图</p>
-<p><img src="/.github//assets/image-20220203232659420.png" alt="image-20220203232659420"></p>
-<p><img src="/.github//assets/image-20220129101856167.png" alt="image-20220129101856167"></p>
+<p><img src="/.io//assets/image-20220203232659420.png" alt="image-20220203232659420"></p>
+<p><img src="/.io//assets/image-20220129101856167.png" alt="image-20220129101856167"></p>
 <h3 id="7-如上图，"><a href="#7-如上图，" class="headerlink" title="7.如上图，"></a>7.如上图，</h3><p>在需要登录的控制器上或者action上添加[authorize],当在一个新的控制器上使用Authorize时会报错，因为只有登录的用户才能访问，怎样才能访问呢？1.使用Postman，在报文头自定义Authorization的值为“Bearer +空格+JWTToken”，即假设获取到了JWT。2.设置swagger，添加服务如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">简单配置swagger：</span><br><span class="line">app.UseSwaggerUI(c =&gt; c.SwaggerEndpoint(&quot;/swagger/v1/swagger.json&quot;, &quot;MyToDo.Api v1&quot;));</span><br><span class="line">复杂配置</span><br><span class="line">builder.Services.AddSwaggerGen(c =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    var scheme = new OpenApiSecurityScheme()</span><br><span class="line">    &#123;</span><br><span class="line">        Description = &quot;Authorization header. \r\nExample: &#x27;Bearer 12345abcdef&#x27;&quot;,</span><br><span class="line">        Reference = new OpenApiReference&#123;Type = ReferenceType.SecurityScheme,</span><br><span class="line">            Id = &quot;Authorization&quot;&#125;,</span><br><span class="line">        Scheme = &quot;oauth2&quot;,Name = &quot;Authorization&quot;,</span><br><span class="line">        In = ParameterLocation.Header,Type = SecuritySchemeType.ApiKey,</span><br><span class="line">    &#125;;</span><br><span class="line">    c.AddSecurityDefinition(&quot;Authorization&quot;, scheme);</span><br><span class="line">    var requirement = new OpenApiSecurityRequirement();</span><br><span class="line">    requirement[scheme] = new List&lt;string&gt;();</span><br><span class="line">    c.AddSecurityRequirement(requirement);&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/.github//assets/image-20220203233409231.png" alt="image-20220203233409231"></p>
-<p><img src="/.github//assets/image-20220203233347808.png" alt="image-20220203233347808"></p>
+<p><img src="/.io//assets/image-20220203233409231.png" alt="image-20220203233409231"></p>
+<p><img src="/.io//assets/image-20220203233347808.png" alt="image-20220203233347808"></p>
 <p>当对swagger添加服务后，通过Logger控制器获取JWT，然后在swagger中进行认证之后就可以可以访问Demo2控制器了。</p>
-<p><img src="/.github//assets/image-20220204000446888.png" alt="image-20220204000446888"></p>
+<p><img src="/.io//assets/image-20220204000446888.png" alt="image-20220204000446888"></p>
 <h3 id="8-注意事项"><a href="#8-注意事项" class="headerlink" title="8.注意事项"></a>8.注意事项</h3><p>除了下面这些设置，还可以通过角色进行访问【Authorize(Roles&#x3D;”admin”)】;只有管理员权限才可进行访问</p>
-<p><img src="/.github//assets/image-20220129102219450.png" alt="image-20220129102219450"></p>
+<p><img src="/.io//assets/image-20220129102219450.png" alt="image-20220129102219450"></p>
 <h3 id="9-保存JWT"><a href="#9-保存JWT" class="headerlink" title="9.保存JWT"></a>9.保存JWT</h3><p>当登录之后，服务器返回给客户端的JWT需要保存在Web端，App，小程序等，可以保存在配置文件，只要请求时带着即可。退出登陆时，在服务器端将JWT扔掉即可</p>
 <h3 id="10-JWT提前撤回"><a href="#10-JWT提前撤回" class="headerlink" title="10.JWT提前撤回"></a>10.JWT提前撤回</h3><p>如果客户端通过手机和电脑同时访问服务器，那么两个都可以登录，如果想要实现只能一台设备登录，那么就需要让JWT提前撤回。第二种情况，如果一个员工离职了，虽然账号密码删除了，但是JWT仍然存在，所以需要让JWT提前失效。但是JWT是保存客户端的，无法撤回，所以需要将JWT的状态保存在服务端，以判断JWT是否失效。</p>
 <p>具体措施思路：在用户表中增加一个整数类型的列JWTVersion，代表最后一次发放出去的令牌的版本号；每次登录、发放令牌的时候，都让JWTVersion的值自增，同时将JWTVersion的值也放到JWT令牌的负载中；当执行禁用用户、撤回用户的令牌等操作的时候，把这个用户对应的JWTVersion列的值自增；当服务器端收到客户端提交的JWT令牌后，先把JWT令牌中的JWTVersion值和数据库中JWTVersion的值做一下比较，如果JWT令牌中JWTVersion的值小于数据库中JWTVersion的值，就说明这个JWT令牌过期了。</p>
@@ -855,7 +855,7 @@
 <p>MVC与三层架构的关系，MVC中的V和C就是三层架构中的UI层，而三层架构中的BLL和DAL和Model层就是MVC中的Model层,在webapi中没有了V所以C就是UI层</p>
 <p>而调用流程是Repository引用Models层，Service层引用Repository层，Net（UI）引用Service层</p>
 <p>.netcore中的Services(BLL),Repository（Dal）,webAPI(UI)如下图可以看到，包含controller的那层就是UI层，repository和service层与该项目是同级别的，</p>
-<p><img src="/.github//assets/image-20220202215116862.png" alt="image-20220202215116862"></p>
+<p><img src="/.io//assets/image-20220202215116862.png" alt="image-20220202215116862"></p>
 <p>repository的作用：实际上他是等价于Dao层的，只不过dao层中进行增删改查，因为数据库中有很多表，所以dao层中，每个表的增删改查都需要重写一边，那么就重复性工作，所以单独创建一个Repository层，该层创建一个Repository的实体类和泛型接口，该接口封装了对所有的表的操作的常用方法，这样，我们在调用的时候只需要传入对应的实体类即可完成增删改查操作，这样，如果某个类需要连接多个数据库，那么直接实现该接口即可，不必每个数据库都手写增删改查。对于一些更细致的方法，让Repository中的自己dao仓储层自己去实现。而repository是公共使用的，他不具体对应哪个类，所有类都可以使用。对于大型项目，最好每一个仓储类对应一个仓储接口，这样如果需要连接不同数据库直接找对应的接口即可，对于小型项目，即一个数据库，直接所有的仓储类都实现同一个接口即可。</p>
 <p>注意；无法注册的原因是因为类没有public</p>
 <h1 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h1><p>下面的返回类型均是IActionResult类型,webapi的返回类型可以是特定类型（string，对象等），当有多个ActionResult返回类型是，推荐使用IActionResult；若返回两种类型的数据例如string和actionresult，则使用ActionResult《string》作为返回类型。</p>
@@ -867,9 +867,9 @@
 <p>415:</p>
 <h1 id="托管模型"><a href="#托管模型" class="headerlink" title="托管模型"></a>托管模型</h1><p>进程内(默认)：只有一个服务器：IIS或者Kestrel。配置文件中写《aspnetcore hostingmode》Inprocess《&#x2F;asp net core hostingmode》</p>
 <p>进程外：有两个服务器：内部服务器（kestrel）和外部服务器（IIs,nginx）。配置文件中写《aspnetcore hostingmode》outprocess《&#x2F;asp net core hostingmode》</p>
-<p><img src="/.github//assets/image-20220210214041148.png" alt="image-20220210214041148"></p>
+<p><img src="/.io//assets/image-20220210214041148.png" alt="image-20220210214041148"></p>
 <p>托管的影响：在lauchsetting设置中我们可以看到如果启动方式选择IIsExpress，在配置文件中就会调用IIsExpress配置文件，当使用Kestrel时就会调用webaplication的配置文件，其中launchbrower表示是否使用浏览器进行调试</p>
-<p><img src="/.github//assets/image-20220210214420598.png" alt="image-20220210214420598"></p>
+<p><img src="/.io//assets/image-20220210214420598.png" alt="image-20220210214420598"></p>
 <p>其中commandName只能设置三个参数：IIsExpress&#x2F;IIs&#x2F;Project</p>
 <p>luanchBorwer:是否启动浏览器进行调试</p>
 <h1 id="处理全局异常（针对webapi）"><a href="#处理全局异常（针对webapi）" class="headerlink" title="处理全局异常（针对webapi）"></a>处理全局异常（针对webapi）</h1><p>用于出现错误时，返回结果的具体细节不返回给客户端，而是返回自定义的异常信息。解决方法1.在项目的属性配置中，将开发环境改为生产环境。（即异常的时候返回空白）方法二：参考软件工艺师asp.netcore处理服务器端故障。</p>
@@ -877,7 +877,7 @@
 <p>2.app.useExceptionHandler(builder&#x3D;&gt;builder.run(async context&#x3D;&gt;context.Response().StatusCode&#x3D;StatusCode500InterServerError,</p>
 <p>context.Response.ContentType&#x3D;”applacation&#x2F;json”),</p>
 <p>…)</p>
-<h1 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h1><p><img src="/.github//assets/image-20220212122741573.png" alt="image-20220212122741573"></p>
+<h1 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h1><p><img src="/.io//assets/image-20220212122741573.png" alt="image-20220212122741573"></p>
 <p>会单独创建一个类，用来进行保存分页中的参数</p>
 <p>1.pageNumber：当前在第几页</p>
 <p>2.pageSize：每页的条数</p>
@@ -927,7 +927,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github/2026/01/28/net5/">https://gao-hongfei123.github/2026/01/28/net5/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/net5/">https://gao-hongfei123.github.io/2026/01/28/net5/</a>
                 </span>
             </div>
             <div class="reprint__notice">

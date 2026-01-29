@@ -423,9 +423,9 @@
 <p>9.注意前面都是通过自动创建sqlclient对象的方式获取的，如果使用IOC容器，需要注册的。</p>
 <p><strong>10</strong>，当仓储层继承了SimpleClient时，里面自带了与前面不同的方法，直接调用即可（不用执行后面的执行语句ExecuteCommad,这是优点），当然也可以使用前面中的方法而且前面中的方法更加全面。其中base指的是父类及simpleClient中的方法。<a target="_blank" rel="noopener" href="https://www.donet5.com/Home/Doc?typeId=1228">https://www.donet5.com/Home/Doc?typeId=1228</a></p>
 <p>在创建仓库时分析代码里面的含义：原本应该是应该在Reposiroy里面定义一个变量来接受IsqlSugarClient对象，这样就可以使用里面的方法，但是换一种思路，我们可以将该对象传入给SimpleClient构造函数，使用base的方式使用SqlSugar对象里面的方法也是一样的，同时可以使用SimpleClient里面特有的方法。这样有一个弊端，那就是如果实现Reposity的子类如果想要使用sqlsugar对象中的方法，其构造方法也必须写成Repository中构造方法的样子，因为父类的有参构造，子类必须继承。</p>
-<p><img src="/.github//assets/image-20220205121645864.png" alt="image-20220205121645864"></p>
+<p><img src="/.io//assets/image-20220205121645864.png" alt="image-20220205121645864"></p>
 <p>观察SimpleClient类发现，这才是标准的构造注入，获取了IsqlSugarCilent对象，使用里面的方法。</p>
-<p><img src="/.github//assets/image-20220205120923215.png" alt="image-20220205120923215"></p>
+<p><img src="/.io//assets/image-20220205120923215.png" alt="image-20220205120923215"></p>
 <p>11.使用sqlsugar第一种方式注入时，应使用services.addsqlsugar,而不是sugarservices.addsugar();</p>
 
                 
@@ -453,7 +453,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gao-hongfei123.github/2026/01/28/SqlSugar/">https://gao-hongfei123.github/2026/01/28/SqlSugar/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/SqlSugar/">https://gao-hongfei123.github.io/2026/01/28/SqlSugar/</a>
                 </span>
             </div>
             <div class="reprint__notice">
