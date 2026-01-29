@@ -414,8 +414,8 @@ ORM就是将相应的实体映射到相应的数据">
 <p>string ——nvarchar(Max)</p>
 <p>Guid——UinqueIdentifier,它使用的mac地址，时间戳等信息生成的全球唯一id，而且不是连续的，因此他不能作为索引，sqlserver可以不将主键设置为索引，但是mysql中必须将逐渐设置为索引，所以在mysql中不能使用guid</p>
 <p>对象&#x2F;引用类型——无映射，但是会在数据库中自动生成类名+id的外键</p>
-<p><img src="/.com//assets/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt="无标题"></p>
-<p><img src="/.com//assets/%E6%97%A0%E6%A0%87%E9%A2%982.png" alt="无标题2">必须将数据访问层与Ui层隔离开来，不应该将上下文暴露在UI层中，所以创建Service层，将上下文实例只在仓储层进行使用</p>
+<p><img src="/.io//assets/%E6%97%A0%E6%A0%87%E9%A2%98.png" alt="无标题"></p>
+<p><img src="/.io//assets/%E6%97%A0%E6%A0%87%E9%A2%982.png" alt="无标题2">必须将数据访问层与Ui层隔离开来，不应该将上下文暴露在UI层中，所以创建Service层，将上下文实例只在仓储层进行使用</p>
 <p><strong>创建上下文的方式</strong></p>
 <p>1.using(var context &#x3D; new Context())</p>
 <p>{</p>
@@ -500,7 +500,7 @@ ORM就是将相应的实体映射到相应的数据">
 <p>​	一对一关系配置(Student与Contact类一对一)：HasOptional(x&#x3D;&gt;)x.Contact.WithRequired(m&#x3D;&gt;m.Student)(这是ef不是efcore)</p>
 <p><strong>以下都是根据dbfirst开发方式进行的。</strong></p>
 <p>context.cs的DbSet里面里面写了很多增删改查的方法，即DbFirstEntitiels简称**<font color="red">上下文类，这在程序中是核心</font>**，在程序中调用的所有的方法都是上下文类中的方法。</p>
-<p><img src="/.com//assets/%E6%8D%95%E8%8E%B72.jpg" alt="捕获2"></p>
+<p><img src="/.io//assets/%E6%8D%95%E8%8E%B72.jpg" alt="捕获2"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">//分页查询：需要三个参数1.当前页 2.每一页的个数 3.总页数，每一页可以显示的页码数</span><br><span class="line">//pageIndex:查询结果中表示跳过的页数</span><br><span class="line">//pageSize:查询结果中表示每页的个数</span><br><span class="line">static void pageQuery(int pageIndex,int pageSize) &#123;</span><br><span class="line">    using (var db= new DbFirstEntities()) &#123; </span><br><span class="line">        //查询前必须进行排序，使用linq进行分页</span><br><span class="line">        var result = db.Student.OrderBy(s =&gt; s.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();//这是固定的</span><br><span class="line">        foreach (var item in result)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(item.Name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>注意事项：</p>
@@ -529,7 +529,7 @@ ORM就是将相应的实体映射到相应的数据">
 <p>例如前面创建表时如果字段是引用类型则不会映射到数据库中，在ef中这就是一对多，多对多。实际上就是外键。并且使用【Foreignkey】修饰，或者使用fluentapi</p>
 <p>在类中配置完外键之后，还需要使用fluentapi进行配置，两表之间的配置选择任意一个即可，对于单向导航，只能配置在一方</p>
 <p>在实际项目开发中，对于主从结构的一对多一般声明为双向导航，其他的比如被很多表引用的基础表，都是用单向导航</p>
-<p><img src="/.com//assets/image-20230401092454204.png" alt="image-20230401092454204"></p>
+<p><img src="/.io//assets/image-20230401092454204.png" alt="image-20230401092454204"></p>
 <p><strong>一对一</strong>:（最复杂）在学生中添加简历字段，同时在简历中添加学生字段</p>
 <p>在一对一中，必须显式的在类中声明一个外键属性</p>
 <p>例如学生和简历</p>
@@ -712,7 +712,7 @@ ORM就是将相应的实体映射到相应的数据">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2026/01/28/ef%E5%AD%A6%E4%B9%A0/">http://example.com/2026/01/28/ef%E5%AD%A6%E4%B9%A0/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/ef%E5%AD%A6%E4%B9%A0/">https://gao-hongfei123.github.io/2026/01/28/ef%E5%AD%A6%E4%B9%A0/</a>
                 </span>
             </div>
             <div class="reprint__notice">

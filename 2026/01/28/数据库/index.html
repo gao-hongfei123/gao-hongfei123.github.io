@@ -398,12 +398,12 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p><img src="/.com//assets/image-20220119124805589.png" alt="image-20220119124805589"></p>
+                <h1 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h1><p><img src="/.io//assets/image-20220119124805589.png" alt="image-20220119124805589"></p>
 <p>连接到服务器：指的是存放数据库的那个电脑，数据库服务器名称就是右键我的电脑 名称，一般数据库服务器只有一个计算机名称，所以通常不做更改（同一网段中可以连接其他服务器）</p>
 <p>连接到数据库：指的是与某个指定的数据库进行连接的过程，建立成功后在服务器资源管理器中可以看到连接，默认连接的是master数据库<span id="more"></span></p>
-<p><img src="/.com//assets/image-20220119125758933.png" alt="image-20220119125758933"></p>
+<p><img src="/.io//assets/image-20220119125758933.png" alt="image-20220119125758933"></p>
 <p>添加sqlserver：指的是创建一个sqlserver管理界面，将与指定的服务器进行连接将所有的数据库导入到sqlserver中在vs中放在sqlserver对象管理器中</p>
-<p><img src="/.com//assets/image-20220119124705159.png" alt="image-20220119124705159"></p>
+<p><img src="/.io//assets/image-20220119124705159.png" alt="image-20220119124705159"></p>
 <p>连接字符串：以上都是通过可视化界面进行连接数据库的，但是编程必须使用代码进行数据库的连接，所以通过连接字符串连接数据库，连接字符串寻找方法：数据连接中右键属性，在属性对话中的可以找到连接字符串，如下</p>
 <p>“Data Source&#x3D;(localdb)\MSSQLLocalDB;Initial Catalog&#x3D;master;Integrated Security&#x3D;True”</p>
 <p>连接的服务器为(localdb)\MSSQLLocalDB，连接的数据库为master</p>
@@ -421,7 +421,7 @@
 <p>string sql &#x3D; “select * from t_user where id &#x3D; ‘“+textBox1.Text+”‘ and psw &#x3D; ‘“+textBox2.Text+”‘“;</p>
 <p>string sql2&#x3D;string.Format(“select * from t_user where id &#x3D;{0} and psw&#x3D;{1}”,textBox1.Text,textBox2.Text);</p>
 <p>6.Vs连接自带数据库：在项目中添加-》基于服务的数据库，后缀名为.mdf,然后 –》工具选项卡-》连接到数据库-》数据源选择为sql server-》服务器名选择是在sqlserver对象资源管理器中单击所创建的数据库，左上角有个添加sqlserver 然后serverName就是服务器名，-》选择数据库名称中添加自己创建的数据库即可，连接成功后会在服务器资源管理中的数据连接看到所创建的连接。</p>
-<p><img src="/.com//assets/wps82AE.tmp.jpg" alt="img"> </p>
+<p><img src="/.io//assets/wps82AE.tmp.jpg" alt="img"> </p>
 <p>​	设置数据库表中Id为自增：vs中打开表后，在右侧属性中-》标识列改为Id即可设置为自增</p>
 <p>​	数据库表修改完成之后点击-》更新，而不是保存-》更新数据库，完成更新</p>
 <p>实现远程连接vs内置数据库。参考连接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/caijiaming/p/9991216.html">https://www.cnblogs.com/caijiaming/p/9991216.html</a></p>
@@ -784,7 +784,7 @@
 <p>​		select ename,sal 基本工资,comm 绩效,nvl2(comm,sal+comm,sal)月薪 from emp</p>
 <p>​	显示员工的职称</p>
 <p>​			select ename,job,decode(job,’MANAGER’,’经理’,’SALESMAN’,’销售人员’,’普通员工’) from emp</p>
-<p>解释：decode中job与manager比较为真的话就执行经理，与salesman比较为真的话就执行销毁人员，如果全为假，就执行普通员工类似于if（job &#x3D; manager）{输出经理}else if（job &#x3D; salesman ）{输出销售人员} else {输出普通员<img src="/.com//assets/wps629D.tmp.jpg" alt="img"></p>
+<p>解释：decode中job与manager比较为真的话就执行经理，与salesman比较为真的话就执行销毁人员，如果全为假，就执行普通员工类似于if（job &#x3D; manager）{输出经理}else if（job &#x3D; salesman ）{输出销售人员} else {输出普通员<img src="/.io//assets/wps629D.tmp.jpg" alt="img"></p>
 <p>​			</p>
 <h3 id="使用group-by分组字段"><a href="#使用group-by分组字段" class="headerlink" title="使用group by分组字段"></a>使用group by分组字段</h3><p>在多行函数中不能直接使用普通字段，除非group by</p>
 <p>在多行函数中不能直接使用单行函数，除非group by</p>
@@ -1369,8 +1369,8 @@
 <p>–16、统计平均工资大于2000的部门的详细信息</p>
 <p>select * from dept d,(select deptno, avg(sal) asal from emp group by deptno) s</p>
 <p>where d.deptno&#x3D;s.deptno and s.asal&gt;2000</p>
-<p><img src="/.com//assets/wps62AD.tmp.jpg" alt="img"> </p>
-<p><img src="/.com//assets/wps62AE.tmp.jpg" alt="img"> </p>
+<p><img src="/.io//assets/wps62AD.tmp.jpg" alt="img"> </p>
+<p><img src="/.io//assets/wps62AE.tmp.jpg" alt="img"> </p>
 <p>—创建Employees</p>
 <p>create table Employees(</p>
 <p>​    employeeID varchar2(6) primary key,</p>
@@ -1414,7 +1414,7 @@
 <p>   –分页查询员工信息按照工资排序</p>
 <p>   select * from (select rownum r,t.* from (select * from emp  order by sal) t where rownum&lt;&#x3D;10 ) where r&gt;5</p>
 <p>数据库备份</p>
-<p><img src="/.com//assets/wps62BF.tmp.jpg" alt="img"> </p>
+<p><img src="/.io//assets/wps62BF.tmp.jpg" alt="img"> </p>
 <p>使用PL&#x2F;SQL Developer导入&#x2F;出数据</p>
 <p>Oracle Export&#x2F; Oracle Import</p>
 <p>扩展名dmp</p>
@@ -1549,7 +1549,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2026/01/28/%E6%95%B0%E6%8D%AE%E5%BA%93/">http://example.com/2026/01/28/%E6%95%B0%E6%8D%AE%E5%BA%93/</a>
+                    <a href="https://gao-hongfei123.github.io/2026/01/28/%E6%95%B0%E6%8D%AE%E5%BA%93/">https://gao-hongfei123.github.io/2026/01/28/%E6%95%B0%E6%8D%AE%E5%BA%93/</a>
                 </span>
             </div>
             <div class="reprint__notice">
