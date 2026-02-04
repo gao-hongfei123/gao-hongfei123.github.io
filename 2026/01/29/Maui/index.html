@@ -559,6 +559,7 @@
 
 
 <h4 id="Prism对话框："><a href="#Prism对话框：" class="headerlink" title="Prism对话框："></a>Prism对话框：</h4><p>可以使用Prism实现一个窗体作为对话框弹出。（Prism版本需更换为低于9版本）</p>
+<p><img src="/2026/01/29/Maui/assets/image-20260204195957108.png" alt="image-20260204195957108"></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chonglu/p/15159387.html">Prism之对话服务(DialogService) - 傲慢与偏见luc - 博客园</a></p>
 <p>（1）创建一个类实现IDialogAware接口，并实现对应方法（（Prism版本需更换为低于9版本，否则不弹出消息框）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MsgViewModel : IDialogAware</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CanCloseDialog()函数是决定窗体是否关闭</span><br><span class="line">OnDialogClosed()函数是窗体关闭时触发，触发条件取决于 CanCloseDialog()函数，当确定后会被触发，可以在这里将对话框上的内容通过这里传递回去</span><br><span class="line">OnDialogOpened()函数时窗体打开时触发，比窗体 Loaded 事件早触发</span><br><span class="line">Title 为窗体的标题</span><br><span class="line">RequestClose 为关闭事件，可由此控制窗体的关闭</span><br></pre></td></tr></table></figure>
