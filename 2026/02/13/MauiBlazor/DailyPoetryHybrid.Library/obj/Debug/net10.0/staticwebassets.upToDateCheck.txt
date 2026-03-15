@@ -1,0 +1,3 @@
+wwwroot\background.png
+wwwroot\exampleJsInterop.js
+D:\Source\DailyPoetryHybrid.Library\wwwroot\exampleJsInterop.js

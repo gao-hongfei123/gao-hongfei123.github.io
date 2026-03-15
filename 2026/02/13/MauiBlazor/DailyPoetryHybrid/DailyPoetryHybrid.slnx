@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../DailyPoetryHybrid.Library/DailyPoetryHybrid.Library.csproj" Id="d435d477-14ba-4acd-8ccb-e91c297c8aa5" />
+  <Project Path="DailyPoetryHybrid.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>

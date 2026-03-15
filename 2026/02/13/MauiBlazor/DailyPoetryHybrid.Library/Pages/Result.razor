@@ -1,0 +1,23 @@
+﻿@page "/result"
+
+@inject IPoetryStorage _poetryStroage;
+@* 无限滚动控件 *@
+<InfiniteScroll ObserverTargetId="observableTarget"
+				ObservableTargetReached="_=> LoadMoreAsync()">
+				
+	@foreach (var poetry in _poetries)
+	{
+		<div>
+			<span>@poetry.Name</span>
+			@poetry.Dynasty @poetry.Author
+			<div></div>
+			@poetry.Content.Substring(0,poetry.Content.IndexOf("。"))
+		</div>
+	}
+	@* 一出现就认为到底了，需要加载新数据 *@
+	<div id="observableTarget">
+	</div>
+
+</InfiniteScroll>
+
+
