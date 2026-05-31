@@ -426,7 +426,11 @@ ORM就是将相应的实体映射到相应的数据">
 <p>使用autofac等，或者自带的注册工具注入之后，直接使用即可</p>
 <p>在Programe里面注册之后</p>
 <p>var blog &#x3D; _BlogRepository.Get(BlogId);</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>0.引入efcore.sqlserver，和efcore tools两个包，有时候需要efcore design包</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>0.引入efcore.sqlserver，和efcore tools和efcore design三个包</p>
+<p>注意：efcore.sqlserver随着数据库类型的变化而变化，</p>
+<p>efcore.tools包是用来敲迁移命令的控制台，没有这个包，执行add-miration系统不认识这个命令</p>
+<p>efcore design包是用来执行迁移命令的核心包</p>
+<p> efcore是来提供dbcontext，dbset，add，remove等函数功能的。当装上sqlserver包之后会自动装上efcore的包 	</p>
 <p>1.创建实体类</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Book</span><br><span class="line">   &#123;</span><br><span class="line">       public long id &#123; get; set; &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
@@ -455,13 +459,15 @@ ORM就是将相应的实体映射到相应的数据">
    
     public DbSet&lt;Book&gt; Books { get; set; }//用来说明数据库中有Book类的表，如果还有其他类就再写一个DbSet
 </code></pre>
-<p> 3.判断是否需要创建数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.DataBase.EnsureCreate();若数据库已存在，则不处理，若不存在，则创建数据库</span><br></pre></td></tr></table></figure>
-
-<p>4.数据库迁移Migration</p>
+<p>3.数据库迁移Migration</p>
 <p>nuget安装microsoft.entityframework.tools</p>
 <p>运行add-migration即可生成建表语句，但是为了留下数据库操作记录，自己需要添加一个变量名 例如</p>
-<p>add-migration init后面的init就是一个变量民以方便查看，实际上执行命令的是add-migration,然后执行update-database才表示建表命令执行</p>
+<p>add-migration init后面的init就是一个变量名以方便查看，实际上执行命令的是add-migration,然后执行update-database才表示建表命令执行</p>
+<p>4.执行下面的命令后，可以使用vscode可视化查看数据库中的表中有哪些字段？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">using var db = new ApplicationDbContext();</span><br><span class="line">db.DataBase.EnsureCreate();若数据库已存在，则不处理，若不存在，则创建数据库,该语句写入Service层的构造函数中</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="数据库初始化策略"><a href="#数据库初始化策略" class="headerlink" title="数据库初始化策略"></a>数据库初始化策略</h3><p>​        		方式1：如果数据库不存在，就创建（不推荐）context.Database.EnsureCreated()<br>​        		方式2：总是创建数据库，无论存在与否(不推荐)context.Database.EnsureDeleted()+context.Database.EnsureCreated()</p>
 <p>​				确保删除：确保删除context.Database.EnsureDeleted()</p>
 <h3 id="主键，外键，索引的区别"><a href="#主键，外键，索引的区别" class="headerlink" title="主键，外键，索引的区别"></a>主键，外键，索引的区别</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xxeleanor/p/15024557.html">https://www.cnblogs.com/xxeleanor/p/15024557.html</a></p>
